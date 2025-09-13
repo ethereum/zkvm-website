@@ -1,5 +1,6 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
-import heroBackground from "@/assets/hero-background.jpg";
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -11,11 +12,8 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroBackground})` }}
-      />
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary-dark/30 to-slate/40" />
       
       {/* Dark Overlay */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary-dark to-slate opacity-90" />
