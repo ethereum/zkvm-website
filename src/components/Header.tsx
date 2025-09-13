@@ -30,7 +30,7 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white shadow-sm">
+    <header className="fixed top-0 w-full bg-white/70 backdrop-blur-sm z-50 border-b border-gray-200 shadow-sm">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="logo flex items-center space-x-3">
           <a href="#" className="flex items-center space-x-3">
