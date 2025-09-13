@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from '@/components/ui/button';
+
 const Hero = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -14,12 +16,20 @@ const Hero = () => {
         <h1>Scaling Ethereum Without Compromise</h1>
         <h2>Introducing ZK-EVMs on L1: A new paradigm to increase Ethereum's throughput while strengthening decentralization.</h2>
         <div className="cta-buttons">
-          <a href="#book" className="btn btn-primary" onClick={(e) => { e.preventDefault(); scrollToSection("book"); }}>
+          <Button 
+            variant="primary-legacy" 
+            size="legacy"
+            onClick={(e) => { e.preventDefault(); scrollToSection("book"); }}
+          >
             Read the Book
-          </a>
-          <a href="#blog" className="btn btn-secondary" onClick={(e) => { e.preventDefault(); scrollToSection("blog"); }}>
+          </Button>
+          <Button 
+            variant="secondary-legacy" 
+            size="legacy"
+            onClick={(e) => { e.preventDefault(); scrollToSection("blog"); }}
+          >
             View Latest Updates
-          </a>
+          </Button>
         </div>
       </div>
       
