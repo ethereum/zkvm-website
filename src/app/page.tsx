@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import ScalabilitySection from "@/components/ScalabilitySection";
+import ScalabilitySection, { ZKEVMSolutionSection } from "@/components/ScalabilitySection";
 import ImpactSection from "@/components/ImpactSection";
 import RoadmapSection from "@/components/RoadmapSection";
 import ZKEVMReadiness from "@/components/ZKEVMReadiness";
@@ -17,6 +17,7 @@ export default function Home() {
       <main>
         <Hero />
         <ScalabilitySection />
+        <ZKEVMSolutionSection />
         <ImpactSection />
         <RoadmapSection />
         <ZKEVMReadiness />
@@ -24,6 +25,12 @@ export default function Home() {
         <BlogSection />
         <BookSection />
         <TeamSection />
+        <section id="meetings">
+          <div className="section-title">
+            <h2>Community & Meetings</h2>
+            <p>While we don't have public calls scheduled right now, this is where you'll find recordings and resources from future community meetings and presentations. Stay tuned!</p>
+          </div>
+        </section>
       </main>
       <Footer />
     </div>
