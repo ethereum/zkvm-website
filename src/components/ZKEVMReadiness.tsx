@@ -1,5 +1,3 @@
-import { Check, X, Star } from "lucide-react";
-
 const ZKEVMReadiness = () => {
   const zkevms = [
     {
@@ -21,51 +19,52 @@ const ZKEVMReadiness = () => {
         { name: "Open Source", status: "pass" },
         { name: "Supported EL Clients", clients: ["Geth", "Nethermind"] }
       ]
-    },
-    {
-      name: "Polygon zkEVM",
-      description: "A Type 2 ZK-EVM that aims to be EVM-equivalent with some modifications for proving efficiency.",
-      criteria: [
-        { name: "Security/riscof Tests", status: "pass" },
-        { name: "Code Health", rating: 4 },
-        { name: "Open Source", status: "pass" },
-        { name: "Supported EL Clients", clients: ["Custom"] }
-      ]
     }
   ];
 
   const renderCriteriaValue = (criterion: any) => {
     if (criterion.status) {
       return criterion.status === "pass" ? (
-        <Check className="w-6 h-6 text-success" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="icon-pass">
+          <path d="M20 6 9 17l-5-5"/>
+        </svg>
       ) : (
-        <X className="w-6 h-6 text-destructive" />
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="icon-fail">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
       );
     }
     
     if (criterion.rating) {
       return (
-        <div className="flex items-center gap-1">
-          {[1, 2, 3, 4, 5].map((star) => (
-            <Star 
-              key={star}
-              className={`w-4 h-4 ${star <= criterion.rating ? 'text-primary fill-current' : 'text-border'}`}
-            />
-          ))}
+        <div className="tooltip-container">
+          <span className="star-rating">
+            {[1, 2, 3, 4, 5].map((star) => (
+              <span key={star} className={star <= criterion.rating ? '' : 'muted'}>★</span>
+            ))}
+          </span>
+          <div className="tooltip">
+            <p><strong>This score reflects overall code quality based on the following criteria:</strong></p>
+            <ul>
+              <li><strong>Readability:</strong> Based on static analysis, linter scores, and style guide adherence.</li>
+              <li><strong>Documentation:</strong> Based on code comment coverage and the quality of developer guides.</li>
+              <li><strong>Maintainability:</strong> Based on test coverage percentage and code complexity metrics.</li>
+            </ul>
+          </div>
         </div>
       );
     }
     
     if (criterion.clients) {
       return (
-        <div className="flex gap-2 flex-wrap">
+        <div className="client-tags">
           {criterion.clients.map((client: string) => (
             <span 
               key={client}
-              className={`px-2 py-1 rounded text-xs font-semibold ${
-                client === 'Geth' ? 'bg-blue-100 text-blue-800' :
-                client === 'Nethermind' ? 'bg-yellow-100 text-yellow-800' :
-                'bg-gray-100 text-gray-800'
+              className={`client-tag ${
+                client === 'Geth' ? 'tag-geth' :
+                client === 'Nethermind' ? 'tag-nethermind' :
+                'tag-custom'
               }`}
             >
               {client}
@@ -77,44 +76,26 @@ const ZKEVMReadiness = () => {
   };
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-border">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-6 tracking-tight">
-          ZK-EVM Mainnet Readiness
-        </h2>
-        <p className="text-lg font-sans text-gray leading-relaxed max-w-3xl mx-auto">
-          Evaluating core ZK-EVM implementations based on criteria required for a secure and sustainable mainnet deployment.
-        </p>
+    <section id="zkevm-readiness" style={{paddingTop: '4rem', marginTop: '4rem', borderTop: '1px solid var(--border-color)'}}>
+      <div className="section-title">
+        <h2 style={{fontSize: '2.5rem'}}>ZK-EVM Mainnet Readiness</h2>
+        <p>Evaluating core ZK-EVM implementations based on criteria required for a secure and sustainable mainnet deployment.</p>
       </div>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="zkevm-grid">
         {zkevms.map((zkevm, index) => (
-          <div 
-            key={zkevm.name}
-            className="bg-card border border-border rounded-xl p-6 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-primary/50"
-          >
-            <h3 className="text-xl font-bold text-foreground mb-3">
-              {zkevm.name}
-            </h3>
-            <p className="font-sans text-gray text-sm leading-relaxed mb-6">
-              {zkevm.description}
-            </p>
-            
-            <div className="space-y-4">
+          <div key={zkevm.name} className="zkevm-card">
+            <h3>{zkevm.name}</h3>
+            <p className="description">{zkevm.description}</p>
+            <ul className="criteria-list">
               {zkevm.criteria.map((criterion) => (
-                <div 
-                  key={criterion.name}
-                  className="flex items-center justify-between py-3 border-b border-border last:border-b-0"
-                >
-                  <span className="font-sans text-sm font-medium text-slate">
-                    {criterion.name}
-                  </span>
-                  <div className="flex-shrink-0">
+                <li key={criterion.name} className="criteria-item">
+                  <span className="name">{criterion.name}</span>
+                  <div className="value">
                     {renderCriteriaValue(criterion)}
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
         ))}
       </div>

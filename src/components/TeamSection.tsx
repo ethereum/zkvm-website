@@ -1,93 +1,30 @@
-import { Github, Twitter, Linkedin } from "lucide-react";
-
 const TeamSection = () => {
   const teamMembers = [
     {
-      name: "Dr. Sarah Chen",
-      role: "Lead Researcher",
-      initials: "SC",
-      bio: "Cryptography expert with 10+ years in zero-knowledge proofs"
-    },
-    {
-      name: "Michael Rodriguez", 
-      role: "Protocol Engineer",
-      initials: "MR",
-      bio: "Core Ethereum developer focusing on consensus layer integration"
-    },
-    {
-      name: "Dr. Aisha Patel",
-      role: "Performance Engineer", 
-      initials: "AP",
-      bio: "Specialized in prover optimization and hardware acceleration"
-    },
-    {
-      name: "David Kim",
-      role: "Security Researcher",
-      initials: "DK", 
-      bio: "Formal verification and cryptographic protocol analysis expert"
-    },
-    {
-      name: "Prof. Elena Volkov",
-      role: "Economic Researcher",
-      initials: "EV",
-      bio: "Mechanism design and incentive alignment for decentralized systems"
-    },
-    {
-      name: "James Thompson",
-      role: "Client Engineer",
-      initials: "JT",
-      bio: "Implementation lead for execution layer client integration"
+      name: "Jane Doe",
+      role: "Research Lead",
+      initials: "JD"
     }
   ];
 
   return (
-    <section id="team" className="py-24 px-4 sm:px-6 lg:px-8 bg-card">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 tracking-tight">
-            Meet Our Team
-          </h2>
-          <p className="text-lg sm:text-xl font-sans text-gray leading-relaxed max-w-3xl mx-auto">
-            A diverse group of researchers, engineers, and cryptographers working to bring ZK-EVMs to Ethereum's Layer 1.
-          </p>
-        </div>
-
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {teamMembers.map((member, index) => (
-            <div 
-              key={member.name}
-              className="text-center group transition-all duration-300 hover:scale-105"
-            >
-              <div className="w-24 h-24 bg-primary-light rounded-full flex items-center justify-center text-primary-dark font-bold text-xl mb-4 mx-auto group-hover:bg-primary group-hover:text-white transition-colors duration-300">
-                {member.initials}
-              </div>
-              
-              <h4 className="text-lg font-bold text-foreground mb-1">
-                {member.name}
-              </h4>
-              
-              <p className="font-sans text-primary font-medium mb-3">
-                {member.role}
-              </p>
-              
-              <p className="font-sans text-sm text-gray leading-relaxed mb-4">
-                {member.bio}
-              </p>
-              
-              <div className="flex justify-center space-x-3">
-                <a href="#" className="text-gray hover:text-primary transition-colors duration-200">
-                  <Github className="w-5 h-5" />
-                </a>
-                <a href="#" className="text-gray hover:text-primary transition-colors duration-200">
-                  <Twitter className="w-5 h-5" />
-                </a>
-                <a href="#" className="text-gray hover:text-primary transition-colors duration-200">
-                  <Linkedin className="w-5 h-5" />
-                </a>
-              </div>
+    <section id="team" style={{background: 'var(--white)'}}>
+      <div className="section-title">
+        <h2>Who We Are</h2>
+        <p>A collaborative effort from researchers and developers dedicated to scaling Ethereum securely.</p>
+      </div>
+      <div className="team-grid">
+        {teamMembers.map((member, index) => (
+          <div key={member.name} className="team-member">
+            <div className="team-avatar">{member.initials}</div>
+            <h4>{member.name}</h4>
+            <p>{member.role}</p>
+            <div className="social-links">
+              <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a>
+              <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.95 6.44 7.17C9.94 18.55 9 19 9 20v3"></path></svg></a>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

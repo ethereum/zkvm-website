@@ -1,157 +1,158 @@
 const ScalabilitySection = () => {
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 tracking-tight">
-          The Scalability Challenge
-        </h2>
-        <p className="text-lg sm:text-xl font-sans text-gray leading-relaxed max-w-4xl mx-auto">
-          A fundamental bottleneck in Ethereum's scalability is that every validator must re-execute every transaction. 
-          Simply increasing the block gas limit would raise hardware requirements for everyone, risking centralization. 
-          To scale safely, we need a new approach.
-        </p>
+    <section id="about">
+      <div className="section-title">
+        <h2>The Scalability Challenge</h2>
+        <p>A fundamental bottleneck in Ethereum's scalability is that every validator must re-execute every transaction. Simply increasing the block gas limit would raise hardware requirements for everyone, risking centralization. To scale safely, we need a new approach.</p>
       </div>
+      <div className="two-column">
+        <div className="text-content">
+          <h3>The Old Model: N-of-N Execution</h3>
+          <p>Currently, all validators execute all transactions to verify a block's validity. This redundant computation is secure but creates a ceiling for network throughput. It's the primary reason gas fees can become prohibitively high during peak demand.</p>
+        </div>
+        <div className="graphic">
+          <svg width="100%" height="100%" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <style>
+              {`
+                .old-model-flow {
+                  stroke-dasharray: 4;
+                  animation: flow 3s linear infinite;
+                }
+                .processing-dot {
+                  animation: pulse 1.5s ease-in-out infinite;
+                }
+                .label-main { font-family: 'Source Serif Pro', serif; font-size: 20px; font-weight: 700; fill: var(--dark); }
+                .label-sub { font-family: 'Inter', sans-serif; font-size: 12px; fill: var(--gray); }
+                .label-node { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; fill: var(--dark); }
+              `}
+            </style>
+            {/* Central Block */}
+            <g>
+              <rect x="200" y="150" width="100" height="100" rx="8" fill="var(--primary-light)" stroke="var(--primary)" strokeWidth="2"/>
+              <text x="250" y="192" textAnchor="middle" className="label-main">Block</text>
+              <text x="250" y="215" textAnchor="middle" className="label-sub">30M Gas</text>
+            </g>
 
-      <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        <div className="order-2 lg:order-1">
-          <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">
-            The Old Model: N-of-N Execution
-          </h3>
-          <p className="text-lg font-sans text-slate leading-relaxed mb-6">
-            Currently, all validators execute all transactions to verify a block's validity. 
-            This redundant computation is secure but creates a ceiling for network throughput. 
-            It's the primary reason gas fees can become prohibitively high during peak demand.
+            {/* Lines to Validators */}
+            <path d="M250 150 L 250 75" stroke="var(--border-color)" strokeWidth="2" className="old-model-flow" />
+            <path d="M200 200 L 75 200" stroke="var(--border-color)" strokeWidth="2" className="old-model-flow" />
+            <path d="M300 200 L 425 200" stroke="var(--border-color)" strokeWidth="2" className="old-model-flow" />
+            <path d="M250 250 L 250 325" stroke="var(--border-color)" strokeWidth="2" className="old-model-flow" />
+
+            {/* Validators */}
+            <g transform="translate(250, 50)">
+              <circle cx="0" cy="0" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
+              <text x="0" y="5" textAnchor="middle" className="label-node">V1</text>
+              <circle cx="0" cy="0" r="3" fill="var(--primary)" className="processing-dot" style={{animationDelay: '0s'}}/>
+            </g>
+            <g transform="translate(50, 200)">
+              <circle cx="0" cy="0" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
+              <text x="0" y="5" textAnchor="middle" className="label-node">V2</text>
+              <circle cx="0" cy="0" r="3" fill="var(--primary)" className="processing-dot" style={{animationDelay: '0.2s'}}/>
+            </g>
+            <g transform="translate(450, 200)">
+              <circle cx="0" cy="0" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
+              <text x="0" y="5" textAnchor="middle" className="label-node">V3</text>
+              <circle cx="0" cy="0" r="3" fill="var(--primary)" className="processing-dot" style={{animationDelay: '0.4s'}}/>
+            </g>
+            <g transform="translate(250, 350)">
+              <circle cx="0" cy="0" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
+              <text x="0" y="5" textAnchor="middle" className="label-node">Vn</text>
+              <circle cx="0" cy="0" r="3" fill="var(--primary)" className="processing-dot" style={{animationDelay: '0.6s'}}/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// ZK-EVM Solution Section Component
+const ZKEVMSolutionSection = () => {
+  return (
+    <section style={{background: 'var(--white)'}}>
+      <div className="two-column">
+        <div className="graphic">
+          <svg width="100%" height="100%" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <style>
+              {`
+                .flow-line {
+                  stroke-dasharray: 4;
+                  animation: flow 2s linear infinite;
+                }
+                .flow-line-slow {
+                  stroke-dasharray: 4;
+                  animation: flow 4s linear infinite;
+                }
+                .checkmark {
+                  stroke: var(--success);
+                  stroke-width: 8;
+                  stroke-dasharray: 30;
+                  stroke-dashoffset: 30;
+                  animation: draw-check 0.5s ease-out forwards;
+                  animation-delay: 1.5s;
+                }
+                .label-main { font-family: 'Source Serif Pro', serif; font-size: 20px; font-weight: 700; fill: var(--dark); }
+                .label-sub { font-family: 'Inter', sans-serif; font-size: 12px; fill: var(--gray); }
+                .label-node { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; fill: var(--dark); }
+              `}
+            </style>
+            
+            {/* Block Input */}
+            <g>
+              <rect x="20" y="175" width="80" height="50" rx="4" fill="#E2E8F0"/>
+              <text x="60" y="202" textAnchor="middle" className="label-node">Block</text>
+            </g>
+            
+            {/* Arrow to Prover */}
+            <path d="M100 200 H 150" stroke="#CBD5E1" strokeWidth="2" className="flow-line-slow" />
+            
+            {/* Prover */}
+            <g>
+              <rect x="150" y="150" width="120" height="100" rx="8" fill="var(--primary-light)" stroke="var(--primary)" strokeWidth="2"/>
+              <text x="210" y="192" textAnchor="middle" className="label-main">Prover</text>
+              <text x="210" y="215" textAnchor="middle" className="label-sub">Executes &amp; Proves</text>
+            </g>
+            
+            {/* Proof Output */}
+            <g>
+              <path d="M270 200 H 300" stroke="#CBD5E1" strokeWidth="2" className="flow-line"/>
+              <rect x="300" y="185" width="20" height="30" rx="2" fill="var(--white)" stroke="var(--slate)" strokeWidth="1.5"/>
+              <line x1="305" y1="192" x2="315" y2="192" stroke="var(--slate)" strokeWidth="1.5" />
+              <line x1="305" y1="198" x2="315" y2="198" stroke="var(--slate)" strokeWidth="1.5" />
+              <line x1="305" y1="204" x2="310" y2="204" stroke="var(--slate)" strokeWidth="1.5" />
+              <text x="310" y="180" textAnchor="middle" className="label-sub">ZK Proof</text>
+            </g>
+
+            {/* Lines to Validators */}
+            <path d="M320 200 C 350 200, 370 100, 400 100" stroke="var(--primary)" strokeWidth="2" strokeOpacity="0.5" className="flow-line"/>
+            <path d="M320 200 C 350 200, 370 200, 400 200" stroke="var(--primary)" strokeWidth="2" strokeOpacity="0.5" className="flow-line"/>
+            <path d="M320 200 C 350 200, 370 300, 400 300" stroke="var(--primary)" strokeWidth="2" strokeOpacity="0.5" className="flow-line"/>
+            
+            {/* Validators */}
+            <g>
+              <circle cx="425" cy="100" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
+              <text x="425" y="105" textAnchor="middle" className="label-node">V1</text>
+              <path className="checkmark" d="M418 100 L 424 106 L 432 96"/>
+            </g>
+            <g>
+              <circle cx="425" cy="200" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
+              <text x="425" y="205" textAnchor="middle" className="label-node">V2</text>
+              <path className="checkmark" d="M418 200 L 424 206 L 432 196" style={{animationDelay: '1.6s'}}/>
+            </g>
+            <g>
+              <circle cx="425" cy="300" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
+              <text x="425" y="305" textAnchor="middle" className="label-node">Vn</text>
+              <path className="checkmark" d="M418 300 L 424 306 L 432 296" style={{animationDelay: '1.7s'}}/>
+            </g>
+          </svg>
+        </div>
+        <div className="text-content">
+          <h3>The ZK-EVM Solution: 1-of-N Model</h3>
+          <p>ZK-EVMs shift this paradigm. Instead of all validators re-executing, a single specialized actor (a prover) executes the block and generates a short, cryptographic proof of its correctness. Verifying this proof is orders of magnitude cheaper than full re-execution, allowing Ethereum to safely raise the gas limit.</p>
+          <p style={{fontFamily: "'Inter', sans-serif", fontSize: '1rem', lineHeight: '1.6', color: 'var(--slate)', marginTop: '1.5rem', backgroundColor: 'var(--light-gray)', padding: '1.5rem', borderRadius: '6px', border: '1px solid var(--border-color)'}}>
+            <strong style={{color: 'var(--dark)', fontFamily: "'Source Serif Pro', serif"}}>Our goal is full, uncompromising EVM-equivalence.</strong> Often called a "Type 1" ZK-EVM, this ensures zero friction for existing applications, developers, and tooling—no modifications required.
           </p>
-          <div className="bg-muted/50 border border-border rounded-lg p-6">
-            <p className="text-sm font-sans text-muted-foreground italic">
-              Every validator processes every transaction → Limited scalability
-            </p>
-          </div>
-        </div>
-
-        <div className="order-1 lg:order-2">
-          <div className="bg-card border border-border rounded-lg p-8 h-96 flex items-center justify-center">
-            <svg width="100%" height="100%" viewBox="0 0 400 300" className="max-w-md">
-              {/* Central Block */}
-              <g>
-                <rect x="150" y="125" width="100" height="50" rx="6" fill="hsl(var(--primary-light))" stroke="hsl(var(--primary))" strokeWidth="2"/>
-                <text x="200" y="145" textAnchor="middle" className="fill-primary font-sans text-sm font-semibold">Block</text>
-                <text x="200" y="160" textAnchor="middle" className="fill-gray font-sans text-xs">30M Gas</text>
-              </g>
-
-              {/* Validator Nodes */}
-              {[
-                { x: 200, y: 50, label: "V1" },
-                { x: 75, y: 150, label: "V2" },
-                { x: 325, y: 150, label: "V3" },
-                { x: 200, y: 250, label: "Vn" }
-              ].map((validator, i) => (
-                <g key={validator.label}>
-                  <circle cx={validator.x} cy={validator.y} r="20" fill="hsl(var(--card))" stroke="hsl(var(--border))" strokeWidth="2"/>
-                  <text x={validator.x} y={validator.y + 5} textAnchor="middle" className="fill-foreground font-sans text-sm font-semibold">
-                    {validator.label}
-                  </text>
-                  <circle cx={validator.x} cy={validator.y} r="3" fill="hsl(var(--primary))" className="animate-pulse-slow" style={{ animationDelay: `${i * 0.2}s` }}/>
-                  
-                  {/* Connection Lines */}
-                  <line 
-                    x1="200" 
-                    y1="150" 
-                    x2={validator.x} 
-                    y2={validator.y} 
-                    stroke="hsl(var(--border))" 
-                    strokeWidth="2" 
-                    strokeDasharray="4,4"
-                    className="animate-pulse-slow"
-                  />
-                </g>
-              ))}
-            </svg>
-          </div>
-        </div>
-      </div>
-
-      {/* ZK-EVM Solution */}
-      <div className="mt-24 bg-card border border-border rounded-xl p-8 sm:p-12">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <div className="bg-card border border-border rounded-lg p-8 h-96 flex items-center justify-center">
-              <svg width="100%" height="100%" viewBox="0 0 400 300" className="max-w-md">
-                {/* Block Input */}
-                <g>
-                  <rect x="20" y="125" width="60" height="40" rx="4" fill="hsl(var(--muted))"/>
-                  <text x="50" y="148" textAnchor="middle" className="fill-slate font-sans text-sm">Block</text>
-                </g>
-                
-                {/* Arrow */}
-                <line x1="80" y1="145" x2="120" y2="145" stroke="hsl(var(--border))" strokeWidth="2" markerEnd="url(#arrowhead)"/>
-                
-                {/* Prover */}
-                <g>
-                  <rect x="120" y="100" width="100" height="90" rx="8" fill="hsl(var(--primary-light))" stroke="hsl(var(--primary))" strokeWidth="2"/>
-                  <text x="170" y="135" textAnchor="middle" className="fill-primary font-sans text-sm font-bold">Prover</text>
-                  <text x="170" y="150" textAnchor="middle" className="fill-gray font-sans text-xs">Executes &amp; Proves</text>
-                </g>
-                
-                {/* Proof Output */}
-                <g>
-                  <line x1="220" y1="145" x2="260" y2="145" stroke="hsl(var(--border))" strokeWidth="2" markerEnd="url(#arrowhead)"/>
-                  <rect x="260" y="130" width="20" height="30" rx="2" fill="hsl(var(--card))" stroke="hsl(var(--slate))" strokeWidth="1"/>
-                  <text x="270" y="120" textAnchor="middle" className="fill-gray font-sans text-xs">ZK Proof</text>
-                </g>
-
-                {/* Validators */}
-                {[
-                  { x: 325, y: 75 },
-                  { x: 325, y: 145 },
-                  { x: 325, y: 215 }
-                ].map((pos, i) => (
-                  <g key={i}>
-                    <circle cx={pos.x} cy={pos.y} r="18" fill="hsl(var(--card))" stroke="hsl(var(--border))" strokeWidth="2"/>
-                    <text x={pos.x} y={pos.y + 4} textAnchor="middle" className="fill-foreground font-sans text-sm">V{i+1}</text>
-                    
-                    {/* Connection Lines */}
-                    <path 
-                      d={`M280 145 Q 300 145, 307 ${pos.y}`}
-                      stroke="hsl(var(--primary))" 
-                      strokeWidth="2" 
-                      fill="none"
-                      opacity="0.7"
-                    />
-                    
-                    {/* Checkmark */}
-                    <g className="animate-draw" style={{ animationDelay: `${1.5 + i * 0.1}s` }}>
-                      <path d={`M${pos.x-6} ${pos.y} L ${pos.x-2} ${pos.y+4} L ${pos.x+6} ${pos.y-4}`} stroke="hsl(var(--success))" strokeWidth="3" fill="none"/>
-                    </g>
-                  </g>
-                ))}
-                
-                {/* Arrow marker definition */}
-                <defs>
-                  <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-                    <polygon points="0 0, 10 3.5, 0 7" fill="hsl(var(--border))" />
-                  </marker>
-                </defs>
-              </svg>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">
-              The ZK-EVM Solution: 1-of-N Model
-            </h3>
-            <p className="text-lg font-sans text-slate leading-relaxed mb-6">
-              ZK-EVMs shift this paradigm. Instead of all validators re-executing, a single specialized actor (a prover) 
-              executes the block and generates a short, cryptographic proof of its correctness. Verifying this proof is 
-              orders of magnitude cheaper than full re-execution, allowing Ethereum to safely raise the gas limit.
-            </p>
-            <div className="bg-primary-light/50 border border-primary/20 rounded-lg p-6">
-              <p className="font-sans text-slate leading-relaxed">
-                <strong className="text-foreground font-bold">Our goal is full, uncompromising EVM-equivalence.</strong> Often called a "Type 1" ZK-EVM, 
-                this ensures zero friction for existing applications, developers, and tooling—no modifications required.
-              </p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -159,3 +160,4 @@ const ScalabilitySection = () => {
 };
 
 export default ScalabilitySection;
+export { ZKEVMSolutionSection };

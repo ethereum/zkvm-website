@@ -1,58 +1,42 @@
 const BlogSection = () => {
   const blogPosts = [
     {
-      date: "December 15, 2024",
+      date: "August 28, 2025",
       title: "Prover Parallelization: A New Milestone",
-      excerpt: "We've achieved significant breakthroughs in parallel proof generation, reducing block proving time by 60% through advanced circuit optimization techniques."
+      excerpt: "Our latest benchmarks show significant progress in real-time proving capabilities, with new parallelization techniques reducing proof generation time by 40%..."
     },
     {
-      date: "November 28, 2024", 
-      title: "Client Integration Progress Report",
-      excerpt: "Latest updates on Geth and Nethermind integration, including new RPC endpoints and proof verification interfaces for seamless ZK-EVM adoption."
+      date: "August 15, 2025", 
+      title: "Deep Dive: ZK-EVM Protocol Integration",
+      excerpt: "An in-depth exploration of how ZK-EVMs will integrate with existing Ethereum infrastructure, including detailed protocol specifications for client teams..."
     },
     {
-      date: "November 10, 2024",
-      title: "Economic Models for Prover Markets",
-      excerpt: "Exploring incentive mechanisms to ensure robust prover networks while maintaining decentralization and censorship resistance properties."
+      date: "July 30, 2025",
+      title: "Community Update: Q2 Progress",
+      excerpt: "A comprehensive overview of our Q2 achievements, upcoming milestones, and how the community can get involved in the ZK-EVM initiative..."
     }
   ];
 
   return (
-    <section id="blog" className="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-      <div className="text-center mb-16">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 tracking-tight">
-          Latest Updates & Insights
-        </h2>
+    <section id="blog">
+      <div className="section-title">
+        <h2>Latest Updates & Insights</h2>
       </div>
-
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="blog-grid">
         {blogPosts.map((post, index) => (
-          <article 
-            key={post.title}
-            className="group bg-card border border-border rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:border-primary/50 cursor-pointer"
-          >
-            <div className="p-6 flex flex-col h-full">
-              <div className="text-sm font-sans font-semibold text-primary mb-3">
-                {post.date}
+          <div key={post.title} className="blog-card">
+            <a href="#" style={{textDecoration: 'none'}}>
+              <div className="blog-card-content">
+                <div className="blog-date">{post.date}</div>
+                <h3>{post.title}</h3>
+                <p>{post.excerpt}</p>
               </div>
-              
-              <h3 className="text-xl font-bold text-foreground mb-4 leading-snug group-hover:text-primary transition-colors duration-200">
-                {post.title}
-              </h3>
-              
-              <p className="font-sans text-gray leading-relaxed flex-grow">
-                {post.excerpt}
-              </p>
-              
-              <div className="mt-6 pt-4 border-t border-border">
-                <span className="text-sm font-sans text-primary font-medium group-hover:text-primary-dark transition-colors duration-200 inline-flex items-center gap-2">
-                  Read More 
-                  <span className="transform group-hover:translate-x-1 transition-transform duration-200">→</span>
-                </span>
-              </div>
-            </div>
-          </article>
+            </a>
+          </div>
         ))}
+      </div>
+      <div style={{textAlign: 'center', marginTop: '3rem'}}>
+        <a href="#" className="btn btn-primary" style={{background: 'var(--dark)'}}>View All Posts</a>
       </div>
     </section>
   );
