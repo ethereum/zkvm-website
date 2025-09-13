@@ -11,11 +11,15 @@ const Hero = () => {
   };
 
   return (
-    <section className="hero">
-      <div className="hero-content">
-        <h1>Scaling Ethereum Without Compromise</h1>
-        <h2>Introducing ZK-EVMs on L1: A new paradigm to increase Ethereum's throughput while strengthening decentralization.</h2>
-        <div className="cta-buttons">
+    <section className="relative mt-20 min-h-[90vh] flex items-center justify-center bg-[var(--dark)] overflow-hidden px-[5%] py-8 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[radial-gradient(circle,rgba(15,118,110,0.2),transparent_70%)] before:opacity-60">
+      <div className="text-center z-[2] max-w-[900px]">
+        <h1 className="text-[clamp(3rem,6vw,5rem)] mb-4 text-white font-black tracking-[-2px] leading-[1.1]">
+          Scaling Ethereum Without Compromise
+        </h1>
+        <h2 className="font-['Inter',sans-serif] text-[clamp(1.1rem,2.5vw,1.25rem)] text-[var(--gray)] mb-10 font-normal leading-[1.6] max-w-[650px] mx-auto">
+          Introducing ZK-EVMs on L1: A new paradigm to increase Ethereum&apos;s throughput while strengthening decentralization.
+        </h2>
+        <div className="flex gap-4 justify-center flex-wrap">
           <Button 
             variant="primary-legacy" 
             size="legacy"
@@ -32,11 +36,6 @@ const Hero = () => {
           </Button>
         </div>
       </div>
-      
-      {/* Floating Elements */}
-      <div className="absolute top-1/4 left-10 w-2 h-2 bg-primary-light rounded-full animate-pulse-slow" />
-      <div className="absolute top-3/4 right-20 w-3 h-3 bg-primary-light/60 rounded-full animate-float" />
-      <div className="absolute bottom-1/4 left-1/4 w-1 h-1 bg-white/40 rounded-full animate-pulse-slow" />
     </section>
   );
 };
