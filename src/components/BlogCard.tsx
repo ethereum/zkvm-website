@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { BlogPostSummary } from '@/lib/types';
+import { Badge } from '@/components/ui/badge';
 
 interface BlogCardProps {
   post: BlogPostSummary;
@@ -7,25 +8,30 @@ interface BlogCardProps {
 
 export default function BlogCard({ post }: BlogCardProps) {
   return (
-    <Link href={`/blog/${post.slug}`} className="blog-card group">
-      <div className="blog-card-content">
-        <div className="blog-meta">
-          <span className="blog-date">{post.date}</span>
+    <Link 
+      href={`/blog/${post.slug}`} 
+      className="block bg-card border border-border rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] group"
+    >
+      <div className="p-6">
+        <div className="flex items-center gap-3 mb-3">
+          <span className="text-sm text-muted-foreground">{post.date}</span>
           {post.featured && (
-            <span className="blog-featured">Featured</span>
+            <Badge variant="default" className="text-xs">
+              Featured
+            </Badge>
           )}
         </div>
-        <h3 className="blog-title group-hover:text-primary transition-colors">
+        <h3 className="text-xl font-semibold mb-3 line-clamp-2 group-hover:text-primary transition-colors">
           {post.title}
         </h3>
-        <p className="blog-excerpt">{post.excerpt}</p>
-        <div className="blog-footer">
-          <span className="blog-author">By {post.author}</span>
-          <div className="blog-tags">
+        <p className="text-muted-foreground mb-4 line-clamp-3">{post.excerpt}</p>
+        <div className="flex items-center justify-between">
+          <span className="text-sm text-muted-foreground">By {post.author}</span>
+          <div className="flex gap-1">
             {post.tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="blog-tag">
+              <Badge key={tag} variant="secondary" className="text-xs">
                 {tag}
-              </span>
+              </Badge>
             ))}
           </div>
         </div>
