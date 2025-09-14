@@ -21,16 +21,14 @@ const Header = () => {
   };
 
   const navItems = [
-    { href: "#about", label: "About" },
     { href: "#roadmap", label: "Roadmap" },
     { href: "#blog", label: "Blog" },
     { href: "#book", label: "The Book" },
     { href: "#team", label: "Team" },
-    { href: "#meetings", label: "Meetings" },
   ];
 
   return (
-    <header className="fixed top-0 w-full bg-white/70 backdrop-blur-sm z-50 border-b border-gray-200 shadow-sm">
+    <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-200 shadow-sm">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="logo flex items-center">
           <a href="#" className="flex items-center">
@@ -43,7 +41,7 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <ul className="hidden lg:flex items-center space-x-8">
+        <ul className="hidden lg:flex items-center space-x-6">
           {navItems.map((item) => (
             <li key={item.href}>
               <a
@@ -69,15 +67,15 @@ const Header = () => {
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
-              <SheetHeader>
-                <SheetTitle className="text-left">Navigation</SheetTitle>
-                <SheetDescription className="text-left">
-                  Navigate to different sections of the site
+            <SheetContent side="right" className="w-[280px] sm:w-[320px]">
+              <SheetHeader className="pb-6">
+                <SheetTitle className="text-left text-lg font-semibold">Menu</SheetTitle>
+                <SheetDescription className="text-left text-sm text-gray-500">
+                  Navigate to different sections
                 </SheetDescription>
               </SheetHeader>
-              <nav className="mt-8">
-                <ul className="flex flex-col space-y-6">
+              <nav className="mt-2">
+                <ul className="flex flex-col space-y-1">
                   {navItems.map((item) => (
                     <li key={item.href}>
                       <a
@@ -86,7 +84,7 @@ const Header = () => {
                           e.preventDefault();
                           scrollToSection(item.href.substring(1));
                         }}
-                        className="block text-xl font-medium text-gray-700 hover:text-teal-600 transition-colors duration-200 py-3 border-b border-gray-100 last:border-b-0"
+                        className="block text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 transition-all duration-200 py-3 px-4 rounded-lg"
                       >
                         {item.label}
                       </a>

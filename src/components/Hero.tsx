@@ -12,7 +12,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center bg-[var(--dark)] overflow-hidden px-[5%] py-8 pt-20 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[radial-gradient(circle,rgba(15,118,110,0.2),transparent_70%)] before:opacity-60">
+    <section className="relative min-h-[90vh] flex items-center justify-center bg-[var(--dark)] overflow-hidden px-[5%] py-8 pt-24 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[radial-gradient(circle,rgba(15,118,110,0.2),transparent_70%)] before:opacity-60">
         <div className="w-full absolute inset-0 h-screen">
           <SparklesCore
             id="tsparticlesfullpage"
