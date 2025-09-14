@@ -1,3 +1,5 @@
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+
 const ZKEVMReadiness = () => {
   const zkevms = [
     {
@@ -22,7 +24,7 @@ const ZKEVMReadiness = () => {
     }
   ];
 
-  const renderCriteriaValue = (criterion: any) => {
+  const renderCriteriaValue = (criterion: { status?: string; rating?: number; clients?: string[] }) => {
     if (criterion.status) {
       return criterion.status === "pass" ? (
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="icon-pass">
@@ -37,21 +39,36 @@ const ZKEVMReadiness = () => {
     
     if (criterion.rating) {
       return (
-        <div className="tooltip-container">
-          <span className="star-rating">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <span key={star} className={star <= criterion.rating ? '' : 'muted'}>★</span>
-            ))}
-          </span>
-          <div className="tooltip">
-            <p><strong>This score reflects overall code quality based on the following criteria:</strong></p>
-            <ul>
-              <li><strong>Readability:</strong> Based on static analysis, linter scores, and style guide adherence.</li>
-              <li><strong>Documentation:</strong> Based on code comment coverage and the quality of developer guides.</li>
-              <li><strong>Maintainability:</strong> Based on test coverage percentage and code complexity metrics.</li>
-            </ul>
-          </div>
-        </div>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="star-rating cursor-help">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <span key={star} className={star <= (criterion.rating || 0) ? '' : 'muted'}>★</span>
+              ))}
+            </span>
+          </TooltipTrigger>
+          <TooltipContent side="top" className="max-w-xs p-4 z-50">
+            <div className="space-y-2">
+              <p className="font-semibold text-sm">
+                This score reflects overall code quality based on the following criteria:
+              </p>
+              <ul className="space-y-1 text-xs">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary">✓</span>
+                  <span><strong>Readability:</strong> Based on static analysis, linter scores, and style guide adherence.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary">✓</span>
+                  <span><strong>Documentation:</strong> Based on code comment coverage and the quality of developer guides.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary">✓</span>
+                  <span><strong>Maintainability:</strong> Based on test coverage percentage and code complexity metrics.</span>
+                </li>
+              </ul>
+            </div>
+          </TooltipContent>
+        </Tooltip>
       );
     }
     
@@ -82,7 +99,7 @@ const ZKEVMReadiness = () => {
         <p>Evaluating core ZK-EVM implementations based on criteria required for a secure and sustainable mainnet deployment.</p>
       </div>
       <div className="zkevm-grid">
-        {zkevms.map((zkevm, index) => (
+        {zkevms.map((zkevm) => (
           <div key={zkevm.name} className="zkevm-card">
             <h3>{zkevm.name}</h3>
             <p className="description">{zkevm.description}</p>

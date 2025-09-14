@@ -23,7 +23,7 @@ export default function Home() {
         <ZKEVMReadiness />
         <ClientStatus />
         <BlogSection />
-        <BookSection />
+        <BookSection /> 
         <TeamSection />
         <section id="meetings" className="section">
           <div className="section-title">

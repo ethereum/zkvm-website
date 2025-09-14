@@ -39,7 +39,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <QueryClientWrapper>
-          <TooltipProvider>
+          <TooltipProvider delayDuration={100}>
             <Toaster />
             <Sonner />
             {children}
