@@ -1,29 +1,7 @@
 "use client";
 
 import { Button } from '@/components/ui/button';
-
 import { SparklesCore } from "@/components/ui/sparkles";
- 
-export function SparklesPreview() {
-  return (
-    <div className="h-[40rem] relative w-full bg-black flex flex-col items-center justify-center overflow-hidden rounded-md">
-      <div className="w-full absolute inset-0 h-screen">
-        <SparklesCore
-          id="tsparticlesfullpage"
-          background="transparent"
-          minSize={0.6}
-          maxSize={1.4}
-          particleDensity={100}
-          className="w-full h-full"
-          particleColor="#FFFFFF"
-        />
-      </div>
-      <h1 className="md:text-7xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20">
-        Build great products
-      </h1>
-    </div>
-  );
-}
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -34,17 +12,17 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative mt-20 min-h-[90vh] flex items-center justify-center bg-[var(--dark)] overflow-hidden px-[5%] py-8 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[radial-gradient(circle,rgba(15,118,110,0.2),transparent_70%)] before:opacity-60">
-            <div className="w-full absolute inset-0 h-screen">
-        <SparklesCore
-          id="tsparticlesfullpage"
-          background="transparent"
-          minSize={0.1}
-          maxSize={0.7}
-          particleDensity={500}
-          className="w-full h-full"
-          particleColor="#95addf"
-        />
+    <section className="relative min-h-[90vh] flex items-center justify-center bg-[var(--dark)] overflow-hidden px-[5%] py-8 pt-20 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[radial-gradient(circle,rgba(15,118,110,0.2),transparent_70%)] before:opacity-60">
+        <div className="w-full absolute inset-0 h-screen">
+          <SparklesCore
+            id="tsparticlesfullpage"
+            background="transparent"
+            minSize={0.1}
+            maxSize={0.7}
+            particleDensity={500}
+            className="w-full h-full"
+            particleColor="#95addf"
+          />
       </div>
       <div className="text-center z-[2] max-w-[900px]">
         <h1 className="text-[clamp(3rem,6vw,5rem)] mb-4 text-white font-black tracking-[-2px] leading-[1.1]">
