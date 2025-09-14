@@ -320,30 +320,12 @@
     }
   }
 
-  /* Design System Card Component */
-  .card {
-    background: var(--white);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    border-color: var(--dark);
-  }
-
   /* Feature Cards */
   .feature-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
     margin-top: 4rem;
-  }
-
-  .feature-card {
-    padding: 2rem;
   }
 
   .feature-icon {
@@ -425,9 +407,6 @@
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
-  }
-  .zkevm-card {
-    padding: 2rem;
   }
   .zkevm-card h3 {
     font-size: 1.4rem;

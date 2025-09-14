@@ -1,4 +1,5 @@
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Card, CardContent } from "@/components/ui/card";
 
 const ZKEVMReadiness = () => {
   const zkevms = [
@@ -100,20 +101,22 @@ const ZKEVMReadiness = () => {
       </div>
       <div className="zkevm-grid">
         {zkevms.map((zkevm) => (
-          <div key={zkevm.name} className="zkevm-card card">
-            <h3>{zkevm.name}</h3>
-            <p className="description">{zkevm.description}</p>
-            <ul className="criteria-list">
-              {zkevm.criteria.map((criterion) => (
-                <li key={criterion.name} className="criteria-item">
-                  <span className="name">{criterion.name}</span>
-                  <div className="value">
-                    {renderCriteriaValue(criterion)}
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Card key={zkevm.name} className="zkevm-card">
+            <CardContent className="p-8">
+              <h3>{zkevm.name}</h3>
+              <p className="description">{zkevm.description}</p>
+              <ul className="criteria-list">
+                {zkevm.criteria.map((criterion) => (
+                  <li key={criterion.name} className="criteria-item">
+                    <span className="name">{criterion.name}</span>
+                    <div className="value">
+                      {renderCriteriaValue(criterion)}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </section>

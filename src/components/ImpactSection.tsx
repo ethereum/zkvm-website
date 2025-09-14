@@ -1,3 +1,5 @@
+import { Card, CardContent } from "@/components/ui/card";
+
 const ImpactSection = () => {
   const features = [
     {
@@ -37,14 +39,16 @@ const ImpactSection = () => {
         <h2>Why This Matters for Ethereum</h2>
       </div>
       <div className="feature-grid">
-        {features.map((feature, index) => (
-          <div key={feature.title} className="feature-card card">
-            <div className="feature-icon">
-              {feature.icon}
-            </div>
-            <h3>{feature.title}</h3>
-            <p>{feature.description}</p>
-          </div>
+        {features.map((feature) => (
+          <Card key={feature.title} className="feature-card">
+            <CardContent className="p-8">
+              <div className="feature-icon">
+                {feature.icon}
+              </div>
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </CardContent>
+          </Card>
         ))}
       </div>
     </section>
