@@ -100,7 +100,7 @@ const ZKEVMReadiness = () => {
       </div>
       <div className="zkevm-grid">
         {zkevms.map((zkevm) => (
-          <div key={zkevm.name} className="zkevm-card">
+          <div key={zkevm.name} className="zkevm-card card">
             <h3>{zkevm.name}</h3>
             <p className="description">{zkevm.description}</p>
             <ul className="criteria-list">

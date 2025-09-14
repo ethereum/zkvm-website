@@ -38,7 +38,7 @@ const ImpactSection = () => {
       </div>
       <div className="feature-grid">
         {features.map((feature, index) => (
-          <div key={feature.title} className="feature-card">
+          <div key={feature.title} className="feature-card card">
             <div className="feature-icon">
               {feature.icon}
             </div>

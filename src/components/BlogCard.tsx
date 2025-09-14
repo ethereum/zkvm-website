@@ -10,7 +10,7 @@ export default function BlogCard({ post }: BlogCardProps) {
   return (
     <Link 
       href={`/blog/${post.slug}`} 
-      className="block bg-card border border-border rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:scale-[1.02] group"
+      className="block card overflow-hidden hover:scale-[1.02] group"
     >
       <div className="p-6">
         <div className="flex items-center gap-3 mb-3">

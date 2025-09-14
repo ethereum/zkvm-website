@@ -48,6 +48,7 @@
 
     --input: 220 13% 91%;
     --ring: 168 76% 22%;
+    --border: 220 13% 91%;
 
     --radius: 0.375rem;
 
@@ -319,6 +320,20 @@
     }
   }
 
+  /* Design System Card Component */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    border-color: var(--dark);
+  }
+
   /* Feature Cards */
   .feature-grid {
     display: grid;
@@ -328,17 +343,7 @@
   }
 
   .feature-card {
-    background: var(--white);
     padding: 2rem;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-
-  .feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    border-color: var(--primary);
   }
 
   .feature-icon {
@@ -422,15 +427,7 @@
     margin-top: 3rem;
   }
   .zkevm-card {
-    background: var(--white);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
     padding: 2rem;
-    transition: all 0.3s ease;
-  }
-  .zkevm-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
   }
   .zkevm-card h3 {
     font-size: 1.4rem;
@@ -575,10 +572,6 @@
   }
 
   .footer-links a:hover { color: var(--primary); }
-  
-  .footer-socials { margin-bottom: 2.5rem; }
-  .footer-socials a { color: var(--gray); margin: 0 0.75rem; }
-  .footer-socials a:hover { color: var(--primary); }
 
   .footer-copy {
     font-family: 'Inter', sans-serif;
