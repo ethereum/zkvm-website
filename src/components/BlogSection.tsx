@@ -6,7 +6,7 @@ const BlogSection = async () => {
   const featuredPosts = await getFeaturedPosts();
 
   return (
-    <section id="blog">
+    <section id="blog" className="section">
       <div className="section-title">
         <h2>Latest Updates & Insights</h2>
       </div>

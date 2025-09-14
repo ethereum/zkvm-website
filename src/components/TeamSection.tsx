@@ -9,7 +9,7 @@ const XIcon = () => (
 
 const TeamSection = () => {
   return (
-    <section id="team" style={{background: 'var(--white)'}}>
+    <section id="team" className="section" style={{background: 'var(--white)'}}>
       <div className="section-title">
         <h2>Who We Are</h2>
         <p>A collaborative effort from researchers and developers dedicated to scaling Ethereum securely.</p>

@@ -158,7 +158,7 @@
 
 @layer components {
   /* General Section Styles */
-  section {
+  .section {
     padding: 6rem 5%;
     max-width: 1200px;
     margin: 0 auto;
@@ -577,10 +577,6 @@
     margin-right: auto;
   }
 
-  
-  .social-links { display: flex; justify-content: center; gap: 1rem; margin-top: 0.75rem; }
-  .social-links a { color: var(--gray); transition: color 0.3s ease; }
-  .social-links a:hover { color: var(--primary); }
 
   /* Footer */
   footer {

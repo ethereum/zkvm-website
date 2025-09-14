@@ -1,6 +1,6 @@
 const ScalabilitySection = () => {
   return (
-    <section id="about">
+    <section id="about" className="section">
       <div className="section-title">
         <h2>The Scalability Challenge</h2>
         <p>A fundamental bottleneck in Ethereum's scalability is that every validator must re-execute every transaction. Simply increasing the block gas limit would raise hardware requirements for everyone, risking centralization. To scale safely, we need a new approach.</p>
@@ -70,7 +70,7 @@ const ScalabilitySection = () => {
 // ZK-EVM Solution Section Component
 const ZKEVMSolutionSection = () => {
   return (
-    <section style={{background: 'var(--white)'}}>
+    <section className="section" style={{background: 'var(--white)'}}>
       <div className="two-column">
         <div className="graphic">
           <svg width="100%" height="100%" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">

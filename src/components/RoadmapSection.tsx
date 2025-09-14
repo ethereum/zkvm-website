@@ -27,7 +27,7 @@ const RoadmapSection = () => {
   };
 
   return (
-    <section id="roadmap" style={{background: 'var(--white)'}}>
+    <section id="roadmap" className="section" style={{background: 'var(--white)'}}>
       <div className="section-title">
         <h2>Roadmap & Research Areas</h2>
         <p>Bringing ZK-EVMs to L1 is a multi-faceted effort. Our work is organized into three core workstreams, with parallel progress on client implementations.</p>

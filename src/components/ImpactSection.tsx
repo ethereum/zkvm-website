@@ -32,7 +32,7 @@ const ImpactSection = () => {
   ];
 
   return (
-    <section>
+    <section className="section">
       <div className="section-title">
         <h2>Why This Matters for Ethereum</h2>
       </div>

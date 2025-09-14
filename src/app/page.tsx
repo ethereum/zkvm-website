@@ -25,7 +25,7 @@ export default function Home() {
         <BlogSection />
         <BookSection />
         <TeamSection />
-        <section id="meetings">
+        <section id="meetings" className="section">
           <div className="section-title">
             <h2>Community & Meetings</h2>
             <p>While we don't have public calls scheduled right now, this is where you'll find recordings and resources from future community meetings and presentations. Stay tuned!</p>
