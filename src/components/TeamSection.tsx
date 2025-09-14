@@ -8,17 +8,16 @@ const XIcon = () => (
 );
 
 const TeamSection = () => {
-
   return (
     <section id="team" style={{background: 'var(--white)'}}>
       <div className="section-title">
         <h2>Who We Are</h2>
         <p>A collaborative effort from researchers and developers dedicated to scaling Ethereum securely.</p>
       </div>
-      <div className="team-grid">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-8 mt-16">
         {teamMembers.map((member) => (
-          <div key={member.name} className="team-member">
-            <div className="team-avatar">
+          <div key={member.name} className="text-center transition-transform duration-300 hover:translate-y-[-5px]">
+            <div className="h-[100px] w-[100px] bg-[var(--primary-light)] rounded-full mx-auto mb-4 flex items-center justify-center text-[var(--primary-dark)] text-3xl font-bold">
               {member.image ? (
                 <Image
                   src={member.image}
@@ -31,10 +30,15 @@ const TeamSection = () => {
                 <span>{member.initials}</span>
               )}
             </div>
-            <h4>{member.name}</h4>
-            <div className="social-links">
+            <h4 className="mb-1 text-[1.1rem]">{member.name}</h4>
+            <div className="flex justify-center gap-4 mt-3">
               {member.twitter && (
-                <a href={`https://twitter.com/${member.twitter.replace('@', '')}`} target="_blank" rel="noopener noreferrer">
+                <a 
+                  href={`https://twitter.com/${member.twitter.replace('@', '')}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-[var(--gray)] transition-colors duration-300 hover:text-[var(--primary)]"
+                >
                   <XIcon />
                 </a>
               )}
