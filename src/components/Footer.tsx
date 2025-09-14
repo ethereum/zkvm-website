@@ -14,11 +14,11 @@ const Footer = () => {
     <footer>
       <div className="footer-logo">
         <a href="#" className="logo">
-          <svg viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M125 0L250 62.5V187.5L125 250L0 187.5V62.5L125 0Z" fill="#0F766E"/>
-            <path d="M125 225L225 175V75L125 25L25 75V175L125 225Z" stroke="#334155" strokeWidth="10"/>
-          </svg>
-          <div className="logo-text">Ethereum Foundation <span>| zkevm</span></div>
+          <img 
+            src="/logo.png" 
+            alt="Ethereum Foundation zkEVM" 
+            className="h-12 w-auto"
+          />
         </a>
       </div>
       <div className="footer-links">

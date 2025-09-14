@@ -32,15 +32,13 @@ const Header = () => {
   return (
     <header className="fixed top-0 w-full bg-white/70 backdrop-blur-sm z-50 border-b border-gray-200 shadow-sm">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="logo flex items-center space-x-3">
-          <a href="#" className="flex items-center space-x-3">
-            <svg viewBox="0 0 250 250" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
-              <path d="M125 0L250 62.5V187.5L125 250L0 187.5V62.5L125 0Z" fill="#0F766E"/>
-              <path d="M125 225L225 175V75L125 25L25 75V175L125 225Z" stroke="white" strokeWidth="10"/>
-            </svg>
-            <div className="logo-text text-lg font-semibold text-gray-900">
-              Ethereum Foundation <span className="text-teal-600">| zkevm</span>
-            </div>
+        <div className="logo flex items-center">
+          <a href="#" className="flex items-center">
+            <img 
+              src="/logo.png" 
+              alt="Ethereum Foundation zkEVM" 
+              className="h-10 w-auto"
+            />
           </a>
         </div>
 
