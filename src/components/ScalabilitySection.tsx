@@ -18,9 +18,9 @@ const ScalabilitySection = () => {
                   stroke-dasharray: 4;
                   animation: flow 3s linear infinite;
                 }
-                .processing-dot {
-                  animation: pulse 1.5s ease-in-out infinite;
-                }
+                // .processing-dot {
+                //   animation: pulse 1.5s ease-in-out infinite;
+                // }
                 .label-main { font-family: 'Source Serif Pro', serif; font-size: 20px; font-weight: 700; fill: var(--dark); }
                 .label-sub { font-family: 'Inter', sans-serif; font-size: 12px; fill: var(--gray); }
                 .label-node { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; fill: var(--dark); }
@@ -43,22 +43,22 @@ const ScalabilitySection = () => {
             <g transform="translate(250, 50)">
               <circle cx="0" cy="0" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
               <text x="0" y="5" textAnchor="middle" className="label-node">V1</text>
-              <circle cx="0" cy="0" r="3" fill="var(--primary)" className="processing-dot" style={{animationDelay: '0s'}}/>
+              {/* <circle cx="0" cy="0" r="3" fill="var(--primary)" className="processing-dot" style={{animationDelay: '0s'}}/> */}
             </g>
             <g transform="translate(50, 200)">
               <circle cx="0" cy="0" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
               <text x="0" y="5" textAnchor="middle" className="label-node">V2</text>
-              <circle cx="0" cy="0" r="3" fill="var(--primary)" className="processing-dot" style={{animationDelay: '0.2s'}}/>
+              {/* <circle cx="0" cy="0" r="3" fill="var(--primary)" className="processing-dot" style={{animationDelay: '0.2s'}}/> */}
             </g>
             <g transform="translate(450, 200)">
               <circle cx="0" cy="0" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
               <text x="0" y="5" textAnchor="middle" className="label-node">V3</text>
-              <circle cx="0" cy="0" r="3" fill="var(--primary)" className="processing-dot" style={{animationDelay: '0.4s'}}/>
+              {/* <circle cx="0" cy="0" r="3" fill="var(--primary)" className="processing-dot" style={{animationDelay: '0.4s'}}/> */}
             </g>
             <g transform="translate(250, 350)">
               <circle cx="0" cy="0" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
               <text x="0" y="5" textAnchor="middle" className="label-node">Vn</text>
-              <circle cx="0" cy="0" r="3" fill="var(--primary)" className="processing-dot" style={{animationDelay: '0.6s'}}/>
+              {/* <circle cx="0" cy="0" r="3" fill="var(--primary)" className="processing-dot" style={{animationDelay: '0.6s'}}/> */}
             </g>
           </svg>
         </div>
@@ -133,17 +133,17 @@ const ZKEVMSolutionSection = () => {
             <g>
               <circle cx="425" cy="100" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
               <text x="425" y="105" textAnchor="middle" className="label-node">V1</text>
-              <path className="checkmark" d="M418 100 L 424 106 L 432 96"/>
+              {/* <path className="checkmark" d="M418 100 L 424 106 L 432 96"/> */}
             </g>
             <g>
               <circle cx="425" cy="200" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
               <text x="425" y="205" textAnchor="middle" className="label-node">V2</text>
-              <path className="checkmark" d="M418 200 L 424 206 L 432 196" style={{animationDelay: '1.6s'}}/>
+              {/* <path className="checkmark" d="M418 200 L 424 206 L 432 196" style={{animationDelay: '1.6s'}}/> */}
             </g>
             <g>
               <circle cx="425" cy="300" r="25" fill="var(--white)" stroke="var(--border-color)" strokeWidth="2"/>
               <text x="425" y="305" textAnchor="middle" className="label-node">Vn</text>
-              <path className="checkmark" d="M418 300 L 424 306 L 432 296" style={{animationDelay: '1.7s'}}/>
+              {/* <path className="checkmark" d="M418 300 L 424 306 L 432 296" style={{animationDelay: '1.7s'}}/> */}
             </g>
           </svg>
         </div>

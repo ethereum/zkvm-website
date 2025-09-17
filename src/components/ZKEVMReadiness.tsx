@@ -1,5 +1,8 @@
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const ZKEVMReadiness = () => {
   const zkevms = [
@@ -118,6 +121,14 @@ const ZKEVMReadiness = () => {
             </CardContent>
           </Card>
         ))}
+      </div>
+      <div className="mt-8 text-center">
+        <Link href="/zkvm-tracker">
+          <Button size="legacy" variant="book-primary" className="group">
+            View Full Tracker
+            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Button>
+        </Link>
       </div>
     </section>
   );
