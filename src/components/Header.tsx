@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -25,19 +26,22 @@ const Header = () => {
     { href: "#blog", label: "Blog" },
     { href: "#book", label: "The Book" },
     { href: "#team", label: "Team" },
+    { href: "/zkvm-tracker", label: "ZK-EVM Tracker" },
   ];
 
   return (
     <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 border-b border-gray-200 shadow-sm">
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="logo flex items-center">
-          <a href="#" className="flex items-center">
-            <img 
+          <Link href="/" className="flex items-center">
+            <Image 
               src="/logo.png" 
               alt="Ethereum Foundation zkEVM" 
-              className="h-10 w-auto"
+              width={120}
+              height={120}
+              className="h-12 w-auto"
             />
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
@@ -47,8 +51,11 @@ const Header = () => {
               <a
                 href={item.href}
                 onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.href.substring(1));
+                  if (item.href.startsWith('#')) {
+                    e.preventDefault();
+                    scrollToSection(item.href.substring(1));
+                  }
+                  // For external links (like /zkvm-tracker), let the default behavior handle it
                 }}
                 className="text-gray-700 hover:text-teal-600 transition-colors duration-200 font-medium"
               >
@@ -81,8 +88,11 @@ const Header = () => {
                       <a
                         href={item.href}
                         onClick={(e) => {
-                          e.preventDefault();
-                          scrollToSection(item.href.substring(1));
+                          if (item.href.startsWith('#')) {
+                            e.preventDefault();
+                            scrollToSection(item.href.substring(1));
+                          }
+                          // For external links (like /zkvm-tracker), let the default behavior handle it
                         }}
                         className="block text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 transition-all duration-200 py-3 px-4 rounded-lg"
                       >
