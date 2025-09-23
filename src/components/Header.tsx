@@ -1,8 +1,9 @@
 "use client";
 
-import { Menu, ExternalLink } from "lucide-react";
+import { Menu, ExternalLink, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -14,6 +15,7 @@ import {
 } from "@/components/ui/sheet";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
@@ -67,22 +69,29 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         <div className="sm:hidden">
-          <Sheet>
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="text-gray-700 hover:text-teal-600">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[280px] sm:w-[320px]">
+            <SheetContent side="right" className="w-full h-full z-[200] p-[1.3rem] flex flex-col">
               <SheetHeader className="pb-6">
-                <SheetTitle className="text-left text-lg font-semibold">Menu</SheetTitle>
-                <SheetDescription className="text-left text-sm text-gray-500">
-                  Navigate to different sections
-                </SheetDescription>
+                <div className="flex justify-center">
+                  <Link href="/" className="flex items-center">
+                    <Image 
+                      src="/logo.svg" 
+                      alt="Ethereum Foundation zkEVM" 
+                      width={120}
+                      height={120}
+                      className="h-8 w-auto"
+                    />
+                  </Link>
+                </div>
               </SheetHeader>
-              <nav className="mt-2">
-                <ul className="flex flex-col space-y-1">
+              <nav className="flex-1 flex items-center justify-center">
+                <ul className="flex flex-col w-full" style={{ gap: '1rem' }}>
                   {navItems.map((item) => (
                     <li key={item.href}>
                       <a
@@ -94,7 +103,8 @@ const Header = () => {
                           }
                           // For external links (like /zkvm-tracker), let the default behavior handle it
                         }}
-                        className="block text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 transition-all duration-200 py-3 px-4 rounded-lg inline-flex items-center gap-1"
+                        className="block w-full text-center font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 transition-all duration-200 py-3 px-4 rounded-lg inline-flex items-center justify-center gap-1"
+                        style={{ fontSize: '1.3rem' }}
                       >
                         {item.label}
                         {item.isExternal && <ExternalLink className="w-3 h-3" />}
