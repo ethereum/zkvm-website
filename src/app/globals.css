@@ -10,9 +10,9 @@
 @layer base {
   :root {
     /* Brand Colors - Exact match to prototype */
-    --primary: #0F766E; /* Muted Dark Teal */
-    --primary-dark: #134E4A;
-    --primary-light: #CCFBF1;
+    --primary: #0C9FDE; /* Base Blue */
+    --primary-dark: #0A7BB8;
+    --primary-light: #E6F7FF;
     --dark: #111827;
     --slate: #334155;
     --gray: #64748B;
@@ -47,13 +47,13 @@
     --destructive-foreground: 210 40% 98%;
 
     --input: 220 13% 91%;
-    --ring: 168 76% 22%;
+    --ring: 200 100% 46%;
     --border: 220 13% 91%;
 
     --radius: 0.375rem;
 
     /* Professional gradients */
-    --gradient-hero: radial-gradient(circle at center, hsl(168 76% 22% / 0.2), transparent 70%);
+    --gradient-hero: radial-gradient(circle at center, hsl(200 100% 46% / 0.2), transparent 70%);
     --gradient-card: linear-gradient(135deg, hsl(var(--card)), hsl(220 13% 99%));
     --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)));
 
@@ -96,9 +96,9 @@
     --popover-foreground: 210 40% 98%;
 
     --primary: 210 40% 98%;
-    --primary-foreground: 168 76% 22%;
-    --primary-dark: 168 85% 85%;
-    --primary-light: 168 85% 15%;
+    --primary-foreground: 200 100% 46%;
+    --primary-dark: 200 100% 85%;
+    --primary-light: 200 100% 15%;
 
     --secondary: 217 33% 18%;
     --secondary-foreground: 210 40% 98%;

@@ -58,7 +58,7 @@ const Header = () => {
                   }
                   // For external links (like /zkvm-tracker), let the default behavior handle it
                 }}
-                className="text-gray-700 hover:text-teal-600 transition-colors duration-200 font-medium inline-flex items-center gap-1"
+                className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium inline-flex items-center gap-1"
               >
                 {item.label}
                 {item.isExternal && <ExternalLink className="w-3 h-3" />}
@@ -71,7 +71,7 @@ const Header = () => {
         <div className="sm:hidden">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-gray-700 hover:text-teal-600">
+              <Button variant="ghost" size="icon" className="text-gray-700 hover:text-blue-600">
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Open menu</span>
               </Button>
@@ -103,7 +103,7 @@ const Header = () => {
                           }
                           // For external links (like /zkvm-tracker), let the default behavior handle it
                         }}
-                        className="block w-full text-center font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 transition-all duration-200 py-3 px-4 rounded-lg inline-flex items-center justify-center gap-1"
+                        className="block w-full text-center font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 transition-all duration-200 py-3 px-4 rounded-lg inline-flex items-center justify-center gap-1"
                         style={{ fontSize: '1.3rem' }}
                       >
                         {item.label}

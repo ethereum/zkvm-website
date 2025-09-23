@@ -26,7 +26,7 @@ export const zkevmData: ZKEVMData[] = [
   {
     name: 'Taiko ZK-EVM',
     description: 'A decentralized, Ethereum-equivalent ZK-Rollup focused on Type-1 compatibility.',
-    type: { label: 'Type 1', color: 'bg-green-100 text-green-800' },
+    type: { label: 'Type 1', color: 'bg-blue-100 text-blue-800' },
     securityTests: true,
     codeHealth: {
       rating: 5,
