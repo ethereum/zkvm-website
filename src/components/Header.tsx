@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu } from "lucide-react";
+import { Menu, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -23,9 +23,9 @@ const Header = () => {
 
   const navItems = [
     { href: "#roadmap", label: "Roadmap" },
-    { href: "#book", label: "The Book" },
     { href: "#team", label: "Team" },
     { href: "/zkvm-tracker", label: "ZK-EVM Tracker" },
+    { href: "#book", label: "The Book", isExternal: true },
   ];
 
   return (
@@ -44,7 +44,7 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <ul className="hidden lg:flex items-center space-x-2">
+        <ul className="hidden sm:flex items-center" style={{gap: '1rem'}}>
           {navItems.map((item) => (
             <li key={item.href}>
               <a
@@ -56,16 +56,17 @@ const Header = () => {
                   }
                   // For external links (like /zkvm-tracker), let the default behavior handle it
                 }}
-                className="text-gray-700 hover:text-teal-600 transition-colors duration-200 font-medium"
+                className="text-gray-700 hover:text-teal-600 transition-colors duration-200 font-medium inline-flex items-center gap-1"
               >
                 {item.label}
+                {item.isExternal && <ExternalLink className="w-3 h-3" />}
               </a>
             </li>
           ))}
         </ul>
 
         {/* Mobile Navigation */}
-        <div className="lg:hidden">
+        <div className="sm:hidden">
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="text-gray-700 hover:text-teal-600">
@@ -93,9 +94,10 @@ const Header = () => {
                           }
                           // For external links (like /zkvm-tracker), let the default behavior handle it
                         }}
-                        className="block text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 transition-all duration-200 py-3 px-4 rounded-lg"
+                        className="block text-base font-medium text-gray-700 hover:text-teal-600 hover:bg-gray-50 transition-all duration-200 py-3 px-4 rounded-lg inline-flex items-center gap-1"
                       >
                         {item.label}
+                        {item.isExternal && <ExternalLink className="w-3 h-3" />}
                       </a>
                     </li>
                   ))}
