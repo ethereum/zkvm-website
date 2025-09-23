@@ -505,8 +505,8 @@
 
   /* Footer */
   footer {
-    background: var(--dark);
-    color: var(--light-gray);
+    background: transparent;
+    color: var(--slate);
     padding: 4rem 1rem 2rem;
     text-align: center;
   }
@@ -531,7 +531,7 @@
   .footer-logo svg {
      height: 32px;
   }
-  .footer-logo .logo-text { color: var(--white); }
+  .footer-logo .logo-text { color: var(--slate); }
   .footer-logo .logo-text span { color: var(--gray); }
 
   .footer-links {
@@ -544,7 +544,7 @@
 
   .footer-links a {
     font-family: 'Inter', sans-serif;
-    color: var(--gray);
+    color: var(--slate);
     text-decoration: none;
     transition: color 0.3s ease;
     font-weight: 500;
@@ -555,8 +555,7 @@
   .footer-copy {
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
-    color: var(--gray);
-    border-top: 1px solid var(--slate);
+    color: var(--slate);
     padding-top: 2rem;
   }
 
