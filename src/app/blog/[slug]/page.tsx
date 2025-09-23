@@ -14,8 +14,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const post = await getBlogPost(params.slug);
     
     return (
-      <div className="container mx-auto px-4 py-16">
-        <div className="max-w-4xl mx-auto">
+      <div className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto mt-4">
             {/* Back Navigation */}
             <div className="mb-8">
               <Link 
@@ -86,7 +86,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           </div>
         </div>
     );
-  } catch (error) {
+  } catch {
     notFound();
   }
 }
@@ -119,7 +119,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
         description: post.excerpt,
       },
     };
-  } catch (error) {
+  } catch {
     return {
       title: 'Post Not Found | ZK-EVM Blog',
       description: 'The requested blog post could not be found.',

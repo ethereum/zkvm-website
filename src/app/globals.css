@@ -229,8 +229,8 @@
 
   /* Button Styles - Now handled by Button component */
 
-  /* Header & Navigation */
-  header {
+  /* Header & Navigation - Overridden by Tailwind classes in Header component */
+  /* header {
     position: fixed;
     top: 0;
     width: 100%;
@@ -238,7 +238,7 @@
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid var(--border-color);
-  }
+  } */
 
   nav {
     display: flex;

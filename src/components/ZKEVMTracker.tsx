@@ -224,10 +224,10 @@ function ZKEVMTracker() {
       <div className="container mx-auto px-4 py-8 bg-gray-50 min-h-screen">
         {/* Controls: View Toggle and Filters */}
         <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
-          <div className="flex items-center gap-2 p-1 bg-white rounded-lg shadow-sm border border-gray-200">
+          <div className="flex items-center gap-1 p-1 bg-white rounded-lg shadow-sm border border-gray-200">
             <button
               onClick={() => setViewMode('cards')}
-              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
+              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
                 viewMode === 'cards' 
                   ? 'bg-gray-900 text-white hover:bg-gray-800' 
                   : 'text-gray-700 hover:bg-gray-100'
@@ -237,7 +237,7 @@ function ZKEVMTracker() {
             </button>
             <button
               onClick={() => setViewMode('table')}
-              className={`px-3 py-1.5 text-sm font-medium rounded-md transition-colors ${
+              className={`px-4 py-2 text-sm font-medium rounded-md transition-colors ${
                 viewMode === 'table' 
                   ? 'bg-gray-900 text-white hover:bg-gray-800' 
                   : 'text-gray-700 hover:bg-gray-100'
