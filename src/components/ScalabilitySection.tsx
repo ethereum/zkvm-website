@@ -1,14 +1,14 @@
 const ScalabilitySection = () => {
   return (
-    <section id="about" className="section">
-      <div className="section-title">
+    <section id="about" className="section" style={{margin: '0 auto', padding: '2rem 0 0 0'}}>
+      <div className="section-title" style={{textAlign: 'left', margin: '0 0 4rem 0'}}>
         <h2>The Scalability Challenge</h2>
         <p>A fundamental bottleneck in Ethereum's scalability is that every validator must re-execute every transaction. Simply increasing the block gas limit would raise hardware requirements for everyone, risking centralization. To scale safely, we need a new approach.</p>
       </div>
-      <div className="two-column">
+      <div className="two-column" style={{backgroundColor: 'white', padding: '2rem', borderBottom: '2px dashed var(--border-color)'}}>
         <div className="text-content">
-          <h3>The Old Model: N-of-N Execution</h3>
-          <p>Currently, all validators execute all transactions to verify a block's validity. This redundant computation is secure but creates a ceiling for network throughput. It's the primary reason gas fees can become prohibitively high during peak demand.</p>
+          <h3 style={{fontSize: '1.5rem'}}>The Old Model: N-of-N Execution</h3>
+          <p style={{fontFamily: "'Inter', sans-serif", fontSize: '1rem', lineHeight: '1.5rem'}}>Currently, all validators execute all transactions to verify a block's validity. This redundant computation is secure but creates a ceiling for network throughput. It's the primary reason gas fees can become prohibitively high during peak demand.</p>
         </div>
         <div className="graphic">
           <svg width="100%" height="100%" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -70,8 +70,12 @@ const ScalabilitySection = () => {
 // ZK-EVM Solution Section Component
 const ZKEVMSolutionSection = () => {
   return (
-    <section className="section" style={{background: 'var(--white)'}}>
+    <section className="section" style={{background: '#eefaff', padding: '4rem 2rem'}}>
       <div className="two-column">
+        <div className="text-content">
+          <h3 style={{fontSize: '1.5rem'}}>The ZK-EVM Solution: 1-of-N Model</h3>
+          <p style={{fontFamily: "'Inter', sans-serif", fontSize: '1rem', lineHeight: '1.5rem'}}>ZK-EVMs shift this paradigm. Instead of all validators re-executing, a single specialized actor (a prover) executes the block and generates a short, cryptographic proof of its correctness. Verifying this proof is orders of magnitude cheaper than full re-execution, allowing Ethereum to safely raise the gas limit.</p>
+        </div>
         <div className="graphic">
           <svg width="100%" height="100%" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
             <style>
@@ -147,13 +151,11 @@ const ZKEVMSolutionSection = () => {
             </g>
           </svg>
         </div>
-        <div className="text-content">
-          <h3>The ZK-EVM Solution: 1-of-N Model</h3>
-          <p>ZK-EVMs shift this paradigm. Instead of all validators re-executing, a single specialized actor (a prover) executes the block and generates a short, cryptographic proof of its correctness. Verifying this proof is orders of magnitude cheaper than full re-execution, allowing Ethereum to safely raise the gas limit.</p>
-          <p style={{fontFamily: "'Inter', sans-serif", fontSize: '1rem', lineHeight: '1.6', color: 'var(--slate)', marginTop: '1.5rem', backgroundColor: 'var(--light-gray)', padding: '1.5rem', borderRadius: '6px', border: '1px solid var(--border-color)'}}>
-            <strong style={{color: 'var(--dark)', fontFamily: "'Source Serif Pro', serif"}}>Our goal is full, uncompromising EVM-equivalence.</strong> Often called a "Type 1" ZK-EVM, this ensures zero friction for existing applications, developers, and tooling—no modifications required.
-          </p>
-        </div>
+      </div>
+      <div style={{marginTop: '2rem', textAlign: 'center'}}>
+        <p style={{fontFamily: "'Inter', sans-serif", fontSize: '1.2rem', lineHeight: '1.6', color: 'var(--slate)', backgroundColor: 'white', padding: '1.5rem', borderRadius: '6px', border: '2px solid var(--primary)', margin: '0 auto'}}>
+          <strong style={{color: 'var(--dark)', fontFamily: "'Inter', sans-serif"}}>Our goal is full, uncompromising EVM-equivalence.</strong> Often called a "Type 1" ZK-EVM, this ensures zero friction for existing applications, developers, and tooling—no modifications required.
+        </p>
       </div>
     </section>
   );
