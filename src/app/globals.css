@@ -353,6 +353,21 @@
   }
 
   /* Workstream Items */
+  .workstream-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .workstream-container {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+  }
+
   .workstream-item {
     display: flex;
     gap: 2rem;
@@ -362,6 +377,13 @@
 
   .workstream-item:first-child { padding-top: 0; }
   .workstream-item:last-child { border-bottom: none; padding-bottom: 0;}
+
+  @media (min-width: 1024px) {
+    .workstream-item {
+      border-bottom: none;
+      padding-top: 0;
+    }
+  }
 
   .workstream-number {
     flex-shrink: 0;
