@@ -20,7 +20,7 @@ export default function BlogCard({ post }: BlogCardProps) {
               </Badge>
             )}
           </div>
-          <h3 className="text-xl font-semibold mb-3 line-clamp-2 group-hover:text-primary transition-colors">
+          <h3 className="text-xl font-bold mb-3 line-clamp-2 group-hover:text-primary transition-colors">
             {post.title}
           </h3>
           <p className="text-muted-foreground mb-4 line-clamp-3">{post.excerpt}</p>

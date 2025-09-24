@@ -4,10 +4,9 @@ const ImpactSection = () => {
   const features = [
     {
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="12" y1="20" x2="12" y2="10"></line>
-          <line x1="18" y1="20" x2="18" y2="4"></line>
-          <line x1="6" y1="20" x2="6" y2="16"></line>
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+          <polyline points="22,7 13.5,15.5 8.5,10.5 2,17"></polyline>
+          <polyline points="16,7 22,7 22,13"></polyline>
         </svg>
       ),
       title: "Higher Throughput",
@@ -15,8 +14,15 @@ const ImpactSection = () => {
     },
     {
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 3l-6 6"></path>
+          <path d="M21 3l-6 6"></path>
+          <path d="M3 21l6-6"></path>
+          <path d="M3 21l6-6"></path>
+          <path d="M21 3H9"></path>
+          <path d="M21 3v12"></path>
+          <path d="M3 21h12"></path>
+          <path d="M3 21V9"></path>
         </svg>
       ),
       title: "Stronger Decentralization", 
@@ -24,8 +30,10 @@ const ImpactSection = () => {
     },
     {
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7,10 12,15 17,10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
       ),
       title: "Predictable Finality",

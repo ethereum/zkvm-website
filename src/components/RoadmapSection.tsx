@@ -19,13 +19,6 @@ const RoadmapSection = () => {
     }
   ];
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section id="roadmap" className="section" style={{background: 'var(--white)'}}>
       <div className="section-title">
@@ -39,9 +32,6 @@ const RoadmapSection = () => {
             <div className="workstream-content">
               <h3>{workstream.title}</h3>
               <p>{workstream.description}</p>
-              <a href="#book" onClick={(e) => { e.preventDefault(); scrollToSection("book"); }}>
-                Learn More →
-              </a>
             </div>
           </div>
         ))}
