@@ -35,7 +35,7 @@ export default async function BlogPage() {
 
           {/* Featured Posts */}
           <div className="mb-12">
-            <h2 className="text-2xl font-semibold mb-6">Featured Posts</h2>
+            <h2 className="text-2xl font-bold mb-6">Featured Posts</h2>
             <div className="grid md:grid-cols-2 gap-6">
               {posts
                 .filter((post) => post.featured)
@@ -48,7 +48,7 @@ export default async function BlogPage() {
 
           {/* All Posts */}
           <div>
-            <h2 className="text-2xl font-semibold mb-6">All Posts</h2>
+            <h2 className="text-2xl font-bold mb-6">All Posts</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {posts.map((post) => (
                 <BlogCard key={post.slug} post={post} />

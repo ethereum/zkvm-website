@@ -29,7 +29,7 @@ const Hero = () => {
           <h1 className="text-[clamp(3rem,6vw,5rem)] mb-4 text-white font-black tracking-[-2px] leading-[1.1]">
             Scaling Ethereum Without Compromise
           </h1>
-          <h2 className="font-['Inter',sans-serif] text-[clamp(1.1rem,2.5vw,1.25rem)] text-[var(--gray)] mb-10 font-normal leading-[1.6] max-w-[650px]">
+          <h2 className="font-['Inter',sans-serif] text-[clamp(1.1rem,2.5vw,1.25rem)] text-white mb-10 font-normal leading-[1.6] max-w-[650px]">
             Introducing ZK-EVMs on L1: A new paradigm to increase Ethereum&apos;s throughput while strengthening decentralization.
           </h2>
           <div className="flex gap-4 flex-wrap">

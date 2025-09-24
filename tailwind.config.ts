@@ -15,8 +15,8 @@ export default {
   	extend: {
   		fontFamily: {
   			serif: [
-  				'Source Serif Pro"',
-  				'serif'
+  				'Space Grotesk',
+  				'sans-serif'
   			],
   			sans: [
   				'Inter',

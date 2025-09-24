@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;600;700;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -13,7 +12,7 @@
     --primary: #0C9FDE; /* Base Blue */
     --primary-dark: #0A7BB8;
     --primary-light: #E6F7FF;
-    --dark: #111827;
+    --dark: #062873;
     --slate: #334155;
     --gray: #64748B;
     --light-gray: #F8FAFC;
@@ -142,7 +141,7 @@
   }
 
   body {
-    font-family: 'Source Serif Pro', serif;
+    font-family: 'Space Grotesk', sans-serif;
     line-height: 1.7;
     color: var(--slate);
     background: var(--light-gray);
