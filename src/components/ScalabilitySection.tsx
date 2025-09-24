@@ -152,10 +152,11 @@ const ZKEVMSolutionSection = () => {
           </svg>
         </div>
       </div>
-      <div style={{marginTop: '2rem', textAlign: 'center'}}>
-        <p style={{fontFamily: "'Inter', sans-serif", fontSize: '1.2rem', lineHeight: '1.6', color: 'var(--slate)', backgroundColor: 'white', padding: '1.5rem', borderRadius: '6px', border: '2px solid var(--primary)', margin: '0 auto'}}>
-          <strong style={{color: 'var(--dark)', fontFamily: "'Inter', sans-serif"}}>Our goal is full, uncompromising EVM-equivalence.</strong> Often called a "Type 1" ZK-EVM, this ensures zero friction for existing applications, developers, and tooling—no modifications required.
-        </p>
+      <div style={{marginTop: '3rem', textAlign: 'center'}}>
+        <div style={{fontFamily: "'Inter', sans-serif", fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--slate)', backgroundColor: 'white', padding: '1.5rem', borderRadius: '6px', border: '2px solid var(--primary)', maxWidth: '700px', margin: '0 auto'}}>
+          <h4 style={{color: 'var(--primary)', fontFamily: "'Inter', sans-serif", margin: '0 0 0.5rem 0', fontSize: '1.2rem'}}>Our goal is full, uncompromising EVM-equivalence.</h4>
+          <p style={{margin: '0', fontSize: '1rem'}}>Often called a "Type 1" ZK-EVM, this ensures zero friction for existing applications, developers, and tooling—no modifications required.</p>
+        </div>
       </div>
     </section>
   );
