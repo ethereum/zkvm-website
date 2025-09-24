@@ -43,9 +43,10 @@ const Hero = () => {
             <Button
               variant="secondary-legacy"
               size="legacy"
-              onClick={(e) => { e.preventDefault(); scrollToSection("blog"); }}
+              onClick={(e) => { e.preventDefault(); window.location.href = '/zkvm-tracker'; }}
+              className="bg-white text-[var(--dark)] hover:bg-gray-200"
             >
-              View Latest Updates
+              View the ZK-EVM Tracker
             </Button>
           </div>
         </div>
