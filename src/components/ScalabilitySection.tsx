@@ -30,7 +30,7 @@ const ScalabilitySection = () => {
             <g>
               <rect x="200" y="150" width="100" height="100" rx="8" fill="var(--primary-light)" stroke="var(--primary)" strokeWidth="2"/>
               <text x="250" y="192" textAnchor="middle" className="label-main">Block</text>
-              <text x="250" y="215" textAnchor="middle" className="label-sub">30M Gas</text>
+              <text x="250" y="215" textAnchor="middle" className="label-sub">45M Gas</text>
             </g>
 
             {/* Lines to Validators */}
