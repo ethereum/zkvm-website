@@ -12,7 +12,7 @@ const BookSection = () => {
           asChild
         >
           <a href="https://zkevm.fyi" target="_blank" rel="noopener noreferrer">
-            Start Reading at zkevm.fyi
+            Start Reading
           </a>
         </Button>
       </div>

@@ -97,7 +97,7 @@ const ZKEVMReadiness = () => {
   };
 
   return (
-    <section id="zkevm-readiness" className="section" style={{paddingTop: '4rem', marginTop: '4rem', borderTop: '1px solid var(--border-color)'}}>
+    <section id="zkevm-readiness" className="section" style={{paddingTop: '10rem', borderTop: '1px solid var(--border-color)'}}>
       <div className="section-title">
         <h2 style={{fontSize: '2.5rem'}}>ZK-EVM Mainnet Readiness</h2>
         <p>Evaluating core ZK-EVM implementations based on criteria required for a secure and sustainable mainnet deployment.</p>
