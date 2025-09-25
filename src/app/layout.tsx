@@ -6,26 +6,13 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClientWrapper } from "@/components/QueryClientWrapper";
 
 export const metadata: Metadata = {
-  title: "ZK-EVM Initiative - Scaling Ethereum Without Compromise",
-  description: "Introducing ZK-EVMs on L1: A new paradigm to increase Ethereum's throughput while strengthening decentralization through Zero Knowledge proofs.",
+  title: "zkEVM - Scaling Ethereum Without Compromise",
+  description: "Introducing zkEVMs on L1: A new paradigm to increase Ethereum's throughput while strengthening decentralization through Zero Knowledge proofs.",
   authors: [{ name: "Ethereum Foundation" }],
   openGraph: {
-    title: "ZK-EVM Initiative - Scaling Ethereum Without Compromise",
-    description: "Introducing ZK-EVMs on L1: A new paradigm to increase Ethereum's throughput while strengthening decentralization through Zero Knowledge proofs.",
+    title: "zkEVM - Scaling Ethereum Without Compromise",
+    description: "Introducing zkEVMs on L1: A new paradigm to increase Ethereum's throughput while strengthening decentralization through Zero Knowledge proofs.",
     type: "website",
-    images: [
-      {
-        url: "https://lovable.dev/opengraph-image-p98pqg.png",
-        width: 1200,
-        height: 630,
-        alt: "ZK-EVM Initiative",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@lovable_dev",
-    images: ["https://lovable.dev/opengraph-image-p98pqg.png"],
   },
 };
 
