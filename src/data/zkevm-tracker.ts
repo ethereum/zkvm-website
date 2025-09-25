@@ -4,7 +4,6 @@ export const zkevmData: ZKEVMData[] = [
   {
     name: 'Kakarot ZK-EVM',
     description: 'A Type 2 ZK-EVM written in Cairo, leveraging the Starknet stack.',
-    type: { label: 'Type 2', color: 'bg-blue-100 text-blue-800' },
     securityTests: true,
     openSource: true,
     supportedClients: [
@@ -18,7 +17,6 @@ export const zkevmData: ZKEVMData[] = [
   {
     name: 'Taiko ZK-EVM',
     description: 'A decentralized, Ethereum-equivalent ZK-Rollup focused on Type-1 compatibility.',
-    type: { label: 'Type 1', color: 'bg-blue-100 text-blue-800' },
     securityTests: true,
     openSource: true,
     supportedClients: [
@@ -33,7 +31,6 @@ export const zkevmData: ZKEVMData[] = [
   {
     name: 'Polygon zkEVM',
     description: 'An open-source ZK-Rollup providing EVM equivalence for a seamless developer experience.',
-    type: { label: 'Type 2', color: 'bg-blue-100 text-blue-800' },
     securityTests: true,
     openSource: true,
     supportedClients: [
@@ -47,7 +44,6 @@ export const zkevmData: ZKEVMData[] = [
   {
     name: 'Scroll',
     description: 'A native zkEVM Layer 2 solution for Ethereum, designed for scalability and security.',
-    type: { label: 'Type 2', color: 'bg-blue-100 text-blue-800' },
     securityTests: true,
     openSource: true,
     supportedClients: [
@@ -61,7 +57,6 @@ export const zkevmData: ZKEVMData[] = [
   {
     name: 'zkSync Era',
     description: 'A Type 4 ZK-EVM that compiles Solidity to zkSNARK circuits for maximum security.',
-    type: { label: 'Type 4', color: 'bg-purple-100 text-purple-800' },
     securityTests: true,
     openSource: true,
     supportedClients: [
@@ -75,7 +70,6 @@ export const zkevmData: ZKEVMData[] = [
   {
     name: 'Linea',
     description: 'A Type 2 ZK-EVM by ConsenSys, providing full EVM equivalence with zero-knowledge proofs.',
-    type: { label: 'Type 2', color: 'bg-blue-100 text-blue-800' },
     securityTests: true,
     openSource: true,
     supportedClients: [

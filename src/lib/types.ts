@@ -23,12 +23,6 @@ export interface BlogPostSummary {
 }
 
 // ZK-EVM Tracker Types
-export interface ZKEVMType {
-  label: string;
-  color: string;
-}
-
-
 export interface SupportedClient {
   name: string;
   color: string;
@@ -42,7 +36,6 @@ export interface ZKEVMLinks {
 export interface ZKEVMData {
   name: string;
   description: string;
-  type: ZKEVMType;
   securityTests: boolean;
   openSource: boolean;
   supportedClients: SupportedClient[];

@@ -16,13 +16,13 @@ const CheckIcon = () => (
   </svg>
 );
 
-// Badge Component for ZK-EVM types and clients
-interface TypeBadgeProps {
+// Badge Component for supported clients
+interface ClientBadgeProps {
   text: string;
   colorClass: string;
 }
 
-const TypeBadge: React.FC<TypeBadgeProps> = ({ text, colorClass }) => (
+const ClientBadge: React.FC<ClientBadgeProps> = ({ text, colorClass }) => (
   <Badge variant="secondary" className={`${colorClass} font-medium whitespace-nowrap`}>
     {text}
   </Badge>
@@ -34,9 +34,8 @@ const CardView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
     {data.map((item, index) => (
       <Card key={index} className="zkevm-card">
         <CardContent className="p-8">
-          <div className="flex justify-between items-start mb-2">
+          <div className="mb-2">
             <h3>{item.name}</h3>
-            <TypeBadge text={item.type.label} colorClass={item.type.color} />
           </div>
           <p className="description">{item.description}</p>
           <ul className="criteria-list">
@@ -57,7 +56,7 @@ const CardView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
               <div className="value">
                 <div className="flex flex-wrap gap-2 justify-end">
                   {item.supportedClients.map(client => (
-                    <TypeBadge key={client.name} text={client.name} colorClass={client.color} />
+                    <ClientBadge key={client.name} text={client.name} colorClass={client.color} />
                   ))}
                 </div>
               </div>
@@ -96,7 +95,6 @@ const TableView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
       <TableHeader>
         <TableRow className="bg-gray-50">
           <TableHead className="min-w-[250px]">Project</TableHead>
-          <TableHead className="w-24">Type</TableHead>
           <TableHead>Security Tests</TableHead>
           <TableHead>Open Source</TableHead>
           <TableHead className="min-w-[200px]">Supported Clients</TableHead>
@@ -110,15 +108,12 @@ const TableView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
               <div className="font-bold text-gray-900">{item.name}</div>
               <div className="text-xs text-gray-500 mt-1">{item.description}</div>
             </TableCell>
-            <TableCell className="w-24">
-              <TypeBadge text={item.type.label} colorClass={item.type.color} />
-            </TableCell>
             <TableCell>{item.securityTests && <CheckIcon />}</TableCell>
             <TableCell>{item.openSource && <CheckIcon />}</TableCell>
             <TableCell>
               <div className="flex flex-wrap gap-2">
                 {item.supportedClients.map(client => (
-                  <TypeBadge key={client.name} text={client.name} colorClass={client.color} />
+                  <ClientBadge key={client.name} text={client.name} colorClass={client.color} />
                 ))}
               </div>
             </TableCell>
