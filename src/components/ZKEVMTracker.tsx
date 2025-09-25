@@ -2,55 +2,12 @@
 
 import React, { useState } from 'react';
 import { zkevmData } from '@/data/zkevm-tracker';
-import { ZKEVMData, CodeHealth } from '@/lib/types';
+import { ZKEVMData } from '@/lib/types';
 import { Badge } from '@/components/ui/badge';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Github, BookOpen } from 'lucide-react';
 
-// StarRating Component with Tooltip for Code Health - matches homepage styling
-interface CodeHealthRatingProps {
-  health: CodeHealth;
-}
-
-const CodeHealthRating: React.FC<CodeHealthRatingProps> = ({ health }) => {
-  return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <span className="star-rating cursor-help">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <span key={star} className={star <= health.rating ? '' : 'muted'}>★</span>
-            ))}
-          </span>
-        </TooltipTrigger>
-        <TooltipContent side="top" className="max-w-xs p-4 z-50">
-          <div className="space-y-2">
-            <p className="font-semibold text-sm">
-              This score reflects overall code quality based on the following criteria:
-            </p>
-            <ul className="space-y-1 text-xs">
-              <li className="flex items-start gap-2">
-                <span className="text-primary">✓</span>
-                <span><strong>Readability:</strong> {health.breakdown.readability}</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">✓</span>
-                <span><strong>Documentation:</strong> {health.breakdown.documentation}</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-primary">✓</span>
-                <span><strong>Maintainability:</strong> {health.breakdown.maintainability}</span>
-              </li>
-            </ul>
-          </div>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  );
-};
 
 // Checkmark Icon for boolean values - matches homepage styling
 const CheckIcon = () => (
@@ -93,12 +50,6 @@ const CardView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
               <span className="name">Open Source</span>
               <div className="value">
                 {item.openSource && <CheckIcon />}
-              </div>
-            </li>
-            <li className="criteria-item">
-              <span className="name">Code Health</span>
-              <div className="value">
-                <CodeHealthRating health={item.codeHealth} />
               </div>
             </li>
             <li className="criteria-item">
@@ -147,7 +98,6 @@ const TableView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
           <TableHead className="min-w-[250px]">Project</TableHead>
           <TableHead className="w-24">Type</TableHead>
           <TableHead>Security Tests</TableHead>
-          <TableHead>Code Health</TableHead>
           <TableHead>Open Source</TableHead>
           <TableHead className="min-w-[200px]">Supported Clients</TableHead>
           <TableHead>Links</TableHead>
@@ -164,7 +114,6 @@ const TableView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
               <TypeBadge text={item.type.label} colorClass={item.type.color} />
             </TableCell>
             <TableCell>{item.securityTests && <CheckIcon />}</TableCell>
-            <TableCell><CodeHealthRating health={item.codeHealth} /></TableCell>
             <TableCell>{item.openSource && <CheckIcon />}</TableCell>
             <TableCell>
               <div className="flex flex-wrap gap-2">

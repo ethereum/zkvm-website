@@ -28,16 +28,6 @@ export interface ZKEVMType {
   color: string;
 }
 
-export interface CodeHealthBreakdown {
-  readability: string;
-  documentation: string;
-  maintainability: string;
-}
-
-export interface CodeHealth {
-  rating: number; // 1-5 scale
-  breakdown: CodeHealthBreakdown;
-}
 
 export interface SupportedClient {
   name: string;
@@ -54,7 +44,6 @@ export interface ZKEVMData {
   description: string;
   type: ZKEVMType;
   securityTests: boolean;
-  codeHealth: CodeHealth;
   openSource: boolean;
   supportedClients: SupportedClient[];
   links: ZKEVMLinks;
