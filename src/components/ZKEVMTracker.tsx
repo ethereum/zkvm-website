@@ -16,17 +16,103 @@ const CheckIcon = () => (
   </svg>
 );
 
-// Badge Component for supported clients
+// Badge Component for supported clients and architecture
 interface ClientBadgeProps {
   text: string;
   colorClass: string;
+  status?: 'Not Started' | 'Planning' | 'In Development' | 'Testing' | 'Production Ready' | 'Deprecated';
 }
 
-const ClientBadge: React.FC<ClientBadgeProps> = ({ text, colorClass }) => (
-  <Badge variant="secondary" className={`${colorClass} font-medium whitespace-nowrap`}>
-    {text}
-  </Badge>
-);
+const ClientBadge: React.FC<ClientBadgeProps> = ({ text, colorClass, status }) => {
+  const getStatusIndicator = (status?: string) => {
+    if (!status) return '';
+    switch (status) {
+      case 'Production Ready':
+        return '✓';
+      case 'Testing':
+        return '⚠';
+      case 'In Development':
+        return '🔧';
+      case 'Planning':
+        return '📋';
+      case 'Not Started':
+        return '⏸';
+      case 'Deprecated':
+        return '❌';
+      default:
+        return '';
+    }
+  };
+
+  return (
+    <div className="flex items-center gap-1">
+      <Badge variant="secondary" className={`${colorClass} font-medium whitespace-nowrap`}>
+        {text}
+      </Badge>
+      {status && (
+        <span className="text-xs" title={`Client Status: ${status}`}>
+          {getStatusIndicator(status)}
+        </span>
+      )}
+    </div>
+  );
+};
+
+// Status Badge Component
+interface StatusBadgeProps {
+  status: 'Not Started' | 'Planning' | 'In Development' | 'Testing' | 'Production Ready' | 'Deprecated';
+}
+
+const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case 'Not Started':
+        return 'bg-gray-100 text-gray-600';
+      case 'Planning':
+        return 'bg-blue-100 text-blue-800';
+      case 'In Development':
+        return 'bg-yellow-100 text-yellow-800';
+      case 'Testing':
+        return 'bg-orange-100 text-orange-800';
+      case 'Production Ready':
+        return 'bg-green-100 text-green-800';
+      case 'Deprecated':
+        return 'bg-red-100 text-red-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  return (
+    <Badge variant="secondary" className={`${getStatusColor(status)} font-medium whitespace-nowrap`}>
+      {status}
+    </Badge>
+  );
+};
+
+// Test Results Component
+interface TestResultsProps {
+  testResults: { passed: number; total: number; percentage: number };
+}
+
+const TestResults: React.FC<TestResultsProps> = ({ testResults }) => {
+  const getTestColor = (percentage: number) => {
+    if (percentage === 100) return 'text-green-600';
+    if (percentage >= 95) return 'text-yellow-600';
+    return 'text-red-600';
+  };
+
+  return (
+    <div className="flex items-center gap-2">
+      <span className={`font-medium ${getTestColor(testResults.percentage)}`}>
+        {testResults.passed}/{testResults.total}
+      </span>
+      <span className="text-sm text-gray-500">
+        ({testResults.percentage.toFixed(1)}%)
+      </span>
+    </div>
+  );
+};
 
 // Card View Component
 const CardView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
@@ -34,15 +120,24 @@ const CardView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
     {data.map((item, index) => (
       <Card key={index} className="zkevm-card">
         <CardContent className="p-8">
-          <div className="mb-2">
-            <h3>{item.name}</h3>
+          <div className="mb-4">
+            <div className="flex justify-between items-start mb-2">
+              <h3>{item.name}</h3>
+              <StatusBadge status={item.status} />
+            </div>
+            <div className="flex items-center gap-2 mb-2">
+              <ClientBadge text={item.architecture} colorClass="bg-blue-100 text-blue-800" />
+            </div>
           </div>
-          <p className="description">{item.description}</p>
+          <p className="description mb-4">{item.description}</p>
           <ul className="criteria-list">
             <li className="criteria-item">
-              <span className="name">Security Tests</span>
+              <span className="name">Test Results & Security</span>
               <div className="value">
-                {item.securityTests && <CheckIcon />}
+                <div className="flex items-center gap-3">
+                  <TestResults testResults={item.testResults} />
+                  {item.securityTests && <CheckIcon />}
+                </div>
               </div>
             </li>
             <li className="criteria-item">
@@ -56,7 +151,7 @@ const CardView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
               <div className="value">
                 <div className="flex flex-wrap gap-2 justify-end">
                   {item.supportedClients.map(client => (
-                    <ClientBadge key={client.name} text={client.name} colorClass={client.color} />
+                    <ClientBadge key={client.name} text={client.name} colorClass={client.color} status={client.status} />
                   ))}
                 </div>
               </div>
@@ -95,7 +190,9 @@ const TableView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
       <TableHeader>
         <TableRow className="bg-gray-50">
           <TableHead className="min-w-[250px]">Project</TableHead>
-          <TableHead>Security Tests</TableHead>
+          <TableHead className="w-20">Architecture</TableHead>
+          <TableHead className="w-32">Test Results & Security</TableHead>
+          <TableHead className="w-20">Status</TableHead>
           <TableHead>Open Source</TableHead>
           <TableHead className="min-w-[200px]">Supported Clients</TableHead>
           <TableHead>Links</TableHead>
@@ -108,12 +205,23 @@ const TableView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
               <div className="font-bold text-gray-900">{item.name}</div>
               <div className="text-xs text-gray-500 mt-1">{item.description}</div>
             </TableCell>
-            <TableCell>{item.securityTests && <CheckIcon />}</TableCell>
+            <TableCell>
+              <ClientBadge text={item.architecture} colorClass="bg-blue-100 text-blue-800" />
+            </TableCell>
+            <TableCell>
+              <div className="flex items-center gap-3">
+                <TestResults testResults={item.testResults} />
+                {item.securityTests && <CheckIcon />}
+              </div>
+            </TableCell>
+            <TableCell>
+              <StatusBadge status={item.status} />
+            </TableCell>
             <TableCell>{item.openSource && <CheckIcon />}</TableCell>
             <TableCell>
               <div className="flex flex-wrap gap-2">
                 {item.supportedClients.map(client => (
-                  <ClientBadge key={client.name} text={client.name} colorClass={client.color} />
+                  <ClientBadge key={client.name} text={client.name} colorClass={client.color} status={client.status} />
                 ))}
               </div>
             </TableCell>
@@ -189,9 +297,6 @@ function ZKEVMTracker() {
             >
               Table
             </button>
-          </div>
-          <div className="text-sm text-gray-600">
-            Filters and sorting coming soon.
           </div>
         </div>
 

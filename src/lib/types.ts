@@ -22,10 +22,11 @@ export interface BlogPostSummary {
   featured: boolean;
 }
 
-// ZK-EVM Tracker Types
+// ZKVM Tracker Types
 export interface SupportedClient {
   name: string;
   color: string;
+  status: 'Not Started' | 'Planning' | 'In Development' | 'Testing' | 'Production Ready' | 'Deprecated';
 }
 
 export interface ZKEVMLinks {
@@ -33,9 +34,20 @@ export interface ZKEVMLinks {
   docs: string;
 }
 
+export interface TestResults {
+  passed: number;
+  total: number;
+  percentage: number;
+}
+
+export type ZKVMStatus = 'Not Started' | 'Planning' | 'In Development' | 'Testing' | 'Production Ready' | 'Deprecated';
+
 export interface ZKEVMData {
   name: string;
   description: string;
+  architecture: string; // e.g., "rv32im", "rv64ima"
+  testResults: TestResults;
+  status: ZKVMStatus;
   securityTests: boolean;
   openSource: boolean;
   supportedClients: SupportedClient[];
