@@ -4,12 +4,12 @@ const ScalabilitySection = () => {
       <section className="section" style={{padding: '4rem 2rem'}}>
       <div className="section-title" style={{textAlign: 'left', margin: '0 0 4rem 0'}}>
         <h2>The Scalability Challenge</h2>
-        <p>A fundamental bottleneck in Ethereum's scalability is that every validator must re-execute every transaction. Simply increasing the block gas limit would raise hardware requirements for everyone, risking centralization. To scale safely, we need a new approach.</p>
+        <p>A fundamental bottleneck in Ethereum&apos;s scalability is that every validator must re-execute every transaction. Simply increasing the block gas limit would raise hardware requirements for everyone, risking centralization. To scale safely, we need a new approach.</p>
       </div>
       <div className="two-column" style={{backgroundColor: 'white', padding: '2rem', borderBottom: '2px dashed var(--border-color)'}}>
         <div className="text-content">
           <h3 style={{fontSize: '1.5rem', fontWeight: 700}}>The Old Model: N-of-N Execution</h3>
-          <p style={{fontFamily: "'Inter', sans-serif", fontSize: '1rem', lineHeight: '1.5rem'}}>Currently, all validators execute all transactions to verify a block's validity. This redundant computation is secure but creates a ceiling for network throughput. It's the primary reason gas fees can become prohibitively high during peak demand.</p>
+          <p style={{fontFamily: "'Inter', sans-serif", fontSize: '1rem', lineHeight: '1.5rem'}}>Currently, all validators execute all transactions to verify a block&apos;s validity. This redundant computation is secure but creates a ceiling for network throughput. It&apos;s the primary reason gas fees can become prohibitively high during peak demand.</p>
         </div>
         <div className="graphic">
           <svg width="100%" height="100%" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -156,7 +156,7 @@ const ZKEVMSolutionSection = () => {
       <div style={{marginTop: '3rem', textAlign: 'center'}}>
         <div style={{fontFamily: "'Inter', sans-serif", fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--slate)', backgroundColor: 'white', padding: '1.5rem', borderRadius: '6px', border: '2px solid var(--primary)', maxWidth: '700px', margin: '0 auto'}}>
           <h4 style={{color: 'var(--primary)', fontFamily: "'Inter', sans-serif", margin: '0 0 0.5rem 0', fontSize: '1.2rem', fontWeight: 700}}>Our goal is full, uncompromising EVM-equivalence.</h4>
-          <p style={{margin: '0', fontSize: '1rem'}}>Often called a "Type 1" ZK-EVM, this ensures zero friction for existing applications, developers, and tooling—no modifications required.</p>
+          <p style={{margin: '0', fontSize: '1rem'}}>Often called a &quot;Type 1&quot; ZK-EVM, this ensures zero friction for existing applications, developers, and tooling—no modifications required.</p>
         </div>
       </div>
     </section>

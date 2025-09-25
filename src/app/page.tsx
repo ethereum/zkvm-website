@@ -5,7 +5,6 @@ import ImpactSection from "@/components/ImpactSection";
 import RoadmapSection from "@/components/RoadmapSection";
 import ZKEVMReadiness from "@/components/ZKEVMReadiness";
 import ClientStatus from "@/components/ClientStatus";
-import BlogSection from "@/components/BlogSection";
 import BookSection from "@/components/BookSection";
 import TeamSection from "@/components/TeamSection";
 import Footer from "@/components/Footer";

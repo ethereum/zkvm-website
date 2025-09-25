@@ -26,7 +26,7 @@ const RoadmapSection = () => {
         <p>Bringing ZK-EVMs to L1 is a multi-faceted effort. Our work is organized into three core workstreams, with parallel progress on client implementations.</p>
       </div>
       <div className="workstream-container">
-        {workstreams.map((workstream, index) => (
+        {workstreams.map((workstream) => (
           <div key={workstream.number} className="workstream-item">
             <div className="workstream-number">{workstream.number}</div>
             <div className="workstream-content">

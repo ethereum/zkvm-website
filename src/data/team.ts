@@ -8,7 +8,7 @@ export interface TeamMember {
   name: string;
   twitter: string | null;
   initials: string;
-  image: any | null;
+  image: string | null;
 }
 
 export const teamMembers: TeamMember[] = [

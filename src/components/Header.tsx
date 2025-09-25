@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, ExternalLink, X } from "lucide-react";
+import { Menu, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -8,9 +8,7 @@ import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
-  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 

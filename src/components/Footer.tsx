@@ -1,14 +1,17 @@
+import Image from "next/image";
+
 const Footer = () => {
   return (
     <footer>
       <div className="flex items-start justify-between max-w-[1200px] mx-auto px-4">
         <div className="footer-logo">
           <a href="#" className="logo">
-            <img 
+            <Image 
               src="/logo.svg" 
               alt="Ethereum Foundation zkEVM" 
+              width={120}
+              height={40}
               className="w-auto"
-              style={{ height: '40px' }}
             />
           </a>
         </div>

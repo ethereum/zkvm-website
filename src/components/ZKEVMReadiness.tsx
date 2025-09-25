@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { zkevmData } from "@/data/zkevm-tracker";
 import { Badge } from "@/components/ui/badge";
+import { ZKEVMData } from "@/lib/types";
 
 const ZKEVMReadiness = () => {
   // Show only top 2 Production Ready ZKVMs on homepage (curated subset)
@@ -11,7 +12,7 @@ const ZKEVMReadiness = () => {
     .filter(zkvm => zkvm.status === 'Production Ready')
     .slice(0, 2); // Show only top 2 most ready ZKVMs
 
-  const renderCriteriaValue = (zkvm: any, criterionName: string) => {
+  const renderCriteriaValue = (zkvm: ZKEVMData, criterionName: string) => {
     switch (criterionName) {
       case "Test Results & Security":
         return (
@@ -42,7 +43,7 @@ const ZKEVMReadiness = () => {
       case "Supported Clients":
         return (
           <div className="flex flex-wrap gap-2">
-            {zkvm.supportedClients.map((client: any) => (
+            {zkvm.supportedClients.map((client) => (
               <Badge key={client.name} variant="secondary" className={`${client.color} font-medium whitespace-nowrap`}>
                 {client.name}
               </Badge>

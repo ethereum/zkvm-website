@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import remarkHtml from 'remark-html';
 import remarkGfm from 'remark-gfm';
-import { BlogPost, BlogPostSummary, BlogPostMetadata } from './types';
+import { BlogPost, BlogPostSummary } from './types';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/blog');
 
