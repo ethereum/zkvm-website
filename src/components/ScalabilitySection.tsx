@@ -1,6 +1,7 @@
 const ScalabilitySection = () => {
   return (
-    <section id="about" className="section" style={{margin: '0 auto', padding: '2rem 0 0 0'}}>
+    // reverting nuno's changes to fix issue quickly <section id="about" className="section" style={{margin: '0 auto', padding: '2rem 0 0 0'}}>
+      <section className="section" style={{padding: '4rem 2rem'}}>
       <div className="section-title" style={{textAlign: 'left', margin: '0 0 4rem 0'}}>
         <h2>The Scalability Challenge</h2>
         <p>A fundamental bottleneck in Ethereum's scalability is that every validator must re-execute every transaction. Simply increasing the block gas limit would raise hardware requirements for everyone, risking centralization. To scale safely, we need a new approach.</p>
