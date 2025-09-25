@@ -80,6 +80,7 @@ export const SparklesCore = (props: ParticlesProps) => {
                   enable: false,
                   mode: "repulse",
                 },
+                // @ts-expect-error - shadcn component type issue with tsparticles
                 resize: true,
               },
               modes: {

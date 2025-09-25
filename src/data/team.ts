@@ -3,12 +3,13 @@ import thomasImage from "@/assets/team/thomas.jpg";
 import codyImage from "@/assets/team/cody.jpg";
 import sophiaImage from "@/assets/team/sophia.jpg";
 import ignacioImage from "@/assets/team/ignacio.png";
+import type { StaticImageData } from "next/image";
 
 export interface TeamMember {
   name: string;
   twitter: string | null;
   initials: string;
-  image: string | null;
+  image: StaticImageData | null;
 }
 
 export const teamMembers: TeamMember[] = [
