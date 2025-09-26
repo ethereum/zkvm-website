@@ -22,10 +22,10 @@ const Header = () => {
   };
 
   const navItems = [
-    { href: "#roadmap", label: "Roadmap" },
-    { href: "#team", label: "Team" },
+    { href: "/#roadmap", label: "Roadmap" },
+    { href: "/#team", label: "Team" },
     { href: "/zkvm-tracker", label: "zkEVM Tracker" },
-    { href: "#book", label: "The Book", isExternal: true },
+    { href: "https://zkevm.fyi", label: "The Book", isExternal: true },
   ];
 
   return (
