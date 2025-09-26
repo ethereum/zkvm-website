@@ -10,7 +10,8 @@ export const zkevmData: ZKEVMData[] = [
     securityTests: false,
     openSource: true,
     supportedClients: [
-      { name: 'Geth', color: 'bg-gray-200 text-gray-800', status: 'Testing' }
+      { name: 'Reth', color: 'bg-green-100 text-green-800', status: 'Production Ready' },
+      { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
     ],
     links: {
       github: 'https://github.com/airbender-zkvm/airbender',
@@ -26,8 +27,8 @@ export const zkevmData: ZKEVMData[] = [
     securityTests: true,
     openSource: true,
     supportedClients: [
-      { name: 'Geth', color: 'bg-gray-200 text-gray-800', status: 'Production Ready' },
-      { name: 'Nethermind', color: 'bg-yellow-100 text-yellow-800', status: 'Testing' }
+      { name: 'Reth', color: 'bg-green-100 text-green-800', status: 'Production Ready' },
+      { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
     ],
     links: {
       github: 'https://github.com/jolt-zkvm/jolt',
@@ -43,7 +44,8 @@ export const zkevmData: ZKEVMData[] = [
     securityTests: true,
     openSource: true,
     supportedClients: [
-      { name: 'Geth', color: 'bg-gray-200 text-gray-800', status: 'Production Ready' }
+      { name: 'Reth', color: 'bg-green-100 text-green-800', status: 'Production Ready' },
+      { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
     ],
     links: {
       github: 'https://github.com/openvm/openvm',
@@ -59,7 +61,8 @@ export const zkevmData: ZKEVMData[] = [
     securityTests: false,
     openSource: true,
     supportedClients: [
-      { name: 'Geth', color: 'bg-gray-200 text-gray-800', status: 'Testing' }
+      { name: 'Reth', color: 'bg-green-100 text-green-800', status: 'Production Ready' },
+      { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
     ],
     links: {
       github: 'https://github.com/pico-zkvm/pico',
@@ -75,7 +78,8 @@ export const zkevmData: ZKEVMData[] = [
     securityTests: true,
     openSource: true,
     supportedClients: [
-      { name: 'Geth', color: 'bg-gray-200 text-gray-800', status: 'Production Ready' }
+      { name: 'Reth', color: 'bg-green-100 text-green-800', status: 'Production Ready' },
+      { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
     ],
     links: {
       github: 'https://github.com/risc0/risc0',
@@ -91,7 +95,8 @@ export const zkevmData: ZKEVMData[] = [
     securityTests: false,
     openSource: true,
     supportedClients: [
-      { name: 'Geth', color: 'bg-gray-200 text-gray-800', status: 'Testing' }
+      { name: 'Reth', color: 'bg-green-100 text-green-800', status: 'Production Ready' },
+      { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
     ],
     links: {
       github: 'https://github.com/succinctlabs/sp1',
@@ -107,8 +112,8 @@ export const zkevmData: ZKEVMData[] = [
     securityTests: true,
     openSource: true,
     supportedClients: [
-      { name: 'Geth', color: 'bg-gray-200 text-gray-800', status: 'Production Ready' },
-      { name: 'Nethermind', color: 'bg-yellow-100 text-yellow-800', status: 'Testing' }
+      { name: 'Reth', color: 'bg-green-100 text-green-800', status: 'Production Ready' },
+      { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
     ],
     links: {
       github: 'https://github.com/zisk-zkvm/zisk',
