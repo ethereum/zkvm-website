@@ -20,41 +20,13 @@ const CheckIcon = () => (
 interface ClientBadgeProps {
   text: string;
   colorClass: string;
-  status?: 'Not Started' | 'Planning' | 'In Development' | 'Testing' | 'Production Ready' | 'Deprecated';
 }
 
-const ClientBadge: React.FC<ClientBadgeProps> = ({ text, colorClass, status }) => {
-  const getStatusIndicator = (status?: string) => {
-    if (!status) return '';
-    switch (status) {
-      case 'Production Ready':
-        return '✓';
-      case 'Testing':
-        return '⚠';
-      case 'In Development':
-        return '🔧';
-      case 'Planning':
-        return '📋';
-      case 'Not Started':
-        return '⏸';
-      case 'Deprecated':
-        return '❌';
-      default:
-        return '';
-    }
-  };
-
+const ClientBadge: React.FC<ClientBadgeProps> = ({ text, colorClass }) => {
   return (
-    <div className="flex items-center gap-1">
-      <Badge variant="secondary" className={`${colorClass} font-medium whitespace-nowrap`}>
-        {text}
-      </Badge>
-      {status && (
-        <span className="text-xs" title={`Client Status: ${status}`}>
-          {getStatusIndicator(status)}
-        </span>
-      )}
-    </div>
+    <Badge variant="secondary" className={`${colorClass} font-medium whitespace-nowrap`}>
+      {text}
+    </Badge>
   );
 };
 
@@ -151,7 +123,7 @@ const CardView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
               <div className="value">
                 <div className="flex flex-wrap gap-2 justify-end">
                   {item.supportedClients.map(client => (
-                    <ClientBadge key={client.name} text={client.name} colorClass={client.color} status={client.status} />
+                    <ClientBadge key={client.name} text={client.name} colorClass={client.color} />
                   ))}
                 </div>
               </div>
@@ -221,7 +193,7 @@ const TableView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
             <TableCell>
               <div className="flex flex-wrap gap-2">
                 {item.supportedClients.map(client => (
-                  <ClientBadge key={client.name} text={client.name} colorClass={client.color} status={client.status} />
+                  <ClientBadge key={client.name} text={client.name} colorClass={client.color} />
                 ))}
               </div>
             </TableCell>
