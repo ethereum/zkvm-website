@@ -11,7 +11,7 @@ const Footer = () => {
               alt="Ethereum Foundation zkEVM" 
               width={120}
               height={40}
-              className="w-auto"
+              className="h-16 w-auto"
             />
           </a>
         </div>
