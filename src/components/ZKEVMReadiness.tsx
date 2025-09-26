@@ -7,9 +7,9 @@ import { Badge } from "@/components/ui/badge";
 import { ZKEVMData } from "@/lib/types";
 
 const ZKEVMReadiness = () => {
-  // Show only top 2 Production Ready ZKVMs on homepage (curated subset)
+  // Show only top 2 Testing ZKVMs on homepage (curated subset)
   const featuredZKVMs = zkevmData
-    .filter(zkvm => zkvm.status === 'Production Ready')
+    .filter(zkvm => zkvm.status === 'Testing')
     .slice(0, 2); // Show only top 2 most ready ZKVMs
 
   const renderCriteriaValue = (zkvm: ZKEVMData, criterionName: string) => {
@@ -67,8 +67,8 @@ const ZKEVMReadiness = () => {
             <CardContent className="p-8">
               <div className="mb-4">
                 <h3>{zkvm.name}</h3>
-                <Badge variant="secondary" className="bg-green-100 text-green-800 font-medium mt-2">
-                  Production Ready
+                <Badge variant="secondary" className="bg-orange-100 text-orange-800 font-medium mt-2">
+                  Testing
                 </Badge>
               </div>
               <p className="description mb-4">{zkvm.description}</p>
