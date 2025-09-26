@@ -238,7 +238,7 @@ const TableView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
 
 // Main ZKEVMTracker Component
 function ZKEVMTracker() {
-  const [viewMode, setViewMode] = useState<'cards' | 'table'>('cards');
+  const [viewMode, setViewMode] = useState<'cards' | 'table'>('table');
 
   return (
     <div className="min-h-screen bg-white pt-20">
