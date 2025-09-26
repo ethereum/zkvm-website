@@ -84,7 +84,7 @@ export const zkevmData: ZKEVMData[] = [
     },
   },
   {
-    name: 'SP1',
+    name: 'SP1 Turbo',
     description: 'A RISC-V ZKVM implementation by Succinct Labs, optimized for high-throughput applications.',
     architecture: 'rv32im',
     testResults: { passed: 46, total: 47, percentage: 97.9 },
