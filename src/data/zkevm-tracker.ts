@@ -14,8 +14,8 @@ export const zkevmData: ZKEVMData[] = [
       { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
     ],
     links: {
-      github: 'https://github.com/airbender-zkvm/airbender',
-      docs: 'https://docs.airbender.zkvm.dev/',
+      github: 'https://github.com/matter-labs/zksync-airbender',
+      docs: 'https://docs.zksync.io/zksync-protocol/zksync-airbender/overview',
     },
   },
   {
@@ -31,8 +31,8 @@ export const zkevmData: ZKEVMData[] = [
       { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
     ],
     links: {
-      github: 'https://github.com/jolt-zkvm/jolt',
-      docs: 'https://docs.jolt.zkvm.dev/',
+      github: 'https://github.com/a16z/jolt',
+      docs: 'https://jolt.a16zcrypto.com/',
     },
   },
   {
@@ -48,8 +48,8 @@ export const zkevmData: ZKEVMData[] = [
       { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
     ],
     links: {
-      github: 'https://github.com/openvm/openvm',
-      docs: 'https://docs.openvm.dev/',
+      github: 'https://github.com/openvm-org/openvm',
+      docs: 'https://openvm.dev/',
     },
   },
   {
@@ -65,8 +65,8 @@ export const zkevmData: ZKEVMData[] = [
       { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
     ],
     links: {
-      github: 'https://github.com/pico-zkvm/pico',
-      docs: 'https://docs.pico.zkvm.dev/',
+      github: 'https://github.com/brevis-network/pico',
+      docs: 'https://docs.brevis.network/',
     },
   },
   {
@@ -83,7 +83,7 @@ export const zkevmData: ZKEVMData[] = [
     ],
     links: {
       github: 'https://github.com/risc0/risc0',
-      docs: 'https://docs.risc0.com/',
+      docs: 'https://dev.risczero.com/api',
     },
   },
   {
@@ -100,7 +100,7 @@ export const zkevmData: ZKEVMData[] = [
     ],
     links: {
       github: 'https://github.com/succinctlabs/sp1',
-      docs: 'https://docs.sp1.dev/',
+      docs: 'https://docs.succinct.xyz/docs/sp1/introduction',
     },
   },
   {
@@ -116,8 +116,8 @@ export const zkevmData: ZKEVMData[] = [
       { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
     ],
     links: {
-      github: 'https://github.com/zisk-zkvm/zisk',
-      docs: 'https://docs.zisk.dev/',
+      github: 'https://github.com/0xPolygonHermez/zisk',
+      docs: 'https://0xpolygonhermez.github.io/zisk/',
     },
   },
 ];
