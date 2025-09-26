@@ -10,7 +10,8 @@ const ZKEVMReadiness = () => {
   // Show only top 2 Testing ZKVMs on homepage (curated subset)
   const featuredZKVMs = zkevmData
     .filter(zkvm => zkvm.status === 'Testing')
-    .slice(0, 2); // Show only top 2 most ready ZKVMs
+    .sort((a, b) => b.testResults.percentage - a.testResults.percentage) // Sort by test percentage descending
+    .slice(0, 2); // Show only top 2 highest scoring ZKVMs
 
   const renderCriteriaValue = (zkvm: ZKEVMData, criterionName: string) => {
     switch (criterionName) {
