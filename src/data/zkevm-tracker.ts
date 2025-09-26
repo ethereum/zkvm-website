@@ -23,7 +23,7 @@ export const zkevmData: ZKEVMData[] = [
     description: 'A high-performance RISC-V ZKVM optimized for speed and developer experience.',
     architecture: 'rv32im',
     testResults: { passed: 47, total: 47, percentage: 100 },
-    status: 'Production Ready',
+    status: 'In Development',
     securityTests: true,
     openSource: true,
     supportedClients: [
@@ -40,7 +40,7 @@ export const zkevmData: ZKEVMData[] = [
     description: 'An open-source RISC-V ZKVM implementation focused on modularity and extensibility.',
     architecture: 'rv32im',
     testResults: { passed: 47, total: 47, percentage: 100 },
-    status: 'Production Ready',
+    status: 'Testing',
     securityTests: true,
     openSource: true,
     supportedClients: [
@@ -74,7 +74,7 @@ export const zkevmData: ZKEVMData[] = [
     description: 'A production-ready RISC-V ZKVM with comprehensive tooling and developer ecosystem.',
     architecture: 'rv32im',
     testResults: { passed: 47, total: 47, percentage: 100 },
-    status: 'Production Ready',
+    status: 'Testing',
     securityTests: true,
     openSource: true,
     supportedClients: [
@@ -108,7 +108,7 @@ export const zkevmData: ZKEVMData[] = [
     description: 'A 64-bit RISC-V ZKVM with atomic operations support for advanced smart contract functionality.',
     architecture: 'rv64ima',
     testResults: { passed: 82, total: 82, percentage: 100 },
-    status: 'Production Ready',
+    status: 'Testing',
     securityTests: true,
     openSource: true,
     supportedClients: [
