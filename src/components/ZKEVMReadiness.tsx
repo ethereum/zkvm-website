@@ -44,11 +44,17 @@ const ZKEVMReadiness = () => {
       case "Supported Clients":
         return (
           <div className="flex flex-wrap gap-2">
-            {zkvm.supportedClients.map((client) => (
-              <Badge key={client.name} variant="secondary" className={`${client.color} font-medium whitespace-nowrap`}>
-                {client.name}
+            {zkvm.supportedClients.length > 0 ? (
+              zkvm.supportedClients.map((client) => (
+                <Badge key={client.name} variant="secondary" className={`${client.color} font-medium whitespace-nowrap`}>
+                  {client.name}
+                </Badge>
+              ))
+            ) : (
+              <Badge variant="secondary" className="bg-red-100 text-red-800 font-medium whitespace-nowrap">
+                None
               </Badge>
-            ))}
+            )}
           </div>
         );
       default:

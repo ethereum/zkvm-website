@@ -26,10 +26,7 @@ export const zkevmData: ZKEVMData[] = [
     status: 'In Development',
     securityTests: true,
     openSource: true,
-    supportedClients: [
-      { name: 'Reth', color: 'bg-green-100 text-green-800', status: 'Production Ready' },
-      { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
-    ],
+    supportedClients: [],
     links: {
       github: 'https://github.com/a16z/jolt',
       docs: 'https://jolt.a16zcrypto.com/',

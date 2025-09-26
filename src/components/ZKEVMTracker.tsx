@@ -121,9 +121,15 @@ const CardView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
               <span className="name">Supported Clients</span>
               <div className="value">
                 <div className="flex flex-wrap gap-2 justify-end">
-                  {item.supportedClients.map(client => (
-                    <ClientBadge key={client.name} text={client.name} colorClass={client.color} />
-                  ))}
+                  {item.supportedClients.length > 0 ? (
+                    item.supportedClients.map(client => (
+                      <ClientBadge key={client.name} text={client.name} colorClass={client.color} />
+                    ))
+                  ) : (
+                    <Badge variant="secondary" className="bg-red-100 text-red-800 font-medium whitespace-nowrap">
+                      None
+                    </Badge>
+                  )}
                 </div>
               </div>
             </li>
@@ -190,9 +196,15 @@ const TableView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
             <TableCell>{item.openSource && <CheckIcon />}</TableCell>
             <TableCell>
               <div className="flex flex-wrap gap-2">
-                {item.supportedClients.map(client => (
-                  <ClientBadge key={client.name} text={client.name} colorClass={client.color} />
-                ))}
+                {item.supportedClients.length > 0 ? (
+                  item.supportedClients.map(client => (
+                    <ClientBadge key={client.name} text={client.name} colorClass={client.color} />
+                  ))
+                ) : (
+                  <Badge variant="secondary" className="bg-red-100 text-red-800 font-medium whitespace-nowrap">
+                    None
+                  </Badge>
+                )}
               </div>
             </TableCell>
             <TableCell>
