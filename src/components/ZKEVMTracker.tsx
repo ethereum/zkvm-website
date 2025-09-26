@@ -101,7 +101,6 @@ const CardView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
               <ClientBadge text={item.architecture} colorClass="bg-blue-100 text-blue-800" />
             </div>
           </div>
-          <p className="description mb-4">{item.description}</p>
           <ul className="criteria-list">
             <li className="criteria-item">
               <span className="name">Test Results & Security</span>
@@ -175,7 +174,6 @@ const TableView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
           <TableRow key={index} className="hover:bg-gray-50">
             <TableCell>
               <div className="font-bold text-gray-900">{item.name}</div>
-              <div className="text-xs text-gray-500 mt-1">{item.description}</div>
             </TableCell>
             <TableCell>
               <ClientBadge text={item.architecture} colorClass="bg-blue-100 text-blue-800" />

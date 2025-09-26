@@ -72,7 +72,6 @@ const ZKEVMReadiness = () => {
                   Testing
                 </Badge>
               </div>
-              <p className="description mb-4">{zkvm.description}</p>
               <ul className="criteria-list">
                 <li className="criteria-item">
                   <span className="name">Test Results & Security</span>
