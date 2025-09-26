@@ -2,14 +2,14 @@
 title: "Prover Parallelization: A New Milestone"
 date: "2025-08-28"
 excerpt: "Our latest benchmarks show significant progress in real-time proving capabilities, with new parallelization techniques reducing proof generation time by 40%."
-author: "ZK-EVM Team"
+author: "zkEVM Team"
 tags: ["performance", "proving", "benchmarks", "optimization"]
 featured: true
 ---
 
 # Prover Parallelization: A New Milestone
 
-We're excited to share a major breakthrough in our ZK-EVM proving capabilities. Our latest benchmarks demonstrate a **40% reduction** in proof generation time through innovative parallelization techniques.
+We're excited to share a major breakthrough in our zkEVM proving capabilities. Our latest benchmarks demonstrate a **40% reduction** in proof generation time through innovative parallelization techniques.
 
 ## The Challenge
 
@@ -17,7 +17,7 @@ Zero-knowledge proofs are computationally intensive, and as we scale to support 
 
 ## Our Solution
 
-We've implemented a novel parallelization strategy that distributes proof generation across multiple cores while maintaining the integrity and security guarantees of our ZK-EVM implementation.
+We've implemented a novel parallelization strategy that distributes proof generation across multiple cores while maintaining the integrity and security guarantees of our zkEVM implementation.
 
 ### Key Innovations
 

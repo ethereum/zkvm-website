@@ -1,8 +1,8 @@
 ---
 title: "Community Update: Q2 Progress"
 date: "2025-07-30"
-excerpt: "A comprehensive overview of our Q2 achievements, upcoming milestones, and how the community can get involved in the ZK-EVM initiative."
-author: "ZK-EVM Team"
+excerpt: "A comprehensive overview of our Q2 achievements, upcoming milestones, and how the community can get involved in the zkEVM initiative."
+author: "zkEVM Team"
 tags: ["community", "updates", "milestones", "roadmap"]
 featured: true
 ---
@@ -40,7 +40,7 @@ Welcome to our Q2 2025 community update! We're excited to share the significant 
 **Documentation & Resources**
 - Comprehensive developer documentation published
 - Interactive tutorials and examples created
-- Video series on ZK-EVM fundamentals launched
+- Video series on zkEVM fundamentals launched
 
 **Community Engagement**
 - Weekly technical calls with 200+ participants
@@ -61,7 +61,7 @@ Welcome to our Q2 2025 community update! We're excited to share the significant 
 
 ### July 2025
 - [ ] **Testnet v2 Launch**: Enhanced testnet with improved performance
-- [ ] **Developer Tools**: Release of ZK-EVM development toolkit
+- [ ] **Developer Tools**: Release of zkEVM development toolkit
 - [ ] **Security Audit**: Begin external security audit process
 
 ### August 2025
@@ -79,7 +79,7 @@ Welcome to our Q2 2025 community update! We're excited to share the significant 
 ### Developer Success Stories
 
 **DeFi Protocol Integration**
-> "Integrating with ZK-EVM was seamless. Our existing smart contracts worked without any modifications, and we saw a 90% reduction in gas costs." 
+> "Integrating with zkEVM was seamless. Our existing smart contracts worked without any modifications, and we saw a 90% reduction in gas costs." 
 > 
 > *— Sarah Chen, CTO of DeFiLabs*
 
@@ -97,7 +97,7 @@ Welcome to our Q2 2025 community update! We're excited to share the significant 
 
 **Educational Content**
 - 10 community-created tutorials published
-- 5 video series on ZK-EVM development
+- 5 video series on zkEVM development
 - 20+ blog posts from community members
 
 ## How to Get Involved
@@ -108,7 +108,7 @@ Welcome to our Q2 2025 community update! We're excited to share the significant 
 1. Join our [Discord community](https://discord.gg/zkvm)
 2. Access our [testnet](https://testnet.zkvm.ethereum.org)
 3. Follow our [quick start guide](https://docs.zkvm.ethereum.org/quickstart)
-4. Deploy your first ZK-EVM application
+4. Deploy your first zkEVM application
 
 **Contribute Code**
 - Fork our [GitHub repository](https://github.com/ethereum/zkvm)
@@ -136,19 +136,19 @@ Welcome to our Q2 2025 community update! We're excited to share the significant 
 
 **Spread the Word**
 - Share our content on social media
-- Write about your ZK-EVM experiences
+- Write about your zkEVM experiences
 - Help onboard new community members
 
 ## Upcoming Events
 
 ### July 2025
-- **ZK-EVM Workshop**: Hands-on development workshop (July 15)
+- **zkEVM Workshop**: Hands-on development workshop (July 15)
 - **Community Call**: Q3 roadmap deep dive (July 22)
 - **Research Symposium**: Academic presentations and discussions (July 29)
 
 ### August 2025
-- **Developer Conference**: ZK-EVM developer conference (August 12-14)
-- **Hackathon**: Build on ZK-EVM hackathon (August 26-28)
+- **Developer Conference**: zkEVM developer conference (August 12-14)
+- **Hackathon**: Build on zkEVM hackathon (August 26-28)
 - **Community Call**: Security audit results (August 30)
 
 ## Recognition & Thanks
@@ -171,7 +171,7 @@ Special thanks to our top contributors this quarter:
 
 Q3 promises to be our most exciting quarter yet as we prepare for mainnet deployment. We're building not just a technology, but a movement that will transform how we think about blockchain scalability and privacy.
 
-The future of Ethereum is bright, and ZK-EVMs will be a cornerstone of that future. Together, we're building the infrastructure for the next generation of decentralized applications.
+The future of Ethereum is bright, and zkEVMs will be a cornerstone of that future. Together, we're building the infrastructure for the next generation of decentralized applications.
 
 ## Stay Connected
 
@@ -185,4 +185,4 @@ The future of Ethereum is bright, and ZK-EVMs will be a cornerstone of that futu
 
 *Thank you for being part of our community. Your contributions, feedback, and enthusiasm drive us forward every day.*
 
-*The ZK-EVM Team*
+*The zkEVM Team*

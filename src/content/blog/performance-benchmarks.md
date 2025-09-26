@@ -1,19 +1,19 @@
 ---
-title: "Performance Benchmarks: ZK-EVM vs Traditional EVM"
+title: "Performance Benchmarks: zkEVM vs Traditional EVM"
 date: "2025-07-01"
-excerpt: "Comprehensive performance analysis comparing ZK-EVM execution with traditional EVM, showing significant improvements in gas efficiency and throughput."
-author: "ZK-EVM Team"
+excerpt: "Comprehensive performance analysis comparing zkEVM execution with traditional EVM, showing significant improvements in gas efficiency and throughput."
+author: "zkEVM Team"
 tags: ["performance", "benchmarks", "gas", "throughput"]
 featured: false
 ---
 
-# Performance Benchmarks: ZK-EVM vs Traditional EVM
+# Performance Benchmarks: zkEVM vs Traditional EVM
 
-We've conducted extensive performance testing to compare our ZK-EVM implementation with traditional EVM execution. The results demonstrate significant improvements in gas efficiency, throughput, and overall performance.
+We've conducted extensive performance testing to compare our zkEVM implementation with traditional EVM execution. The results demonstrate significant improvements in gas efficiency, throughput, and overall performance.
 
 ## Executive Summary
 
-Our ZK-EVM implementation shows:
+Our zkEVM implementation shows:
 - **90% reduction** in gas costs for common operations
 - **10x improvement** in transaction throughput
 - **50% faster** execution for complex smart contracts
@@ -37,7 +37,7 @@ Our ZK-EVM implementation shows:
 
 ### Gas Efficiency Comparison
 
-| Operation Type | Traditional EVM | ZK-EVM | Improvement |
+| Operation Type | Traditional EVM | zkEVM | Improvement |
 |----------------|-----------------|--------|-------------|
 | ETH Transfer | 21,000 gas | 2,100 gas | 90% |
 | ERC-20 Transfer | 65,000 gas | 6,500 gas | 90% |
@@ -47,7 +47,7 @@ Our ZK-EVM implementation shows:
 
 ### Throughput Analysis
 
-| Metric | Traditional EVM | ZK-EVM | Improvement |
+| Metric | Traditional EVM | zkEVM | Improvement |
 |--------|-----------------|--------|-------------|
 | TPS (Simple) | 15 | 150 | 10x |
 | TPS (Complex) | 5 | 50 | 10x |
@@ -56,7 +56,7 @@ Our ZK-EVM implementation shows:
 
 ### Execution Time Comparison
 
-| Contract Complexity | Traditional EVM | ZK-EVM | Improvement |
+| Contract Complexity | Traditional EVM | zkEVM | Improvement |
 |-------------------|-----------------|--------|-------------|
 | Simple Contract | 50ms | 25ms | 50% |
 | Medium Contract | 200ms | 100ms | 50% |
@@ -95,7 +95,7 @@ Our ZK-EVM implementation shows:
 
 ## Technical Analysis
 
-### Why ZK-EVM is Faster
+### Why zkEVM is Faster
 
 1. **Optimized Execution**: Streamlined execution path
 2. **Batch Processing**: Multiple operations in single proof
@@ -133,7 +133,7 @@ The 90% gas cost reduction comes from:
 
 ### Cost Comparison
 - **Traditional EVM**: $5-50 per transaction
-- **ZK-EVM**: $0.016 per transaction
+- **zkEVM**: $0.016 per transaction
 - **Savings**: 99%+ cost reduction
 
 ## Real-World Performance
@@ -168,7 +168,7 @@ The 90% gas cost reduction comes from:
 ## Benchmarking Tools
 
 ### Public Tools
-- **ZK-EVM Benchmark Suite**: [github.com/ethereum/zkvm-benchmarks](https://github.com/ethereum/zkvm-benchmarks)
+- **zkEVM Benchmark Suite**: [github.com/ethereum/zkvm-benchmarks](https://github.com/ethereum/zkvm-benchmarks)
 - **Performance Dashboard**: [benchmarks.zkvm.ethereum.org](https://benchmarks.zkvm.ethereum.org)
 - **Test Data**: [data.zkvm.ethereum.org](https://data.zkvm.ethereum.org)
 
@@ -179,14 +179,14 @@ The 90% gas cost reduction comes from:
 
 ## Conclusion
 
-The performance benchmarks clearly demonstrate that ZK-EVM provides significant advantages over traditional EVM execution:
+The performance benchmarks clearly demonstrate that zkEVM provides significant advantages over traditional EVM execution:
 
 - **Massive Gas Savings**: 90% reduction in costs
 - **Higher Throughput**: 10x improvement in TPS
 - **Faster Execution**: 50% improvement in speed
 - **Better Scalability**: Handles more users and transactions
 
-These improvements make ZK-EVM an ideal solution for:
+These improvements make zkEVM an ideal solution for:
 - High-frequency trading applications
 - Gaming and NFT platforms
 - DeFi protocols requiring low costs

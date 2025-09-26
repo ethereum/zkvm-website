@@ -68,14 +68,14 @@ const ScalabilitySection = () => {
   );
 };
 
-// ZK-EVM Solution Section Component
+// zkEVM Solution Section Component
 const ZKEVMSolutionSection = () => {
   return (
     <section className="section" style={{background: '#eefaff', padding: '4rem 2rem'}}>
       <div className="two-column">
         <div className="text-content">
-          <h3 style={{fontSize: '1.5rem', fontWeight: 700}}>The ZK-EVM Solution: 1-of-N Model</h3>
-          <p style={{fontFamily: "'Inter', sans-serif", fontSize: '1rem', lineHeight: '1.5rem'}}>ZK-EVMs shift this paradigm. Instead of all validators re-executing, a single specialized actor (a prover) executes the block and generates a short, cryptographic proof of its correctness. Verifying this proof is orders of magnitude cheaper than full re-execution, allowing Ethereum to safely raise the gas limit.</p>
+          <h3 style={{fontSize: '1.5rem', fontWeight: 700}}>The zkEVM Solution: 1-of-N Model</h3>
+          <p style={{fontFamily: "'Inter', sans-serif", fontSize: '1rem', lineHeight: '1.5rem'}}>zkEVMs shift this paradigm. Instead of all validators re-executing, a single specialized actor (a prover) executes the block and generates a short, cryptographic proof of its correctness. Verifying this proof is orders of magnitude cheaper than full re-execution, allowing Ethereum to safely raise the gas limit.</p>
         </div>
         <div className="graphic">
           <svg width="100%" height="100%" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -156,7 +156,7 @@ const ZKEVMSolutionSection = () => {
       <div style={{marginTop: '3rem', textAlign: 'center'}}>
         <div style={{fontFamily: "'Inter', sans-serif", fontSize: '1.1rem', lineHeight: '1.6', color: 'var(--slate)', backgroundColor: 'white', padding: '1.5rem', borderRadius: '6px', border: '2px solid var(--primary)', maxWidth: '700px', margin: '0 auto'}}>
           <h4 style={{color: 'var(--primary)', fontFamily: "'Inter', sans-serif", margin: '0 0 0.5rem 0', fontSize: '1.2rem', fontWeight: 700}}>Our goal is full, uncompromising EVM-equivalence.</h4>
-          <p style={{margin: '0', fontSize: '1rem'}}>Often called a &quot;Type 1&quot; ZK-EVM, this ensures zero friction for existing applications, developers, and tooling—no modifications required.</p>
+          <p style={{margin: '0', fontSize: '1rem'}}>Often called a &quot;Type 1&quot; zkEVM, this ensures zero friction for existing applications, developers, and tooling—no modifications required.</p>
         </div>
       </div>
     </section>

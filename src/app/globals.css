@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ZK-EVM Design System - Professional Blockchain Theme */
+/* zkEVM Design System - Professional Blockchain Theme */
 
 @layer base {
   :root {
@@ -424,7 +424,7 @@
     text-decoration: underline;
   }
 
-  /* ZK-EVM Readiness Section */
+  /* zkEVM Readiness Section */
   .zkevm-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

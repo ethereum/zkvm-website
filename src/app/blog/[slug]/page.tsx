@@ -103,7 +103,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     const post = await getBlogPost(params.slug);
     
     return {
-      title: `${post.title} | ZK-EVM Blog`,
+      title: `${post.title} | zkEVM Blog`,
       description: post.excerpt,
       openGraph: {
         title: post.title,
@@ -121,7 +121,7 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
     };
   } catch {
     return {
-      title: 'Post Not Found | ZK-EVM Blog',
+      title: 'Post Not Found | zkEVM Blog',
       description: 'The requested blog post could not be found.',
     };
   }

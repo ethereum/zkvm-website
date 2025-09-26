@@ -1,25 +1,25 @@
 ---
-title: "Deep Dive: ZK-EVM Protocol Integration"
+title: "Deep Dive: zkEVM Protocol Integration"
 date: "2025-08-15"
-excerpt: "An in-depth exploration of how ZK-EVMs will integrate with existing Ethereum infrastructure, including detailed protocol specifications for client teams."
-author: "ZK-EVM Team"
+excerpt: "An in-depth exploration of how zkEVMs will integrate with existing Ethereum infrastructure, including detailed protocol specifications for client teams."
+author: "zkEVM Team"
 tags: ["protocol", "integration", "ethereum", "specifications"]
 featured: true
 ---
 
-# Deep Dive: ZK-EVM Protocol Integration
+# Deep Dive: zkEVM Protocol Integration
 
-As we move closer to mainnet deployment, understanding how ZK-EVMs integrate with existing Ethereum infrastructure becomes crucial. This post provides a comprehensive overview of our integration approach and protocol specifications.
+As we move closer to mainnet deployment, understanding how zkEVMs integrate with existing Ethereum infrastructure becomes crucial. This post provides a comprehensive overview of our integration approach and protocol specifications.
 
 ## Overview
 
-ZK-EVMs represent a paradigm shift in how we think about Ethereum scaling. By providing cryptographic proofs of correct execution, they enable trustless verification while maintaining full compatibility with existing Ethereum applications.
+zkEVMs represent a paradigm shift in how we think about Ethereum scaling. By providing cryptographic proofs of correct execution, they enable trustless verification while maintaining full compatibility with existing Ethereum applications.
 
 ## Core Integration Components
 
 ### 1. Execution Layer Integration
 
-Our ZK-EVM integrates seamlessly with Ethereum's execution layer through:
+Our zkEVM integrates seamlessly with Ethereum's execution layer through:
 
 - **EVM Opcode Compatibility**: Full support for all EVM opcodes
 - **Gas Accounting**: Accurate gas cost calculation and verification
@@ -48,7 +48,7 @@ interface ZKEVMConsensusIntegration {
 
 ### 3. Data Availability
 
-Ensuring data availability for ZK-EVM proofs requires:
+Ensuring data availability for zkEVM proofs requires:
 
 - **Proof Storage**: Efficient storage of ZK proofs on-chain
 - **State Commitments**: Cryptographic commitments to execution state
@@ -101,7 +101,7 @@ type ZKEVMVerifier interface {
 
 ### For Application Developers
 
-Developers can interact with ZK-EVMs through:
+Developers can interact with zkEVMs through:
 
 - **Standard Web3 APIs**: No changes to existing dApp code
 - **Enhanced RPC Methods**: New methods for ZK-specific operations
@@ -155,7 +155,7 @@ Our current implementation achieves:
 - [Examples](https://github.com/ethereum/zkvm-examples)
 
 ### Tools
-- **ZK-EVM Simulator**: Test your applications locally
+- **zkEVM Simulator**: Test your applications locally
 - **Proof Generator**: Generate proofs for testing
 - **Verification Tools**: Verify proofs and state transitions
 
@@ -173,7 +173,7 @@ We're actively working with:
 2. **Client Implementation**: Support for all major Ethereum clients
 3. **Testnet Launch**: Public testnet with full functionality
 4. **Security Audits**: Comprehensive security review
-5. **Mainnet Deployment**: Production-ready ZK-EVM
+5. **Mainnet Deployment**: Production-ready zkEVM
 
 ## Get Involved
 

@@ -10,7 +10,7 @@ const ImpactSection = () => {
         </svg>
       ),
       title: "Higher Throughput",
-      description: "By safely increasing the block gas limit, ZK-EVMs expand network capacity, reducing congestion and making gas fees more stable and affordable."
+      description: "By safely increasing the block gas limit, zkEVMs expand network capacity, reducing congestion and making gas fees more stable and affordable."
     },
     {
       icon: (

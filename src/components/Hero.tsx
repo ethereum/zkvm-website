@@ -30,7 +30,7 @@ const Hero = () => {
             Scaling Ethereum Without Compromise
           </h1>
           <h2 className="font-['Inter',sans-serif] text-[clamp(1.1rem,2.5vw,1.25rem)] text-white mb-10 font-normal leading-[1.6] max-w-[650px]">
-            Introducing ZK-EVMs on L1: A new paradigm to increase Ethereum&apos;s throughput while strengthening decentralization.
+            Introducing zkEVMs on L1: A new paradigm to increase Ethereum&apos;s throughput while strengthening decentralization.
           </h2>
           <div className="flex gap-4 flex-wrap">
             <Button
@@ -46,7 +46,7 @@ const Hero = () => {
               onClick={(e) => { e.preventDefault(); window.location.href = '/zkvm-tracker'; }}
               className="bg-white text-[var(--dark)] hover:bg-gray-200"
             >
-              View the ZK-EVM Tracker
+              View the zkEVM Tracker
             </Button>
           </div>
         </div>

@@ -10,7 +10,7 @@ const RoadmapSection = () => {
     {
       number: 2,
       title: "Client & Protocol Integration", 
-      description: "We are designing how ZK-EVMs will integrate into Ethereum's execution and consensus layers. This involves standardizing interfaces and defining the protocol changes for clients to request and verify proofs."
+      description: "We are designing how zkEVMs will integrate into Ethereum's execution and consensus layers. This involves standardizing interfaces and defining the protocol changes for clients to request and verify proofs."
     },
     {
       number: 3,
@@ -23,7 +23,7 @@ const RoadmapSection = () => {
     <section id="roadmap" className="section" style={{background: 'var(--white)'}}>
       <div className="section-title">
         <h2>Roadmap & Research Areas</h2>
-        <p>Bringing ZK-EVMs to L1 is a multi-faceted effort. Our work is organized into three core workstreams, with parallel progress on client implementations.</p>
+        <p>Bringing zkEVMs to L1 is a multi-faceted effort. Our work is organized into three core workstreams, with parallel progress on client implementations.</p>
       </div>
       <div className="workstream-container">
         {workstreams.map((workstream) => (

@@ -4,11 +4,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "ZK-EVM Mainnet Readiness Tracker - ZK-EVM Initiative",
-  description: "Comprehensive dashboard evaluating ZK-EVM implementations for mainnet deployment readiness. Track security, code health, and compatibility metrics.",
+  title: "zkEVM Mainnet Readiness Tracker - zkEVM Initiative",
+  description: "Comprehensive dashboard evaluating zkEVM implementations for mainnet deployment readiness. Track security, code health, and compatibility metrics.",
   openGraph: {
-    title: "ZK-EVM Mainnet Readiness Tracker",
-    description: "Comprehensive dashboard evaluating ZK-EVM implementations for mainnet deployment readiness.",
+    title: "zkEVM Mainnet Readiness Tracker",
+    description: "Comprehensive dashboard evaluating zkEVM implementations for mainnet deployment readiness.",
     type: "website",
   },
 };

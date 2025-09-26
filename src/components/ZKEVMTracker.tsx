@@ -264,10 +264,10 @@ function ZKEVMTracker() {
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-[1200px] mx-auto px-4 py-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">
-            ZK-EVM Mainnet Readiness
+            zkEVM Mainnet Readiness
           </h1>
           <p className="mt-2 text-lg text-gray-600 max-w-3xl">
-            Evaluating core ZK-EVM implementations based on criteria required for a secure and sustainable mainnet deployment.
+            Evaluating core zkEVM implementations based on criteria required for a secure and sustainable mainnet deployment.
           </p>
         </div>
       </div>

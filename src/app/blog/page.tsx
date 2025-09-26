@@ -13,7 +13,7 @@ export default async function BlogPage() {
           <div className="text-center mb-12">
             <h1 className="text-4xl font-bold mb-4">Latest Updates & Insights</h1>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Stay up to date with the latest developments in ZK-EVM technology, 
+              Stay up to date with the latest developments in zkEVM technology, 
               community updates, and technical insights from our team.
             </p>
           </div>
@@ -72,7 +72,7 @@ export default async function BlogPage() {
 
 export async function generateMetadata() {
   return {
-    title: 'Blog | ZK-EVM',
-    description: 'Latest updates and insights about ZK-EVM technology, community updates, and technical developments.',
+    title: 'Blog | zkEVM',
+    description: 'Latest updates and insights about zkEVM technology, community updates, and technical developments.',
   };
 }
