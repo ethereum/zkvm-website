@@ -69,7 +69,7 @@ const ClientStatus = () => {
     },
     { 
       name: "Teku", 
-      status: "Planning", 
+      status: "In Development", 
       completedMilestones: 1, 
       totalMilestones: 4,
       progress: 25, 
