@@ -1,19 +1,4 @@
 const ClientStatus = () => {
-  // Execution Layer milestones
-  const elMilestones = [
-    "Can compile to zkVM-supported target",
-    "Passes all EEST tests",
-    "Generates ExecutionWitness",
-    "Up to date with current hardforks"
-  ];
-
-  // Consensus Layer milestones
-  const clMilestones = [
-    "Can receive execution proofs over subnet",
-    "Can generate and send execution proofs over subnet",
-    "Passes all consensus-spec tests",
-    "Participates in local devnet with execution proof specs"
-  ];
 
   const executionClients = [
     { 
@@ -201,6 +186,9 @@ const ClientStatus = () => {
             </div>
           </div>
         </div>
+        <p className="text-sm text-muted-foreground mt-8 text-center">
+          Note: This information is based on public sources and community contributions. For the most accurate and up-to-date status, please refer to the official project repositories.
+        </p>
       </div>
     </section>
   );
