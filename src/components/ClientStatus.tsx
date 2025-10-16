@@ -238,25 +238,6 @@ const ClientStatus = () => {
     );
   };
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Not Started":
-        return "bg-gray-100 text-gray-800";
-      case "Planning":
-        return "bg-blue-100 text-blue-800";
-      case "In Development":
-        return "bg-orange-100 text-orange-800";
-      case "Testing":
-        return "bg-yellow-100 text-yellow-800";
-      case "Spec Compliant":
-        return "bg-green-100 text-green-800";
-      case "Deprecated":
-        return "bg-red-100 text-red-800";
-      default:
-        return "bg-gray-100 text-gray-800";
-    }
-  };
-
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
       <div className="bg-card border border-border rounded-xl p-8 mb-6">
@@ -531,7 +512,7 @@ const ClientStatus = () => {
             <p className="font-medium mb-1">About This Tracker</p>
             <p>
               This tracker represents the current state of discussion and assessment within the Ethereum 
-              zkEVM development community. Where criteria are marked as "Under Review," there are ongoing 
+              zkEVM development community. Where criteria are marked as &ldquo;Under Review,&rdquo; there are ongoing 
               discussions about implementation completeness or methodology. All assessments are subject 
               to change as development progresses and community consensus evolves.
             </p>
