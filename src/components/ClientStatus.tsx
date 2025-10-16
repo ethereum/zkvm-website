@@ -186,9 +186,17 @@ const ClientStatus = () => {
             </div>
           </div>
         </div>
-        <p className="text-sm text-muted-foreground mt-8 text-center">
-          Note: This information is based on public sources and community contributions. For the most accurate and up-to-date status, please refer to the official project repositories.
-        </p>
+        <div className="mt-8">
+          <div className="text-sm text-muted-foreground">
+            <p className="mb-2">The criteria being used was the following:</p>
+            <ul className="text-left pl-4 space-y-1">
+              <li>• Is it upto date with current hardforks?</li>
+              <li>• Does the program being compiled pass all EEST tests?</li>
+              <li>• Is the node able to generate the "ExecutionWitness"?</li>
+              <li>• Can it compile to the target we want/is supported by zkVMs?</li>
+            </ul>
+          </div>
+        </div>
       </div>
     </section>
   );
