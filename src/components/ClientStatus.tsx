@@ -11,7 +11,6 @@ interface CriterionStatus {
 
 const ClientStatus = () => {
   const [expandedClients, setExpandedClients] = useState<Set<string>>(new Set());
-  const [showMethodology, setShowMethodology] = useState(false);
 
   const toggleClient = (clientName: string) => {
     setExpandedClients((prev) => {
@@ -258,75 +257,11 @@ const ClientStatus = () => {
           <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
             Ethereum Client Readiness for zkVM Integration
           </h3>
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             General readiness status of Ethereum clients for zkVM integration. 
             Individual zkVM-specific client readiness is shown in the zkVM Tracker.
           </p>
-          <p className="text-sm text-muted-foreground mb-4">
-            Progress is measured against specific milestones for each client type
-          </p>
-          
-          <button
-            onClick={() => setShowMethodology(!showMethodology)}
-            className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
-          >
-            <Info className="w-4 h-4" />
-            {showMethodology ? 'Hide' : 'View'} Assessment Methodology
-          </button>
         </div>
-
-        {showMethodology && (
-          <div className="mb-8 p-4 bg-muted/50 rounded-lg border border-border">
-            <h3 className="font-semibold text-foreground mb-4">Assessment Criteria</h3>
-            
-            <div className="mb-6">
-              <h4 className="font-medium text-foreground mb-2">Execution Layer Clients</h4>
-              <div className="space-y-3">
-                {executionCriteria.map((criterion) => (
-                  <div key={criterion.id} className="border-l-4 border-primary pl-3">
-                    <div className="flex items-start gap-2">
-                      <div className="flex-1">
-                        <p className="font-medium text-foreground">{criterion.name}</p>
-                        <p className="text-sm text-muted-foreground">{criterion.description}</p>
-                        {criterion.disputed && (
-                          <div className="mt-2 flex items-start gap-2 bg-yellow-50 dark:bg-yellow-950/20 p-2 rounded">
-                            <AlertCircle className="w-4 h-4 text-yellow-600 dark:text-yellow-500 flex-shrink-0 mt-0.5" />
-                            <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                              <span className="font-medium">Note:</span> {criterion.disputeNote}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-medium text-foreground mb-2">Consensus Layer Clients</h4>
-              <div className="space-y-3">
-                {consensusCriteria.map((criterion) => (
-                  <div key={criterion.id} className="border-l-4 border-primary pl-3">
-                    <div className="flex items-start gap-2">
-                      <div className="flex-1">
-                        <p className="font-medium text-foreground">{criterion.name}</p>
-                        <p className="text-sm text-muted-foreground">{criterion.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-4 p-3 bg-muted rounded">
-              <p className="text-sm text-muted-foreground">
-                <strong>Note:</strong> This tracker reflects current understanding of mainnet readiness requirements. 
-                Criteria and assessments are subject to ongoing discussion within the Ethereum development community.
-              </p>
-            </div>
-          </div>
-        )}
       </div>
 
 <div className="grid lg:grid-cols-2 gap-6">
