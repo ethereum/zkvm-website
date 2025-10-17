@@ -79,7 +79,7 @@ const ClientStatus = () => {
       statusColor: 'orange',
       criteria: {
         hardforks: { status: 'complete', note: 'Running on mainnet' },
-        eest: { status: 'complete', note: 'See blockchain.go#L2104' },
+        eest: { status: 'complete' },
         witness: { 
           status: 'under-review', 
           note: 'PR #32216 merged, compatibility being verified',
