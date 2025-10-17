@@ -25,7 +25,7 @@ const ClientStatus = () => {
     });
   };
 
-  const criteria = [
+  const executionCriteria = [
     {
       id: 'hardforks',
       name: 'Up to date with current hardforks',
@@ -49,6 +49,24 @@ const ClientStatus = () => {
       description: 'Can compile to target supported by production-ready zkVMs',
       disputed: true,
       disputeNote: 'Under review: debate over what constitutes production-ready zkVM support'
+    }
+  ];
+
+  const consensusCriteria = [
+    {
+      id: 'hardforks',
+      name: 'Up to date with current hardforks',
+      description: 'Client supports all mainnet hardforks'
+    },
+    {
+      id: 'executionProofs',
+      name: 'Implemented Optional execution proofs',
+      description: 'Support for optional execution proof generation'
+    },
+    {
+      id: 'epbs',
+      name: 'Implemented ePBS',
+      description: 'Support for enshrined Proposer-Builder Separation'
     }
   ];
 
@@ -86,9 +104,9 @@ const ClientStatus = () => {
       status: 'IN DEVELOPMENT',
       statusColor: 'orange',
       criteria: {
-        hardforks: { status: 'complete' },
-        eest: { status: 'complete' },
-        witness: { status: 'in-progress' },
+        hardforks: { status: 'complete', note: 'Up to date with current hardforks' },
+        eest: { status: 'in-progress' },
+        witness: { status: 'complete', note: 'Generates ExecutionWitness' },
         compilation: { status: 'in-progress' }
       }
     },
@@ -99,8 +117,8 @@ const ClientStatus = () => {
       status: 'PLANNING',
       statusColor: 'blue',
       criteria: {
-        hardforks: { status: 'complete' },
-        eest: { status: 'in-progress' },
+        hardforks: { status: 'complete', note: 'Up to date with current hardforks' },
+        eest: { status: 'not-started' },
         witness: { status: 'not-started' },
         compilation: { status: 'not-started' }
       }
@@ -115,7 +133,7 @@ const ClientStatus = () => {
         hardforks: { status: 'complete' },
         eest: { status: 'complete' },
         witness: { status: 'complete' },
-        compilation: { status: 'complete' }
+        compilation: { status: 'complete', note: 'Rust is readily supported by zkVMs' }
       }
     },
     {
@@ -128,7 +146,7 @@ const ClientStatus = () => {
         hardforks: { status: 'complete' },
         eest: { status: 'complete' },
         witness: { status: 'complete' },
-        compilation: { status: 'complete' }
+        compilation: { status: 'complete', note: 'Rust is readily supported by zkVMs' }
       }
     }
   ];
@@ -137,66 +155,61 @@ const ClientStatus = () => {
     {
       name: 'Lighthouse',
       progress: 2,
-      total: 4,
+      total: 3,
       status: 'IN DEVELOPMENT',
       statusColor: 'orange',
       criteria: {
-        hardforks: { status: 'complete', note: 'Supports latest consensus specs' },
-        eest: { status: 'in-progress', note: 'Consensus layer testing in progress' },
-        witness: { status: 'in-progress', note: 'Working on witness generation support' },
-        compilation: { status: 'not-started' }
+        hardforks: { status: 'complete', note: 'Up to date with current hardforks' },
+        executionProofs: { status: 'complete', note: 'Implemented Optional execution proofs' },
+        epbs: { status: 'in-progress', note: 'Implemented ePBS (in progress)' }
       }
     },
     {
       name: 'Teku',
       progress: 1,
-      total: 4,
+      total: 3,
       status: 'IN DEVELOPMENT',
       statusColor: 'orange',
       criteria: {
-        hardforks: { status: 'complete', note: 'Up to date with network upgrades' },
-        eest: { status: 'in-progress' },
-        witness: { status: 'not-started' },
-        compilation: { status: 'not-started' }
+        hardforks: { status: 'complete', note: 'Up to date with current hardforks' },
+        executionProofs: { status: 'in-progress', note: 'Implemented Optional execution proofs (in progress)' },
+        epbs: { status: 'in-progress', note: 'Implemented ePBS (in progress)' }
       }
     },
     {
       name: 'Prysm',
       progress: 0,
-      total: 4,
+      total: 3,
       status: 'NOT STARTED',
       statusColor: 'gray',
       criteria: {
-        hardforks: { status: 'complete' },
-        eest: { status: 'not-started' },
-        witness: { status: 'not-started' },
-        compilation: { status: 'not-started' }
+        hardforks: { status: 'not-started' },
+        executionProofs: { status: 'not-started' },
+        epbs: { status: 'not-started' }
       }
     },
     {
       name: 'Nimbus',
       progress: 0,
-      total: 4,
+      total: 3,
       status: 'NOT STARTED',
       statusColor: 'gray',
       criteria: {
-        hardforks: { status: 'complete' },
-        eest: { status: 'not-started' },
-        witness: { status: 'not-started' },
-        compilation: { status: 'not-started' }
+        hardforks: { status: 'not-started' },
+        executionProofs: { status: 'not-started' },
+        epbs: { status: 'not-started' }
       }
     },
     {
       name: 'Lodestar',
       progress: 0,
-      total: 4,
+      total: 3,
       status: 'NOT STARTED',
       statusColor: 'gray',
       criteria: {
-        hardforks: { status: 'complete' },
-        eest: { status: 'not-started' },
-        witness: { status: 'not-started' },
-        compilation: { status: 'not-started' }
+        hardforks: { status: 'not-started' },
+        executionProofs: { status: 'not-started' },
+        epbs: { status: 'not-started' }
       }
     }
   ];
@@ -264,27 +277,48 @@ const ClientStatus = () => {
 
         {showMethodology && (
           <div className="mb-8 p-4 bg-muted/50 rounded-lg border border-border">
-            <h3 className="font-semibold text-foreground mb-3">Assessment Criteria</h3>
-            <div className="space-y-3">
-              {criteria.map((criterion) => (
-                <div key={criterion.id} className="border-l-4 border-primary pl-3">
-                  <div className="flex items-start gap-2">
-                    <div className="flex-1">
-                      <p className="font-medium text-foreground">{criterion.name}</p>
-                      <p className="text-sm text-muted-foreground">{criterion.description}</p>
-                      {criterion.disputed && (
-                        <div className="mt-2 flex items-start gap-2 bg-yellow-50 dark:bg-yellow-950/20 p-2 rounded">
-                          <AlertCircle className="w-4 h-4 text-yellow-600 dark:text-yellow-500 flex-shrink-0 mt-0.5" />
-                          <p className="text-sm text-yellow-800 dark:text-yellow-200">
-                            <span className="font-medium">Note:</span> {criterion.disputeNote}
-                          </p>
-                        </div>
-                      )}
+            <h3 className="font-semibold text-foreground mb-4">Assessment Criteria</h3>
+            
+            <div className="mb-6">
+              <h4 className="font-medium text-foreground mb-2">Execution Layer Clients</h4>
+              <div className="space-y-3">
+                {executionCriteria.map((criterion) => (
+                  <div key={criterion.id} className="border-l-4 border-primary pl-3">
+                    <div className="flex items-start gap-2">
+                      <div className="flex-1">
+                        <p className="font-medium text-foreground">{criterion.name}</p>
+                        <p className="text-sm text-muted-foreground">{criterion.description}</p>
+                        {criterion.disputed && (
+                          <div className="mt-2 flex items-start gap-2 bg-yellow-50 dark:bg-yellow-950/20 p-2 rounded">
+                            <AlertCircle className="w-4 h-4 text-yellow-600 dark:text-yellow-500 flex-shrink-0 mt-0.5" />
+                            <p className="text-sm text-yellow-800 dark:text-yellow-200">
+                              <span className="font-medium">Note:</span> {criterion.disputeNote}
+                            </p>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+
+            <div>
+              <h4 className="font-medium text-foreground mb-2">Consensus Layer Clients</h4>
+              <div className="space-y-3">
+                {consensusCriteria.map((criterion) => (
+                  <div key={criterion.id} className="border-l-4 border-primary pl-3">
+                    <div className="flex items-start gap-2">
+                      <div className="flex-1">
+                        <p className="font-medium text-foreground">{criterion.name}</p>
+                        <p className="text-sm text-muted-foreground">{criterion.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <div className="mt-4 p-3 bg-muted rounded">
               <p className="text-sm text-muted-foreground">
                 <strong>Note:</strong> This tracker reflects current understanding of mainnet readiness requirements. 
@@ -341,7 +375,7 @@ const ClientStatus = () => {
                 {expandedClients.has(client.name) && (
                   <div className="p-4 border-t border-border bg-card">
                     <div className="space-y-4">
-                      {criteria.map((criterion) => {
+                      {executionCriteria.map((criterion) => {
                         const criterionStatus = client.criteria[criterion.id as keyof typeof client.criteria] as CriterionStatus;
                         if (!criterionStatus) return null;
 
@@ -446,7 +480,7 @@ const ClientStatus = () => {
                 {expandedClients.has(client.name) && (
                   <div className="p-4 border-t border-border bg-card">
                     <div className="space-y-4">
-                      {criteria.map((criterion) => {
+                      {consensusCriteria.map((criterion) => {
                         const criterionStatus = client.criteria[criterion.id as keyof typeof client.criteria] as CriterionStatus;
                         if (!criterionStatus) return null;
 
