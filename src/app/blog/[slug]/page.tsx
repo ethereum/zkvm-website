@@ -44,9 +44,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </header>
 
               {/* Article Content */}
-              <div className="prose prose-lg max-w-none dark:prose-invert">
-                <MarkdownContent content={post.content} />
-              </div>
+              <MarkdownContent content={post.content} />
             </article>
 
             {/* Article Footer */}
