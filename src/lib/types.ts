@@ -3,7 +3,7 @@ export interface BlogPostMetadata {
   date: string;
   excerpt: string;
   author: string;
-  tags: string[];
+  tags?: string[];
   featured: boolean;
 }
 
@@ -18,7 +18,7 @@ export interface BlogPostSummary {
   date: string;
   excerpt: string;
   author: string;
-  tags: string[];
+  tags?: string[];
   featured: boolean;
 }
 

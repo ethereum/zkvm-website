@@ -1,10 +1,9 @@
-import { getAllBlogPosts, getAllTags } from '@/lib/blog';
+import { getAllBlogPosts } from '@/lib/blog';
 import BlogCard from '@/components/BlogCard';
 import Link from 'next/link';
 
 export default async function BlogPage() {
   const posts = await getAllBlogPosts();
-  const tags = await getAllTags();
 
   return (
     <div className="container mx-auto px-4 py-16">
@@ -18,40 +17,13 @@ export default async function BlogPage() {
             </p>
           </div>
 
-          {/* Tags Filter */}
-          <div className="mb-8">
-            <div className="flex flex-wrap gap-2 justify-center">
-              <span className="text-sm font-medium text-muted-foreground mr-2">Filter by topic:</span>
-              {tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm hover:bg-secondary/80 transition-colors cursor-pointer"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Featured Posts */}
-          <div className="mb-12">
-            <h2 className="text-2xl font-bold mb-6">Featured Posts</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              {posts
-                .filter((post) => post.featured)
-                .slice(0, 2)
-                .map((post) => (
-                  <BlogCard key={post.slug} post={post} />
-                ))}
-            </div>
-          </div>
 
           {/* All Posts */}
           <div>
             <h2 className="text-2xl font-bold mb-6">All Posts</h2>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {posts.map((post) => (
-                <BlogCard key={post.slug} post={post} />
+            <div className="space-y-6">
+              {posts.map((post, index) => (
+                <BlogCard key={post.slug} post={post} isHighlighted={index === 0} />
               ))}
             </div>
           </div>

@@ -11,7 +11,7 @@ const BlogSection = async () => {
         <h2>Latest Updates & Insights</h2>
       </div>
       <div className="blog-grid">
-        {featuredPosts.slice(0, 3).map((post) => (
+        {featuredPosts.slice(0, 2).map((post) => (
           <BlogCard key={post.slug} post={post} />
         ))}
       </div>

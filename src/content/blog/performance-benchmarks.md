@@ -3,7 +3,6 @@ title: "Performance Benchmarks: zkEVM vs Traditional EVM"
 date: "2025-07-01"
 excerpt: "Comprehensive performance analysis comparing zkEVM execution with traditional EVM, showing significant improvements in gas efficiency and throughput."
 author: "zkEVM Team"
-tags: ["performance", "benchmarks", "gas", "throughput"]
 featured: false
 ---
 

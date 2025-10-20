@@ -3,7 +3,6 @@ title: "Community Update: Q2 Progress"
 date: "2025-07-30"
 excerpt: "A comprehensive overview of our Q2 achievements, upcoming milestones, and how the community can get involved in the zkEVM initiative."
 author: "zkEVM Team"
-tags: ["community", "updates", "milestones", "roadmap"]
 featured: true
 ---
 

@@ -3,7 +3,6 @@ title: "Prover Parallelization: A New Milestone"
 date: "2025-08-28"
 excerpt: "Our latest benchmarks show significant progress in real-time proving capabilities, with new parallelization techniques reducing proof generation time by 40%."
 author: "zkEVM Team"
-tags: ["performance", "proving", "benchmarks", "optimization"]
 featured: true
 ---
 

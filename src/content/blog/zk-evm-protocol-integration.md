@@ -3,7 +3,6 @@ title: "Deep Dive: zkEVM Protocol Integration"
 date: "2025-08-15"
 excerpt: "An in-depth exploration of how zkEVMs will integrate with existing Ethereum infrastructure, including detailed protocol specifications for client teams."
 author: "zkEVM Team"
-tags: ["protocol", "integration", "ethereum", "specifications"]
 featured: true
 ---
 

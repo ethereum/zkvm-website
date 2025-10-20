@@ -3,7 +3,6 @@ title: "Security Audit Results: Comprehensive Review Complete"
 date: "2025-07-15"
 excerpt: "We're pleased to announce the successful completion of our comprehensive security audit, with zero critical vulnerabilities found in our zkEVM implementation."
 author: "zkEVM Team"
-tags: ["security", "audit", "verification", "safety"]
 featured: false
 ---
 

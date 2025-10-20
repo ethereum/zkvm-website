@@ -40,16 +40,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
                 <div className="flex items-center justify-between">
                   <p className="text-muted-foreground">By {post.author}</p>
-                  <div className="flex gap-2">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 bg-secondary text-secondary-foreground text-xs rounded"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
                 </div>
               </header>
 
@@ -111,7 +101,6 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
         type: 'article',
         publishedTime: post.date,
         authors: [post.author],
-        tags: post.tags,
       },
       twitter: {
         card: 'summary_large_image',
