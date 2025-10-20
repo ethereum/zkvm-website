@@ -20,7 +20,12 @@ export async function getAllBlogPosts(): Promise<BlogPostSummary[]> {
 
       return {
         slug,
-        ...data,
+        title: data.title || '',
+        date: data.date || '',
+        excerpt: data.excerpt || '',
+        author: data.author || '',
+        tags: data.tags || [],
+        featured: data.featured || false,
       } as BlogPostSummary;
     });
 
@@ -50,7 +55,12 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
   return {
     slug,
     content: contentHtml,
-    ...data,
+    title: data.title || '',
+    date: data.date || '',
+    excerpt: data.excerpt || '',
+    author: data.author || '',
+    tags: data.tags || [],
+    featured: data.featured || false,
   } as BlogPost;
 }
 

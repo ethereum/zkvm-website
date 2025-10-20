@@ -351,7 +351,7 @@ const ClientStatus = () => {
                         <div className="mt-4 pt-4 border-t border-border">
                           <p className="text-sm font-medium text-foreground mb-2">Additional Notes:</p>
                           <ul className="space-y-1">
-                            {(client.notes as string[]).map((note: string, idx: number) => (
+                            {(Array.isArray(client.notes) ? client.notes : []).map((note: string, idx: number) => (
                               <li key={idx} className="text-sm text-muted-foreground flex gap-2">
                                 <span>•</span>
                                 <span>{note}</span>
@@ -456,7 +456,7 @@ const ClientStatus = () => {
                         <div className="mt-4 pt-4 border-t border-border">
                           <p className="text-sm font-medium text-foreground mb-2">Additional Notes:</p>
                           <ul className="space-y-1">
-                            {(client.notes as string[]).map((note: string, idx: number) => (
+                            {(Array.isArray(client.notes) ? client.notes : []).map((note: string, idx: number) => (
                               <li key={idx} className="text-sm text-muted-foreground flex gap-2">
                                 <span>•</span>
                                 <span>{note}</span>
