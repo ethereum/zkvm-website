@@ -20,10 +20,10 @@ export default function Home() {
         <ZKEVMSolutionSection />
         <ImpactSection />
         <RoadmapSection />
+        <BlogSection />
         <ZKEVMReadiness />
         <ClientStatus />
         <BookSection /> 
-        <BlogSection />
         <TeamSection />
       </main>
       <Footer />
