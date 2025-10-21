@@ -55,10 +55,10 @@ export default function MarkdownContent({ content, className }: MarkdownContentP
           'prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-6',
           'prose-ol:list-decimal prose-ol:pl-6 prose-ol:mb-6',
           'prose-li:mb-3',
-          'prose-li::marker:text-muted-foreground',
+          'prose-li:marker:text-muted-foreground',
 
           // Links
-          'prose-a:text-primary prose-a:no-underline hover:prose-a:underline',
+          'prose-a:text-primary prose-a:no-underline [&_a:hover]:underline',
 
           // Blockquotes
           'prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-muted/50 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:mb-6 prose-blockquote:italic',
