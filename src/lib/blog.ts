@@ -4,67 +4,95 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import remarkHtml from 'remark-html';
 import remarkGfm from 'remark-gfm';
+import type { Plugin } from 'unified';
+import type { Root, Parent, Content, Link, Image } from 'mdast';
 import { BlogPost, BlogPostSummary } from './types';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/blog');
 
-function wrapImagesInLinks() {
-  return (tree: any) => {
-    const visit = (node: any, parent?: any) => {
-      if (!node || !Array.isArray(node.children)) {
+type ParentNode = Root | (Parent & { children: Content[] });
+type Properties = Record<string, unknown>;
+
+const toClassString = (value: unknown): string => {
+  if (Array.isArray(value)) {
+    return value.filter((item): item is string => typeof item === 'string').join(' ');
+  }
+  return typeof value === 'string' ? value : '';
+};
+
+const mergeClassNames = (...values: unknown[]): string => {
+  const classes = values
+    .flatMap((value) => toClassString(value).split(' '))
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  return Array.from(new Set(classes)).join(' ');
+};
+
+const isParentNode = (node: Root | Content): node is ParentNode =>
+  typeof (node as Parent).children !== 'undefined' &&
+  Array.isArray((node as Parent).children);
+
+function wrapImagesInLinks(): Plugin<[], Root> {
+  return (tree) => {
+    const visitNode = (node: Root | Content, parent: ParentNode | null): void => {
+      if (!isParentNode(node)) {
         return;
       }
 
-      node.children = node.children.map((child: any) => {
-        if (child?.type === 'image' && parent?.type !== 'link') {
-          const imageNode = { ...child };
-          imageNode.data = imageNode.data ?? {};
-          const existingImageClasses =
-            imageNode.data.hProperties?.className ||
-            imageNode.data.hProperties?.class ||
-            '';
+      const parentNode: ParentNode = node;
 
-          imageNode.data.hProperties = {
-            ...(imageNode.data.hProperties ?? {}),
-            className: ['cursor-zoom-in', existingImageClasses].filter(Boolean).join(' '),
+      parentNode.children = parentNode.children.map((child) => {
+        if (child.type === 'image' && parent?.type !== 'link') {
+          const imageNode: Image = { ...child };
+          const existingImageProps = (imageNode.data?.hProperties as Properties | undefined) ?? {};
+          const imageClassName = mergeClassNames('cursor-zoom-in', existingImageProps.className);
+
+          imageNode.data = {
+            ...(imageNode.data ?? {}),
+            hProperties: {
+              ...existingImageProps,
+              className: imageClassName,
+            },
           };
 
-          const linkNode: any = {
+          const linkNode: Link = {
             type: 'link',
             url: child.url,
-            title: child.title,
+            title: child.title ?? undefined,
             children: [imageNode],
           };
 
-          linkNode.data = linkNode.data ?? {};
-          const existingLinkClasses =
-            linkNode.data.hProperties?.className || linkNode.data.hProperties?.class || '';
+          const existingLinkProps =
+            (linkNode.data?.hProperties as Properties | undefined) ?? {};
+          const linkClassName = mergeClassNames(
+            'group',
+            'block',
+            'mx-auto',
+            'w-full',
+            'sm:w-auto',
+            existingLinkProps.className
+          );
 
-          linkNode.data.hProperties = {
-            ...(linkNode.data.hProperties ?? {}),
-            target: '_blank',
-            rel: 'noopener noreferrer',
-            className: [
-              'group',
-              'block',
-              'mx-auto',
-              'w-full',
-              'sm:w-auto',
-              existingLinkClasses,
-            ]
-              .filter(Boolean)
-              .join(' '),
+          linkNode.data = {
+            ...(linkNode.data ?? {}),
+            hProperties: {
+              ...existingLinkProps,
+              target: '_blank',
+              rel: 'noopener noreferrer',
+              className: linkClassName,
+            },
           };
 
-          return linkNode;
+          return linkNode as Content;
         }
 
-        visit(child, node);
+        visitNode(child, parentNode);
         return child;
       });
     };
 
-    visit(tree);
+    visitNode(tree, null);
   };
 }
 
