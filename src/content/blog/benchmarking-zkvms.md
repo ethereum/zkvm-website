@@ -161,7 +161,6 @@ Tentative results for proving are uploaded to [this public repository](https://g
 ### Stage 3 - Analyze results
 
 The main strategy to onboard zkVMs into mainnet is to provide multiple combinations of EL/zkVMs proofs to ensure that bugs in any EL or zkVM don’t harm network liveness or finality. The exact mechanism by which this works is still under research, and we plan to write a dedicated article on this topic in the near future.
-The main strategy to onboard zkVMs into mainnet is to provide multiple combinations of EL/zkVMs proofs to ensure that bugs in any EL or zkVM don’t harm network liveness or finality. The exact mechanism by which this works is still under research, and we plan to write a dedicated article on this topic in the near future.
 
 This means that we need to have integrated and measured the performance of as many EL/zkVM combinations as possible to understand which one has the worst-case performance among these combinations.
 
