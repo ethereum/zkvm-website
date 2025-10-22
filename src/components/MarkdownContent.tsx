@@ -69,7 +69,7 @@ export default function MarkdownContent({ content, className }: MarkdownContentP
           'prose-td:border-b prose-td:border-border prose-td:p-4',
 
           // Images
-          'prose-img:rounded-lg prose-img:shadow-lg prose-img:mb-6 prose-img:max-w-[620px] prose-img:mx-auto prose-img:p-2',
+          'prose-img:rounded-lg prose-img:shadow-lg prose-img:mb-6 prose-img:max-w-full sm:prose-img:max-w-[620px] prose-img:w-full prose-img:mx-auto prose-img:p-2',
 
           // Strong/Bold Text
           'prose-strong:font-bold prose-strong:text-foreground',
