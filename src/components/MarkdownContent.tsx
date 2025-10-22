@@ -77,10 +77,14 @@ export default function MarkdownContent({ content, className }: MarkdownContentP
           'prose-td:border-b prose-td:border-border prose-td:p-4',
 
           // Images
+<<<<<<< HEAD
           'prose-img:rounded-lg prose-img:shadow-lg prose-img:mb-6 prose-img:mx-auto',
           'prose-img:w-full sm:prose-img:w-auto',
           'prose-img:max-w-full sm:prose-img:max-w-[40rem]',
           'sm:prose-img:max-h-[26rem] sm:prose-img:object-contain',
+=======
+          'prose-img:rounded-lg prose-img:shadow-lg prose-img:mb-6 prose-img:max-w-full sm:prose-img:max-w-[620px] prose-img:w-full prose-img:mx-auto',
+>>>>>>> f2de3f5eb476afb1bd06d965f4de610d73bc7440
 
           // Strong/Bold Text
           'prose-strong:font-bold prose-strong:text-foreground',
