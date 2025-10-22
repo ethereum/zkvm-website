@@ -72,13 +72,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
             {/* Article Footer */}
             <footer className="border-t pt-8">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">
                     Published on {post.date} by <AuthorLink author={post.author} />
                   </p>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex gap-4 sm:justify-end justify-center">
                   <Link 
                     href="/blog" 
                     className="text-sm text-primary hover:underline"
