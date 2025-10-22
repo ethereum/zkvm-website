@@ -160,9 +160,9 @@ Tentative results for proving are uploaded to [this public repository](https://g
 
 ### Stage 3 - Analyze results
 
-The main strategy to onboard zkVMs into mainnet is to ask for K out of N proofs to be available to consider a block to be valid. The idea is that we target N combinations of EL/zkVMs and expect at least K to arrive on time and be valid to consider a block valid. The goal is that these thresholds provide sufficient EL/zkVM diversity, ensuring that bugs don’t harm network liveness or finality.
+The main strategy to onboard zkVMs into mainnet is to provide multiple combinations of EL/zkVMs proofs to ensure that bugs in any EL or zkVM don’t harm network liveness or finality. The exact mechanism by which this works is still under research, and we plan to write a dedicated article on this topic in the near future.
 
-This means that we need to have integrated and measured the performance of as many EL/zkVM combinations as possible to understand which one has the worst-case performance among these N combinations. That is, only accounting for the most performant EL and zkVM combination isn’t enough, nor is it acceptable to expect all combinations to have sufficient performance (i.e., only N).
+This means that we need to have integrated and measured the performance of as many EL/zkVM combinations as possible to understand which one has the worst-case performance among these combinations.
 
 After we have this information, we can at least conclude two main things:
 
