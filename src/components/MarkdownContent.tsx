@@ -35,6 +35,14 @@ export default function MarkdownContent({ content, className }: MarkdownContentP
           padding: 0;
           border: none;
         }
+        .markdown-content a {
+          color: hsl(var(--foreground));
+          text-decoration: underline;
+          transition: color 0.2s ease;
+        }
+        .markdown-content a:hover {
+          color: hsl(var(--primary));
+        }
       `}</style>
       <div
         className={cn(
@@ -58,7 +66,7 @@ export default function MarkdownContent({ content, className }: MarkdownContentP
           'prose-li:marker:text-foreground',
 
           // Links
-          'prose-a:text-primary prose-a:no-underline [&_a:hover]:underline',
+          'prose-a:underline prose-a:text-foreground [&_a]:transition-colors [&_a:hover]:text-primary',
 
           // Blockquotes
           'prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:bg-muted/50 prose-blockquote:py-2 prose-blockquote:px-6 prose-blockquote:mb-6 prose-blockquote:italic',

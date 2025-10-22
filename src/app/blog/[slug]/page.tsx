@@ -21,7 +21,7 @@ function AuthorLink({ author }: { author: string }) {
         href={twitterUrl} 
         target="_blank" 
         rel="noopener noreferrer"
-        className="text-primary hover:underline"
+        className="underline text-foreground hover:text-primary transition-colors"
       >
         {author}
       </a>
