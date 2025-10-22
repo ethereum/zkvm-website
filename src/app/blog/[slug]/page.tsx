@@ -8,9 +8,9 @@ interface BlogPostPageParams {
   slug: string;
 }
 
-interface BlogPostPageProps {
-  params: BlogPostPageParams;
-}
+type BlogPostPageProps = {
+  params: Promise<BlogPostPageParams>;
+};
 
 function AuthorLink({ author }: { author: string }) {
   const twitterUrl = getAuthorTwitterUrl(author);
@@ -33,7 +33,8 @@ function AuthorLink({ author }: { author: string }) {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   try {
-    const post = await getBlogPost(params.slug);
+    const { slug } = await params;
+    const post = await getBlogPost(slug);
     
     return (
       <div className="container mx-auto px-4 py-8">
@@ -108,7 +109,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<BlogPostPageParams> }) {
+export async function generateMetadata({ params }: BlogPostPageProps) {
   try {
     const { slug } = await params;
     const post = await getBlogPost(slug);
