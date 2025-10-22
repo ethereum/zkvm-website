@@ -6,7 +6,7 @@ author: "Ignacio Hagopian"
 featured: true
 ---
 
-*Thanks to Marius van der Wijden, Jochem Brouwer, Ladislaus von Daniels, and Kevaundray Weddenburn for their feedback.*
+*Thanks to Marius van der Wijden, Jochem Brouwer, Ladislaus von Daniels, and Kevaundray Wedderburn for their feedback.*
 
 zkVMs unlock an efficiency shift for block execution: instead of every node re-running the same computation to verify a block, a single execution can produce a proof that anyone can quickly verify. This means blocks only need to be executed once, dramatically reducing redundant computation in the network — a step toward a more scalable and sustainable Ethereum.
 
