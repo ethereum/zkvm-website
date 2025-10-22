@@ -43,9 +43,9 @@ export default function MarkdownContent({ content, className }: MarkdownContentP
           'text-foreground',
 
           // Headings
-          'prose-h1:text-4xl prose-h1:font-bold prose-h1:mt-12 prose-h1:mb-8',
-          'prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-10 prose-h2:mb-6',
-          'prose-h3:text-2xl prose-h3:font-semibold prose-h3:mt-8 prose-h3:mb-4',
+          'prose-h1:text-4xl prose-h1:font-bold prose-h1:mt-16 prose-h1:mb-8',
+          'prose-h2:text-3xl prose-h2:font-bold prose-h2:mt-16 prose-h2:mb-6',
+          'prose-h3:text-2xl prose-h3:font-semibold prose-h3:mt-12 prose-h3:mb-4',
           'prose-h4:text-xl prose-h4:font-semibold prose-h4:mt-6 prose-h4:mb-3',
 
           // Paragraphs
