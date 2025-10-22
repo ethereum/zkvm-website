@@ -2,16 +2,39 @@ import { getBlogPost, getBlogPostSlugs } from '@/lib/blog';
 import MarkdownContent from '@/components/MarkdownContent';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { getAuthorTwitterUrl } from '@/lib/author-mapping';
 
-interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
+interface BlogPostPageParams {
+  slug: string;
+}
+
+type BlogPostPageProps = {
+  params: Promise<BlogPostPageParams>;
+};
+
+function AuthorLink({ author }: { author: string }) {
+  const twitterUrl = getAuthorTwitterUrl(author);
+  
+  if (twitterUrl) {
+    return (
+      <a 
+        href={twitterUrl} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="underline text-foreground hover:text-primary transition-colors"
+      >
+        {author}
+      </a>
+    );
+  }
+  
+  return <span>{author}</span>;
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
   try {
-    const post = await getBlogPost(params.slug);
+    const { slug } = await params;
+    const post = await getBlogPost(slug);
     
     return (
       <div className="container mx-auto px-4 py-8">
@@ -39,35 +62,23 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
                 <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
                 <div className="flex items-center justify-between">
-                  <p className="text-muted-foreground">By {post.author}</p>
-                  <div className="flex gap-2">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 bg-secondary text-secondary-foreground text-xs rounded"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="text-muted-foreground">By <AuthorLink author={post.author} /></p>
                 </div>
               </header>
 
               {/* Article Content */}
-              <div className="prose prose-lg max-w-none dark:prose-invert">
-                <MarkdownContent content={post.content} />
-              </div>
+              <MarkdownContent content={post.content} />
             </article>
 
             {/* Article Footer */}
             <footer className="border-t pt-8">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">
-                    Published on {post.date} by {post.author}
+                    Published on {post.date} by <AuthorLink author={post.author} />
                   </p>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex gap-4 sm:justify-end justify-center">
                   <Link 
                     href="/blog" 
                     className="text-sm text-primary hover:underline"
@@ -100,7 +111,8 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: BlogPostPageProps) {
   try {
-    const post = await getBlogPost(params.slug);
+    const { slug } = await params;
+    const post = await getBlogPost(slug);
     
     return {
       title: `${post.title} | zkEVM Blog`,
@@ -111,7 +123,6 @@ export async function generateMetadata({ params }: BlogPostPageProps) {
         type: 'article',
         publishedTime: post.date,
         authors: [post.author],
-        tags: post.tags,
       },
       twitter: {
         card: 'summary_large_image',

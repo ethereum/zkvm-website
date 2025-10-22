@@ -20,7 +20,12 @@ export async function getAllBlogPosts(): Promise<BlogPostSummary[]> {
 
       return {
         slug,
-        ...data,
+        title: data.title || '',
+        date: data.date || '',
+        excerpt: data.excerpt || '',
+        author: data.author || '',
+        tags: data.tags || [],
+        featured: data.featured || false,
       } as BlogPostSummary;
     });
 
@@ -50,7 +55,12 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
   return {
     slug,
     content: contentHtml,
-    ...data,
+    title: data.title || '',
+    date: data.date || '',
+    excerpt: data.excerpt || '',
+    author: data.author || '',
+    tags: data.tags || [],
+    featured: data.featured || false,
   } as BlogPost;
 }
 
@@ -66,18 +76,3 @@ export async function getBlogPostSlugs(): Promise<string[]> {
     .map((name) => name.replace(/\.md$/, ''));
 }
 
-export async function getPostsByTag(tag: string): Promise<BlogPostSummary[]> {
-  const allPosts = await getAllBlogPosts();
-  return allPosts.filter((post) => post.tags.includes(tag));
-}
-
-export async function getAllTags(): Promise<string[]> {
-  const allPosts = await getAllBlogPosts();
-  const tags = new Set<string>();
-  
-  allPosts.forEach((post) => {
-    post.tags.forEach((tag) => tags.add(tag));
-  });
-  
-  return Array.from(tags).sort();
-}

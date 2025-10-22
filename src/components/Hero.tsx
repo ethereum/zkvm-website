@@ -1,16 +1,10 @@
 "use client";
 
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 import { SparklesCore } from "@/components/ui/sparkles";
 
 const Hero = () => {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
     <section className="relative min-h-[90vh] flex items-center bg-[var(--dark)] overflow-hidden py-8 pt-24 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[radial-gradient(circle,rgba(15,118,110,0.2),transparent_70%)] before:opacity-60">
         <div className="w-full absolute inset-0 h-screen">
@@ -36,9 +30,11 @@ const Hero = () => {
             <Button
               variant="primary-legacy"
               size="legacy"
-              onClick={(e) => { e.preventDefault(); scrollToSection("book"); }}
+              asChild
             >
-              Read the Book
+              <Link href="/blog">
+                Follow the Latest Updates
+              </Link>
             </Button>
             <Button
               variant="secondary-legacy"

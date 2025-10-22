@@ -6,6 +6,7 @@ import RoadmapSection from "@/components/RoadmapSection";
 import ZKEVMReadiness from "@/components/ZKEVMReadiness";
 import ClientStatus from "@/components/ClientStatus";
 import BookSection from "@/components/BookSection";
+import BlogSection from "@/components/BlogSection";
 import TeamSection from "@/components/TeamSection";
 import Footer from "@/components/Footer";
 
@@ -19,6 +20,7 @@ export default function Home() {
         <ZKEVMSolutionSection />
         <ImpactSection />
         <RoadmapSection />
+        <BlogSection />
         <ZKEVMReadiness />
         <ClientStatus />
         <BookSection /> 

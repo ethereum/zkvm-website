@@ -24,6 +24,7 @@ const Header = () => {
   const navItems = [
     { href: "/#roadmap", label: "Roadmap" },
     { href: "/#team", label: "Team" },
+    { href: "/blog", label: "Blog" },
     { href: "/zkvm-tracker", label: "zkEVM Tracker" },
     { href: "https://zkevm.fyi", label: "The Book", isExternal: true },
   ];
