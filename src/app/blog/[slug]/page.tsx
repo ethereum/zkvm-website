@@ -4,10 +4,12 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAuthorTwitterUrl } from '@/lib/author-mapping';
 
+interface BlogPostPageParams {
+  slug: string;
+}
+
 interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
+  params: BlogPostPageParams;
 }
 
 function AuthorLink({ author }: { author: string }) {
@@ -106,9 +108,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps) {
+export async function generateMetadata({ params }: { params: Promise<BlogPostPageParams> }) {
   try {
-    const post = await getBlogPost(params.slug);
+    const { slug } = await params;
+    const post = await getBlogPost(slug);
     
     return {
       title: `${post.title} | zkEVM Blog`,
