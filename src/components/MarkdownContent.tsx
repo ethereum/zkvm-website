@@ -79,7 +79,7 @@ export default function MarkdownContent({ content, className }: MarkdownContentP
           // Images
           'prose-img:rounded-lg prose-img:shadow-lg prose-img:mb-6 prose-img:mx-auto',
           'prose-img:w-full sm:prose-img:w-auto',
-          'prose-img:max-w-full sm:prose-img:max-w-[40rem]',
+          'prose-img:max-w-full',
           'sm:prose-img:max-h-[26rem] sm:prose-img:object-contain',
 
           // Strong/Bold Text
