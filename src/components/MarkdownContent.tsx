@@ -49,13 +49,13 @@ export default function MarkdownContent({ content, className }: MarkdownContentP
           'prose-h4:text-xl prose-h4:font-semibold prose-h4:mt-6 prose-h4:mb-3',
 
           // Paragraphs
-          'prose-p:text-lg prose-p:leading-relaxed prose-p:text-muted-foreground prose-p:mb-6',
+          'prose-p:text-lg prose-p:leading-relaxed prose-p:text-foreground prose-p:mb-6',
 
           // Lists
           'prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-6',
           'prose-ol:list-decimal prose-ol:pl-6 prose-ol:mb-6',
           'prose-li:mb-3',
-          'prose-li:marker:text-muted-foreground',
+          'prose-li:marker:text-foreground',
 
           // Links
           'prose-a:text-primary prose-a:no-underline [&_a:hover]:underline',
