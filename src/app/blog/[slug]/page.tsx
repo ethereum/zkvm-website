@@ -2,11 +2,31 @@ import { getBlogPost, getBlogPostSlugs } from '@/lib/blog';
 import MarkdownContent from '@/components/MarkdownContent';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { getAuthorTwitterUrl } from '@/lib/author-mapping';
 
 interface BlogPostPageProps {
   params: {
     slug: string;
   };
+}
+
+function AuthorLink({ author }: { author: string }) {
+  const twitterUrl = getAuthorTwitterUrl(author);
+  
+  if (twitterUrl) {
+    return (
+      <a 
+        href={twitterUrl} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="text-primary hover:underline"
+      >
+        {author}
+      </a>
+    );
+  }
+  
+  return <span>{author}</span>;
 }
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -39,7 +59,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
                 <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
                 <div className="flex items-center justify-between">
-                  <p className="text-muted-foreground">By {post.author}</p>
+                  <p className="text-muted-foreground">By <AuthorLink author={post.author} /></p>
                 </div>
               </header>
 
@@ -52,7 +72,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-muted-foreground">
-                    Published on {post.date} by {post.author}
+                    Published on {post.date} by <AuthorLink author={post.author} />
                   </p>
                 </div>
                 <div className="flex gap-4">
