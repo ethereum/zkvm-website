@@ -38,13 +38,13 @@ We’ll dive more into how these two fit together soon, so if this looks confusi
 
 It is worth emphasizing that we are not interested in analyzing zkVMs in arbitrary guest programs. Many public claims about zkVM performance use programs like Fibonacci calculators or similar toy examples to prove throughput. While this is acceptable for other use cases, our team isn’t interested in these synthetic measurements; instead, we focus solely on Ethereum-specific goals. Benchmarking other guest programs is out of scope.
 
-# Why do we need a specialized approach?
+## Why do we need a specialized approach?
 
 *Note: This section attempts to generalize concepts across* v*a*rious *zkVMs, many of which incorporate numerous engineering optimizations, such as transpilation, parallelization, and pipelining. We adhere to general principles that apply to all zkVMs, with some degree of simplification.*
 
 To understand what we are measuring, it is useful to have at least a rough mental model of how things work in normal EL and zkVM execution. Let's unpack the layers involved in proving blocks. If we can identify these layers, we can better understand the nature of what we’re measuring, mainly regarding the correct fixtures to run.
 
-## Building the right mental models
+### Building the right mental models
 
 If you are a core developer or node runner, your mental model of how your node runs can be roughly the following:
 
@@ -78,7 +78,7 @@ Let’s unpack what is going on in the diagram:
 
 The primary target of the zkVM benchmarking efforts is this *Block proof generator* actor, as it is the most complex component compared to verifying a proof, which only requires a cryptographic library, utilizes commodity hardware, and, by design, always runs in the order of milliseconds.
 
-## Diving a bit more into their differences
+### Diving a bit more into their differences
 
 Clearly, running a specific EL as a full node and as a guest program should share, say, 90% of the same codebase. This is the main benefit of trying to compile an existing EL to another ISA, i.e., instead of compiling to amd64/arm, compile to riscv64gc — if the original code is reused, we can leverage the lindy effects accumulated through time, having more confidence that we aren’t starting from scratch regarding protocol implementation bugs for most of the stateless block validation logic. The remaining 10% refers to special versions of internal components or new logic needed for stateless execution. Examples of these include a sparse MPT where not all nodes are known, validation of input data, and potential adjustments of some dependencies (usually cryptography-related).
 
@@ -104,7 +104,7 @@ What doesn’t change is the fundamental approach to benchmarking in general:
 
 Although many zkVMs have benchmarked block proving on their own, they have typically employed different guest programs and non-uniform fixtures to measure their performance (e.g., only mainnet blocks, arbitrary gas limit blocks, and underlying workloads). This makes it extremely challenging to compare benchmarks, reproduce them, and ultimately draw any conclusions about whether protocol changes might be required. 
 
-# Methodology
+## Methodology
 
 The plan that we’ve been executing for the last months involves three stages:
 
@@ -114,7 +114,7 @@ The plan that we’ve been executing for the last months involves three stages:
 
 Although they are numbered incrementally, some stages can be worked in parallel. Also, many of the stages are iterated over frequently due to newly discovered cases to cover, optimizations done in EL guest programs, new faster releases in zkVMs, or better configurations of setups — precisely the same as full node benchmarking; it is an ongoing process which hopefully converges to an optimal best case result.
 
-## Stage 1 - Create benchmark cases
+### Stage 1 - Create benchmark cases
 
 While benchmarking mainnet blocks is acceptable, relying solely on this approach is insufficient. In Ethereum, we’re not usually interested in the average case, but in worst cases, since those can be DoS vectors that can hurt the liveness or finality of the network (intentionally or unintentionally).
 
@@ -137,7 +137,7 @@ Known workloads that are challenging for zkVMs compared to raw execution are:
 
 Today, zkVMs target the most challenging cases with a concept of “zkVM precompiles” (see [here](https://dev.risczero.com/api/zkvm/precompiles) and [here](https://docs.succinct.xyz/docs/sp1/optimizing-programs/precompiles)). These are patched implementations that have a high-level implementation that is more friendly to the zkVM design, or directly provide those as native operations (i.e., syscalls).
 
-## Stage 2 - Run benchmarks in all possible EL/zkVM combinations
+### Stage 2 - Run benchmarks in all possible EL/zkVM combinations
 
 After we have the EEST test cases, we need tooling to generate proofs for these blocks under different configurations with the following dimensions:
 
@@ -158,7 +158,7 @@ With these tools, it is easier to have reproducible runs on different hardware, 
 
 Tentative results for proving are uploaded to [this public repository](https://github.com/eth-act/zkevm-benchmark-runs). As time passes, we’ll continue to add updated and new run combinations  — so expect more changes on this front. 
 
-## Stage 3 - Analyze results
+### Stage 3 - Analyze results
 
 The main strategy to onboard zkVMs into mainnet is to ask for K out of N proofs to be available to consider a block to be valid. The idea is that we target N combinations of EL/zkVMs and expect at least K to arrive on time and be valid to consider a block valid. The goal is that these thresholds provide sufficient EL/zkVM diversity, ensuring that bugs don’t harm network liveness or finality.
 
@@ -173,7 +173,7 @@ We can get a high-level picture of how all these parts fits together in the foll
 
 ![zkVM benchmarking pipeline](/blog/zkvm-benchmarking-pipeline.png)
 
-# Final words
+## Final words
 
 Hopefully, after reading this article, you can have a better mental model of how zkVMs are used to generate proofs and how they compare to raw EL client execution. Also, our work is complementary to [Ethproofs](https://ethproofs.org/) since we’re not interested in measuring only average blocks (i.e., Ethproofs main focus), but worst-case ones, which can be potential attack vectors in order to continue making Ethereum the safest and most reliable network.
 
