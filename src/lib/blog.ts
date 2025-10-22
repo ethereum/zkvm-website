@@ -8,6 +8,66 @@ import { BlogPost, BlogPostSummary } from './types';
 
 const postsDirectory = path.join(process.cwd(), 'src/content/blog');
 
+function wrapImagesInLinks() {
+  return (tree: any) => {
+    const visit = (node: any, parent?: any) => {
+      if (!node || !Array.isArray(node.children)) {
+        return;
+      }
+
+      node.children = node.children.map((child: any) => {
+        if (child?.type === 'image' && parent?.type !== 'link') {
+          const imageNode = { ...child };
+          imageNode.data = imageNode.data ?? {};
+          const existingImageClasses =
+            imageNode.data.hProperties?.className ||
+            imageNode.data.hProperties?.class ||
+            '';
+
+          imageNode.data.hProperties = {
+            ...(imageNode.data.hProperties ?? {}),
+            className: ['cursor-zoom-in', existingImageClasses].filter(Boolean).join(' '),
+          };
+
+          const linkNode: any = {
+            type: 'link',
+            url: child.url,
+            title: child.title,
+            children: [imageNode],
+          };
+
+          linkNode.data = linkNode.data ?? {};
+          const existingLinkClasses =
+            linkNode.data.hProperties?.className || linkNode.data.hProperties?.class || '';
+
+          linkNode.data.hProperties = {
+            ...(linkNode.data.hProperties ?? {}),
+            target: '_blank',
+            rel: 'noopener noreferrer',
+            className: [
+              'group',
+              'block',
+              'mx-auto',
+              'w-full',
+              'sm:w-auto',
+              existingLinkClasses,
+            ]
+              .filter(Boolean)
+              .join(' '),
+          };
+
+          return linkNode;
+        }
+
+        visit(child, node);
+        return child;
+      });
+    };
+
+    visit(tree);
+  };
+}
+
 export async function getAllBlogPosts(): Promise<BlogPostSummary[]> {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames
@@ -47,7 +107,8 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
   // Process markdown content
   const processedContent = await remark()
     .use(remarkGfm)
-    .use(remarkHtml)
+    .use(wrapImagesInLinks)
+    .use(remarkHtml, { sanitize: false })
     .process(content);
 
   const contentHtml = processedContent.toString();
@@ -75,4 +136,3 @@ export async function getBlogPostSlugs(): Promise<string[]> {
     .filter((name) => name.endsWith('.md'))
     .map((name) => name.replace(/\.md$/, ''));
 }
-
