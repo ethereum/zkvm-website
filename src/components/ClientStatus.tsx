@@ -189,24 +189,24 @@ const ClientStatus = () => {
     },
     {
       name: 'Nimbus',
-      progress: 0,
+      progress: 1,
       total: 3,
       status: 'NOT STARTED',
       statusColor: 'gray',
       criteria: {
-        hardforks: { status: 'not-started' },
+        hardforks: { status: 'complete', note: 'Up to date with current hardforks' },
         executionProofs: { status: 'not-started' },
         epbs: { status: 'not-started' }
       }
     },
     {
       name: 'Lodestar',
-      progress: 0,
+      progress: 1,
       total: 3,
       status: 'NOT STARTED',
       statusColor: 'gray',
       criteria: {
-        hardforks: { status: 'not-started' },
+        hardforks: { status: 'complete', note: 'Up to date with current hardforks' },
         executionProofs: { status: 'not-started' },
         epbs: { status: 'not-started' }
       }
