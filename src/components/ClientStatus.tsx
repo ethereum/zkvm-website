@@ -182,9 +182,9 @@ const ClientStatus = () => {
       status: 'NOT STARTED',
       statusColor: 'gray',
       criteria: {
-        hardforks: { status: 'not-started' },
+        hardforks: { status: 'complete', note: 'Up to date with current hardforks' },
         executionProofs: { status: 'not-started' },
-        epbs: { status: 'not-started' }
+        epbs: { status: 'in-progress', note: 'Implemented ePBS (in progress)' }
       }
     },
     {
