@@ -50,23 +50,6 @@ export const zkevmData: ZKEVMData[] = [
     },
   },
   {
-    name: 'Pico',
-    description: 'A lightweight RISC-V ZKVM designed for minimal resource consumption and fast execution.',
-    architecture: 'rv32im',
-    testResults: { passed: 46, total: 47, percentage: 97.9 },
-    status: 'Testing',
-    securityTests: false,
-    openSource: true,
-    supportedClients: [
-      { name: 'Reth', color: 'bg-green-100 text-green-800', status: 'Production Ready' },
-      { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
-    ],
-    links: {
-      github: 'https://github.com/brevis-network/pico',
-      docs: 'https://docs.brevis.network/',
-    },
-  },
-  {
     name: 'RISC0',
     description: 'A production-ready RISC-V ZKVM with comprehensive tooling and developer ecosystem.',
     architecture: 'rv32im',
@@ -81,23 +64,6 @@ export const zkevmData: ZKEVMData[] = [
     links: {
       github: 'https://github.com/risc0/risc0',
       docs: 'https://dev.risczero.com/api',
-    },
-  },
-  {
-    name: 'SP1 Turbo',
-    description: 'A RISC-V ZKVM implementation by Succinct Labs, optimized for high-throughput applications.',
-    architecture: 'rv32im',
-    testResults: { passed: 46, total: 47, percentage: 97.9 },
-    status: 'Testing',
-    securityTests: false,
-    openSource: true,
-    supportedClients: [
-      { name: 'Reth', color: 'bg-green-100 text-green-800', status: 'Production Ready' },
-      { name: 'Ethrex', color: 'bg-green-100 text-green-800', status: 'Production Ready' }
-    ],
-    links: {
-      github: 'https://github.com/succinctlabs/sp1',
-      docs: 'https://docs.succinct.xyz/docs/sp1/introduction',
     },
   },
   {
