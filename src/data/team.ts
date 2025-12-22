@@ -1,7 +1,6 @@
 import kevImage from "@/assets/team/kev.jpg";
 import thomasImage from "@/assets/team/thomas.jpg";
 import codyImage from "@/assets/team/cody.jpg";
-import sophiaImage from "@/assets/team/sophia.jpg";
 import ignacioImage from "@/assets/team/ignacio.png";
 import type { StaticImageData } from "next/image";
 
@@ -36,18 +35,6 @@ export const teamMembers: TeamMember[] = [
     twitter: "@han__0110",
     initials: "HJ",
     image: null
-  },
-  {
-    name: "Radek",
-    twitter: null,
-    initials: "R",
-    image: null
-  },
-  {
-    name: "Sophia Gold",
-    twitter: "@_sophiagold_",
-    initials: "SG",
-    image: sophiaImage
   },
   {
     name: "Ignacio Hagopian",
