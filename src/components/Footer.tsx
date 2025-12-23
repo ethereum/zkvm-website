@@ -32,7 +32,7 @@ const Footer = () => {
           </span>
           <div className="flex items-center gap-3">
             <a 
-              href="https://github.com/ethereum" 
+              href="https://github.com/ethereum/zkvm-website" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-gray-600 hover:text-gray-800 transition-colors duration-200"
