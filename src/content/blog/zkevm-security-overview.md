@@ -8,12 +8,9 @@ featured: true
 
 *Acknowledgements: I thank Andrés Láinez, Guillaume Ballet and Ladislaus for helpful comments during the preparation of this article.*
 
-# Introduction
-In the story of Ethereum's growth, there exists a central tension between decentralization and scaling. A [proposed change to the protocol](https://vitalik.eth.limo/general/2024/10/23/futures4.html#2) invites new entities, Provers, to execute the EVM inside of cryptographic VMs, producing proofs to be checked by attestors.
+A [proposed change to the protocol](https://vitalik.eth.limo/general/2024/10/23/futures4.html#2) invites new entities, Provers, to execute the EVM inside of cryptographic VMs, producing proofs to be checked by attesters. These proofs are tiny when compared with the transactions they prove, and attesters do not need to receive all of the state updates, so the networking requirements placed on attesters remain low. Moreover, the work of checking a proof is tiny in comparison to the work of re-executing all of the transactions in a block, so attesters can run on modest hardware.
 
-These proofs are tiny when compared with the transactions they prove, and attestors do not need to receive all of the state updates, so the networking requirements placed on attestors remain low. Moreover, the work of checking a proof is tiny in comparison to the work of re-executing all of the transactions in a block, so attestors can run on modest hardware.
-
-The present article gives an overview of this upgrade's security considerations, emphasizing the security of zkVMs and the software they execute.
+The present article looks at eighteen issues relating to the security of this upgrade, giving special attention the security of zkVMs and the software they will execute. It aims to show the tradeoff space we navigate in pursuit of holistic security, while also suggesting many specific mitigations. A [zkEVM security working group](https://github.com/eth-act/planning/pull/1) will meet regularly to discuss these issue. You can follow our progress on [Ethereum R&D Discord](https://discord.com/invite/qGpsxSA).
 
 ## Terminology
 
@@ -64,7 +61,7 @@ Changing the protocol to depend on a new class of unspecified actors, provers, r
 ### Potential Issue 1: EL client diversity worsens
 Currently, https://clientdiversity.org/ shows that there are three clients with with over 10% market share, and five with over 1% market share.  If only one or two clients are competitive (on a speed and cost basis) in a world with zkEVMs, then client diversity will worsen. It should be noted that new clients not included in the above list, such as [Ethrex](https://github.com/lambdaclass/ethrex), may gain traction due to their amenability to zk proving (as we will see, Rust has favorable tradeoffs in this regard). While replacing a pool of battle-tested clients with less tested clients would be a loss of security, it is of course possible that new clients could improve diversity metrics in the long run.
 
-**Level of concern:** Medium
+**Level of concern:** Medium TODO: there is a linebreak here but it doesn't render as a linebreak!
 This is a serious potential problem, but there is a solid core of EL developers who want to see their work in production.
 
 **Mitigations:** Diversity can be enforced at the level of the multiproof strategy. This requires that RTP produces timely proofs for multiple different STFs, which makes scaling more difficult, but more secure.
@@ -131,7 +128,7 @@ Regarding C++ compilers, [GCC](https://gcc.gnu.org/gcc-16/criteria.html) does no
 [The RISE Project](https://riseproject.dev/) is pursuing improvements for compiler testing and support for RISC-V targets. We refer to their blog for information on support for [Rust](https://riseproject.dev/2025/04/15/project-rp004-support-for-a-64-bit-risc-v-linux-port-of-rust-to-tier-1/) and [Go](https://riseproject.dev/2025/04/04/advancing-go-on-risc-v-progress-through-the-rise-project/).
 
 **Level of concern:** High
-Compilers are highly complicated black boxes in this project. Any poor testing of these means that zkVMs can produce binaries that do not share the semantics of the STF under all inputs. This could clearly be very bad, since attestors would then not actually verify proofs of Ethereum state transitions, rather, they would verify proofs of some related but slightly different state transition. For a particular example, see this [blog post by Certora](https://www.certora.com/blog/llvm-bug), which is mentioned in this useful [overview by Argument](https://argument.xyz/blog/riscv-good-bad/).
+Compilers are highly complicated black boxes in this project. Any poor testing of these means that zkVMs can produce binaries that do not share the semantics of the STF under all inputs. This could clearly be very bad, since attesters would then not actually verify proofs of Ethereum state transitions, rather, they would verify proofs of some related but slightly different state transition. For a particular example, see this [blog post by Certora](https://www.certora.com/blog/llvm-bug), which is mentioned in this useful [overview by Argument](https://argument.xyz/blog/riscv-good-bad/).
 
 **Mitigations:**
  - CL clients should impose diversity of guest program compilers in their multiproof settings.
