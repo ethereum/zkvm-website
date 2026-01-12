@@ -61,7 +61,8 @@ Changing the protocol to depend on a new class of unspecified actors, provers, r
 ### Potential Issue 1: EL client diversity worsens
 Currently, https://clientdiversity.org/ shows that there are three clients with with over 10% market share, and five with over 1% market share.  If only one or two clients are competitive (on a speed and cost basis) in a world with zkEVMs, then client diversity will worsen. It should be noted that new clients not included in the above list, such as [Ethrex](https://github.com/lambdaclass/ethrex), may gain traction due to their amenability to zk proving (as we will see, Rust has favorable tradeoffs in this regard). While replacing a pool of battle-tested clients with less tested clients would be a loss of security, it is of course possible that new clients could improve diversity metrics in the long run.
 
-**Level of concern:** Medium TODO: there is a linebreak here but it doesn't render as a linebreak!
+**Level of concern:** Medium**
+
 This is a serious potential problem, but there is a solid core of EL developers who want to see their work in production.
 
 **Mitigations:** Diversity can be enforced at the level of the multiproof strategy. This requires that RTP produces timely proofs for multiple different STFs, which makes scaling more difficult, but more secure.
@@ -140,6 +141,7 @@ Compilers are highly complicated black boxes in this project. Any poor testing o
 Projects such as [Valida](https://github.com/valida-xyz/valida) introduce bespoke ISAs that are designed for efficient proving. This means using compilers that do not benefit from the extensive testing and scrutiny that the most well-known compilers receive.
 
 **Level of concern:** Medium-High
+
 One the one hand, the LLVM stack has tons of eyes on it. On the other hand, it's massively complex, and bugs are regularly found in it. Still, on balance, it feels safer to use a standard compiler, at the very least because one can switch compilers (say, between GCC to Clang) in the event of a critical bug in either one.
 
 **Mitigations:** Thorough testing and auditing. If the compiler is sufficiently simple and stable, we can become more confident in its security with time "in the wild."
@@ -148,6 +150,7 @@ One the one hand, the LLVM stack has tons of eyes on it. On the other hand, it's
 Due to the fact that execution in arithmetic circuits has a cost model that is fundamentally different to executing on a traditional binary computer, zkVMs introduce zkVM precompiles to optimize proving for difficult cases, like Keccak hashing. Traditional EVM precompiles have long been a target for simplification to improve Ethereum's security. While zkVM precompiles are, in practice, usually related to existing EVM precompiles, they are a distinct notion. zkVM precompiles may also be harder to vanquish than traditional precompiles as we pursue L1 Scaling, since this pursuit creates significant pressures to optimize for execution speed and cost. Note that in the case of EVM precompiles, the execution environment is a piece of commodity hardware, whereas in the zkVM case the execution environment is a virtual environment that is much easier to customize. The relative ease with which one can customize the environment tends to increase the attack surface of the composite system.
 
 **Level of concern:** Medium-High
+
 These precompiles tend to be complex.
 
 **Mitigations:** Prover incentives that are more aligned with maintenance, and perhaps even proliferation of precompiles.
