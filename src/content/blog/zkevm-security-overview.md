@@ -1,6 +1,6 @@
 ---
 title: "zkEVM Security Overview"
-date: "2026-01-09"
+date: "2026-01-14"
 excerpt: "A comprehensive overview of security considerations for zkEVMs, covering diversity, guest programs, proving systems, and the engineering stack."
 author: "Cody Gunton"
 featured: true
