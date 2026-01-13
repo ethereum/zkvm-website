@@ -61,7 +61,7 @@ Changing the protocol to depend on a new class of unspecified actors, provers, r
 ### Potential Issue 1: EL client diversity worsens
 Currently, https://clientdiversity.org/ shows that there are three clients with with over 10% market share, and five with over 1% market share.  If only one or two clients are competitive (on a speed and cost basis) in a world with zkEVMs, then client diversity will worsen. It should be noted that new clients not included in the above list, such as [Ethrex](https://github.com/lambdaclass/ethrex), may gain traction due to their amenability to zk proving (as we will see, Rust has favorable tradeoffs in this regard). While replacing a pool of battle-tested clients with less tested clients would be a loss of security, it is of course possible that new clients could improve diversity metrics in the long run.
 
-**Level of concern:** Medium**
+**Level of concern:** Medium
 
 This is a serious potential problem, but there is a solid core of EL developers who want to see their work in production.
 
