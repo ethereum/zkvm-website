@@ -103,7 +103,7 @@ const CardView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
           </div>
           <ul className="criteria-list">
             <li className="criteria-item">
-              <span className="name">Test Results & Security</span>
+              <span className="name">Test Results</span>
               <div className="value">
                 <div className="flex items-center gap-3">
                   <TestResults testResults={item.testResults} />
@@ -168,7 +168,7 @@ const TableView: React.FC<{ data: ZKEVMData[] }> = ({ data }) => (
         <TableRow className="bg-gray-50">
           <TableHead className="min-w-[250px]">Project</TableHead>
           <TableHead className="w-20">Architecture</TableHead>
-          <TableHead className="w-32">Test Results & Security</TableHead>
+          <TableHead className="w-32">Test Results</TableHead>
           <TableHead className="w-20">Status</TableHead>
           <TableHead>Open Source</TableHead>
           <TableHead className="min-w-[200px]">Supported Clients</TableHead>

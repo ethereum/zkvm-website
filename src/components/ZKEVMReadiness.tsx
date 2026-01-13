@@ -15,7 +15,7 @@ const ZKEVMReadiness = () => {
 
   const renderCriteriaValue = (zkvm: ZKEVMData, criterionName: string) => {
     switch (criterionName) {
-      case "Test Results & Security":
+      case "Test Results":
         return (
           <div className="flex items-center gap-3">
             <span className="font-medium text-green-600">
@@ -80,9 +80,9 @@ const ZKEVMReadiness = () => {
               </div>
               <ul className="criteria-list">
                 <li className="criteria-item">
-                  <span className="name">Test Results & Security</span>
+                  <span className="name">Test Results</span>
                   <div className="value">
-                    {renderCriteriaValue(zkvm, "Test Results & Security")}
+                    {renderCriteriaValue(zkvm, "Test Results")}
                   </div>
                 </li>
                 <li className="criteria-item">
