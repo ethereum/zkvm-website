@@ -10,12 +10,12 @@ featured: true
 
 A [proposed change to the protocol](https://vitalik.eth.limo/general/2024/10/23/futures4.html#2) invites new entities, Provers, to execute the EVM inside of cryptographic VMs, producing proofs to be checked by attesters. These proofs are tiny when compared with the transactions they prove, and attesters do not need to receive all of the state updates, so the networking requirements placed on attesters remain low. Moreover, the work of checking a proof is tiny in comparison to the work of re-executing all of the transactions in a block, so attesters can run on modest hardware.
 
-The present article looks at eighteen issues relating to the security of this upgrade, giving special attention the security of zkVMs and the software they will execute. It aims to show the tradeoff space we navigate in pursuit of holistic security, while also suggesting many specific mitigations. A [zkEVM security working group](https://github.com/eth-act/planning/pull/1) will meet regularly to discuss these issue. You can follow our progress on [Ethereum R&D Discord](https://discord.com/invite/qGpsxSA).
+The present article looks at eighteen issues relating to the security of this upgrade, giving special attention the security of zkVMs and the software they will execute. It aims to show the tradeoff space we navigate in pursuit of holistic security, while also suggesting many specific mitigations. A [zkEVM security working group](https://github.com/eth-act/planning/pull/1) will meet regularly to discuss these issues. You can follow our progress on [Ethereum R&D Discord](https://discord.com/invite/qGpsxSA).
 
 ## Terminology
 
 We use the following terms and abbreviations:
- - EL: The Execution Layer in an Ethereum [node](https://ethereum.org/developers/docs/nodes-and-clients/). EL clients are responsible for checking validity of blocks, among other responsiblities.
+ - EL: The Execution Layer in an Ethereum [node](https://ethereum.org/developers/docs/nodes-and-clients/). EL clients are responsible for checking validity of blocks, among other responsibilities.
 - CL: The Consensus Layer, introduced in The Merge, which handles proof of stake consensus.
 - The STF, $\Upsilon$: The State Transition Function, sometimes denoted by the Greek letter, $\Upsilon$, which describes the legal state transitions of the network.
 - zkVM: A program that implements a virtual machine and can provide cryptographic attestations ("proofs") to the correct execution of code runnable by that machine.
