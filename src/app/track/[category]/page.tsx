@@ -3,6 +3,7 @@ import { trackData } from '@/data/track-data';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import MilestoneChecklist from '@/components/MilestoneChecklist';
 import { ClientProgressCard } from '@/components/track/ClientProgressCard';
+import { ZKVMComparisonTable } from '@/components/track/ZKVMComparisonTable';
 
 interface CategoryPageProps {
   params: {
@@ -91,6 +92,19 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                       ))}
                   </div>
                 </div>
+              </div>
+            </div>
+          )}
+
+          {/* Testing & Validation - zkVM Implementations */}
+          {category.id === 'testing-validation' && category.zkvmImplementations && (
+            <div className="space-y-6">
+              <div className="border-t pt-8">
+                <h2 className="text-2xl font-bold mb-2">zkVM Implementations</h2>
+                <p className="text-muted-foreground mb-6">
+                  Comparison of zero-knowledge virtual machine implementations and their test results
+                </p>
+                <ZKVMComparisonTable implementations={category.zkvmImplementations} />
               </div>
             </div>
           )}
