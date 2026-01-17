@@ -15,6 +15,49 @@ export interface Milestone {
   };
 }
 
+export interface ClientCriterion {
+  id: string;
+  name: string;
+  description: string;
+  status: 'not-started' | 'in-progress' | 'under-review' | 'complete';
+  note?: string;
+  disputeDetails?: string;
+}
+
+export interface EthereumClient {
+  name: string;
+  type: 'execution' | 'consensus';
+  progress: number;
+  total: number;
+  status: string;
+  statusColor: 'green' | 'orange' | 'blue' | 'gray';
+  criteria: Record<string, ClientCriterion>;
+  notes?: string[];
+}
+
+export interface ZKVMImplementation {
+  name: string;
+  description: string;
+  architecture: string;
+  testResults: {
+    passed: number;
+    total: number;
+    percentage: number;
+  };
+  status: 'Not Started' | 'Planning' | 'In Development' | 'Testing' | 'Production Ready' | 'Deprecated';
+  securityTests: boolean;
+  openSource: boolean;
+  supportedClients: Array<{
+    name: string;
+    color: string;
+    status: string;
+  }>;
+  links: {
+    github: string;
+    docs: string;
+  };
+}
+
 export interface CategoryData {
   id: string;
   name: string;
@@ -23,6 +66,9 @@ export interface CategoryData {
   icon: string;
   lastUpdated: string;
   milestones: Milestone[];
+  // New fields for Phase 2
+  clients?: EthereumClient[];
+  zkvmImplementations?: ZKVMImplementation[];
 }
 
 export interface RecentChange {
