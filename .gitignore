@@ -42,5 +42,6 @@ next-env.d.ts
 
 old-html.html
 docs
+.worktrees
 
 pnpm-lock.yaml
