@@ -4,6 +4,8 @@ date: "2026-01-14"
 excerpt: "A comprehensive overview of security considerations for zkEVMs, covering diversity, guest programs, proving systems, and the engineering stack."
 author: "Cody Gunton"
 featured: true
+workstream: "economic-security"
+topics: ["security", "audits", "verification"]
 ---
 
 *Acknowledgements: I thank Andrés Láinez, Guillaume Ballet and Ladislaus for helpful comments during the preparation of this article.*
