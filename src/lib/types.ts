@@ -1,3 +1,5 @@
+export type WorkstreamType = 'real-time-proving' | 'client-integration' | 'economic-security' | 'testing-validation';
+
 export interface BlogPostMetadata {
   title: string;
   date: string;
@@ -5,6 +7,9 @@ export interface BlogPostMetadata {
   author: string;
   tags?: string[];
   featured: boolean;
+  workstream?: WorkstreamType;
+  topics?: string[];
+  description?: string;
 }
 
 export interface BlogPost extends BlogPostMetadata {
@@ -20,6 +25,9 @@ export interface BlogPostSummary {
   author: string;
   tags?: string[];
   featured: boolean;
+  workstream?: WorkstreamType;
+  topics?: string[];
+  description?: string;
 }
 
 // ZKVM Tracker Types
