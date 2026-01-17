@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation';
 import { trackData } from '@/data/track-data';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import MilestoneChecklist from '@/components/MilestoneChecklist';
+import { ClientProgressCard } from '@/components/track/ClientProgressCard';
 
 interface CategoryPageProps {
   params: {
@@ -58,13 +59,51 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         <div className="space-y-8">
           <MilestoneChecklist milestones={category.milestones} />
 
-          {/* Placeholder for additional visualizations */}
-          <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
-            <p className="text-sm">Additional visualizations coming soon</p>
-            <p className="mt-2 text-xs">
-              Charts, graphs, and detailed metrics will be added here
-            </p>
-          </div>
+          {/* Client Integration - Ethereum Clients */}
+          {category.id === 'client-integration' && category.clients && (
+            <div className="space-y-6">
+              <div className="border-t pt-8">
+                <h2 className="text-2xl font-bold mb-2">Ethereum Clients</h2>
+                <p className="text-muted-foreground mb-6">
+                  Tracking readiness of execution and consensus clients for zkEVM integration
+                </p>
+
+                {/* Execution Clients */}
+                <div className="mb-8">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Execution Clients</h3>
+                  <div className="space-y-3">
+                    {category.clients
+                      .filter(client => client.type === 'execution')
+                      .map(client => (
+                        <ClientProgressCard key={client.name} client={client} />
+                      ))}
+                  </div>
+                </div>
+
+                {/* Consensus Clients */}
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Consensus Clients</h3>
+                  <div className="space-y-3">
+                    {category.clients
+                      .filter(client => client.type === 'consensus')
+                      .map(client => (
+                        <ClientProgressCard key={client.name} client={client} />
+                      ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Placeholder for other categories */}
+          {category.id !== 'client-integration' && category.id !== 'testing-validation' && (
+            <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
+              <p className="text-sm">Additional visualizations coming soon</p>
+              <p className="mt-2 text-xs">
+                Charts, graphs, and detailed metrics will be added here
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="mt-8 text-sm text-muted-foreground">
