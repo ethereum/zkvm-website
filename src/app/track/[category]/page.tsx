@@ -5,6 +5,7 @@ import MilestoneChecklist from '@/components/MilestoneChecklist';
 import { ClientProgressCard } from '@/components/track/ClientProgressCard';
 import { ZKVMComparisonTable } from '@/components/track/ZKVMComparisonTable';
 import { BenchmarkPlaceholder } from '@/components/track/BenchmarkPlaceholder';
+import { AuditStatusPlaceholder } from '@/components/track/AuditStatusPlaceholder';
 
 interface CategoryPageProps {
   params: {
@@ -113,6 +114,11 @@ export default function CategoryPage({ params }: CategoryPageProps) {
                 <ZKVMComparisonTable implementations={category.zkvmImplementations} />
               </div>
             </div>
+          )}
+
+          {/* Economic Security - Audit Status */}
+          {category.id === 'economic-security' && (
+            <AuditStatusPlaceholder />
           )}
 
           {/* Placeholder for other categories */}
