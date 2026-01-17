@@ -578,9 +578,33 @@ export const trackData: TrackData = {
   recentChanges: [
     {
       date: '2026-01-17',
+      category: 'testing-validation',
+      description: 'Added zkVM comparison table with 5 implementations',
+      milestoneId: 'riscv-compliance'
+    },
+    {
+      date: '2026-01-17',
       category: 'client-integration',
-      description: 'Initial tracker setup',
+      description: 'Added detailed tracking for 10 Ethereum clients',
       milestoneId: 'geth-readiness'
+    },
+    {
+      date: '2026-01-17',
+      category: 'client-integration',
+      description: 'Reth achieves spec compliance (4/4 criteria)',
+      milestoneId: 'reth-readiness'
+    },
+    {
+      date: '2026-01-17',
+      category: 'real-time-proving',
+      description: 'Added benchmark visualization placeholders',
+      milestoneId: 'sub-15s-proving'
+    },
+    {
+      date: '2026-01-17',
+      category: 'economic-security',
+      description: 'Added audit and research tracking section',
+      milestoneId: 'prover-market-design'
     }
   ]
 };
