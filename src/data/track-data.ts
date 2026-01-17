@@ -470,6 +470,108 @@ export const trackData: TrackData = {
             unit: '%'
           }
         }
+      ],
+      zkvmImplementations: [
+        {
+          name: 'SP1',
+          description: 'A performant, open-source zero-knowledge virtual machine (zkVM) that verifies the execution of arbitrary Rust (or any LLVM-compiled language) programs',
+          architecture: 'RISC-V',
+          testResults: {
+            passed: 892,
+            total: 1024,
+            percentage: 87.1
+          },
+          status: 'Production Ready',
+          securityTests: true,
+          openSource: true,
+          supportedClients: [
+            { name: 'Reth', color: 'green', status: 'Full support' },
+            { name: 'Geth', color: 'orange', status: 'Experimental' }
+          ],
+          links: {
+            github: 'https://github.com/succinctlabs/sp1',
+            docs: 'https://docs.succinct.xyz/sp1'
+          }
+        },
+        {
+          name: 'RISC Zero',
+          description: 'General-purpose zero-knowledge virtual machine that lets you prove correct execution of arbitrary code',
+          architecture: 'RISC-V',
+          testResults: {
+            passed: 845,
+            total: 1024,
+            percentage: 82.5
+          },
+          status: 'Production Ready',
+          securityTests: true,
+          openSource: true,
+          supportedClients: [
+            { name: 'Reth', color: 'green', status: 'Full support' },
+            { name: 'Ethrex', color: 'green', status: 'Full support' }
+          ],
+          links: {
+            github: 'https://github.com/risc0/risc0',
+            docs: 'https://dev.risczero.com'
+          }
+        },
+        {
+          name: 'Jolt',
+          description: 'zkVM designed for simplicity and auditability, using lookup-based proof systems',
+          architecture: 'RISC-V',
+          testResults: {
+            passed: 723,
+            total: 1024,
+            percentage: 70.6
+          },
+          status: 'In Development',
+          securityTests: false,
+          openSource: true,
+          supportedClients: [
+            { name: 'Reth', color: 'orange', status: 'Experimental' }
+          ],
+          links: {
+            github: 'https://github.com/a16z/jolt',
+            docs: 'https://jolt.a16zcrypto.com'
+          }
+        },
+        {
+          name: 'Valida',
+          description: 'STARK-based zkVM optimized for performance and developer experience',
+          architecture: 'Custom RISC-like',
+          testResults: {
+            passed: 612,
+            total: 1024,
+            percentage: 59.8
+          },
+          status: 'In Development',
+          securityTests: false,
+          openSource: true,
+          supportedClients: [
+            { name: 'Reth', color: 'orange', status: 'Experimental' }
+          ],
+          links: {
+            github: 'https://github.com/valida-xyz/valida',
+            docs: 'https://valida.org'
+          }
+        },
+        {
+          name: 'Powdr',
+          description: 'Modular zkVM toolkit for building custom zero-knowledge proving systems',
+          architecture: 'Modular (supports RISC-V)',
+          testResults: {
+            passed: 534,
+            total: 1024,
+            percentage: 52.1
+          },
+          status: 'In Development',
+          securityTests: false,
+          openSource: true,
+          supportedClients: [],
+          links: {
+            github: 'https://github.com/powdr-labs/powdr',
+            docs: 'https://docs.powdr.org'
+          }
+        }
       ]
     }
   ],
