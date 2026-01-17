@@ -4,6 +4,7 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import MilestoneChecklist from '@/components/MilestoneChecklist';
 import { ClientProgressCard } from '@/components/track/ClientProgressCard';
 import { ZKVMComparisonTable } from '@/components/track/ZKVMComparisonTable';
+import { BenchmarkPlaceholder } from '@/components/track/BenchmarkPlaceholder';
 
 interface CategoryPageProps {
   params: {
@@ -60,6 +61,11 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         <div className="space-y-8">
           <MilestoneChecklist milestones={category.milestones} />
 
+          {/* Real-Time Proving - Benchmarks */}
+          {category.id === 'real-time-proving' && (
+            <BenchmarkPlaceholder />
+          )}
+
           {/* Client Integration - Ethereum Clients */}
           {category.id === 'client-integration' && category.clients && (
             <div className="space-y-6">
@@ -110,7 +116,10 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           )}
 
           {/* Placeholder for other categories */}
-          {category.id !== 'client-integration' && category.id !== 'testing-validation' && (
+          {category.id !== 'client-integration' &&
+           category.id !== 'testing-validation' &&
+           category.id !== 'real-time-proving' &&
+           category.id !== 'economic-security' && (
             <div className="rounded-lg border border-dashed p-8 text-center text-muted-foreground">
               <p className="text-sm">Additional visualizations coming soon</p>
               <p className="mt-2 text-xs">
