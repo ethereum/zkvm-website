@@ -72,36 +72,10 @@ export default function DependencyGraph({ graph }: DependencyGraphProps) {
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center gap-2">
-            <Network className="h-5 w-5" />
-            Dependency Graph
-          </CardTitle>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={() => setScale(s => Math.max(0.5, s - 0.1))}
-              className="rounded px-2 py-1 text-xs font-medium hover:bg-accent"
-              aria-label="Zoom out"
-            >
-              −
-            </button>
-            <span className="text-xs text-muted-foreground">{Math.round(scale * 100)}%</span>
-            <button
-              onClick={() => setScale(s => Math.min(2, s + 0.1))}
-              className="rounded px-2 py-1 text-xs font-medium hover:bg-accent"
-              aria-label="Zoom in"
-            >
-              +
-            </button>
-            <button
-              onClick={() => setScale(1)}
-              className="rounded px-2 py-1 text-xs font-medium hover:bg-accent"
-              aria-label="Reset zoom"
-            >
-              Reset
-            </button>
-          </div>
-        </div>
+        <CardTitle className="flex items-center gap-2">
+          <Network className="h-5 w-5" />
+          Dependency Graph
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
@@ -114,23 +88,45 @@ export default function DependencyGraph({ graph }: DependencyGraphProps) {
             </p>
           </div>
 
-          {/* Legend */}
-          <div className="flex flex-wrap gap-4 text-xs">
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-green-600" />
-              <span>Complete</span>
+          {/* Legend and Zoom Controls */}
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            {/* Legend */}
+            <div className="flex flex-wrap gap-3 text-xs">
+              <div className="flex items-center gap-2">
+                <div className="h-3 w-3 rounded-full bg-green-600" />
+                <span>Complete</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="h-3 w-3 rounded-full bg-orange-500" />
+                <span>In Progress</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="h-3 w-3 rounded-full bg-gray-400" />
+                <span>Not Started</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="h-3 w-3 rounded-full bg-red-600" />
+                <span>Blocked</span>
+              </div>
             </div>
+
+            {/* Zoom controls */}
             <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-orange-500" />
-              <span>In Progress</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-gray-400" />
-              <span>Not Started</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="h-3 w-3 rounded-full bg-red-600" />
-              <span>Blocked</span>
+              <button
+                onClick={() => setScale(s => Math.max(0.5, s - 0.1))}
+                className="rounded border px-3 py-1.5 text-xs font-medium hover:bg-accent"
+                aria-label="Zoom out"
+              >
+                Zoom Out
+              </button>
+              <span className="text-xs text-muted-foreground">{Math.round(scale * 100)}%</span>
+              <button
+                onClick={() => setScale(s => Math.min(2, s + 0.1))}
+                className="rounded border px-3 py-1.5 text-xs font-medium hover:bg-accent"
+                aria-label="Zoom in"
+              >
+                Zoom In
+              </button>
             </div>
           </div>
 
@@ -138,11 +134,12 @@ export default function DependencyGraph({ graph }: DependencyGraphProps) {
           <TooltipProvider>
             <div className="overflow-x-auto">
               <svg
-                width={width}
-                height={height}
-                className="min-w-[800px] rounded-lg border bg-muted/30"
+                viewBox={`0 0 ${width} ${height}`}
+                className="w-full rounded-lg border bg-muted/30"
+                preserveAspectRatio="xMidYMid meet"
                 role="img"
                 aria-label="Dependency graph showing relationships between clients and milestones"
+                style={{ minWidth: '320px', maxWidth: '100%' }}
               >
                 <g transform={`scale(${scale})`} style={{ transformOrigin: 'center' }}>
                   {/* Draw edges first (so they appear behind nodes) */}
