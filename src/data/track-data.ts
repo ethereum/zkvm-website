@@ -469,7 +469,64 @@ export const trackData: TrackData = {
           id: 'prover-market-design',
           name: 'Prover market incentive design',
           description: 'Complete research and specification for prover market economics',
-          status: 'not-started'
+          status: 'in-progress'
+        },
+        {
+          id: 'security-audit',
+          name: 'Initial security audit',
+          description: 'Complete first comprehensive security audit of zkEVM integration',
+          status: 'in-progress'
+        }
+      ],
+      audits: [
+        {
+          id: 'audit-001',
+          name: 'zkEVM Protocol Security Audit',
+          organization: 'Trail of Bits',
+          status: 'completed',
+          startDate: '2025-11-01',
+          completionDate: '2025-12-15',
+          reportUrl: 'https://github.com/ethereum/zkvm-audits/audit-001',
+          scope: 'Core zkEVM protocol integration, proof verification logic',
+          findings: {
+            critical: 0,
+            high: 2,
+            medium: 5,
+            low: 8
+          }
+        },
+        {
+          id: 'audit-002',
+          name: 'Prover Market Economics Review',
+          organization: 'Economic Security Research',
+          status: 'in-progress',
+          startDate: '2026-01-05',
+          scope: 'Prover incentive mechanisms, censorship resistance analysis'
+        },
+        {
+          id: 'audit-003',
+          name: 'Client Integration Security',
+          organization: 'OpenZeppelin',
+          status: 'planned',
+          scope: 'Geth and Reth zkVM integration security review'
+        }
+      ],
+      researchPapers: [
+        {
+          id: 'paper-001',
+          title: 'Economic Incentives in zkEVM Prover Markets',
+          authors: ['Research Team'],
+          date: '2025-12-01',
+          url: 'https://ethresear.ch/zkvm-economics',
+          summary: 'Analysis of prover market dynamics and incentive alignment for zkEVM L1 integration'
+        },
+        {
+          id: 'paper-002',
+          title: 'Censorship Resistance in Proving Systems',
+          authors: ['Security Research Group'],
+          date: '2025-11-15',
+          url: 'https://ethresear.ch/zkvm-censorship',
+          summary: 'Mechanisms for ensuring censorship resistance in decentralized proving markets'
         }
       ]
     },

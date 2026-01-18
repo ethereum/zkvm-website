@@ -66,6 +66,32 @@ export interface BenchmarkData {
   hardware?: string;
 }
 
+export interface AuditEntry {
+  id: string;
+  name: string;
+  organization: string;
+  status: 'planned' | 'in-progress' | 'completed';
+  startDate?: string;
+  completionDate?: string;
+  reportUrl?: string;
+  scope: string;
+  findings?: {
+    critical: number;
+    high: number;
+    medium: number;
+    low: number;
+  };
+}
+
+export interface ResearchPaper {
+  id: string;
+  title: string;
+  authors: string[];
+  date: string;
+  url: string;
+  summary: string;
+}
+
 export interface CategoryData {
   id: string;
   name: string;
@@ -79,6 +105,8 @@ export interface CategoryData {
   zkvmImplementations?: ZKVMImplementation[];
   // New fields for Phase 4
   benchmarks?: BenchmarkData[];
+  audits?: AuditEntry[];
+  researchPapers?: ResearchPaper[];
 }
 
 export interface RecentChange {
