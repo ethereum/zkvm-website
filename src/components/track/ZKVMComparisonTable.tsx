@@ -31,7 +31,8 @@ export function ZKVMComparisonTable({ implementations }: ZKVMComparisonTableProp
 
   return (
     <div className="overflow-x-auto">
-      <table className="w-full border-collapse">
+      <div className="min-w-[800px]">
+        <table className="w-full border-collapse">
         <thead>
           <tr className="border-b-2 border-gray-200 bg-gray-50">
             <th className="text-left py-4 px-4 font-semibold text-gray-900">Implementation</th>
@@ -202,6 +203,7 @@ export function ZKVMComparisonTable({ implementations }: ZKVMComparisonTableProp
             <span>Feature available</span>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

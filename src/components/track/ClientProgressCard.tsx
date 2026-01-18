@@ -37,54 +37,56 @@ export function ClientProgressCard({ client }: ClientProgressCardProps) {
   return (
     <div className="border border-gray-200 rounded-lg overflow-hidden hover:border-gray-300 transition-colors">
       {/* Header - Always visible */}
-      <button
-        onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
-      >
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            {isExpanded ? (
-              <ChevronDown className="w-5 h-5 text-gray-500" />
-            ) : (
-              <ChevronRight className="w-5 h-5 text-gray-500" />
-            )}
-            <h3 className="text-lg font-semibold text-gray-900">{client.name}</h3>
-          </div>
-          <span className="text-sm text-gray-600 capitalize">
-            ({client.type})
-          </span>
-        </div>
-
-        <div className="flex items-center gap-4">
-          {/* Progress indicator */}
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-medium text-gray-600">
+      <div className="px-4 py-4 sm:px-6">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <h3 className="text-base font-bold text-gray-900 sm:text-lg">{client.name}</h3>
+            <span className="text-xs text-gray-600 sm:text-sm capitalize">
+              ({client.type})
+            </span>
+            <span className="text-xs font-medium text-gray-600 sm:text-sm">
               {client.progress}/{client.total}
             </span>
-            <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
-              <div
-                className={`h-full ${
-                  progressPercentage === 100
-                    ? 'bg-green-600'
-                    : progressPercentage >= 50
-                    ? 'bg-orange-600'
-                    : 'bg-gray-400'
-                }`}
-                style={{ width: `${progressPercentage}%` }}
-              />
-            </div>
+            <span
+              className={`rounded px-2 py-1 text-xs font-medium sm:px-3 ${
+                statusColors[client.statusColor]
+              }`}
+            >
+              {client.status}
+            </span>
           </div>
-
-          {/* Status badge */}
-          <span
-            className={`px-3 py-1 text-xs font-medium border rounded-full ${
-              statusColors[client.statusColor]
-            }`}
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="self-start text-xs font-medium text-primary transition-colors hover:text-blue-600 sm:text-sm flex items-center gap-1"
           >
-            {client.status}
-          </span>
+            {isExpanded ? (
+              <>
+                <ChevronDown className="w-4 h-4" />
+                Hide Details
+              </>
+            ) : (
+              <>
+                <ChevronRight className="w-4 h-4" />
+                Show Details
+              </>
+            )}
+          </button>
         </div>
-      </button>
+
+        {/* Progress bar */}
+        <div className="mt-3 w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div
+            className={`h-full transition-all ${
+              progressPercentage === 100
+                ? 'bg-green-600'
+                : progressPercentage >= 50
+                ? 'bg-orange-600'
+                : 'bg-gray-400'
+            }`}
+            style={{ width: `${progressPercentage}%` }}
+          />
+        </div>
+      </div>
 
       {/* Expanded content */}
       {isExpanded && (
