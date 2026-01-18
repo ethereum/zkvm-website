@@ -18,6 +18,8 @@ interface DependencyGraphProps {
 export default function DependencyGraph({ graph }: DependencyGraphProps) {
   const [hoveredNode, setHoveredNode] = useState<string | null>(null);
   const [hoveredEdge, setHoveredEdge] = useState<string | null>(null);
+  const [selectedNode, setSelectedNode] = useState<string | null>(null);
+  const [scale, setScale] = useState(1);
 
   // SVG dimensions
   const width = 800;
@@ -51,6 +53,16 @@ export default function DependencyGraph({ graph }: DependencyGraphProps) {
     return edge.from === hoveredNode || edge.to === hoveredNode;
   };
 
+  // Helper to check if node is connected to selected node
+  const isNodeConnected = (nodeId: string) => {
+    if (!selectedNode) return false;
+    if (nodeId === selectedNode) return true;
+    return graph.edges.some(
+      edge => (edge.from === selectedNode && edge.to === nodeId) ||
+              (edge.to === selectedNode && edge.from === nodeId)
+    );
+  };
+
   // Convert percentage positions to actual coordinates
   const getCoords = (x: number, y: number) => ({
     x: padding + (x / 100) * (width - 2 * padding),
@@ -60,10 +72,36 @@ export default function DependencyGraph({ graph }: DependencyGraphProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Network className="h-5 w-5" />
-          Dependency Graph
-        </CardTitle>
+        <div className="flex items-center justify-between">
+          <CardTitle className="flex items-center gap-2">
+            <Network className="h-5 w-5" />
+            Dependency Graph
+          </CardTitle>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => setScale(s => Math.max(0.5, s - 0.1))}
+              className="rounded px-2 py-1 text-xs font-medium hover:bg-accent"
+              aria-label="Zoom out"
+            >
+              −
+            </button>
+            <span className="text-xs text-muted-foreground">{Math.round(scale * 100)}%</span>
+            <button
+              onClick={() => setScale(s => Math.min(2, s + 0.1))}
+              className="rounded px-2 py-1 text-xs font-medium hover:bg-accent"
+              aria-label="Zoom in"
+            >
+              +
+            </button>
+            <button
+              onClick={() => setScale(1)}
+              className="rounded px-2 py-1 text-xs font-medium hover:bg-accent"
+              aria-label="Reset zoom"
+            >
+              Reset
+            </button>
+          </div>
+        </div>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
@@ -106,8 +144,9 @@ export default function DependencyGraph({ graph }: DependencyGraphProps) {
                 role="img"
                 aria-label="Dependency graph showing relationships between clients and milestones"
               >
-                {/* Draw edges first (so they appear behind nodes) */}
-                <g className="edges">
+                <g transform={`scale(${scale})`} style={{ transformOrigin: 'center' }}>
+                  {/* Draw edges first (so they appear behind nodes) */}
+                  <g className="edges">
                   {graph.edges.map((edge, idx) => {
                     const fromNode = graph.nodes.find(n => n.id === edge.from);
                     const toNode = graph.nodes.find(n => n.id === edge.to);
@@ -203,9 +242,10 @@ export default function DependencyGraph({ graph }: DependencyGraphProps) {
                           <g
                             onMouseEnter={() => setHoveredNode(node.id)}
                             onMouseLeave={() => setHoveredNode(null)}
+                            onClick={() => setSelectedNode(selectedNode === node.id ? null : node.id)}
                             className="cursor-pointer transition-transform"
                             style={{
-                              transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+                              transform: isHovered || isNodeConnected(node.id) ? 'scale(1.1)' : 'scale(1)',
                               transformOrigin: `${coords.x}px ${coords.y}px`
                             }}
                           >
@@ -249,6 +289,7 @@ export default function DependencyGraph({ graph }: DependencyGraphProps) {
                       </Tooltip>
                     );
                   })}
+                </g>
                 </g>
               </svg>
             </div>
