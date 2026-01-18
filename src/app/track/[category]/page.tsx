@@ -1,11 +1,20 @@
 import { notFound } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { trackData } from '@/data/track-data';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import MilestoneChecklist from '@/components/MilestoneChecklist';
 import { ClientProgressCard } from '@/components/track/ClientProgressCard';
 import { ZKVMComparisonTable } from '@/components/track/ZKVMComparisonTable';
-import BenchmarkChart from '@/components/track/BenchmarkChart';
 import AuditStatus from '@/components/track/AuditStatus';
+
+// Dynamic imports for chart components (reduces initial bundle)
+const BenchmarkChart = dynamic(() => import('@/components/track/BenchmarkChart'), {
+  loading: () => (
+    <div className="rounded-lg border p-8 text-center">
+      <p className="text-sm text-muted-foreground">Loading performance data...</p>
+    </div>
+  )
+});
 
 interface CategoryPageProps {
   params: {
