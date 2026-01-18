@@ -656,6 +656,24 @@ export const trackData: TrackData = {
   ],
   recentChanges: [
     {
+      date: '2026-01-18',
+      category: 'real-time-proving',
+      description: 'Added benchmark visualization with performance trends',
+      milestoneId: 'sub-15s-proving'
+    },
+    {
+      date: '2026-01-18',
+      category: 'economic-security',
+      description: 'Added audit tracking and research publications',
+      milestoneId: 'formal-verification'
+    },
+    {
+      date: '2026-01-18',
+      category: 'client-integration',
+      description: 'Improved mobile responsiveness for client cards',
+      milestoneId: 'geth-readiness'
+    },
+    {
       date: '2026-01-17',
       category: 'testing-validation',
       description: 'Added zkVM comparison table with 5 implementations',
