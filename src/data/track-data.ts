@@ -744,6 +744,11 @@ export const trackData: TrackData = {
   recentChanges: [
     {
       date: '2026-01-18',
+      category: 'client-integration',
+      description: 'Added interactive dependency graph visualization'
+    },
+    {
+      date: '2026-01-18',
       category: 'real-time-proving',
       description: 'Added benchmark visualization with performance trends',
       milestoneId: 'sub-15s-proving'
