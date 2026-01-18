@@ -25,14 +25,14 @@ export default function CategoryCard({ category }: CategoryCardProps) {
 
   return (
     <Link href={`/track/${category.id}`}>
-      <Card className="group h-full transition-all hover:shadow-lg">
+      <Card className="group h-full transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
         <CardHeader>
-          <div className="mb-2 text-primary">
+          <div className="mb-2 text-primary transition-transform duration-300 group-hover:scale-110">
             <Icon className="h-8 w-8" />
           </div>
           <CardTitle className="flex items-center justify-between">
             {category.name}
-            <ArrowRight className="h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="h-5 w-5 text-muted-foreground transition-all duration-300 group-hover:translate-x-1 group-hover:text-primary" />
           </CardTitle>
           <CardDescription className="text-base">
             {category.description}

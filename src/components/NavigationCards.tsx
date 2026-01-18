@@ -33,9 +33,9 @@ export default function NavigationCards() {
       {navigationCards.map((card) => {
         const Icon = card.icon;
         return (
-          <Card key={card.href} className="group relative overflow-hidden transition-all hover:shadow-lg">
+          <Card key={card.href} className="group relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
             <CardHeader>
-              <div className={`mb-2 ${card.iconColor}`}>
+              <div className={`mb-2 transition-transform duration-300 group-hover:scale-110 ${card.iconColor}`}>
                 <Icon className="h-8 w-8" />
               </div>
               <CardTitle className="text-xl">{card.title}</CardTitle>
@@ -45,9 +45,9 @@ export default function NavigationCards() {
             </CardHeader>
             <CardContent>
               <Link href={card.href}>
-                <Button variant="ghost" className="group-hover:bg-accent">
+                <Button variant="ghost" className="group-hover:bg-accent transition-colors duration-300">
                   Explore
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
               </Link>
             </CardContent>
