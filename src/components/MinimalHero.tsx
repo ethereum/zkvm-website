@@ -6,9 +6,7 @@ export default function MinimalHero() {
           Ethereum ZK L1 Scaling
         </h1>
         <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
-          Zero-knowledge proofs enable Ethereum to scale while preserving decentralization.
-          This initiative brings zkEVMs to Layer 1, allowing validators to verify blocks
-          efficiently through cryptographic proofs instead of re-executing all transactions.
+          The zkEVM team is an Ethereum Foundation team dedicated to shipping zkEVM on L1.
         </p>
 
         {/* Simple architecture diagram placeholder */}
