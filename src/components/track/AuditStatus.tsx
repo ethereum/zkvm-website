@@ -93,26 +93,26 @@ export default function AuditStatus({ audits = [], researchPapers = [] }: AuditS
                   {audit.findings && (
                     <div className="mb-3 rounded bg-muted p-3">
                       <p className="mb-2 text-xs font-medium text-muted-foreground">Findings</p>
-                      <div className="grid grid-cols-4 gap-2 text-center text-sm">
-                        <div>
+                      <div className="grid grid-cols-4 gap-2 text-center text-sm" role="table" aria-label="Audit findings by severity">
+                        <div role="cell">
                           <p className={`text-lg font-bold ${getSeverityColor('critical')}`}>
                             {audit.findings.critical}
                           </p>
                           <p className="text-xs text-muted-foreground">Critical</p>
                         </div>
-                        <div>
+                        <div role="cell">
                           <p className={`text-lg font-bold ${getSeverityColor('high')}`}>
                             {audit.findings.high}
                           </p>
                           <p className="text-xs text-muted-foreground">High</p>
                         </div>
-                        <div>
+                        <div role="cell">
                           <p className={`text-lg font-bold ${getSeverityColor('medium')}`}>
                             {audit.findings.medium}
                           </p>
                           <p className="text-xs text-muted-foreground">Medium</p>
                         </div>
-                        <div>
+                        <div role="cell">
                           <p className={`text-lg font-bold ${getSeverityColor('low')}`}>
                             {audit.findings.low}
                           </p>

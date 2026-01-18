@@ -57,6 +57,8 @@ export function ClientProgressCard({ client }: ClientProgressCardProps) {
           </div>
           <button
             onClick={() => setIsExpanded(!isExpanded)}
+            aria-expanded={isExpanded}
+            aria-controls={`client-details-${client.name.toLowerCase().replace(/\s+/g, '-')}`}
             className="self-start text-xs font-medium text-primary transition-colors hover:text-blue-600 sm:text-sm flex items-center gap-1"
           >
             {isExpanded ? (
@@ -90,7 +92,10 @@ export function ClientProgressCard({ client }: ClientProgressCardProps) {
 
       {/* Expanded content */}
       {isExpanded && (
-        <div className="px-6 pb-6 pt-2 border-t border-gray-100 bg-gray-50">
+        <div
+          id={`client-details-${client.name.toLowerCase().replace(/\s+/g, '-')}`}
+          className="px-6 pb-6 pt-2 border-t border-gray-100 bg-gray-50"
+        >
           {/* Criteria list */}
           <div className="space-y-4">
             <h4 className="text-sm font-semibold text-gray-700 mb-3">Criteria</h4>

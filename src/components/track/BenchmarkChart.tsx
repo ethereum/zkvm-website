@@ -55,14 +55,14 @@ export default function BenchmarkChart({ benchmarks }: BenchmarkChartProps) {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Activity className="h-5 w-5" />
+          <Activity className="h-5 w-5" aria-hidden="true" />
           Proof Generation Performance
         </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
           {/* Performance chart */}
-          <div className="h-[300px]">
+          <div className="h-[300px]" role="img" aria-label="Line chart showing proof generation performance over time for different zkVM implementations">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" />
