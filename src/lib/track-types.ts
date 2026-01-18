@@ -58,6 +58,14 @@ export interface ZKVMImplementation {
   };
 }
 
+export interface BenchmarkData {
+  date: string;
+  implementation: string;
+  proofTime: number; // in seconds
+  blockNumber?: number;
+  hardware?: string;
+}
+
 export interface CategoryData {
   id: string;
   name: string;
@@ -69,6 +77,8 @@ export interface CategoryData {
   // New fields for Phase 2
   clients?: EthereumClient[];
   zkvmImplementations?: ZKVMImplementation[];
+  // New fields for Phase 4
+  benchmarks?: BenchmarkData[];
 }
 
 export interface RecentChange {

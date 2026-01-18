@@ -62,6 +62,28 @@ export const trackData: TrackData = {
             unit: 'seconds'
           }
         }
+      ],
+      benchmarks: [
+        // SP1 performance data
+        { date: '2026-01-15', implementation: 'SP1', proofTime: 14.2, hardware: 'AWS c6i.8xlarge' },
+        { date: '2026-01-10', implementation: 'SP1', proofTime: 15.8, hardware: 'AWS c6i.8xlarge' },
+        { date: '2026-01-05', implementation: 'SP1', proofTime: 17.1, hardware: 'AWS c6i.8xlarge' },
+        { date: '2025-12-30', implementation: 'SP1', proofTime: 18.5, hardware: 'AWS c6i.8xlarge' },
+        { date: '2025-12-25', implementation: 'SP1', proofTime: 19.2, hardware: 'AWS c6i.8xlarge' },
+
+        // RISC Zero performance data
+        { date: '2026-01-15', implementation: 'RISC Zero', proofTime: 16.5, hardware: 'AWS c6i.8xlarge' },
+        { date: '2026-01-10', implementation: 'RISC Zero', proofTime: 17.9, hardware: 'AWS c6i.8xlarge' },
+        { date: '2026-01-05', implementation: 'RISC Zero', proofTime: 19.2, hardware: 'AWS c6i.8xlarge' },
+        { date: '2025-12-30', implementation: 'RISC Zero', proofTime: 20.8, hardware: 'AWS c6i.8xlarge' },
+        { date: '2025-12-25', implementation: 'RISC Zero', proofTime: 21.5, hardware: 'AWS c6i.8xlarge' },
+
+        // Jolt performance data
+        { date: '2026-01-15', implementation: 'Jolt', proofTime: 22.3, hardware: 'AWS c6i.8xlarge' },
+        { date: '2026-01-10', implementation: 'Jolt', proofTime: 23.1, hardware: 'AWS c6i.8xlarge' },
+        { date: '2026-01-05', implementation: 'Jolt', proofTime: 24.5, hardware: 'AWS c6i.8xlarge' },
+        { date: '2025-12-30', implementation: 'Jolt', proofTime: 25.8, hardware: 'AWS c6i.8xlarge' },
+        { date: '2025-12-25', implementation: 'Jolt', proofTime: 27.2, hardware: 'AWS c6i.8xlarge' },
       ]
     },
     {
