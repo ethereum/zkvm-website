@@ -6,6 +6,7 @@ import MilestoneChecklist from '@/components/MilestoneChecklist';
 import { ClientProgressCard } from '@/components/track/ClientProgressCard';
 import { ZKVMComparisonTable } from '@/components/track/ZKVMComparisonTable';
 import AuditStatus from '@/components/track/AuditStatus';
+import DependencyGraph from '@/components/track/DependencyGraph';
 
 // Dynamic imports for chart components (reduces initial bundle)
 const BenchmarkChart = dynamic(() => import('@/components/track/BenchmarkChart'), {
@@ -74,6 +75,11 @@ export default function CategoryPage({ params }: CategoryPageProps) {
           {/* Benchmarks for real-time-proving */}
           {category.id === 'real-time-proving' && category.benchmarks && (
             <BenchmarkChart benchmarks={category.benchmarks} />
+          )}
+
+          {/* Dependency graph for client-integration */}
+          {category.id === 'client-integration' && category.dependencyGraph && (
+            <DependencyGraph graph={category.dependencyGraph} />
           )}
 
           {/* Client Integration - Ethereum Clients */}
