@@ -92,6 +92,28 @@ export interface ResearchPaper {
   summary: string;
 }
 
+export interface GraphNode {
+  id: string;
+  label: string;
+  type: 'client' | 'milestone' | 'integration-point';
+  status: 'complete' | 'in-progress' | 'not-started' | 'blocked';
+  x: number; // Position for simple layout (0-100 as percentage)
+  y: number; // Position for simple layout (0-100 as percentage)
+  description?: string;
+}
+
+export interface GraphEdge {
+  from: string; // Node id
+  to: string; // Node id
+  type: 'depends-on' | 'enables' | 'blocks';
+  label?: string;
+}
+
+export interface DependencyGraph {
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+}
+
 export interface CategoryData {
   id: string;
   name: string;
@@ -107,6 +129,8 @@ export interface CategoryData {
   benchmarks?: BenchmarkData[];
   audits?: AuditEntry[];
   researchPapers?: ResearchPaper[];
+  // Dependency graph visualization
+  dependencyGraph?: DependencyGraph;
 }
 
 export interface RecentChange {
