@@ -8,26 +8,6 @@ export default function MinimalHero() {
         <p className="mx-auto mb-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
           The zkEVM team is an Ethereum Foundation team dedicated to shipping zkEVM on L1.
         </p>
-
-        {/* Simple architecture diagram placeholder */}
-        <div className="mx-auto mb-12 max-w-2xl rounded-lg border bg-muted/30 p-8">
-          <div className="flex items-center justify-center gap-4 text-sm font-medium">
-            <div className="rounded-lg bg-blue-100 px-4 py-2 text-blue-900">
-              Builders
-            </div>
-            <span className="text-muted-foreground">→</span>
-            <div className="rounded-lg bg-green-100 px-4 py-2 text-green-900">
-              Provers
-            </div>
-            <span className="text-muted-foreground">→</span>
-            <div className="rounded-lg bg-purple-100 px-4 py-2 text-purple-900">
-              Validators
-            </div>
-          </div>
-          <p className="mt-4 text-xs text-muted-foreground">
-            Builders create blocks, Provers generate cryptographic proofs, Validators verify proofs
-          </p>
-        </div>
       </div>
     </section>
   );
