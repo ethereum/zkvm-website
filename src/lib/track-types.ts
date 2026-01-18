@@ -114,6 +114,16 @@ export interface DependencyGraph {
   edges: GraphEdge[];
 }
 
+export interface OpcodeRepricing {
+  opcode: string;
+  description: string;
+  category: 'storage' | 'crypto' | 'calls' | 'memory' | 'computation';
+  currentGas: number;
+  newGas: number;
+  multiplier: number;
+  reason?: string;
+}
+
 export interface CategoryData {
   id: string;
   name: string;
@@ -131,6 +141,8 @@ export interface CategoryData {
   researchPapers?: ResearchPaper[];
   // Dependency graph visualization
   dependencyGraph?: DependencyGraph;
+  // Opcode repricing data
+  opcodeRepricings?: OpcodeRepricing[];
 }
 
 export interface RecentChange {
