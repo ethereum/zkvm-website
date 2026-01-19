@@ -240,4 +240,4 @@ Rather than running benchmarks behind closed doors and presenting a fully-baked 
 
 As we make more progress on many of the *Next steps* described previously, we will have measurements that are closer to a production-ready prover setup under the upcoming Glamsterdam assumptions. This will provide the confidence needed to reach conclusions about which protocol changes are required for repricings.
 
-If you have any questions, feel free to contact [anyone from our team](https://zkevm.ethereum.foundation/#team), and participate in the [EthR&D Discord server](https://discord.gg/6q5TUYN7) in `#l1-zkevm` and `#l1-zkevm-protocol`channels.
+If you have any questions, feel free to contact [anyone from our team](https://zkevm.ethereum.foundation/#team), and participate in the [EthR&D Discord server](https://discord.gg/6q5TUYN7) in _#l1-zkevm_ and _#l1-zkevm-protocol_ channels.
