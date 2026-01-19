@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { ExternalLink } from 'lucide-react';
 import PerformanceMilestones from '@/components/zkvms/PerformanceMilestones';
 import ClientSupportMatrix from '@/components/zkvms/ClientSupportMatrix';
+import RelatedRoadmap from '@/components/zkvms/RelatedRoadmap';
 
 interface ZKVMPageProps {
   params: Promise<{
@@ -134,6 +135,15 @@ export default async function ZKVMPage({ params }: ZKVMPageProps) {
 
         {/* Client Support */}
         <ClientSupportMatrix zkvm={zkvm} clients={trackData.clients} />
+
+        {/* Related Roadmap Items */}
+        <div className="mt-8">
+          <RelatedRoadmap
+            zkvm={zkvm}
+            roadmap={trackData.roadmap}
+            allZKVMs={trackData.zkvms}
+          />
+        </div>
       </div>
     </div>
   );
