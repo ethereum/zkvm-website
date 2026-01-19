@@ -9,16 +9,52 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { RoadmapItem, Client } from '@/lib/track-types';
+import { RoadmapItem, Client, ZKVM } from '@/lib/track-types';
 import { Target, Calendar, Link2, Users } from 'lucide-react';
 
 interface RoadmapViewProps {
   items: RoadmapItem[];
   clients?: Client[];
+  zkvms?: ZKVM[];
 }
 
-export default function RoadmapView({ items, clients = [] }: RoadmapViewProps) {
-  // Helper: Calculate client milestone progress for a roadmap item
+export default function RoadmapView({ items, clients = [], zkvms = [] }: RoadmapViewProps) {
+  // Helper: Calculate progress for roadmap items with applicableType (zkvm/execution/consensus/both)
+  const calculateRoadmapProgress = (item: RoadmapItem): { completed: number; total: number; percentage: number; label: string } | null => {
+    if (!item.milestoneIds || !item.applicableType) {
+      return null;
+    }
+
+    // Only support zkvm type for now (clients use legacy getClientProgress)
+    if (item.applicableType !== 'zkvm') {
+      return null;
+    }
+
+    const applicableItems = zkvms;
+    const label = 'zkVMs';
+
+    if (applicableItems.length === 0) {
+      return null;
+    }
+
+    // Count items that completed ALL milestones
+    const completedItems = applicableItems.filter(impl => {
+      return item.milestoneIds!.every(milestoneId =>
+        impl.milestoneStatuses[milestoneId] === 'complete'
+      );
+    });
+
+    const percentage = Math.round((completedItems.length / applicableItems.length) * 100);
+
+    return {
+      completed: completedItems.length,
+      total: applicableItems.length,
+      percentage,
+      label
+    };
+  };
+
+  // Helper: Calculate client milestone progress for a roadmap item (legacy)
   const getClientProgress = (item: RoadmapItem) => {
     if (!item.relatedClients || item.relatedClients.length === 0) {
       return null;
@@ -188,6 +224,17 @@ export default function RoadmapView({ items, clients = [] }: RoadmapViewProps) {
                                 <span>Target: {item.targetDate}</span>
                               </div>
                             )}
+                            {(() => {
+                              const progress = calculateRoadmapProgress(item);
+                              return progress && (
+                                <div className="flex items-center gap-1.5">
+                                  <Users className="h-4 w-4" />
+                                  <span>
+                                    Progress: {progress.completed}/{progress.total} {progress.label} ({progress.percentage}%)
+                                  </span>
+                                </div>
+                              );
+                            })()}
                             {item.relatedClients && item.relatedClients.length > 0 && (() => {
                               const progress = getClientProgress(item);
                               return progress && (
@@ -206,6 +253,23 @@ export default function RoadmapView({ items, clients = [] }: RoadmapViewProps) {
                               </div>
                             )}
                           </div>
+
+                          {/* Progress indicator */}
+                          {(() => {
+                            const progress = calculateRoadmapProgress(item);
+                            if (!progress) return null;
+
+                            return (
+                              <div className="pl-4 space-y-1 mt-2">
+                                <div className="h-2 bg-muted rounded-full overflow-hidden">
+                                  <div
+                                    className="h-full bg-primary transition-all duration-300"
+                                    style={{ width: `${progress.percentage}%` }}
+                                  />
+                                </div>
+                              </div>
+                            );
+                          })()}
 
                           {/* Dependencies list (if any) */}
                           {item.dependencies && item.dependencies.length > 0 && (
