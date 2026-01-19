@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ArrowRight, BookOpen, Activity, FileText, Network, Cpu } from 'lucide-react';
+import { ArrowRight, BookOpen, Activity, FileText } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
@@ -19,20 +19,6 @@ const navigationCards = [
     iconColor: 'text-green-600'
   },
   {
-    title: 'Ethereum Clients',
-    description: 'Track execution and consensus layer clients integrating witness generation and zkEVM capabilities',
-    href: '/clients',
-    icon: Network,
-    iconColor: 'text-cyan-600'
-  },
-  {
-    title: 'zkVM Implementations',
-    description: 'Zero-knowledge virtual machines powering Ethereum block proving with real-time performance',
-    href: '/zkvms',
-    icon: Cpu,
-    iconColor: 'text-orange-600'
-  },
-  {
     title: 'Read Blog',
     description: 'Technical deep-dives, research updates, and insights from the zkEVM development community',
     href: '/blog',
@@ -43,7 +29,7 @@ const navigationCards = [
 
 export default function NavigationCards() {
   return (
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="grid gap-6 md:grid-cols-3">
       {navigationCards.map((card) => {
         const Icon = card.icon;
         return (
