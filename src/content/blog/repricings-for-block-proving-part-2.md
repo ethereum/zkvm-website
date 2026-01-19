@@ -1,6 +1,6 @@
 ---
 title: "Repricings for block proving (Part 2: The tools and process)"
-date: "2025-12-20"
+date: "2026-01-19"
 excerpt: "In this second part of the series, we dive into the tooling we created for measuring proving times and the process for interpreting the measurements."
 author: "Ignacio Hagopian"
 featured: true
