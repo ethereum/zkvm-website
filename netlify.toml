@@ -1,0 +1,6 @@
+[build]
+  command = "pnpm run build:prod"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "20"
