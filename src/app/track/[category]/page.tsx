@@ -27,9 +27,9 @@ const OpcodePricingTable = dynamic(() => import('@/components/track/OpcodePricin
 });
 
 interface CategoryPageProps {
-  params: {
+  params: Promise<{
     category: string;
-  };
+  }>;
 }
 
 export function generateStaticParams() {
@@ -38,8 +38,9 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: CategoryPageProps) {
-  const category = trackData.categories.find(c => c.id === params.category);
+export async function generateMetadata({ params }: CategoryPageProps) {
+  const { category: categoryId } = await params;
+  const category = trackData.categories.find(c => c.id === categoryId);
 
   if (!category) {
     return {
@@ -53,8 +54,9 @@ export function generateMetadata({ params }: CategoryPageProps) {
   };
 }
 
-export default function CategoryPage({ params }: CategoryPageProps) {
-  const category = trackData.categories.find(c => c.id === params.category);
+export default async function CategoryPage({ params }: CategoryPageProps) {
+  const { category: categoryId } = await params;
+  const category = trackData.categories.find(c => c.id === categoryId);
 
   if (!category) {
     notFound();

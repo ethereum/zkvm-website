@@ -6,9 +6,9 @@ import Breadcrumbs from '@/components/Breadcrumbs';
 import { ExternalLink, GitBranch, CheckCircle2, Circle, Loader2, ArrowLeft } from 'lucide-react';
 
 interface ClientPageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export function generateStaticParams() {
@@ -17,8 +17,9 @@ export function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: ClientPageProps) {
-  const client = trackData.clients.find(c => c.slug === params.slug);
+export async function generateMetadata({ params }: ClientPageProps) {
+  const { slug } = await params;
+  const client = trackData.clients.find(c => c.slug === slug);
 
   if (!client) {
     return {
@@ -32,8 +33,9 @@ export function generateMetadata({ params }: ClientPageProps) {
   };
 }
 
-export default function ClientPage({ params }: ClientPageProps) {
-  const client = trackData.clients.find(c => c.slug === params.slug);
+export default async function ClientPage({ params }: ClientPageProps) {
+  const { slug } = await params;
+  const client = trackData.clients.find(c => c.slug === slug);
 
   if (!client) {
     notFound();
