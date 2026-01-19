@@ -9,16 +9,24 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { RoadmapItem, Client, ZKVM } from '@/lib/track-types';
-import { Target, Calendar, Link2, Users } from 'lucide-react';
+import { RoadmapItem, Client, ZKVM, CommonMilestone } from '@/lib/track-types';
+import { Target, Calendar, Link2, Users, CheckCircle2, Loader2, Circle } from 'lucide-react';
 
 interface RoadmapViewProps {
   items: RoadmapItem[];
   clients?: Client[];
   zkvms?: ZKVM[];
+  commonExecutionMilestones?: CommonMilestone[];
+  commonConsensusMilestones?: CommonMilestone[];
 }
 
-export default function RoadmapView({ items, clients = [], zkvms = [] }: RoadmapViewProps) {
+export default function RoadmapView({
+  items,
+  clients = [],
+  zkvms = [],
+  commonExecutionMilestones = [],
+  commonConsensusMilestones = []
+}: RoadmapViewProps) {
   // Helper: Calculate progress for roadmap items with applicableType (zkvm/execution/consensus/both)
   const calculateRoadmapProgress = (item: RoadmapItem): { completed: number; total: number; percentage: number; label: string } | null => {
     if (!item.milestoneIds || !item.applicableType) {
@@ -316,6 +324,63 @@ export default function RoadmapView({ items, clients = [], zkvms = [] }: Roadmap
                                       </Link>
                                     );
                                   })}
+                                </div>
+                              </div>
+                            );
+                          })()}
+
+                          {/* Common Milestones Progress Matrix */}
+                          {item.commonMilestoneIds && item.commonMilestoneIds.length > 0 && item.relatedClients && item.relatedClients.length > 0 && (() => {
+                            // Get the appropriate common milestones based on applicableType
+                            const commonMilestones = item.applicableType === 'consensus'
+                              ? commonConsensusMilestones
+                              : commonExecutionMilestones;
+
+                            const relevantMilestones = commonMilestones.filter(m => item.commonMilestoneIds?.includes(m.id));
+                            const relatedClientData = clients.filter(c => item.relatedClients?.includes(c.id));
+
+                            if (relevantMilestones.length === 0 || relatedClientData.length === 0) return null;
+
+                            const getMilestoneIcon = (status: string) => {
+                              switch (status) {
+                                case 'completed':
+                                  return <CheckCircle2 className="h-4 w-4 text-green-600" />;
+                                case 'in-progress':
+                                  return <Loader2 className="h-4 w-4 text-blue-600" />;
+                                default:
+                                  return <Circle className="h-4 w-4 text-gray-400" />;
+                              }
+                            };
+
+                            return (
+                              <div className="pt-4 border-t">
+                                <p className="text-xs font-medium text-muted-foreground mb-3">
+                                  Milestone Progress:
+                                </p>
+                                <div className="space-y-3">
+                                  {relevantMilestones.map((milestone) => (
+                                    <div key={milestone.id} className="rounded-lg border p-3 bg-muted/30">
+                                      <div className="mb-2">
+                                        <h4 className="text-sm font-semibold">{milestone.name}</h4>
+                                        <p className="text-xs text-muted-foreground">{milestone.description}</p>
+                                      </div>
+                                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                                        {relatedClientData.map((client) => {
+                                          const status = client.milestoneStatuses[milestone.id] || 'not-started';
+                                          return (
+                                            <Link
+                                              key={client.id}
+                                              href={`/clients/${client.slug}`}
+                                              className="flex items-center gap-1.5 px-2 py-1 rounded bg-background hover:bg-muted/50 transition-colors"
+                                            >
+                                              {getMilestoneIcon(status)}
+                                              <span className="text-xs font-medium truncate">{client.name}</span>
+                                            </Link>
+                                          );
+                                        })}
+                                      </div>
+                                    </div>
+                                  ))}
                                 </div>
                               </div>
                             );

@@ -46,7 +46,13 @@ export default function TrackPage() {
         </div>
 
         {/* Strategic Roadmap */}
-        <RoadmapView items={trackData.roadmap} clients={trackData.clients} zkvms={trackData.zkvms} />
+        <RoadmapView
+          items={trackData.roadmap}
+          clients={trackData.clients}
+          zkvms={trackData.zkvms}
+          commonExecutionMilestones={trackData.commonExecutionMilestones}
+          commonConsensusMilestones={trackData.commonConsensusMilestones}
+        />
       </div>
     </div>
   );
