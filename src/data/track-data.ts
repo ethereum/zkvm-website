@@ -84,6 +84,242 @@ export const trackData: TrackData = {
         { date: '2026-01-05', implementation: 'Jolt', proofTime: 24.5, hardware: 'AWS c6i.8xlarge' },
         { date: '2025-12-30', implementation: 'Jolt', proofTime: 25.8, hardware: 'AWS c6i.8xlarge' },
         { date: '2025-12-25', implementation: 'Jolt', proofTime: 27.2, hardware: 'AWS c6i.8xlarge' },
+      ],
+      opcodeRepricings: [
+        // Storage Operations (High Impact)
+        {
+          opcode: 'SLOAD',
+          description: 'Load word from storage',
+          category: 'storage' as const,
+          currentGas: 2100,
+          newGas: 21000,
+          multiplier: 10,
+          reason: 'Reading state requires merkle proofs'
+        },
+        {
+          opcode: 'SSTORE',
+          description: 'Save word to storage',
+          category: 'storage' as const,
+          currentGas: 20000,
+          newGas: 100000,
+          multiplier: 5,
+          reason: 'Writing state plus proof updates'
+        },
+        {
+          opcode: 'TLOAD',
+          description: 'Load word from transient storage',
+          category: 'storage' as const,
+          currentGas: 100,
+          newGas: 500,
+          multiplier: 5,
+          reason: 'Transient storage reads'
+        },
+        {
+          opcode: 'TSTORE',
+          description: 'Save word to transient storage',
+          category: 'storage' as const,
+          currentGas: 100,
+          newGas: 500,
+          multiplier: 5,
+          reason: 'Transient storage writes'
+        },
+
+        // Crypto & Precompiles (Very High Impact)
+        {
+          opcode: 'KECCAK256',
+          description: 'Compute Keccak-256 hash',
+          category: 'crypto' as const,
+          currentGas: 30,
+          newGas: 300,
+          multiplier: 10,
+          reason: 'Hash proving overhead'
+        },
+        {
+          opcode: 'SHA256',
+          description: 'Compute SHA-256 hash',
+          category: 'crypto' as const,
+          currentGas: 60,
+          newGas: 600,
+          multiplier: 10,
+          reason: 'Precompile proving'
+        },
+        {
+          opcode: 'ECRECOVER',
+          description: 'Recover ECDSA signature',
+          category: 'crypto' as const,
+          currentGas: 3000,
+          newGas: 30000,
+          multiplier: 10,
+          reason: 'Elliptic curve operations'
+        },
+        {
+          opcode: 'MODEXP',
+          description: 'Modular exponentiation',
+          category: 'crypto' as const,
+          currentGas: 200,
+          newGas: 2000,
+          multiplier: 10,
+          reason: 'Complex modular arithmetic'
+        },
+        {
+          opcode: 'BN256ADD',
+          description: 'BN256 elliptic curve addition',
+          category: 'crypto' as const,
+          currentGas: 150,
+          newGas: 1500,
+          multiplier: 10,
+          reason: 'BN256 addition proving'
+        },
+        {
+          opcode: 'BN256MUL',
+          description: 'BN256 elliptic curve multiplication',
+          category: 'crypto' as const,
+          currentGas: 6000,
+          newGas: 60000,
+          multiplier: 10,
+          reason: 'BN256 multiplication proving'
+        },
+        {
+          opcode: 'BN256PAIRING',
+          description: 'BN256 pairing check',
+          category: 'crypto' as const,
+          currentGas: 34000,
+          newGas: 510000,
+          multiplier: 15,
+          reason: 'Pairing check complexity'
+        },
+
+        // Call Operations (Medium Impact)
+        {
+          opcode: 'CALL',
+          description: 'Message call into account',
+          category: 'calls' as const,
+          currentGas: 700,
+          newGas: 3500,
+          multiplier: 5,
+          reason: 'External call overhead'
+        },
+        {
+          opcode: 'DELEGATECALL',
+          description: 'Message call with alternative account code',
+          category: 'calls' as const,
+          currentGas: 700,
+          newGas: 3500,
+          multiplier: 5,
+          reason: 'Delegated execution proving'
+        },
+        {
+          opcode: 'STATICCALL',
+          description: 'Static message call',
+          category: 'calls' as const,
+          currentGas: 700,
+          newGas: 3500,
+          multiplier: 5,
+          reason: 'Read-only call proving'
+        },
+        {
+          opcode: 'CREATE',
+          description: 'Create new contract',
+          category: 'calls' as const,
+          currentGas: 32000,
+          newGas: 64000,
+          multiplier: 2,
+          reason: 'Contract creation complexity'
+        },
+        {
+          opcode: 'CREATE2',
+          description: 'Create new contract with deterministic address',
+          category: 'calls' as const,
+          currentGas: 32000,
+          newGas: 64000,
+          multiplier: 2,
+          reason: 'Deterministic creation proving'
+        },
+
+        // Memory Operations (Low-Medium Impact)
+        {
+          opcode: 'MLOAD',
+          description: 'Load word from memory',
+          category: 'memory' as const,
+          currentGas: 3,
+          newGas: 9,
+          multiplier: 3,
+          reason: 'Memory reads'
+        },
+        {
+          opcode: 'MSTORE',
+          description: 'Save word to memory',
+          category: 'memory' as const,
+          currentGas: 3,
+          newGas: 9,
+          multiplier: 3,
+          reason: 'Memory writes'
+        },
+        {
+          opcode: 'CALLDATACOPY',
+          description: 'Copy input data to memory',
+          category: 'memory' as const,
+          currentGas: 3,
+          newGas: 9,
+          multiplier: 3,
+          reason: 'Calldata copy proving'
+        },
+        {
+          opcode: 'CODECOPY',
+          description: 'Copy code to memory',
+          category: 'memory' as const,
+          currentGas: 3,
+          newGas: 9,
+          multiplier: 3,
+          reason: 'Code copy proving'
+        },
+
+        // Computation (Medium Impact)
+        {
+          opcode: 'EXP',
+          description: 'Exponential operation',
+          category: 'computation' as const,
+          currentGas: 10,
+          newGas: 100,
+          multiplier: 10,
+          reason: 'Exponentiation complexity'
+        },
+        {
+          opcode: 'DIV',
+          description: 'Integer division',
+          category: 'computation' as const,
+          currentGas: 5,
+          newGas: 15,
+          multiplier: 3,
+          reason: 'Division operations'
+        },
+        {
+          opcode: 'MOD',
+          description: 'Modulo operation',
+          category: 'computation' as const,
+          currentGas: 5,
+          newGas: 15,
+          multiplier: 3,
+          reason: 'Modulo operations'
+        },
+        {
+          opcode: 'ADDMOD',
+          description: 'Modular addition',
+          category: 'computation' as const,
+          currentGas: 8,
+          newGas: 24,
+          multiplier: 3,
+          reason: 'Modular addition proving'
+        },
+        {
+          opcode: 'MULMOD',
+          description: 'Modular multiplication',
+          category: 'computation' as const,
+          currentGas: 8,
+          newGas: 24,
+          multiplier: 3,
+          reason: 'Modular multiplication proving'
+        }
       ]
     },
     {
@@ -741,59 +977,244 @@ export const trackData: TrackData = {
       ]
     }
   ],
-  recentChanges: [
+  roadmapItems: [
     {
-      date: '2026-01-18',
+      id: 'production-client-integration',
+      title: 'Production-Ready Client Integration',
+      description: 'Achieve full production readiness for Reth and Geth execution clients with witness generation support',
       category: 'client-integration',
-      description: 'Added interactive dependency graph visualization'
+      priority: 'critical' as const,
+      status: 'in-progress' as const,
+      targetDate: '2026-Q2',
+      dependencies: [],
+      relatedClients: ['reth', 'geth']
     },
     {
-      date: '2026-01-18',
+      id: 'real-time-proving-milestone',
+      title: 'Sub-12 Second Block Proving',
+      description: 'Optimize zkVM performance to prove Ethereum blocks within the 12-second slot time for real-time validation',
       category: 'real-time-proving',
-      description: 'Added benchmark visualization with performance trends',
-      milestoneId: 'sub-15s-proving'
+      priority: 'critical' as const,
+      status: 'in-progress' as const,
+      targetDate: '2026-Q3',
+      dependencies: ['opcode-repricing']
     },
     {
-      date: '2026-01-18',
+      id: 'comprehensive-security-audits',
+      title: 'Complete Security Audit Program',
+      description: 'Conduct comprehensive security audits across all zkVM implementations and prover infrastructure',
       category: 'economic-security',
-      description: 'Added audit tracking and research publications',
-      milestoneId: 'formal-verification'
+      priority: 'high' as const,
+      status: 'in-progress' as const,
+      targetDate: '2026-Q2'
     },
     {
-      date: '2026-01-18',
-      category: 'client-integration',
-      description: 'Improved mobile responsiveness for client cards',
-      milestoneId: 'geth-readiness'
-    },
-    {
-      date: '2026-01-17',
+      id: 'evm-test-compliance',
+      title: '100% EVM Test Suite Compliance',
+      description: 'Achieve complete compliance with the Ethereum test suite across all zkVM implementations',
       category: 'testing-validation',
-      description: 'Added zkVM comparison table with 5 implementations',
-      milestoneId: 'riscv-compliance'
+      priority: 'high' as const,
+      status: 'in-progress' as const,
+      targetDate: '2026-Q3'
     },
     {
-      date: '2026-01-17',
+      id: 'witness-generation-integration',
+      title: 'Universal Witness Generation',
+      description: 'Integrate witness generation capabilities in all major Ethereum execution clients (Reth, Geth, Nethermind, Besu)',
       category: 'client-integration',
-      description: 'Added detailed tracking for 10 Ethereum clients',
-      milestoneId: 'geth-readiness'
+      priority: 'high' as const,
+      status: 'in-progress' as const,
+      targetDate: '2026-Q3',
+      dependencies: ['production-client-integration'],
+      relatedClients: ['reth', 'geth', 'nethermind', 'besu', 'erigon', 'ethrex']
     },
     {
-      date: '2026-01-17',
-      category: 'client-integration',
-      description: 'Reth achieves spec compliance (4/4 criteria)',
-      milestoneId: 'reth-readiness'
-    },
-    {
-      date: '2026-01-17',
+      id: 'opcode-repricing',
+      title: 'Opcode Gas Repricing Implementation',
+      description: 'Implement and deploy EVM opcode gas repricing to align costs with zero-knowledge proving overhead',
       category: 'real-time-proving',
-      description: 'Added benchmark visualization placeholders',
-      milestoneId: 'sub-15s-proving'
+      priority: 'medium' as const,
+      status: 'in-progress' as const,
+      targetDate: '2026-Q4'
     },
     {
-      date: '2026-01-17',
+      id: 'economic-sustainability',
+      title: 'Economic Sustainability Model',
+      description: 'Establish long-term economic model for prover incentives, validator rewards, and network sustainability',
       category: 'economic-security',
-      description: 'Added audit and research tracking section',
-      milestoneId: 'prover-market-design'
+      priority: 'medium' as const,
+      status: 'not-started' as const,
+      targetDate: '2027-Q1'
+    }
+  ],
+  clients: [
+    {
+      id: 'reth',
+      name: 'Reth',
+      slug: 'reth',
+      type: 'execution' as const,
+      description: 'Modular, high-performance Ethereum execution client written in Rust',
+      status: 'production' as const,
+      language: 'Rust',
+      repository: 'https://github.com/paradigmxyz/reth',
+      documentation: 'https://paradigmxyz.github.io/reth',
+      team: 'Paradigm',
+      license: 'MIT/Apache-2.0',
+      milestones: [
+        {
+          id: 'reth-witness-generation',
+          name: 'Witness Generation Support',
+          status: 'completed' as const,
+          description: 'Implement execution witness generation for zkEVM proving'
+        },
+        {
+          id: 'reth-spec-compliance',
+          name: 'Full Spec Compliance',
+          status: 'completed' as const,
+          description: 'Achieve 100% Ethereum specification compliance'
+        },
+        {
+          id: 'reth-production-ready',
+          name: 'Production Readiness',
+          status: 'in-progress' as const,
+          description: 'Stabilize for mainnet deployment with zkEVM support'
+        },
+        {
+          id: 'reth-performance-optimization',
+          name: 'Performance Optimization',
+          status: 'in-progress' as const,
+          description: 'Optimize witness generation performance for real-time proving'
+        }
+      ]
+    },
+    {
+      id: 'geth',
+      name: 'Geth',
+      slug: 'geth',
+      type: 'execution' as const,
+      description: 'Official Go implementation of the Ethereum protocol',
+      status: 'production' as const,
+      language: 'Go',
+      repository: 'https://github.com/ethereum/go-ethereum',
+      documentation: 'https://geth.ethereum.org',
+      team: 'Ethereum Foundation',
+      license: 'LGPL-3.0',
+      milestones: [
+        {
+          id: 'geth-witness-api',
+          name: 'Witness Generation API',
+          status: 'in-progress' as const,
+          description: 'Add API endpoints for execution witness generation'
+        },
+        {
+          id: 'geth-state-access',
+          name: 'State Access Optimization',
+          status: 'in-progress' as const,
+          description: 'Optimize state access patterns for efficient witness generation'
+        },
+        {
+          id: 'geth-zkvm-integration',
+          name: 'zkVM Integration',
+          status: 'not-started' as const,
+          description: 'Integrate with zkVM provers for block validation'
+        }
+      ]
+    },
+    {
+      id: 'nethermind',
+      name: 'Nethermind',
+      slug: 'nethermind',
+      type: 'execution' as const,
+      description: 'High-performance .NET Ethereum client',
+      status: 'production' as const,
+      language: 'C#',
+      repository: 'https://github.com/NethermindEth/nethermind',
+      documentation: 'https://docs.nethermind.io',
+      team: 'Nethermind',
+      license: 'LGPL-3.0',
+      milestones: [
+        {
+          id: 'nethermind-witness-support',
+          name: 'Witness Generation Support',
+          status: 'in-progress' as const,
+          description: 'Implement execution witness generation capabilities'
+        },
+        {
+          id: 'nethermind-performance',
+          name: 'Performance Benchmarking',
+          status: 'not-started' as const,
+          description: 'Benchmark witness generation performance'
+        }
+      ]
+    },
+    {
+      id: 'besu',
+      name: 'Besu',
+      slug: 'besu',
+      type: 'execution' as const,
+      description: 'Enterprise-grade Java Ethereum client',
+      status: 'production' as const,
+      language: 'Java',
+      repository: 'https://github.com/hyperledger/besu',
+      documentation: 'https://besu.hyperledger.org',
+      team: 'Hyperledger',
+      license: 'Apache-2.0',
+      milestones: [
+        {
+          id: 'besu-witness-exploration',
+          name: 'Witness Generation Exploration',
+          status: 'not-started' as const,
+          description: 'Explore witness generation implementation strategies'
+        }
+      ]
+    },
+    {
+      id: 'erigon',
+      name: 'Erigon',
+      slug: 'erigon',
+      type: 'execution' as const,
+      description: 'Efficiency-focused Ethereum client',
+      status: 'production' as const,
+      language: 'Go',
+      repository: 'https://github.com/ledgerwatch/erigon',
+      documentation: 'https://github.com/ledgerwatch/erigon#erigon',
+      team: 'Erigon',
+      license: 'LGPL-3.0',
+      milestones: [
+        {
+          id: 'erigon-witness-research',
+          name: 'Witness Generation Research',
+          status: 'not-started' as const,
+          description: 'Research witness generation integration approach'
+        }
+      ]
+    },
+    {
+      id: 'ethrex',
+      name: 'Ethrex',
+      slug: 'ethrex',
+      type: 'execution' as const,
+      description: 'Rust-based Ethereum execution client focused on simplicity',
+      status: 'in-development' as const,
+      language: 'Rust',
+      repository: 'https://github.com/lambdaclass/ethrex',
+      documentation: 'https://github.com/lambdaclass/ethrex#readme',
+      team: 'Lambda Class',
+      license: 'MIT',
+      milestones: [
+        {
+          id: 'ethrex-core-development',
+          name: 'Core Development',
+          status: 'in-progress' as const,
+          description: 'Develop core execution engine functionality'
+        },
+        {
+          id: 'ethrex-witness-design',
+          name: 'Witness Generation Design',
+          status: 'not-started' as const,
+          description: 'Design witness generation architecture'
+        }
+      ]
     }
   ]
 };

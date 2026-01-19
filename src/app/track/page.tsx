@@ -1,6 +1,6 @@
 import { trackData } from '@/data/track-data';
 import CategoryCard from '@/components/CategoryCard';
-import RecentChangesFeed from '@/components/RecentChangesFeed';
+import RoadmapView from '@/components/RoadmapView';
 
 export const metadata = {
   title: 'Track Progress - zkEVM Initiative',
@@ -24,8 +24,8 @@ export default function TrackPage() {
           ))}
         </div>
 
-        {/* Recent Changes Feed */}
-        <RecentChangesFeed changes={trackData.recentChanges} />
+        {/* Strategic Roadmap */}
+        <RoadmapView items={trackData.roadmapItems} clients={trackData.clients} />
       </div>
     </div>
   );

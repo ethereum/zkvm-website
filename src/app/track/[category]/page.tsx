@@ -7,12 +7,21 @@ import { ClientProgressCard } from '@/components/track/ClientProgressCard';
 import { ZKVMComparisonTable } from '@/components/track/ZKVMComparisonTable';
 import AuditStatus from '@/components/track/AuditStatus';
 import DependencyGraph from '@/components/track/DependencyGraph';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 // Dynamic imports for chart components (reduces initial bundle)
 const BenchmarkChart = dynamic(() => import('@/components/track/BenchmarkChart'), {
   loading: () => (
     <div className="rounded-lg border p-8 text-center">
       <p className="text-sm text-muted-foreground">Loading performance data...</p>
+    </div>
+  )
+});
+
+const OpcodePricingTable = dynamic(() => import('@/components/track/OpcodePricingTable'), {
+  loading: () => (
+    <div className="rounded-lg border p-8 text-center">
+      <p className="text-sm text-muted-foreground">Loading opcode pricing data...</p>
     </div>
   )
 });
@@ -72,9 +81,20 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         <div className="space-y-8">
           <MilestoneChecklist milestones={category.milestones} />
 
-          {/* Benchmarks for real-time-proving */}
-          {category.id === 'real-time-proving' && category.benchmarks && (
-            <BenchmarkChart benchmarks={category.benchmarks} />
+          {/* Tabbed interface for real-time-proving */}
+          {category.id === 'real-time-proving' && (category.benchmarks || category.opcodeRepricings) && (
+            <Tabs defaultValue="benchmarks" className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="benchmarks">Performance Benchmarks</TabsTrigger>
+                <TabsTrigger value="repricing">Gas Repricing</TabsTrigger>
+              </TabsList>
+              <TabsContent value="benchmarks" className="mt-6">
+                {category.benchmarks && <BenchmarkChart benchmarks={category.benchmarks} />}
+              </TabsContent>
+              <TabsContent value="repricing" className="mt-6">
+                {category.opcodeRepricings && <OpcodePricingTable repricings={category.opcodeRepricings} />}
+              </TabsContent>
+            </Tabs>
           )}
 
           {/* Dependency graph for client-integration */}

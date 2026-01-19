@@ -145,14 +145,40 @@ export interface CategoryData {
   opcodeRepricings?: OpcodeRepricing[];
 }
 
-export interface RecentChange {
-  date: string;
-  category: string;
+export interface Client {
+  id: string;
+  name: string;
+  slug: string;
+  type: 'execution' | 'consensus';
   description: string;
-  milestoneId?: string;
+  status: 'production' | 'in-development' | 'planning';
+  language: string;
+  repository: string;
+  documentation?: string;
+  milestones: {
+    id: string;
+    name: string;
+    status: 'not-started' | 'in-progress' | 'completed';
+    description?: string;
+  }[];
+  team?: string;
+  license?: string;
+}
+
+export interface RoadmapItem {
+  id: string;
+  title: string;
+  description: string;
+  category: string; // Category ID (client-integration, real-time-proving, etc.)
+  priority: 'critical' | 'high' | 'medium' | 'low';
+  status: 'not-started' | 'in-progress' | 'completed';
+  targetDate?: string;
+  dependencies?: string[]; // IDs of other roadmap items
+  relatedClients?: string[]; // IDs of related clients
 }
 
 export interface TrackData {
   categories: CategoryData[];
-  recentChanges: RecentChange[];
+  roadmapItems: RoadmapItem[];
+  clients: Client[];
 }
