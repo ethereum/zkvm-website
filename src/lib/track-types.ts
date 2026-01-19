@@ -204,6 +204,7 @@ export interface RoadmapItem {
   dependencies?: string[]; // IDs of other roadmap items
   relatedClients?: string[]; // IDs of related clients
   milestoneIds?: string[]; // IDs of milestones this roadmap item tracks
+  commonMilestoneIds?: string[]; // IDs of common milestones (execution or consensus) this roadmap item tracks
   applicableType?: 'execution' | 'consensus' | 'zkvm' | 'both'; // Type of implementations this applies to
 }
 

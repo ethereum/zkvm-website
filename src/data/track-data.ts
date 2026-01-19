@@ -958,7 +958,9 @@ export const trackData: TrackData = {
       status: 'in-progress' as const,
       targetDate: '2026-Q2',
       dependencies: [],
-      relatedClients: ['reth', 'geth']
+      relatedClients: ['reth', 'geth'],
+      commonMilestoneIds: ['witness-generation-api', 'state-access-optimization', 'zkvm-integration', 'performance-benchmarking'],
+      applicableType: 'execution' as const
     },
     {
       id: 'real-time-proving-milestone',
@@ -1019,7 +1021,9 @@ export const trackData: TrackData = {
       status: 'in-progress' as const,
       targetDate: '2026-Q3',
       dependencies: ['production-client-integration'],
-      relatedClients: ['reth', 'geth', 'nethermind', 'besu', 'erigon', 'ethrex']
+      relatedClients: ['reth', 'geth', 'nethermind', 'besu', 'erigon', 'ethrex'],
+      commonMilestoneIds: ['witness-generation-api', 'state-access-optimization'],
+      applicableType: 'execution' as const
     },
     {
       id: 'opcode-repricing',
@@ -1029,6 +1033,18 @@ export const trackData: TrackData = {
       priority: 'medium' as const,
       status: 'in-progress' as const,
       targetDate: '2026-Q4'
+    },
+    {
+      id: 'consensus-client-integration',
+      title: 'Consensus Client Proof Verification',
+      description: 'Integrate zkEVM proof verification into all major consensus layer clients',
+      category: 'client-integration',
+      priority: 'critical' as const,
+      status: 'not-started' as const,
+      targetDate: '2026-Q4',
+      relatedClients: ['teku', 'prysm', 'lighthouse', 'lodestar', 'nimbus'],
+      commonMilestoneIds: ['proof-verification', 'epbs-support', 'performance-optimization'],
+      applicableType: 'consensus' as const
     },
     {
       id: 'economic-sustainability',
