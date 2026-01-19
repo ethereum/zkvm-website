@@ -75,7 +75,12 @@ export default function BenchmarkChart({ benchmarks }: BenchmarkChartProps) {
                 />
                 <Tooltip
                   labelFormatter={(date) => new Date(date).toLocaleDateString()}
-                  formatter={(value: number) => [`${value.toFixed(1)}s`, 'Proof Time']}
+                  formatter={(value) => {
+                    if (typeof value === 'number') {
+                      return [`${value.toFixed(1)}s`, 'Proof Time'];
+                    }
+                    return ['N/A', 'Proof Time'];
+                  }}
                 />
                 <Legend />
                 {implementations.map(impl => (
