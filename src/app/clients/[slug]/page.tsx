@@ -100,8 +100,19 @@ export default async function ClientPage({ params }: ClientPageProps) {
         {/* Client header */}
         <div className="mb-8">
           <div className="flex items-start justify-between gap-4 mb-4">
-            <h1 className="text-4xl font-bold">{client.name}</h1>
-            <span className={`rounded-full px-3 py-1 text-sm font-semibold capitalize ${getStatusColor(client.status)}`}>
+            <div className="flex-1">
+              <h1 className="text-4xl font-bold mb-3">{client.name}</h1>
+              <div className="flex gap-2">
+                <span className={`rounded-full px-3 py-1 text-sm font-semibold ${
+                  client.type === 'execution'
+                    ? 'bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-200'
+                    : 'bg-cyan-100 text-cyan-800 dark:bg-cyan-950 dark:text-cyan-200'
+                }`}>
+                  {client.type === 'execution' ? 'Execution Layer' : 'Consensus Layer'}
+                </span>
+              </div>
+            </div>
+            <span className={`rounded-full px-3 py-1 text-sm font-semibold capitalize whitespace-nowrap ${getStatusColor(client.status)}`}>
               {client.status.replace('-', ' ')}
             </span>
           </div>

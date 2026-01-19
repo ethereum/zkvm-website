@@ -1156,6 +1156,142 @@ export const trackData: TrackData = {
           description: 'Design witness generation architecture'
         }
       ]
+    },
+    // Consensus Layer Clients
+    {
+      id: 'teku',
+      name: 'Teku',
+      slug: 'teku',
+      type: 'consensus' as const,
+      description: 'Enterprise-grade Java consensus client by Consensys',
+      status: 'production' as const,
+      language: 'Java',
+      repository: 'https://github.com/ConsenSys/teku',
+      documentation: 'https://docs.teku.consensys.net',
+      team: 'Consensys',
+      license: 'Apache-2.0',
+      milestones: [
+        {
+          id: 'teku-proof-integration',
+          name: 'Proof Verification Integration',
+          status: 'not-started' as const,
+          description: 'Integrate zkEVM proof verification into consensus validation'
+        },
+        {
+          id: 'teku-epbs-support',
+          name: 'ePBS Support',
+          status: 'not-started' as const,
+          description: 'Implement enshrined Proposer-Builder Separation'
+        }
+      ]
+    },
+    {
+      id: 'prysm',
+      name: 'Prysm',
+      slug: 'prysm',
+      type: 'consensus' as const,
+      description: 'Go implementation of Ethereum consensus by Prysmatic Labs',
+      status: 'production' as const,
+      language: 'Go',
+      repository: 'https://github.com/prysmaticlabs/prysm',
+      documentation: 'https://docs.prylabs.network',
+      team: 'Prysmatic Labs',
+      license: 'GPL-3.0',
+      milestones: [
+        {
+          id: 'prysm-proof-verification',
+          name: 'Proof Verification',
+          status: 'not-started' as const,
+          description: 'Add zkEVM proof verification to block validation'
+        },
+        {
+          id: 'prysm-performance',
+          name: 'Performance Optimization',
+          status: 'not-started' as const,
+          description: 'Optimize proof verification performance'
+        }
+      ]
+    },
+    {
+      id: 'lighthouse',
+      name: 'Lighthouse',
+      slug: 'lighthouse',
+      type: 'consensus' as const,
+      description: 'Rust Ethereum consensus client by Sigma Prime',
+      status: 'production' as const,
+      language: 'Rust',
+      repository: 'https://github.com/sigp/lighthouse',
+      documentation: 'https://lighthouse-book.sigmaprime.io',
+      team: 'Sigma Prime',
+      license: 'Apache-2.0',
+      milestones: [
+        {
+          id: 'lighthouse-proof-integration',
+          name: 'Proof Verification Integration',
+          status: 'not-started' as const,
+          description: 'Integrate zkEVM proof verification into consensus'
+        },
+        {
+          id: 'lighthouse-rust-optimization',
+          name: 'Rust Proof Optimization',
+          status: 'not-started' as const,
+          description: 'Leverage Rust for efficient proof verification'
+        }
+      ]
+    },
+    {
+      id: 'lodestar',
+      name: 'Lodestar',
+      slug: 'lodestar',
+      type: 'consensus' as const,
+      description: 'TypeScript consensus client by ChainSafe',
+      status: 'production' as const,
+      language: 'TypeScript',
+      repository: 'https://github.com/ChainSafe/lodestar',
+      documentation: 'https://chainsafe.github.io/lodestar',
+      team: 'ChainSafe',
+      license: 'LGPL-3.0',
+      milestones: [
+        {
+          id: 'lodestar-proof-support',
+          name: 'Proof Verification Support',
+          status: 'not-started' as const,
+          description: 'Add zkEVM proof verification capabilities'
+        },
+        {
+          id: 'lodestar-wasm-integration',
+          name: 'WASM Integration',
+          status: 'not-started' as const,
+          description: 'Explore WASM-based proof verification'
+        }
+      ]
+    },
+    {
+      id: 'nimbus',
+      name: 'Nimbus',
+      slug: 'nimbus',
+      type: 'consensus' as const,
+      description: 'Lightweight Nim consensus client by Status',
+      status: 'production' as const,
+      language: 'Nim',
+      repository: 'https://github.com/status-im/nimbus-eth2',
+      documentation: 'https://nimbus.guide',
+      team: 'Status',
+      license: 'Apache-2.0 / MIT',
+      milestones: [
+        {
+          id: 'nimbus-proof-verification',
+          name: 'Proof Verification',
+          status: 'not-started' as const,
+          description: 'Implement zkEVM proof verification for lightweight clients'
+        },
+        {
+          id: 'nimbus-resource-optimization',
+          name: 'Resource Optimization',
+          status: 'not-started' as const,
+          description: 'Optimize proof verification for resource-constrained environments'
+        }
+      ]
     }
   ],
   zkvms: [

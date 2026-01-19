@@ -37,12 +37,23 @@ export default function ClientCard({ client }: ClientCardProps) {
       <Card className="h-full hover:bg-muted/30 transition-colors cursor-pointer">
         <CardHeader>
           <div className="flex items-start justify-between gap-2 mb-2">
-            <CardTitle className="text-xl">{client.name}</CardTitle>
-            <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize ${getStatusColor(client.status)}`}>
+            <div className="flex-1">
+              <CardTitle className="text-xl mb-2">{client.name}</CardTitle>
+              <div className="flex gap-2">
+                <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                  client.type === 'execution'
+                    ? 'bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-200'
+                    : 'bg-cyan-100 text-cyan-800 dark:bg-cyan-950 dark:text-cyan-200'
+                }`}>
+                  {client.type === 'execution' ? 'Execution Layer' : 'Consensus Layer'}
+                </span>
+              </div>
+            </div>
+            <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize whitespace-nowrap ${getStatusColor(client.status)}`}>
               {client.status.replace('-', ' ')}
             </span>
           </div>
-          <CardDescription>{client.description}</CardDescription>
+          <CardDescription className="mt-2">{client.description}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Technical details */}
