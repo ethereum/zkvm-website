@@ -9,8 +9,6 @@ export default function MinimalHeader() {
   const navItems = [
     { label: 'Learn', href: '/learn' },
     { label: 'Track', href: '/track' },
-    { label: 'Clients', href: '/clients' },
-    { label: 'zkVMs', href: '/zkvms' },
     { label: 'Blog', href: '/blog' }
   ];
 
