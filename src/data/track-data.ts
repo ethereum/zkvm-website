@@ -61,6 +61,12 @@ export const trackData: TrackData = {
             target: 15,
             unit: 'seconds'
           }
+        },
+        {
+          id: 'hardware-acceleration',
+          name: 'Hardware acceleration deployed',
+          description: 'GPU-optimized proving infrastructure deployed and operational',
+          status: 'in-progress'
         }
       ],
       benchmarks: [
@@ -977,7 +983,7 @@ export const trackData: TrackData = {
       ]
     }
   ],
-  roadmapItems: [
+  roadmap: [
     {
       id: 'production-client-integration',
       title: 'Production-Ready Client Integration',
@@ -1215,6 +1221,67 @@ export const trackData: TrackData = {
           description: 'Design witness generation architecture'
         }
       ]
+    }
+  ],
+  zkvms: [
+    {
+      id: 'sp1',
+      name: 'SP1',
+      description: 'High-performance zkVM optimized for Ethereum block proving',
+      provingSystem: 'STARK',
+      language: 'Rust',
+      repository: 'https://github.com/succinctlabs/sp1',
+      website: 'https://succinctlabs.github.io/sp1/',
+      maintainer: 'Succinct',
+      milestoneStatuses: {
+        'sub-15s-proving': 'complete',
+        'hardware-acceleration': 'complete'
+      },
+      clientSupport: {
+        'reth': 'complete',
+        'ethrex': 'complete',
+        'geth': 'in-progress',
+        'nethermind': 'not-started'
+      }
+    },
+    {
+      id: 'risc-zero',
+      name: 'RISC Zero',
+      description: 'General-purpose zkVM based on the RISC-V instruction set',
+      provingSystem: 'STARK',
+      language: 'Rust',
+      repository: 'https://github.com/risc0/risc0',
+      website: 'https://risczero.com',
+      maintainer: 'RISC Zero',
+      milestoneStatuses: {
+        'sub-15s-proving': 'complete',
+        'hardware-acceleration': 'in-progress'
+      },
+      clientSupport: {
+        'reth': 'complete',
+        'ethrex': 'in-progress',
+        'geth': 'in-progress',
+        'nethermind': 'not-started'
+      }
+    },
+    {
+      id: 'jolt',
+      name: 'Jolt',
+      description: 'zkVM using lookup arguments for efficient proving',
+      provingSystem: 'Lookup',
+      language: 'Rust',
+      repository: 'https://github.com/a16z/jolt',
+      maintainer: 'a16z crypto',
+      milestoneStatuses: {
+        'sub-15s-proving': 'in-progress',
+        'hardware-acceleration': 'not-started'
+      },
+      clientSupport: {
+        'reth': 'in-progress',
+        'ethrex': 'not-started',
+        'geth': 'not-started',
+        'nethermind': 'not-started'
+      }
     }
   ]
 };

@@ -50,7 +50,7 @@ export default async function ClientPage({ params }: ClientPageProps) {
     : 0;
 
   // Find related roadmap items
-  const relatedRoadmapItems = trackData.roadmapItems.filter(
+  const relatedRoadmapItems = trackData.roadmap.filter(
     item => item.relatedClients?.includes(client.id)
   );
 

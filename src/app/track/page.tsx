@@ -25,7 +25,7 @@ export default function TrackPage() {
         </div>
 
         {/* Strategic Roadmap */}
-        <RoadmapView items={trackData.roadmapItems} clients={trackData.clients} />
+        <RoadmapView items={trackData.roadmap} clients={trackData.clients} />
       </div>
     </div>
   );
