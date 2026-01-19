@@ -774,11 +774,11 @@ export const trackData: TrackData = {
     },
     {
       id: 'testing-validation',
-      name: 'Testing & Validation',
-      description: 'Test coverage, RISC-V compliance, and specification conformance',
+      name: 'zkVM Integration',
+      description: 'zkVM implementations, test coverage, performance milestones, and client support',
       workstream: null,
       icon: 'check-circle',
-      lastUpdated: '2026-01-17',
+      lastUpdated: '2026-01-19',
       milestones: [
         {
           id: 'riscv-compliance',
