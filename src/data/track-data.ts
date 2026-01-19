@@ -1006,6 +1006,28 @@ export const trackData: TrackData = {
       dependencies: ['opcode-repricing']
     },
     {
+      id: 'sub-15s-proving',
+      title: 'Achieve sub-15s block proving',
+      description: 'Generate proof for full Ethereum block in under 15 seconds on defined hardware',
+      category: 'real-time-proving',
+      targetDate: 'Q2 2026',
+      priority: 'critical' as const,
+      status: 'in-progress' as const,
+      milestoneIds: ['sub-15s-proving'],
+      applicableType: 'zkvm' as const
+    },
+    {
+      id: 'hardware-acceleration',
+      title: 'Hardware acceleration deployed',
+      description: 'GPU-optimized proving infrastructure deployed and operational',
+      category: 'real-time-proving',
+      targetDate: 'Q3 2026',
+      priority: 'high' as const,
+      status: 'not-started' as const,
+      milestoneIds: ['hardware-acceleration'],
+      applicableType: 'zkvm' as const
+    },
+    {
       id: 'comprehensive-security-audits',
       title: 'Complete Security Audit Program',
       description: 'Conduct comprehensive security audits across all zkVM implementations and prover infrastructure',
