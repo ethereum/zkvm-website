@@ -45,7 +45,7 @@ export const trackData: TrackData = {
   categories: [
     {
       id: 'real-time-proving',
-      name: 'Real-Time Proving',
+      name: 'Benchmarks',
       description: 'Prover performance, benchmarks, and hardware acceleration for sub-12s proof generation',
       workstream: 1,
       icon: 'zap',
