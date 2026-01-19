@@ -6,6 +6,7 @@ import MilestoneChecklist from '@/components/MilestoneChecklist';
 import { ClientProgressCard } from '@/components/track/ClientProgressCard';
 import { ZKVMComparisonTable } from '@/components/track/ZKVMComparisonTable';
 import ZKVMProgressCard from '@/components/zkvms/ZKVMProgressCard';
+import ClientCard from '@/components/ClientCard';
 import AuditStatus from '@/components/track/AuditStatus';
 import DependencyGraph from '@/components/track/DependencyGraph';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -134,6 +135,42 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                       .filter(client => client.type === 'consensus')
                       .map(client => (
                         <ClientProgressCard key={client.name} client={client} />
+                      ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Client Integration - Client Progress Cards */}
+          {category.id === 'client-integration' && trackData.clients && trackData.clients.length > 0 && (
+            <div className="space-y-6">
+              <div className="border-t pt-8">
+                <h2 className="text-2xl font-bold mb-2">Client Integration Progress</h2>
+                <p className="text-muted-foreground mb-6">
+                  Track milestone completion and zkEVM readiness for each Ethereum client
+                </p>
+
+                {/* Execution Clients */}
+                <div className="mb-8">
+                  <h3 className="text-lg font-semibold mb-4">Execution Layer Clients</h3>
+                  <div className="grid gap-6 md:grid-cols-2">
+                    {trackData.clients
+                      .filter(client => client.type === 'execution')
+                      .map(client => (
+                        <ClientCard key={client.id} client={client} />
+                      ))}
+                  </div>
+                </div>
+
+                {/* Consensus Clients */}
+                <div>
+                  <h3 className="text-lg font-semibold mb-4">Consensus Layer Clients</h3>
+                  <div className="grid gap-6 md:grid-cols-2">
+                    {trackData.clients
+                      .filter(client => client.type === 'consensus')
+                      .map(client => (
+                        <ClientCard key={client.id} client={client} />
                       ))}
                   </div>
                 </div>
