@@ -147,6 +147,13 @@ export interface CategoryData {
 
 export type MilestoneStatus = 'complete' | 'in-progress' | 'not-started' | 'blocked';
 
+export interface CommonMilestone {
+  id: string;
+  name: string;
+  description: string;
+  priority?: 'critical' | 'high' | 'medium' | 'low';
+}
+
 export interface Client {
   id: string;
   name: string;
@@ -157,12 +164,10 @@ export interface Client {
   language: string;
   repository: string;
   documentation?: string;
-  milestones: {
-    id: string;
-    name: string;
-    status: 'not-started' | 'in-progress' | 'completed';
-    description?: string;
-  }[];
+  // Track progress against common milestones
+  milestoneStatuses: {
+    [milestoneId: string]: 'not-started' | 'in-progress' | 'completed';
+  };
   team?: string;
   license?: string;
 }
@@ -205,6 +210,8 @@ export interface RoadmapItem {
 export interface TrackData {
   categories: CategoryData[];
   roadmap: RoadmapItem[];
+  commonExecutionMilestones: CommonMilestone[];
+  commonConsensusMilestones: CommonMilestone[];
   clients: Client[];
   zkvms: ZKVM[];
 }

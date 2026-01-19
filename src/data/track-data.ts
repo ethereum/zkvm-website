@@ -1,4 +1,54 @@
-import { TrackData } from '@/lib/track-types';
+import { TrackData, CommonMilestone } from '@/lib/track-types';
+
+// Common milestones that all execution layer clients must complete
+const commonExecutionMilestones: CommonMilestone[] = [
+  {
+    id: 'witness-generation-api',
+    name: 'Witness Generation API',
+    description: 'Implement API endpoints for execution witness generation',
+    priority: 'critical'
+  },
+  {
+    id: 'state-access-optimization',
+    name: 'State Access Optimization',
+    description: 'Optimize state access patterns for efficient witness generation',
+    priority: 'high'
+  },
+  {
+    id: 'zkvm-integration',
+    name: 'zkVM Integration',
+    description: 'Integrate with zkVM provers for block validation',
+    priority: 'critical'
+  },
+  {
+    id: 'performance-benchmarking',
+    name: 'Performance Benchmarking',
+    description: 'Benchmark witness generation performance and optimize',
+    priority: 'medium'
+  }
+];
+
+// Common milestones that all consensus layer clients must complete
+const commonConsensusMilestones: CommonMilestone[] = [
+  {
+    id: 'proof-verification',
+    name: 'Proof Verification Integration',
+    description: 'Integrate zkEVM proof verification into consensus validation',
+    priority: 'critical'
+  },
+  {
+    id: 'epbs-support',
+    name: 'ePBS Support',
+    description: 'Implement enshrined Proposer-Builder Separation',
+    priority: 'high'
+  },
+  {
+    id: 'performance-optimization',
+    name: 'Performance Optimization',
+    description: 'Optimize proof verification for production readiness',
+    priority: 'high'
+  }
+];
 
 const executionCriteria = [
   {
@@ -896,6 +946,8 @@ export const trackData: TrackData = {
       ]
     }
   ],
+  commonExecutionMilestones,
+  commonConsensusMilestones,
   roadmap: [
     {
       id: 'production-client-integration',
@@ -1001,32 +1053,12 @@ export const trackData: TrackData = {
       documentation: 'https://paradigmxyz.github.io/reth',
       team: 'Paradigm',
       license: 'MIT/Apache-2.0',
-      milestones: [
-        {
-          id: 'reth-witness-generation',
-          name: 'Witness Generation Support',
-          status: 'completed' as const,
-          description: 'Implement execution witness generation for zkEVM proving'
-        },
-        {
-          id: 'reth-spec-compliance',
-          name: 'Full Spec Compliance',
-          status: 'completed' as const,
-          description: 'Achieve 100% Ethereum specification compliance'
-        },
-        {
-          id: 'reth-production-ready',
-          name: 'Production Readiness',
-          status: 'in-progress' as const,
-          description: 'Stabilize for mainnet deployment with zkEVM support'
-        },
-        {
-          id: 'reth-performance-optimization',
-          name: 'Performance Optimization',
-          status: 'in-progress' as const,
-          description: 'Optimize witness generation performance for real-time proving'
-        }
-      ]
+      milestoneStatuses: {
+        'witness-generation-api': 'completed',
+        'state-access-optimization': 'completed',
+        'zkvm-integration': 'completed',
+        'performance-benchmarking': 'in-progress'
+      }
     },
     {
       id: 'geth',
@@ -1040,26 +1072,12 @@ export const trackData: TrackData = {
       documentation: 'https://geth.ethereum.org',
       team: 'Ethereum Foundation',
       license: 'LGPL-3.0',
-      milestones: [
-        {
-          id: 'geth-witness-api',
-          name: 'Witness Generation API',
-          status: 'in-progress' as const,
-          description: 'Add API endpoints for execution witness generation'
-        },
-        {
-          id: 'geth-state-access',
-          name: 'State Access Optimization',
-          status: 'in-progress' as const,
-          description: 'Optimize state access patterns for efficient witness generation'
-        },
-        {
-          id: 'geth-zkvm-integration',
-          name: 'zkVM Integration',
-          status: 'not-started' as const,
-          description: 'Integrate with zkVM provers for block validation'
-        }
-      ]
+      milestoneStatuses: {
+        'witness-generation-api': 'in-progress',
+        'state-access-optimization': 'in-progress',
+        'zkvm-integration': 'not-started',
+        'performance-benchmarking': 'not-started'
+      }
     },
     {
       id: 'nethermind',
@@ -1073,20 +1091,12 @@ export const trackData: TrackData = {
       documentation: 'https://docs.nethermind.io',
       team: 'Nethermind',
       license: 'LGPL-3.0',
-      milestones: [
-        {
-          id: 'nethermind-witness-support',
-          name: 'Witness Generation Support',
-          status: 'in-progress' as const,
-          description: 'Implement execution witness generation capabilities'
-        },
-        {
-          id: 'nethermind-performance',
-          name: 'Performance Benchmarking',
-          status: 'not-started' as const,
-          description: 'Benchmark witness generation performance'
-        }
-      ]
+      milestoneStatuses: {
+        'witness-generation-api': 'in-progress',
+        'state-access-optimization': 'not-started',
+        'zkvm-integration': 'not-started',
+        'performance-benchmarking': 'not-started'
+      }
     },
     {
       id: 'besu',
@@ -1100,14 +1110,12 @@ export const trackData: TrackData = {
       documentation: 'https://besu.hyperledger.org',
       team: 'Hyperledger',
       license: 'Apache-2.0',
-      milestones: [
-        {
-          id: 'besu-witness-exploration',
-          name: 'Witness Generation Exploration',
-          status: 'not-started' as const,
-          description: 'Explore witness generation implementation strategies'
-        }
-      ]
+      milestoneStatuses: {
+        'witness-generation-api': 'not-started',
+        'state-access-optimization': 'not-started',
+        'zkvm-integration': 'not-started',
+        'performance-benchmarking': 'not-started'
+      }
     },
     {
       id: 'erigon',
@@ -1121,14 +1129,12 @@ export const trackData: TrackData = {
       documentation: 'https://github.com/ledgerwatch/erigon#erigon',
       team: 'Erigon',
       license: 'LGPL-3.0',
-      milestones: [
-        {
-          id: 'erigon-witness-research',
-          name: 'Witness Generation Research',
-          status: 'not-started' as const,
-          description: 'Research witness generation integration approach'
-        }
-      ]
+      milestoneStatuses: {
+        'witness-generation-api': 'not-started',
+        'state-access-optimization': 'not-started',
+        'zkvm-integration': 'not-started',
+        'performance-benchmarking': 'not-started'
+      }
     },
     {
       id: 'ethrex',
@@ -1142,20 +1148,12 @@ export const trackData: TrackData = {
       documentation: 'https://github.com/lambdaclass/ethrex#readme',
       team: 'Lambda Class',
       license: 'MIT',
-      milestones: [
-        {
-          id: 'ethrex-core-development',
-          name: 'Core Development',
-          status: 'in-progress' as const,
-          description: 'Develop core execution engine functionality'
-        },
-        {
-          id: 'ethrex-witness-design',
-          name: 'Witness Generation Design',
-          status: 'not-started' as const,
-          description: 'Design witness generation architecture'
-        }
-      ]
+      milestoneStatuses: {
+        'witness-generation-api': 'not-started',
+        'state-access-optimization': 'not-started',
+        'zkvm-integration': 'not-started',
+        'performance-benchmarking': 'not-started'
+      }
     },
     // Consensus Layer Clients
     {
@@ -1170,20 +1168,11 @@ export const trackData: TrackData = {
       documentation: 'https://docs.teku.consensys.net',
       team: 'Consensys',
       license: 'Apache-2.0',
-      milestones: [
-        {
-          id: 'teku-proof-integration',
-          name: 'Proof Verification Integration',
-          status: 'not-started' as const,
-          description: 'Integrate zkEVM proof verification into consensus validation'
-        },
-        {
-          id: 'teku-epbs-support',
-          name: 'ePBS Support',
-          status: 'not-started' as const,
-          description: 'Implement enshrined Proposer-Builder Separation'
-        }
-      ]
+      milestoneStatuses: {
+        'proof-verification': 'not-started',
+        'epbs-support': 'not-started',
+        'performance-optimization': 'not-started'
+      }
     },
     {
       id: 'prysm',
@@ -1197,20 +1186,11 @@ export const trackData: TrackData = {
       documentation: 'https://docs.prylabs.network',
       team: 'Prysmatic Labs',
       license: 'GPL-3.0',
-      milestones: [
-        {
-          id: 'prysm-proof-verification',
-          name: 'Proof Verification',
-          status: 'not-started' as const,
-          description: 'Add zkEVM proof verification to block validation'
-        },
-        {
-          id: 'prysm-performance',
-          name: 'Performance Optimization',
-          status: 'not-started' as const,
-          description: 'Optimize proof verification performance'
-        }
-      ]
+      milestoneStatuses: {
+        'proof-verification': 'not-started',
+        'epbs-support': 'not-started',
+        'performance-optimization': 'not-started'
+      }
     },
     {
       id: 'lighthouse',
@@ -1224,20 +1204,11 @@ export const trackData: TrackData = {
       documentation: 'https://lighthouse-book.sigmaprime.io',
       team: 'Sigma Prime',
       license: 'Apache-2.0',
-      milestones: [
-        {
-          id: 'lighthouse-proof-integration',
-          name: 'Proof Verification Integration',
-          status: 'not-started' as const,
-          description: 'Integrate zkEVM proof verification into consensus'
-        },
-        {
-          id: 'lighthouse-rust-optimization',
-          name: 'Rust Proof Optimization',
-          status: 'not-started' as const,
-          description: 'Leverage Rust for efficient proof verification'
-        }
-      ]
+      milestoneStatuses: {
+        'proof-verification': 'not-started',
+        'epbs-support': 'not-started',
+        'performance-optimization': 'not-started'
+      }
     },
     {
       id: 'lodestar',
@@ -1251,20 +1222,11 @@ export const trackData: TrackData = {
       documentation: 'https://chainsafe.github.io/lodestar',
       team: 'ChainSafe',
       license: 'LGPL-3.0',
-      milestones: [
-        {
-          id: 'lodestar-proof-support',
-          name: 'Proof Verification Support',
-          status: 'not-started' as const,
-          description: 'Add zkEVM proof verification capabilities'
-        },
-        {
-          id: 'lodestar-wasm-integration',
-          name: 'WASM Integration',
-          status: 'not-started' as const,
-          description: 'Explore WASM-based proof verification'
-        }
-      ]
+      milestoneStatuses: {
+        'proof-verification': 'not-started',
+        'epbs-support': 'not-started',
+        'performance-optimization': 'not-started'
+      }
     },
     {
       id: 'nimbus',
@@ -1278,20 +1240,11 @@ export const trackData: TrackData = {
       documentation: 'https://nimbus.guide',
       team: 'Status',
       license: 'Apache-2.0 / MIT',
-      milestones: [
-        {
-          id: 'nimbus-proof-verification',
-          name: 'Proof Verification',
-          status: 'not-started' as const,
-          description: 'Implement zkEVM proof verification for lightweight clients'
-        },
-        {
-          id: 'nimbus-resource-optimization',
-          name: 'Resource Optimization',
-          status: 'not-started' as const,
-          description: 'Optimize proof verification for resource-constrained environments'
-        }
-      ]
+      milestoneStatuses: {
+        'proof-verification': 'not-started',
+        'epbs-support': 'not-started',
+        'performance-optimization': 'not-started'
+      }
     }
   ],
   zkvms: [

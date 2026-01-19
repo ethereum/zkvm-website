@@ -41,12 +41,23 @@ export default async function ClientPage({ params }: ClientPageProps) {
     notFound();
   }
 
+  // Get common milestones based on client type
+  const commonMilestones = client.type === 'execution'
+    ? trackData.commonExecutionMilestones
+    : trackData.commonConsensusMilestones;
+
+  // Build milestones with status
+  const milestones = commonMilestones.map(m => ({
+    ...m,
+    status: client.milestoneStatuses[m.id] || 'not-started'
+  }));
+
   // Calculate milestone statistics
-  const completedMilestones = client.milestones.filter(m => m.status === 'completed').length;
-  const inProgressMilestones = client.milestones.filter(m => m.status === 'in-progress').length;
-  const notStartedMilestones = client.milestones.filter(m => m.status === 'not-started').length;
-  const progressPercentage = client.milestones.length > 0
-    ? Math.round((completedMilestones / client.milestones.length) * 100)
+  const completedMilestones = milestones.filter(m => m.status === 'completed').length;
+  const inProgressMilestones = milestones.filter(m => m.status === 'in-progress').length;
+  const notStartedMilestones = milestones.filter(m => m.status === 'not-started').length;
+  const progressPercentage = milestones.length > 0
+    ? Math.round((completedMilestones / milestones.length) * 100)
     : 0;
 
   // Find related roadmap items
@@ -202,7 +213,7 @@ export default async function ClientPage({ params }: ClientPageProps) {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {client.milestones.map((milestone) => (
+                {milestones.map((milestone) => (
                   <div
                     key={milestone.id}
                     className="flex gap-4 p-4 rounded-lg border hover:bg-muted/30 transition-colors"
@@ -223,7 +234,7 @@ export default async function ClientPage({ params }: ClientPageProps) {
                     </div>
                   </div>
                 ))}
-                {client.milestones.length === 0 && (
+                {milestones.length === 0 && (
                   <p className="text-sm text-muted-foreground text-center py-8">
                     No milestones defined yet
                   </p>

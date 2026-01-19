@@ -10,10 +10,11 @@ interface ClientCardProps {
 }
 
 export default function ClientCard({ client }: ClientCardProps) {
-  // Calculate milestone progress
-  const completedMilestones = client.milestones.filter(m => m.status === 'completed').length;
-  const inProgressMilestones = client.milestones.filter(m => m.status === 'in-progress').length;
-  const totalMilestones = client.milestones.length;
+  // Calculate milestone progress from status map
+  const milestoneStatuses = Object.values(client.milestoneStatuses);
+  const completedMilestones = milestoneStatuses.filter(s => s === 'completed').length;
+  const inProgressMilestones = milestoneStatuses.filter(s => s === 'in-progress').length;
+  const totalMilestones = milestoneStatuses.length;
   const progressPercentage = totalMilestones > 0
     ? Math.round((completedMilestones / totalMilestones) * 100)
     : 0;

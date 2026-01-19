@@ -63,9 +63,9 @@ export default function RoadmapView({ items, clients = [], zkvms = [] }: Roadmap
     const relatedClientData = clients.filter(c => item.relatedClients?.includes(c.id));
     if (relatedClientData.length === 0) return null;
 
-    const totalMilestones = relatedClientData.reduce((sum, c) => sum + c.milestones.length, 0);
+    const totalMilestones = relatedClientData.reduce((sum, c) => sum + Object.keys(c.milestoneStatuses).length, 0);
     const completedMilestones = relatedClientData.reduce(
-      (sum, c) => sum + c.milestones.filter(m => m.status === 'completed').length,
+      (sum, c) => sum + Object.values(c.milestoneStatuses).filter(s => s === 'completed').length,
       0
     );
 
@@ -301,8 +301,8 @@ export default function RoadmapView({ items, clients = [], zkvms = [] }: Roadmap
                                 </p>
                                 <div className="flex flex-wrap gap-2">
                                   {progress.clients.map((client) => {
-                                    const clientCompleted = client.milestones.filter(m => m.status === 'completed').length;
-                                    const clientTotal = client.milestones.length;
+                                    const clientCompleted = Object.values(client.milestoneStatuses).filter(s => s === 'completed').length;
+                                    const clientTotal = Object.keys(client.milestoneStatuses).length;
                                     return (
                                       <Link
                                         key={client.id}
