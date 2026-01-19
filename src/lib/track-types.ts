@@ -145,6 +145,8 @@ export interface CategoryData {
   opcodeRepricings?: OpcodeRepricing[];
 }
 
+export type MilestoneStatus = 'complete' | 'in-progress' | 'not-started' | 'blocked';
+
 export interface Client {
   id: string;
   name: string;
@@ -165,6 +167,27 @@ export interface Client {
   license?: string;
 }
 
+export interface ZKVM {
+  id: string;
+  name: string;
+  description: string;
+  provingSystem: string; // e.g., 'STARK', 'SNARK', 'Lookup'
+  language: string;
+  repository?: string;
+  website?: string;
+  maintainer?: string;
+
+  // Performance milestones (references from real-time-proving category)
+  milestoneStatuses: {
+    [milestoneId: string]: MilestoneStatus;
+  };
+
+  // Client support matrix
+  clientSupport: {
+    [clientId: string]: MilestoneStatus;
+  };
+}
+
 export interface RoadmapItem {
   id: string;
   title: string;
@@ -175,10 +198,13 @@ export interface RoadmapItem {
   targetDate?: string;
   dependencies?: string[]; // IDs of other roadmap items
   relatedClients?: string[]; // IDs of related clients
+  milestoneIds?: string[]; // IDs of milestones this roadmap item tracks
+  applicableType?: 'execution' | 'consensus' | 'zkvm' | 'both'; // Type of implementations this applies to
 }
 
 export interface TrackData {
   categories: CategoryData[];
-  roadmapItems: RoadmapItem[];
+  roadmap: RoadmapItem[];
   clients: Client[];
+  zkvms: ZKVM[];
 }
