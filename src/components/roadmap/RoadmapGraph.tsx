@@ -155,7 +155,7 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
 
           <Panel position="top-center" className="bg-background/95 backdrop-blur-sm border rounded-lg px-6 py-3">
             <h1 className="text-2xl font-bold">zkEVM Roadmap Visualization</h1>
-            <p className="text-sm text-muted-foreground">Click nodes for details</p>
+            <p className="text-sm text-muted-foreground">Click roadmap item for more details</p>
           </Panel>
 
           <Panel position="top-left" className="bg-background/95 backdrop-blur-sm border rounded-lg p-4 space-y-3">
