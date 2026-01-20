@@ -337,23 +337,8 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
           </Panel>
         </ReactFlow>
 
-        {/* Top description panel - darker background */}
-        <div className={`absolute top-0 left-0 right-0 bg-muted/95 backdrop-blur-sm border-b transition-all duration-200 z-10 ${hoveredItem ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
-          <div className="max-w-4xl mx-auto px-4 py-3 md:px-6 md:py-4">
-            {hoveredItem && (
-              <>
-                <div className="font-semibold text-base md:text-lg">{hoveredItem.title}</div>
-                <p className="text-muted-foreground text-sm mt-1">{hoveredItem.description}</p>
-                {hoveredItem.targetDate && (
-                  <div className="text-xs md:text-sm text-muted-foreground mt-2">Target: {hoveredItem.targetDate}</div>
-                )}
-              </>
-            )}
-          </div>
-        </div>
-
-        {/* Bottom bar with title, filters, and legend */}
-        <div className="absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t z-10">
+        {/* Top bar with title, filters, and legend */}
+        <div className="absolute top-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-b z-10">
           <div className="flex items-center justify-between px-4 py-2 md:px-6 md:py-3">
             {/* Title */}
             <div>
@@ -417,6 +402,21 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
                 <span className="text-xs">Not Started</span>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Hover info panel - covers top bar when shown */}
+        <div className={`absolute top-0 left-0 right-0 bg-muted/95 backdrop-blur-sm border-b transition-all duration-200 z-20 ${hoveredItem ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
+          <div className="max-w-4xl mx-auto px-4 py-3 md:px-6 md:py-4">
+            {hoveredItem && (
+              <>
+                <div className="font-semibold text-base md:text-lg">{hoveredItem.title}</div>
+                <p className="text-muted-foreground text-sm mt-1">{hoveredItem.description}</p>
+                {hoveredItem.targetDate && (
+                  <div className="text-xs md:text-sm text-muted-foreground mt-2">Target: {hoveredItem.targetDate}</div>
+                )}
+              </>
+            )}
           </div>
         </div>
       </div>
