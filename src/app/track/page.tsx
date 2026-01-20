@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { trackData } from '@/data/track-data';
 import CategoryCard from '@/components/CategoryCard';
 import RoadmapView from '@/components/RoadmapView';
-import { Network, Cpu, ArrowRight, GitBranch } from 'lucide-react';
+import { Network, Cpu, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export const metadata = {
@@ -33,13 +33,6 @@ export default function TrackPage() {
             <Button variant="outline" className="group">
               <Cpu className="mr-2 h-4 w-4" />
               View All zkVMs
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </Link>
-          <Link href="/roadmap-visual">
-            <Button variant="outline" className="group">
-              <GitBranch className="mr-2 h-4 w-4" />
-              Visualize Roadmap
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </Link>
