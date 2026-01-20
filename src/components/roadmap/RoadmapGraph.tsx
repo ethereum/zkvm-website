@@ -55,15 +55,15 @@ const getLayoutedElements = (nodes: Node[], edges: Edge[], direction: 'LR' | 'TB
   const isVertical = direction === 'TB';
   dagreGraph.setGraph({
     rankdir: direction,
-    ranksep: isVertical ? 60 : 80,
-    nodesep: isVertical ? 40 : 25,
-    edgesep: 15,
-    marginx: 20,
-    marginy: 20,
+    ranksep: isVertical ? 35 : 80,   // tighter vertical stacking on mobile
+    nodesep: isVertical ? 15 : 25,   // tighter horizontal spacing on mobile
+    edgesep: isVertical ? 8 : 15,
+    marginx: isVertical ? 10 : 20,
+    marginy: isVertical ? 10 : 20,
   });
 
   const NODE_WIDTH = 180;
-  const NODE_HEIGHT = 50;
+  const NODE_HEIGHT = isVertical ? 60 : 50;  // taller nodes on mobile for larger text
 
   nodes.forEach((node) => {
     dagreGraph.setNode(node.id, { width: NODE_WIDTH, height: NODE_HEIGHT });

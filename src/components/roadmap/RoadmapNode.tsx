@@ -26,6 +26,8 @@ const RoadmapNode = memo(({ data }: RoadmapNodeProps) => {
   const targetPosition = direction === 'TB' ? Position.Top : Position.Left;
   const sourcePosition = direction === 'TB' ? Position.Bottom : Position.Right;
 
+  const isMobile = direction === 'TB';
+
   return (
     <div
       className={`bg-background border-3 rounded shadow-sm hover:shadow-md transition-all cursor-pointer w-[180px] ${statusBorder}`}
@@ -34,8 +36,8 @@ const RoadmapNode = memo(({ data }: RoadmapNodeProps) => {
     >
       <Handle type="target" position={targetPosition} className="!bg-primary" />
 
-      <div className="px-2 py-1.5">
-        <span className="font-medium text-xs leading-tight block">
+      <div className={isMobile ? "px-2 py-2" : "px-2 py-1.5"}>
+        <span className={`font-medium leading-tight block ${isMobile ? 'text-sm' : 'text-xs'}`}>
           {item.title}
         </span>
       </div>
