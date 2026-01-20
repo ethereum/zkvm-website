@@ -38,7 +38,7 @@ export default function TrackPage() {
       <aside className="w-52 md:w-60 border-r bg-muted/30 flex-shrink-0 overflow-y-auto">
         <div className="p-3 md:p-4">
           <h2 className="font-semibold text-sm md:text-lg mb-3 md:mb-4">Track Progress</h2>
-          <nav className="flex flex-col space-y-1">
+          <div className="flex flex-col space-y-1">
             {sidebarItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeView === item.id;
@@ -59,10 +59,10 @@ export default function TrackPage() {
                 </button>
               );
             })}
-          </nav>
 
-          {/* Quick Links */}
-          <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t flex flex-col space-y-1">
+            {/* Divider */}
+            <div className="border-t my-3" />
+
             <Link
               href="/clients"
               className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-muted transition-colors text-foreground"
