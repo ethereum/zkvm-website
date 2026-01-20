@@ -8,17 +8,8 @@ export const metadata = {
 
 export default function RoadmapVisualPage() {
   return (
-    <div className="container mx-auto px-4 pb-16">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-8">
-          <h1 className="mb-4 text-4xl font-bold">Roadmap Visualization</h1>
-          <p className="text-lg text-muted-foreground">
-            Interactive view of the zkEVM roadmap showing dependencies and progress across all workstreams.
-          </p>
-        </div>
-
-        <RoadmapGraph items={trackData.roadmap} />
-      </div>
+    <div className="h-screen w-screen overflow-hidden">
+      <RoadmapGraph items={trackData.roadmap} />
     </div>
   );
 }

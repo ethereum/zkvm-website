@@ -132,7 +132,7 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
 
   return (
     <>
-      <div className="h-[800px] border rounded-lg bg-background">
+      <div className="h-full w-full bg-background">
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -146,6 +146,11 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
         >
           <Background />
           <Controls />
+
+          <Panel position="top-center" className="bg-background/95 backdrop-blur-sm border rounded-lg px-6 py-3">
+            <h1 className="text-2xl font-bold">zkEVM Roadmap Visualization</h1>
+            <p className="text-sm text-muted-foreground">Interactive dependency graph - Click nodes for details</p>
+          </Panel>
 
           <Panel position="top-left" className="bg-background/95 backdrop-blur-sm border rounded-lg p-4 space-y-3">
             <div className="space-y-2">
