@@ -78,47 +78,6 @@ const commonGuestProgramMilestones: CommonMilestone[] = [
   }
 ];
 
-const executionCriteria = [
-  {
-    id: 'hardforks',
-    name: 'Up to date with current hardforks',
-    description: 'Client supports all mainnet hardforks'
-  },
-  {
-    id: 'eest',
-    name: 'Passes all EEST tests',
-    description: 'Program compilation passes Ethereum Execution Specification Tests'
-  },
-  {
-    id: 'witness',
-    name: 'Generates ExecutionWitness',
-    description: 'Node can generate the ExecutionWitness data structure'
-  },
-  {
-    id: 'compilation',
-    name: 'Compiles to zkVM target',
-    description: 'Can compile to target supported by production-ready zkVMs'
-  }
-];
-
-const consensusCriteria = [
-  {
-    id: 'hardforks',
-    name: 'Up to date with current hardforks',
-    description: 'Client supports all mainnet hardforks'
-  },
-  {
-    id: 'executionProofs',
-    name: 'Implemented Optional execution proofs',
-    description: 'Support for optional execution proof generation'
-  },
-  {
-    id: 'epbs',
-    name: 'Implemented ePBS',
-    description: 'Support for enshrined Proposer-Builder Separation'
-  }
-];
-
 export const trackData: TrackData = {
   categories: [
     {
