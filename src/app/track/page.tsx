@@ -13,15 +13,12 @@ const iconMap: Record<string, LucideIcon> = {
 };
 
 export default function TrackPage() {
-  const sidebarItems = [
-    { id: 'roadmap', name: 'Visual Roadmap', icon: Network },
-    ...trackData.categories.map(cat => ({
-      id: cat.id,
-      name: cat.name,
-      icon: iconMap[cat.icon] || CheckCircle,
-      href: `/track/${cat.id}`,
-    })),
-  ];
+  const sidebarItems = trackData.categories.map(cat => ({
+    id: cat.id,
+    name: cat.name,
+    icon: iconMap[cat.icon] || CheckCircle,
+    href: `/track/${cat.id}`,
+  }));
 
   return (
     <div className="flex h-[calc(100vh-4rem)] overflow-hidden">
@@ -32,30 +29,15 @@ export default function TrackPage() {
           <div className="flex flex-col space-y-1">
             {sidebarItems.map((item) => {
               const Icon = item.icon;
-              const hasHref = 'href' in item && item.href;
-
-              // Categories link to their detail pages, Visual Roadmap stays on this page
-              if (hasHref) {
-                return (
-                  <Link
-                    key={item.id}
-                    href={item.href}
-                    className="flex items-start gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-foreground text-left hover:bg-muted"
-                  >
-                    <Icon className="h-4 w-4 flex-shrink-0 mt-0.5" />
-                    <span>{item.name}</span>
-                  </Link>
-                );
-              }
-
               return (
-                <div
+                <Link
                   key={item.id}
-                  className="flex items-start gap-3 px-3 py-2 rounded-lg text-sm text-foreground text-left bg-muted font-medium"
+                  href={item.href}
+                  className="flex items-start gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-foreground text-left hover:bg-muted"
                 >
                   <Icon className="h-4 w-4 flex-shrink-0 mt-0.5" />
                   <span>{item.name}</span>
-                </div>
+                </Link>
               );
             })}
 
