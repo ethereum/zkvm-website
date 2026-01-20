@@ -135,6 +135,7 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
       setEdges((eds) =>
         eds.map((edge) => ({
           ...edge,
+          animated: true,
           style: { stroke: 'hsl(var(--muted-foreground))', strokeWidth: 2 },
           markerEnd: {
             type: MarkerType.ArrowClosed,
@@ -166,6 +167,7 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
           const isIncoming = edge.target === hoveredNodeId;
           return {
             ...edge,
+            animated: isIncoming,
             style: {
               stroke: isIncoming ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))',
               strokeWidth: isIncoming ? 3 : 2,
