@@ -1,12 +1,8 @@
-'use client';
-
 import Link from 'next/link';
-import { useState } from 'react';
 import { trackData } from '@/data/track-data';
 import RoadmapView from '@/components/RoadmapView';
 import RoadmapGraph from '@/components/roadmap/RoadmapGraph';
 import { Network, Cpu, Zap, Shield, CheckCircle, LucideIcon } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
 // Map icon names to components
 const iconMap: Record<string, LucideIcon> = {
@@ -16,19 +12,14 @@ const iconMap: Record<string, LucideIcon> = {
   'check-circle': CheckCircle
 };
 
-type ViewType = 'roadmap' | 'client-integration' | 'real-time-proving' | 'economic-security' | 'testing-validation';
-
 export default function TrackPage() {
-  const [activeView, setActiveView] = useState<ViewType>('roadmap');
-
   const sidebarItems = [
-    { id: 'roadmap' as ViewType, name: 'Visual Roadmap', icon: Network },
+    { id: 'roadmap', name: 'Visual Roadmap', icon: Network },
     ...trackData.categories.map(cat => ({
-      id: cat.id as ViewType,
+      id: cat.id,
       name: cat.name,
       icon: iconMap[cat.icon] || CheckCircle,
       href: `/track/${cat.id}`,
-      milestones: cat.milestones,
     })),
   ];
 
@@ -41,22 +32,30 @@ export default function TrackPage() {
           <div className="flex flex-col space-y-1">
             {sidebarItems.map((item) => {
               const Icon = item.icon;
-              const isActive = activeView === item.id;
+              const hasHref = 'href' in item && item.href;
+
+              // Categories link to their detail pages, Visual Roadmap stays on this page
+              if (hasHref) {
+                return (
+                  <Link
+                    key={item.id}
+                    href={item.href}
+                    className="flex items-start gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-foreground text-left hover:bg-muted"
+                  >
+                    <Icon className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                    <span>{item.name}</span>
+                  </Link>
+                );
+              }
 
               return (
-                <button
+                <div
                   key={item.id}
-                  onClick={() => setActiveView(item.id)}
-                  className={cn(
-                    "flex items-start gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-foreground text-left",
-                    isActive
-                      ? "bg-muted font-medium"
-                      : "hover:bg-muted"
-                  )}
+                  className="flex items-start gap-3 px-3 py-2 rounded-lg text-sm text-foreground text-left bg-muted font-medium"
                 >
                   <Icon className="h-4 w-4 flex-shrink-0 mt-0.5" />
                   <span>{item.name}</span>
-                </button>
+                </div>
               );
             })}
 
@@ -83,50 +82,23 @@ export default function TrackPage() {
 
       {/* Main content */}
       <main className="flex-1 overflow-y-auto">
-
-        {activeView === 'roadmap' ? (
-          <div className="h-full flex flex-col">
-            {/* Roadmap visualization */}
-            <div className="flex-1 min-h-[500px]">
-              <RoadmapGraph items={trackData.roadmap} />
-            </div>
-
-            {/* Strategic Roadmap text view */}
-            <div className="p-6 border-t">
-              <RoadmapView
-                items={trackData.roadmap}
-                clients={trackData.clients}
-                zkvms={trackData.zkvms}
-                commonExecutionMilestones={trackData.commonExecutionMilestones}
-                commonConsensusMilestones={trackData.commonConsensusMilestones}
-              />
-            </div>
+        <div className="h-full flex flex-col">
+          {/* Roadmap visualization */}
+          <div className="flex-1 min-h-[500px]">
+            <RoadmapGraph items={trackData.roadmap} />
           </div>
-        ) : (
-          <div className="p-6">
-            {/* Category detail view - redirect to category page */}
-            {(() => {
-              const category = trackData.categories.find(c => c.id === activeView);
-              if (!category) return null;
 
-              return (
-                <div className="max-w-4xl">
-                  <div className="mb-6">
-                    <h1 className="text-3xl font-bold mb-2">{category.name}</h1>
-                    <p className="text-muted-foreground">{category.description}</p>
-                  </div>
-
-                  <Link
-                    href={`/track/${category.id}`}
-                    className="inline-flex items-center gap-2 text-primary hover:underline"
-                  >
-                    View full details →
-                  </Link>
-                </div>
-              );
-            })()}
+          {/* Strategic Roadmap text view */}
+          <div className="p-6 border-t">
+            <RoadmapView
+              items={trackData.roadmap}
+              clients={trackData.clients}
+              zkvms={trackData.zkvms}
+              commonExecutionMilestones={trackData.commonExecutionMilestones}
+              commonConsensusMilestones={trackData.commonConsensusMilestones}
+            />
           </div>
-        )}
+        </div>
       </main>
     </div>
   );
