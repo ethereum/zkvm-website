@@ -308,13 +308,8 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
         >
           <Background />
 
-          {/* Desktop filters - top left, below info panel */}
-          <Panel position="top-left" className="hidden md:block bg-background/95 backdrop-blur-sm border rounded-lg p-2.5 !top-28">
-            <FilterContent />
-          </Panel>
-
-          {/* Mobile filter button - top left, below info panel */}
-          <Panel position="top-left" className="md:hidden !top-28">
+          {/* Mobile filter button - top left */}
+          <Panel position="top-left" className="md:hidden">
             <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
               <DrawerTrigger asChild>
                 <Button variant="outline" size="sm" className="bg-background/95 backdrop-blur-sm">
@@ -340,35 +335,10 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
               </DrawerContent>
             </Drawer>
           </Panel>
-
-          {/* Header - bottom center */}
-          <Panel position="bottom-center" className="bg-background/95 backdrop-blur-sm border rounded-lg px-3 py-2 md:px-6 md:py-3 text-center">
-            <h1 className="text-base md:text-2xl font-bold">zkEVM Roadmap</h1>
-            <p className="hidden md:block text-sm text-muted-foreground">Hover for details, click for more info</p>
-          </Panel>
-
-          {/* Legend - bottom right, hidden on mobile */}
-          <Panel position="bottom-right" className="hidden sm:block bg-background/95 backdrop-blur-sm border rounded-lg p-3">
-            <div className="text-xs font-medium mb-2">Status</div>
-            <div className="space-y-1.5">
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-3 rounded bg-background" style={{ border: '3px solid rgb(34 197 94)' }} />
-                <span className="text-xs">Complete</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-3 rounded bg-background" style={{ border: '3px solid rgb(59 130 246)' }} />
-                <span className="text-xs">In Progress</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-3 rounded bg-background" style={{ border: '3px solid rgb(156 163 175)' }} />
-                <span className="text-xs">Not Started</span>
-              </div>
-            </div>
-          </Panel>
         </ReactFlow>
 
-        {/* Top description panel */}
-        <div className={`absolute top-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-b transition-all duration-200 z-10 ${hoveredItem ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
+        {/* Top description panel - darker background */}
+        <div className={`absolute top-0 left-0 right-0 bg-muted/95 backdrop-blur-sm border-b transition-all duration-200 z-10 ${hoveredItem ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
           <div className="max-w-4xl mx-auto px-4 py-3 md:px-6 md:py-4">
             {hoveredItem && (
               <>
@@ -379,6 +349,74 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
                 )}
               </>
             )}
+          </div>
+        </div>
+
+        {/* Bottom bar with title, filters, and legend */}
+        <div className="absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t z-10">
+          <div className="flex items-center justify-between px-4 py-2 md:px-6 md:py-3">
+            {/* Title */}
+            <div>
+              <h1 className="text-base md:text-xl font-bold">zkEVM Roadmap</h1>
+              <p className="hidden md:block text-xs text-muted-foreground">Hover for details, click for more info</p>
+            </div>
+
+            {/* Desktop filters */}
+            <div className="hidden md:flex items-center gap-3">
+              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                <SelectTrigger className="h-8 text-xs w-[140px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all" className="text-xs">All Categories</SelectItem>
+                  {categories.map((cat) => (
+                    <SelectItem key={cat} value={cat} className="text-xs">
+                      {categoryNames[cat]}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              <Select value={selectedStatus} onValueChange={setSelectedStatus}>
+                <SelectTrigger className="h-8 text-xs w-[120px]">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all" className="text-xs">All Statuses</SelectItem>
+                  {statuses.map((status) => (
+                    <SelectItem key={status} value={status} className="text-xs">
+                      {status.replace('-', ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+
+              {hasFilters && (
+                <Button variant="ghost" size="sm" onClick={handleReset} className="h-8 text-xs px-2">
+                  Reset
+                </Button>
+              )}
+
+              <span className="text-xs text-muted-foreground ml-2">
+                {filteredItems.length} items
+              </span>
+            </div>
+
+            {/* Legend */}
+            <div className="hidden sm:flex items-center gap-4">
+              <div className="flex items-center gap-1.5">
+                <div className="w-4 h-2.5 rounded" style={{ border: '2px solid rgb(34 197 94)' }} />
+                <span className="text-xs">Complete</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-4 h-2.5 rounded" style={{ border: '2px solid rgb(59 130 246)' }} />
+                <span className="text-xs">In Progress</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-4 h-2.5 rounded" style={{ border: '2px solid rgb(156 163 175)' }} />
+                <span className="text-xs">Not Started</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
