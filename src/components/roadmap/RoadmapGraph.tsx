@@ -1,24 +1,24 @@
 'use client';
 
 import { useCallback, useMemo, useState, useEffect } from 'react';
-import ReactFlow, {
+import {
+  ReactFlow,
   Node,
   Edge,
   Controls,
   Background,
   useNodesState,
   useEdgesState,
-  ConnectionLineType,
   Panel,
   MarkerType,
-} from 'reactflow';
+} from '@xyflow/react';
 import dagre from 'dagre';
 import { RoadmapItem } from '@/lib/track-types';
 import RoadmapNode from './RoadmapNode';
 import RoadmapItemModal from './RoadmapItemModal';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import 'reactflow/dist/style.css';
+import '@xyflow/react/dist/style.css';
 
 const nodeTypes = {
   roadmapNode: RoadmapNode,
@@ -35,13 +35,26 @@ const categoryNames: Record<string, string> = {
   'testing-validation': 'Testing & Validation',
 };
 
-const getLayoutedElements = (nodes: Node[], edges: Edge[], direction = 'LR') => {
+const getLayoutedElements = (nodes: Node[], edges: Edge[]) => {
   const dagreGraph = new dagre.graphlib.Graph();
   dagreGraph.setDefaultEdgeLabel(() => ({}));
-  dagreGraph.setGraph({ rankdir: direction, ranksep: 150, nodesep: 80 });
+
+  // Compact dagre settings
+  dagreGraph.setGraph({
+    rankdir: 'LR',
+    ranksep: 80,        // tight horizontal spacing
+    nodesep: 25,        // tight vertical spacing
+    edgesep: 15,
+    marginx: 20,
+    marginy: 20,
+  });
+
+  // Use actual node dimensions
+  const NODE_WIDTH = 180;
+  const NODE_HEIGHT = 50;
 
   nodes.forEach((node) => {
-    dagreGraph.setNode(node.id, { width: 300, height: 150 });
+    dagreGraph.setNode(node.id, { width: NODE_WIDTH, height: NODE_HEIGHT });
   });
 
   edges.forEach((edge) => {
@@ -50,19 +63,18 @@ const getLayoutedElements = (nodes: Node[], edges: Edge[], direction = 'LR') => 
 
   dagre.layout(dagreGraph);
 
-  return {
-    nodes: nodes.map((node) => {
-      const nodeWithPosition = dagreGraph.node(node.id);
-      return {
-        ...node,
-        position: {
-          x: nodeWithPosition.x - 150,
-          y: nodeWithPosition.y - 75,
-        },
-      };
-    }),
-    edges,
-  };
+  const positionedNodes = nodes.map((node) => {
+    const pos = dagreGraph.node(node.id);
+    return {
+      ...node,
+      position: {
+        x: pos.x - NODE_WIDTH / 2,
+        y: pos.y - NODE_HEIGHT / 2,
+      },
+    };
+  });
+
+  return { nodes: positionedNodes, edges };
 };
 
 export default function RoadmapGraph({ items }: RoadmapGraphProps) {
@@ -70,6 +82,7 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [selectedItem, setSelectedItem] = useState<RoadmapItem | null>(null);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
+  const [hoveredItem, setHoveredItem] = useState<RoadmapItem | null>(null);
 
   // Filter items
   const filteredItems = useMemo(() => {
@@ -102,12 +115,13 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
               id: `${depId}-${item.id}`,
               source: depId,
               target: item.id,
-              type: ConnectionLineType.SmoothStep,
-              animated: true,
-              style: { stroke: 'hsl(var(--muted-foreground))', strokeWidth: 2 },
+              type: 'default',
+              animated: false,
+              zIndex: 0,
+              style: { stroke: '#000000', strokeWidth: 1.5 },
               markerEnd: {
                 type: MarkerType.ArrowClosed,
-                color: 'hsl(var(--muted-foreground))',
+                color: '#000000',
               },
             });
           }
@@ -128,70 +142,65 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
     setEdges(layoutedEdges);
   }, [initialNodes, initialEdges, setNodes, setEdges]);
 
-  // Update edge and node styles based on hovered node
+  // Update node and edge visibility based on hovered node (show only dependency subgraph)
   useEffect(() => {
     if (!hoveredNodeId) {
-      // Reset all edges to default style
-      setEdges((eds) =>
-        eds.map((edge) => ({
-          ...edge,
-          animated: true,
-          style: { stroke: 'hsl(var(--muted-foreground))', strokeWidth: 2 },
-          markerEnd: {
-            type: MarkerType.ArrowClosed,
-            color: 'hsl(var(--muted-foreground))',
-          },
-        }))
-      );
-      // Reset all nodes to default opacity
+      // Reset all nodes and edges to visible
       setNodes((nds) =>
         nds.map((node) => ({
           ...node,
           style: { ...node.style, opacity: 1 },
         }))
       );
+      setEdges((eds) =>
+        eds.map((edge) => ({
+          ...edge,
+          style: { ...edge.style, opacity: 1 },
+        }))
+      );
     } else {
-      // Highlight only incoming edges (dependencies pointing to hovered node)
+      // Use callback form to access current edges and compute subgraph
       setEdges((eds) => {
-        const dependencyNodeIds = new Set<string>();
+        // Build adjacency list for traversal
+        const incomingEdgesMap = new Map<string, string[]>();
         eds.forEach((edge) => {
-          // Only add nodes that point TO the hovered node
-          if (edge.target === hoveredNodeId) {
-            dependencyNodeIds.add(edge.source);
-          }
-        });
-        dependencyNodeIds.add(hoveredNodeId);
-
-        const updatedEdges = eds.map((edge) => {
-          // Only highlight edges that point TO the hovered node
-          const isIncoming = edge.target === hoveredNodeId;
-          return {
-            ...edge,
-            animated: isIncoming,
-            style: {
-              stroke: isIncoming ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))',
-              strokeWidth: isIncoming ? 3 : 2,
-              opacity: isIncoming ? 1 : 0.1,
-            },
-            markerEnd: isIncoming ? {
-              type: MarkerType.ArrowClosed,
-              color: 'hsl(var(--primary))',
-            } : undefined,
-          };
+          if (!incomingEdgesMap.has(edge.target)) incomingEdgesMap.set(edge.target, []);
+          incomingEdgesMap.get(edge.target)!.push(edge.source);
         });
 
-        // Highlight only dependency nodes
+        // Find all nodes in the dependency subgraph (BFS from hovered node going backwards)
+        const subgraphNodeIds = new Set<string>();
+        const queue = [hoveredNodeId];
+        while (queue.length > 0) {
+          const nodeId = queue.shift()!;
+          if (subgraphNodeIds.has(nodeId)) continue;
+          subgraphNodeIds.add(nodeId);
+          const deps = incomingEdgesMap.get(nodeId) || [];
+          deps.forEach(dep => queue.push(dep));
+        }
+
+        // Hide nodes not in subgraph
         setNodes((nds) =>
           nds.map((node) => ({
             ...node,
             style: {
               ...node.style,
-              opacity: dependencyNodeIds.has(node.id) ? 1 : 0.3,
+              opacity: subgraphNodeIds.has(node.id) ? 1 : 0,
             },
           }))
         );
 
-        return updatedEdges;
+        // Hide edges not in subgraph
+        return eds.map((edge) => {
+          const isInSubgraph = subgraphNodeIds.has(edge.source) && subgraphNodeIds.has(edge.target);
+          return {
+            ...edge,
+            style: {
+              ...edge.style,
+              opacity: isInSubgraph ? 1 : 0,
+            },
+          };
+        });
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -207,19 +216,26 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
 
   return (
     <>
-      <div className="h-full w-full bg-background">
+      <div className="h-full w-full bg-background relative overflow-hidden">
         <ReactFlow
           nodes={nodes}
           edges={edges}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
-          onNodeMouseEnter={(_, node) => setHoveredNodeId(node.id)}
-          onNodeMouseLeave={() => setHoveredNodeId(null)}
+          onNodeMouseEnter={(_, node) => {
+            setHoveredNodeId(node.id);
+            setHoveredItem(node.data.item as RoadmapItem);
+          }}
+          onNodeMouseLeave={() => {
+            setHoveredNodeId(null);
+            setHoveredItem(null);
+          }}
           nodeTypes={nodeTypes}
-          connectionLineType={ConnectionLineType.SmoothStep}
+          connectionLineType="default"
           fitView
           minZoom={0.1}
           maxZoom={1.5}
+          elevateEdgesOnSelect={false}
           proOptions={{ hideAttribution: true }}
         >
           <Background />
@@ -227,7 +243,26 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
 
           <Panel position="top-center" className="bg-background/95 backdrop-blur-sm border rounded-lg px-6 py-3 text-center">
             <h1 className="text-2xl font-bold">zkEVM Roadmap Visualization</h1>
-            <p className="text-sm text-muted-foreground">Click roadmap item for more details</p>
+            <p className="text-sm text-muted-foreground">Hover for details, click for more info</p>
+          </Panel>
+
+          {/* Legend */}
+          <Panel position="top-right" className="bg-background/95 backdrop-blur-sm border rounded-lg p-3">
+            <div className="text-xs font-medium mb-2">Status</div>
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-3 rounded bg-background" style={{ border: '3px solid rgb(34 197 94)' }} />
+                <span className="text-xs">Complete</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-3 rounded bg-background" style={{ border: '3px solid rgb(59 130 246)' }} />
+                <span className="text-xs">In Progress</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-3 rounded bg-background" style={{ border: '3px solid rgb(156 163 175)' }} />
+                <span className="text-xs">Not Started</span>
+              </div>
+            </div>
           </Panel>
 
           <Panel position="top-left" className="bg-background/95 backdrop-blur-sm border rounded-lg p-4 space-y-3">
@@ -279,6 +314,21 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
             </div>
           </Panel>
         </ReactFlow>
+
+        {/* Bottom description panel */}
+        <div className={`absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t transition-all duration-200 ${hoveredItem ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
+          <div className="max-w-4xl mx-auto px-6 py-4">
+            {hoveredItem && (
+              <>
+                <div className="font-semibold text-lg">{hoveredItem.title}</div>
+                <p className="text-muted-foreground mt-1">{hoveredItem.description}</p>
+                {hoveredItem.targetDate && (
+                  <div className="text-sm text-muted-foreground mt-2">Target: {hoveredItem.targetDate}</div>
+                )}
+              </>
+            )}
+          </div>
+        </div>
       </div>
 
       {selectedItem && (
