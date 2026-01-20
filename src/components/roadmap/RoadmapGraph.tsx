@@ -236,17 +236,17 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
   const hasFilters = selectedCategory !== 'all' || selectedStatus !== 'all';
 
   const FilterContent = () => (
-    <div className="space-y-4">
-      <div className="space-y-2">
-        <label className="text-sm font-medium">Category</label>
+    <div className="space-y-2">
+      <div className="space-y-1">
+        <label className="text-xs font-medium">Category</label>
         <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-          <SelectTrigger>
+          <SelectTrigger className="h-8 text-xs">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Categories</SelectItem>
+            <SelectItem value="all" className="text-xs">All Categories</SelectItem>
             {categories.map((cat) => (
-              <SelectItem key={cat} value={cat}>
+              <SelectItem key={cat} value={cat} className="text-xs">
                 {categoryNames[cat]}
               </SelectItem>
             ))}
@@ -254,16 +254,16 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
         </Select>
       </div>
 
-      <div className="space-y-2">
-        <label className="text-sm font-medium">Status</label>
+      <div className="space-y-1">
+        <label className="text-xs font-medium">Status</label>
         <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-          <SelectTrigger>
+          <SelectTrigger className="h-8 text-xs">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">All Statuses</SelectItem>
+            <SelectItem value="all" className="text-xs">All Statuses</SelectItem>
             {statuses.map((status) => (
-              <SelectItem key={status} value={status}>
+              <SelectItem key={status} value={status} className="text-xs">
                 {status.replace('-', ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
               </SelectItem>
             ))}
@@ -271,17 +271,12 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
         </Select>
       </div>
 
-      <Button variant="outline" size="sm" onClick={handleReset} className="w-full">
-        Reset Filters
+      <Button variant="outline" size="sm" onClick={handleReset} className="w-full h-7 text-xs">
+        Reset
       </Button>
 
-      <div className="pt-3 border-t text-xs text-muted-foreground space-y-1">
-        <div>
-          <span className="font-semibold text-foreground">{filteredItems.length}</span> items shown
-        </div>
-        <div>
-          <span className="font-semibold text-foreground">{edges.length}</span> dependencies
-        </div>
+      <div className="pt-2 border-t text-xs text-muted-foreground">
+        <span className="font-semibold text-foreground">{filteredItems.length}</span> items, <span className="font-semibold text-foreground">{edges.length}</span> deps
       </div>
     </div>
   );
@@ -314,7 +309,7 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
           <Background />
 
           {/* Desktop filters - top left, below info panel */}
-          <Panel position="top-left" className="hidden md:block bg-background/95 backdrop-blur-sm border rounded-lg p-4 !top-28">
+          <Panel position="top-left" className="hidden md:block bg-background/95 backdrop-blur-sm border rounded-lg p-2.5 !top-28">
             <FilterContent />
           </Panel>
 

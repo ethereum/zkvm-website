@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { trackData } from '@/data/track-data';
 import RoadmapView from '@/components/RoadmapView';
 import RoadmapGraph from '@/components/roadmap/RoadmapGraph';
-import { Network, Cpu, Zap, Shield, CheckCircle, ChevronRight, LucideIcon } from 'lucide-react';
+import { Network, Cpu, Zap, Shield, CheckCircle, LucideIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 // Map icon names to components
@@ -53,24 +53,17 @@ export default function TrackPage() {
                   className={cn(
                     "w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-left",
                     isActive
-                      ? "bg-primary text-primary-foreground"
+                      ? "bg-muted font-medium"
                       : "hover:bg-muted"
                   )}
                 >
                   <Icon className="h-4 w-4 flex-shrink-0" />
-                  <span className="flex-1 truncate">{item.name}</span>
+                  <span className="flex-1">{item.name}</span>
                   {milestoneInfo && (
-                    <span className={cn(
-                      "text-xs",
-                      isActive ? "text-primary-foreground/80" : "text-muted-foreground"
-                    )}>
+                    <span className="text-xs text-muted-foreground">
                       {completed}/{total}
                     </span>
                   )}
-                  <ChevronRight className={cn(
-                    "h-4 w-4 flex-shrink-0",
-                    isActive ? "text-primary-foreground/80" : "text-muted-foreground"
-                  )} />
                 </button>
               );
             })}
@@ -161,8 +154,7 @@ export default function TrackPage() {
                     href={`/track/${category.id}`}
                     className="inline-flex items-center gap-2 text-primary hover:underline"
                   >
-                    View full details
-                    <ChevronRight className="h-4 w-4" />
+                    View full details →
                   </Link>
                 </div>
               );
