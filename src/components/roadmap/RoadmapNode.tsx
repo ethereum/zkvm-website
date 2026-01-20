@@ -8,6 +8,7 @@ interface RoadmapNodeProps {
   data: {
     item: RoadmapItem;
     onClick: () => void;
+    direction?: 'LR' | 'TB';
   };
 }
 
@@ -18,8 +19,12 @@ const statusBorderColors: Record<string, string> = {
 };
 
 const RoadmapNode = memo(({ data }: RoadmapNodeProps) => {
-  const { item, onClick } = data;
+  const { item, onClick, direction = 'LR' } = data;
   const statusBorder = statusBorderColors[item.status] || statusBorderColors['not-started'];
+
+  // Handle positions based on layout direction
+  const targetPosition = direction === 'TB' ? Position.Top : Position.Left;
+  const sourcePosition = direction === 'TB' ? Position.Bottom : Position.Right;
 
   return (
     <div
@@ -27,7 +32,7 @@ const RoadmapNode = memo(({ data }: RoadmapNodeProps) => {
       style={{ borderWidth: '3px', zIndex: 10 }}
       onClick={onClick}
     >
-      <Handle type="target" position={Position.Left} className="!bg-primary" />
+      <Handle type="target" position={targetPosition} className="!bg-primary" />
 
       <div className="px-2 py-1.5">
         <span className="font-medium text-xs leading-tight block">
@@ -35,7 +40,7 @@ const RoadmapNode = memo(({ data }: RoadmapNodeProps) => {
         </span>
       </div>
 
-      <Handle type="source" position={Position.Right} className="!bg-primary" />
+      <Handle type="source" position={sourcePosition} className="!bg-primary" />
     </div>
   );
 });

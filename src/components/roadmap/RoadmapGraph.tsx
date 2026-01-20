@@ -47,15 +47,16 @@ const categoryNames: Record<string, string> = {
   'testing-validation': 'Testing & Validation',
 };
 
-const getLayoutedElements = (nodes: Node[], edges: Edge[]) => {
+const getLayoutedElements = (nodes: Node[], edges: Edge[], direction: 'LR' | 'TB' = 'LR') => {
   const dagreGraph = new dagre.graphlib.Graph();
   dagreGraph.setDefaultEdgeLabel(() => ({}));
 
-  // Compact dagre settings
+  // Adjust settings based on direction
+  const isVertical = direction === 'TB';
   dagreGraph.setGraph({
-    rankdir: 'LR',
-    ranksep: 80,
-    nodesep: 25,
+    rankdir: direction,
+    ranksep: isVertical ? 60 : 80,
+    nodesep: isVertical ? 40 : 25,
     edgesep: 15,
     marginx: 20,
     marginy: 20,
@@ -95,7 +96,18 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const [hoveredItem, setHoveredItem] = useState<RoadmapItem | null>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const { fitView } = useReactFlow();
+
+  // Track screen size for layout direction
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const layoutDirection = isMobile ? 'TB' : 'LR';
 
   // Filter items
   const filteredItems = useMemo(() => {
@@ -114,6 +126,7 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
       data: {
         item,
         onClick: () => setSelectedItem(item),
+        direction: layoutDirection,
       },
       position: { x: 0, y: 0 },
     }));
@@ -141,20 +154,20 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
       }
     });
 
-    return getLayoutedElements(nodes, edges);
-  }, [filteredItems]);
+    return getLayoutedElements(nodes, edges, layoutDirection);
+  }, [filteredItems, layoutDirection]);
 
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
   // Update nodes/edges when filtered items change and fit view
   useEffect(() => {
-    const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialNodes, initialEdges);
+    const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialNodes, initialEdges, layoutDirection);
     setNodes(layoutedNodes);
     setEdges(layoutedEdges);
     // Fit view after layout with padding
     setTimeout(() => fitView({ padding: 0.2 }), 50);
-  }, [initialNodes, initialEdges, setNodes, setEdges, fitView]);
+  }, [initialNodes, initialEdges, setNodes, setEdges, fitView, layoutDirection]);
 
   // Update node and edge visibility based on hovered node
   useEffect(() => {
