@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 import ReactFlow, {
   Node,
   Edge,
@@ -69,6 +69,7 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [selectedItem, setSelectedItem] = useState<RoadmapItem | null>(null);
+  const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
 
   // Filter items
   const filteredItems = useMemo(() => {
@@ -127,6 +128,70 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
     setEdges(layoutedEdges);
   }, [initialNodes, initialEdges, setNodes, setEdges]);
 
+  // Update edge and node styles based on hovered node
+  useEffect(() => {
+    if (!hoveredNodeId) {
+      // Reset all edges to default style
+      setEdges((eds) =>
+        eds.map((edge) => ({
+          ...edge,
+          style: { stroke: 'hsl(var(--muted-foreground))', strokeWidth: 2 },
+          markerEnd: {
+            type: MarkerType.ArrowClosed,
+            color: 'hsl(var(--muted-foreground))',
+          },
+        }))
+      );
+      // Reset all nodes to default opacity
+      setNodes((nds) =>
+        nds.map((node) => ({
+          ...node,
+          style: { ...node.style, opacity: 1 },
+        }))
+      );
+    } else {
+      // Highlight edges connected to hovered node
+      setEdges((eds) => {
+        const connectedNodeIds = new Set<string>();
+        eds.forEach((edge) => {
+          if (edge.source === hoveredNodeId) connectedNodeIds.add(edge.target);
+          if (edge.target === hoveredNodeId) connectedNodeIds.add(edge.source);
+        });
+        connectedNodeIds.add(hoveredNodeId);
+
+        const updatedEdges = eds.map((edge) => {
+          const isConnected = edge.source === hoveredNodeId || edge.target === hoveredNodeId;
+          return {
+            ...edge,
+            style: {
+              stroke: isConnected ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))',
+              strokeWidth: isConnected ? 3 : 2,
+              opacity: isConnected ? 1 : 0.3,
+            },
+            markerEnd: {
+              type: MarkerType.ArrowClosed,
+              color: isConnected ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))',
+            },
+          };
+        });
+
+        // Dim non-connected nodes
+        setNodes((nds) =>
+          nds.map((node) => ({
+            ...node,
+            style: {
+              ...node.style,
+              opacity: connectedNodeIds.has(node.id) ? 1 : 0.3,
+            },
+          }))
+        );
+
+        return updatedEdges;
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hoveredNodeId]);
+
   const handleReset = useCallback(() => {
     setSelectedCategory('all');
     setSelectedStatus('all');
@@ -143,6 +208,8 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
           edges={edges}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
+          onNodeMouseEnter={(_, node) => setHoveredNodeId(node.id)}
+          onNodeMouseLeave={() => setHoveredNodeId(null)}
           nodeTypes={nodeTypes}
           connectionLineType={ConnectionLineType.SmoothStep}
           fitView
