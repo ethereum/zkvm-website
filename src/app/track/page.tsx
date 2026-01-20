@@ -35,52 +35,44 @@ export default function TrackPage() {
   return (
     <div className="flex h-[calc(100vh-4rem)] overflow-hidden">
       {/* Sidebar */}
-      <aside className="w-64 border-r bg-muted/30 flex-shrink-0 overflow-y-auto hidden md:block">
-        <div className="p-4">
-          <h2 className="font-semibold text-lg mb-4">Track Progress</h2>
+      <aside className="w-48 md:w-56 border-r bg-muted/30 flex-shrink-0 overflow-y-auto">
+        <div className="p-3 md:p-4">
+          <h2 className="font-semibold text-sm md:text-lg mb-3 md:mb-4">Track Progress</h2>
           <nav className="space-y-1">
             {sidebarItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeView === item.id;
-              const milestoneInfo = 'milestones' in item ? item.milestones : null;
-              const completed = milestoneInfo?.filter(m => m.status === 'achieved').length || 0;
-              const total = milestoneInfo?.length || 0;
 
               return (
                 <button
                   key={item.id}
                   onClick={() => setActiveView(item.id)}
                   className={cn(
-                    "w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-left",
+                    "w-full flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 rounded-lg text-xs md:text-sm transition-colors text-left",
                     isActive
                       ? "bg-muted font-medium"
                       : "hover:bg-muted"
                   )}
                 >
                   <Icon className="h-4 w-4 flex-shrink-0" />
-                  <span className="flex-1">{item.name}</span>
-                  {milestoneInfo && (
-                    <span className="text-xs text-muted-foreground">
-                      {completed}/{total}
-                    </span>
-                  )}
+                  <span>{item.name}</span>
                 </button>
               );
             })}
           </nav>
 
           {/* Quick Links */}
-          <div className="mt-6 pt-6 border-t space-y-1">
+          <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t space-y-1">
             <Link
               href="/clients"
-              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-muted transition-colors"
+              className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 rounded-lg text-xs md:text-sm hover:bg-muted transition-colors"
             >
               <Network className="h-4 w-4" />
               <span>All Clients</span>
             </Link>
             <Link
               href="/zkvms"
-              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-muted transition-colors"
+              className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 rounded-lg text-xs md:text-sm hover:bg-muted transition-colors"
             >
               <Cpu className="h-4 w-4" />
               <span>All zkVMs</span>
@@ -89,34 +81,8 @@ export default function TrackPage() {
         </div>
       </aside>
 
-      {/* Mobile header */}
-      <div className="md:hidden fixed top-16 left-0 right-0 z-10 bg-background border-b p-2 overflow-x-auto">
-        <div className="flex gap-2">
-          {sidebarItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = activeView === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => setActiveView(item.id)}
-                className={cn(
-                  "flex items-center gap-2 px-3 py-1.5 rounded-full text-xs whitespace-nowrap transition-colors",
-                  isActive
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted hover:bg-muted/80"
-                )}
-              >
-                <Icon className="h-3 w-3" />
-                <span>{item.name}</span>
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
       {/* Main content */}
       <main className="flex-1 overflow-y-auto">
-        <div className="md:hidden h-12" /> {/* Spacer for mobile header */}
 
         {activeView === 'roadmap' ? (
           <div className="h-full flex flex-col">
