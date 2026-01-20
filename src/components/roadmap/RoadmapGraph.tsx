@@ -302,6 +302,12 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
           <Background />
           <Controls className="!bottom-20 md:!bottom-4" />
 
+          {/* Header */}
+          <Panel position="top-center" className="bg-background/95 backdrop-blur-sm border rounded-lg px-3 py-2 md:px-6 md:py-3 text-center">
+            <h1 className="text-base md:text-2xl font-bold">zkEVM Roadmap</h1>
+            <p className="hidden md:block text-sm text-muted-foreground">Hover for details, click for more info</p>
+          </Panel>
+
           {/* Legend - hidden on mobile */}
           <Panel position="top-right" className="hidden sm:block bg-background/95 backdrop-blur-sm border rounded-lg p-3">
             <div className="text-xs font-medium mb-2">Status</div>
