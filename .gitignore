@@ -45,3 +45,4 @@ docs
 .worktrees
 
 pnpm-lock.yamlflow-site
+zkevm-test-monitor
