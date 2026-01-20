@@ -171,12 +171,12 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
             style: {
               stroke: isIncoming ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))',
               strokeWidth: isIncoming ? 3 : 2,
-              opacity: isIncoming ? 1 : 0.3,
+              opacity: isIncoming ? 1 : 0.1,
             },
-            markerEnd: {
+            markerEnd: isIncoming ? {
               type: MarkerType.ArrowClosed,
-              color: isIncoming ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))',
-            },
+              color: 'hsl(var(--primary))',
+            } : undefined,
           };
         });
 
