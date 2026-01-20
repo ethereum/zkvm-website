@@ -1,8 +1,8 @@
 import { notFound } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { trackData } from '@/data/track-data';
-import Breadcrumbs from '@/components/Breadcrumbs';
 import MilestoneChecklist from '@/components/MilestoneChecklist';
+import TrackSidebar from '@/components/track/TrackSidebar';
 import { ClientProgressCard } from '@/components/track/ClientProgressCard';
 import { ZKVMComparisonTable } from '@/components/track/ZKVMComparisonTable';
 import ZKVMProgressCard from '@/components/zkvms/ZKVMProgressCard';
@@ -66,24 +66,23 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="container mx-auto px-4 pb-16">
-      <div className="mx-auto max-w-4xl">
-        <Breadcrumbs items={[
-          { label: 'Track', href: '/track' },
-          { label: category.name }
-        ]} />
+    <div className="flex h-[calc(100vh-4rem)] overflow-hidden">
+      <TrackSidebar activeCategory={categoryId} />
 
-        <div className="mt-8 mb-12">
-          <h1 className="mb-4 text-4xl font-bold">{category.name}</h1>
-          <p className="text-lg text-muted-foreground">{category.description}</p>
-          {category.workstream && (
-            <div className="mt-4 inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-              Workstream {category.workstream}
+      <main className="flex-1 overflow-y-auto">
+        <div className="container mx-auto px-4 py-8 pb-16">
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-8">
+              <h1 className="mb-4 text-3xl font-bold">{category.name}</h1>
+              <p className="text-lg text-muted-foreground">{category.description}</p>
+              {category.workstream && (
+                <div className="mt-4 inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+                  Workstream {category.workstream}
+                </div>
+              )}
             </div>
-          )}
-        </div>
 
-        <div className="space-y-8">
+            <div className="space-y-8">
           {/* Show testing card for testing-validation, milestones for others */}
           {category.id === 'testing-validation' ? (
             <RiscVTestingCard />
@@ -233,13 +232,15 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 Charts, graphs, and detailed metrics will be added here
               </p>
             </div>
-          )}
-        </div>
+            )}
+            </div>
 
-        <div className="mt-8 text-sm text-muted-foreground">
-          Last updated: {new Date(category.lastUpdated).toLocaleDateString()}
+            <div className="mt-8 text-sm text-muted-foreground">
+              Last updated: {new Date(category.lastUpdated).toLocaleDateString()}
+            </div>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
