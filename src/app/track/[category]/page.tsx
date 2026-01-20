@@ -9,6 +9,7 @@ import ZKVMProgressCard from '@/components/zkvms/ZKVMProgressCard';
 import ClientCard from '@/components/ClientCard';
 import AuditStatus from '@/components/track/AuditStatus';
 import DependencyGraph from '@/components/track/DependencyGraph';
+import RiscVTestingCard from '@/components/track/RiscVTestingCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 // Dynamic imports for chart components (reduces initial bundle)
@@ -83,7 +84,12 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </div>
 
         <div className="space-y-8">
-          <MilestoneChecklist milestones={category.milestones} />
+          {/* Show testing card for testing-validation, milestones for others */}
+          {category.id === 'testing-validation' ? (
+            <RiscVTestingCard />
+          ) : (
+            <MilestoneChecklist milestones={category.milestones} />
+          )}
 
           {/* Tabbed interface for real-time-proving */}
           {category.id === 'real-time-proving' && (category.benchmarks || category.opcodeRepricings) && (
