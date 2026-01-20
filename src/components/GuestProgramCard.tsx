@@ -12,8 +12,8 @@ interface GuestProgramCardProps {
 export default function GuestProgramCard({ guestProgram }: GuestProgramCardProps) {
   // Calculate milestone progress from status map
   const milestoneStatuses = Object.values(guestProgram.milestoneStatuses);
-  const completedMilestones = milestoneStatuses.filter(s => s === 'completed').length;
-  const inProgressMilestones = milestoneStatuses.filter(s => s === 'in-progress').length;
+  const completedMilestones = milestoneStatuses.filter(s => s.status === 'complete').length;
+  const inProgressMilestones = milestoneStatuses.filter(s => s.status === 'in-progress').length;
   const totalMilestones = milestoneStatuses.length;
   const progressPercentage = totalMilestones > 0
     ? Math.round((completedMilestones / totalMilestones) * 100)

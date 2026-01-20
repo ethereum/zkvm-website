@@ -31,7 +31,7 @@ export default function RelatedRoadmap({ zkvm, roadmap, allZKVMs }: RelatedRoadm
 
     const completedZKVMs = applicableZKVMs.filter(z => {
       return item.milestoneIds!.every(milestoneId =>
-        z.milestoneStatuses[milestoneId] === 'complete'
+        z.milestoneStatuses[milestoneId]?.status === 'complete'
       );
     });
 

@@ -24,7 +24,7 @@ const categoryNames: Record<string, string> = {
 };
 
 const statusColors: Record<string, string> = {
-  'completed': 'bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-200',
+  'complete': 'bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-200',
   'in-progress': 'bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-200',
   'not-started': 'bg-gray-100 text-gray-800 dark:bg-gray-950 dark:text-gray-200',
 };

@@ -40,7 +40,7 @@ const statusConfig: Record<MilestoneStatus, {
 export default function ClientSupportMatrix({ zkvm, guestPrograms }: ClientSupportMatrixProps) {
   // Calculate overall guest program support progress
   const guestProgramStatuses = Object.values(zkvm.guestProgramSupport);
-  const supported = guestProgramStatuses.filter(s => s === 'complete').length;
+  const supported = guestProgramStatuses.filter(s => s.status === 'complete').length;
   const total = guestProgramStatuses.length;
   const percentage = total > 0 ? Math.round((supported / total) * 100) : 0;
 
@@ -62,7 +62,8 @@ export default function ClientSupportMatrix({ zkvm, guestPrograms }: ClientSuppo
               <h3 className="text-sm font-medium">Supported Guest Programs</h3>
               <div className="space-y-3">
                 {supportedGuestPrograms.map((guestProgram) => {
-                  const status = zkvm.guestProgramSupport[guestProgram.id];
+                  const progress = zkvm.guestProgramSupport[guestProgram.id];
+                  const status = progress.status;
                   const config = statusConfig[status];
                   const Icon = config.icon;
 

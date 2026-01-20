@@ -147,6 +147,17 @@ export interface CategoryData {
 
 export type MilestoneStatus = 'complete' | 'in-progress' | 'not-started' | 'blocked';
 
+export interface MilestoneProof {
+  url: string;
+  title: string;
+  description: string;
+}
+
+export interface MilestoneProgress {
+  status: 'not-started' | 'in-progress' | 'complete';
+  proofs?: MilestoneProof[];
+}
+
 export interface CommonMilestone {
   id: string;
   name: string;
@@ -166,7 +177,7 @@ export interface Client {
   documentation?: string;
   // Track progress against common milestones
   milestoneStatuses: {
-    [milestoneId: string]: 'not-started' | 'in-progress' | 'completed';
+    [milestoneId: string]: MilestoneProgress;
   };
   team?: string;
   license?: string;
@@ -183,7 +194,7 @@ export interface GuestProgram {
   documentation?: string;
   // Track progress against common guest program milestones
   milestoneStatuses: {
-    [milestoneId: string]: 'not-started' | 'in-progress' | 'completed';
+    [milestoneId: string]: MilestoneProgress;
   };
   // Which zkVMs support this guest program
   supportedZKVMs: string[]; // IDs of zkVMs
@@ -204,12 +215,12 @@ export interface ZKVM {
 
   // Performance milestones (references from real-time-proving category)
   milestoneStatuses: {
-    [milestoneId: string]: MilestoneStatus;
+    [milestoneId: string]: MilestoneProgress;
   };
 
   // Guest program support matrix
   guestProgramSupport: {
-    [guestProgramId: string]: MilestoneStatus;
+    [guestProgramId: string]: MilestoneProgress;
   };
 }
 

@@ -39,7 +39,7 @@ const statusConfig: Record<MilestoneStatus, {
 export default function PerformanceMilestones({ zkvm, milestones }: PerformanceMilestonesProps) {
   // Calculate overall progress
   const statuses = Object.values(zkvm.milestoneStatuses);
-  const completed = statuses.filter(s => s === 'complete').length;
+  const completed = statuses.filter(s => s.status === 'complete').length;
   const total = statuses.length;
   const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
 
@@ -58,7 +58,8 @@ export default function PerformanceMilestones({ zkvm, milestones }: PerformanceM
           {/* Milestone list */}
           <div className="space-y-4">
             {zkvmMilestones.map((milestone) => {
-              const status = zkvm.milestoneStatuses[milestone.id];
+              const progress = zkvm.milestoneStatuses[milestone.id];
+              const status = progress.status;
               const config = statusConfig[status];
               const Icon = config.icon;
 

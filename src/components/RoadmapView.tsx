@@ -49,7 +49,7 @@ export default function RoadmapView({
     // Count items that completed ALL milestones
     const completedItems = applicableItems.filter(impl => {
       return item.milestoneIds!.every(milestoneId =>
-        impl.milestoneStatuses[milestoneId] === 'complete'
+        impl.milestoneStatuses[milestoneId]?.status === 'complete'
       );
     });
 
@@ -74,7 +74,7 @@ export default function RoadmapView({
 
     const totalMilestones = relatedClientData.reduce((sum, c) => sum + Object.keys(c.milestoneStatuses).length, 0);
     const completedMilestones = relatedClientData.reduce(
-      (sum, c) => sum + Object.values(c.milestoneStatuses).filter(s => s === 'completed').length,
+      (sum, c) => sum + Object.values(c.milestoneStatuses).filter(s => s.status === 'complete').length,
       0
     );
 
@@ -110,7 +110,7 @@ export default function RoadmapView({
   // Status badge colors
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'completed':
+      case 'complete':
         return 'bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-200';
       case 'in-progress':
         return 'bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-200';
@@ -273,7 +273,7 @@ export default function RoadmapView({
                                 </p>
                                 <div className="flex flex-wrap gap-2">
                                   {progress.clients.map((client) => {
-                                    const clientCompleted = Object.values(client.milestoneStatuses).filter(s => s === 'completed').length;
+                                    const clientCompleted = Object.values(client.milestoneStatuses).filter(s => s.status === 'complete').length;
                                     const clientTotal = Object.keys(client.milestoneStatuses).length;
                                     return (
                                       <Link
@@ -307,7 +307,7 @@ export default function RoadmapView({
 
                             const getMilestoneIcon = (status: string) => {
                               switch (status) {
-                                case 'completed':
+                                case 'complete':
                                   return <CheckCircle2 className="h-4 w-4 text-green-600" />;
                                 case 'in-progress':
                                   return <Loader2 className="h-4 w-4 text-blue-600" />;
@@ -335,7 +335,8 @@ export default function RoadmapView({
                                             </div>
                                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
                                               {relatedClientData.map((client) => {
-                                                const status = client.milestoneStatuses[milestone.id] || 'not-started';
+                                                const progress = client.milestoneStatuses[milestone.id];
+                                                const status = progress?.status || 'not-started';
                                                 return (
                                                   <Link
                                                     key={client.id}

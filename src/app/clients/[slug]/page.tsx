@@ -58,14 +58,18 @@ export default async function ClientPage({ params }: ClientPageProps) {
       ? trackData.commonExecutionMilestones
       : trackData.commonConsensusMilestones;
 
-  // Build milestones with status
-  const milestones = commonMilestones.map(m => ({
-    ...m,
-    status: item.milestoneStatuses[m.id] || 'not-started'
-  }));
+  // Build milestones with status and proofs
+  const milestones = commonMilestones.map(m => {
+    const progress = item.milestoneStatuses[m.id];
+    return {
+      ...m,
+      status: progress?.status || 'not-started',
+      proofs: progress?.proofs || []
+    };
+  });
 
   // Calculate milestone statistics
-  const completedMilestones = milestones.filter(m => m.status === 'completed').length;
+  const completedMilestones = milestones.filter(m => m.status === 'complete').length;
   const inProgressMilestones = milestones.filter(m => m.status === 'in-progress').length;
   const notStartedMilestones = milestones.filter(m => m.status === 'not-started').length;
   const progressPercentage = milestones.length > 0
@@ -96,7 +100,7 @@ export default async function ClientPage({ params }: ClientPageProps) {
   // Milestone status icon
   const getMilestoneIcon = (status: string) => {
     switch (status) {
-      case 'completed':
+      case 'complete':
         return <CheckCircle2 className="h-5 w-5 text-green-600" />;
       case 'in-progress':
         return <Loader2 className="h-5 w-5 text-blue-600" />;
@@ -218,38 +222,40 @@ export default async function ClientPage({ params }: ClientPageProps) {
         </div>
 
         <div className="space-y-8">
-          {/* Overall progress */}
-          <Card>
-            <CardHeader>
-              <CardTitle>zkEVM Integration Progress</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between text-sm mb-2">
-                <span className="font-medium">Overall Completion</span>
-                <span className="text-2xl font-bold">{progressPercentage}%</span>
-              </div>
-              <div className="h-3 rounded-full bg-muted overflow-hidden">
-                <div
-                  className="h-full bg-primary transition-all duration-300"
-                  style={{ width: `${progressPercentage}%` }}
-                />
-              </div>
-              <div className="grid grid-cols-3 gap-4 pt-4 text-center">
-                <div>
-                  <div className="text-2xl font-bold text-green-600">{completedMilestones}</div>
-                  <div className="text-xs text-muted-foreground">Completed</div>
+          {/* Overall progress - only for guest programs */}
+          {isGuestProgram && (
+            <Card>
+              <CardHeader>
+                <CardTitle>zkVM Integration Progress</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex items-center justify-between text-sm mb-2">
+                  <span className="font-medium">Overall Completion</span>
+                  <span className="text-2xl font-bold">{progressPercentage}%</span>
                 </div>
-                <div>
-                  <div className="text-2xl font-bold text-blue-600">{inProgressMilestones}</div>
-                  <div className="text-xs text-muted-foreground">In Progress</div>
+                <div className="h-3 rounded-full bg-muted overflow-hidden">
+                  <div
+                    className="h-full bg-primary transition-all duration-300"
+                    style={{ width: `${progressPercentage}%` }}
+                  />
                 </div>
-                <div>
-                  <div className="text-2xl font-bold text-gray-400">{notStartedMilestones}</div>
-                  <div className="text-xs text-muted-foreground">Not Started</div>
+                <div className="grid grid-cols-3 gap-4 pt-4 text-center">
+                  <div>
+                    <div className="text-2xl font-bold text-green-600">{completedMilestones}</div>
+                    <div className="text-xs text-muted-foreground">Completed</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-blue-600">{inProgressMilestones}</div>
+                    <div className="text-xs text-muted-foreground">In Progress</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-gray-400">{notStartedMilestones}</div>
+                    <div className="text-xs text-muted-foreground">Not Started</div>
+                  </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+          )}
 
           {/* Milestones */}
           <Card>
@@ -266,15 +272,50 @@ export default async function ClientPage({ params }: ClientPageProps) {
                     <div className="flex-shrink-0 mt-0.5">
                       {getMilestoneIcon(milestone.status)}
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between gap-2 mb-1">
-                        <h3 className="font-semibold">{milestone.name}</h3>
-                        <span className="text-xs text-muted-foreground capitalize whitespace-nowrap">
-                          {milestone.status.replace('-', ' ')}
-                        </span>
+                    <div className="flex-1 space-y-3">
+                      <div>
+                        <div className="flex items-start justify-between gap-2 mb-1">
+                          <h3 className="font-semibold">{milestone.name}</h3>
+                          <span className="text-xs text-muted-foreground capitalize whitespace-nowrap">
+                            {milestone.status.replace('-', ' ')}
+                          </span>
+                        </div>
+                        {milestone.description && (
+                          <p className="text-sm text-muted-foreground">{milestone.description}</p>
+                        )}
                       </div>
-                      {milestone.description && (
-                        <p className="text-sm text-muted-foreground">{milestone.description}</p>
+
+                      {milestone.proofs && milestone.proofs.length > 0 && (
+                        <div className="pt-2 border-t">
+                          <p className="text-xs font-semibold text-muted-foreground mb-2">Evidence:</p>
+                          <div className="space-y-2">
+                            {milestone.proofs.map((proof, idx) => (
+                              <a
+                                key={idx}
+                                href={proof.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block group"
+                              >
+                                <div className="flex items-start gap-2">
+                                  <span className="text-primary mt-0.5">→</span>
+                                  <div className="flex-1">
+                                    <p className="text-sm font-medium text-primary group-hover:underline">
+                                      {proof.title}
+                                    </p>
+                                    <p className="text-xs text-muted-foreground mt-0.5">
+                                      {proof.description}
+                                    </p>
+                                    <p className="text-xs text-muted-foreground/60 mt-0.5 font-mono">
+                                      {proof.url}
+                                    </p>
+                                  </div>
+                                  <ExternalLink className="h-3 w-3 text-muted-foreground flex-shrink-0 mt-1" />
+                                </div>
+                              </a>
+                            ))}
+                          </div>
+                        </div>
                       )}
                     </div>
                   </div>

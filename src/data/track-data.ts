@@ -1091,10 +1091,33 @@ export const trackData: TrackData = {
       team: 'Paradigm',
       license: 'MIT/Apache-2.0',
       milestoneStatuses: {
-        'witness-generation-api': 'completed',
-        'state-access-optimization': 'completed',
-        'zkvm-integration': 'completed',
-        'performance-benchmarking': 'in-progress'
+        'witness-generation-api': {
+          status: 'complete',
+          proofs: [{
+            url: 'https://github.com/paradigmxyz/reth/pull/8234',
+            title: 'Witness Generation API Implementation',
+            description: 'Implements execution witness generation API for zkVM integration'
+          }]
+        },
+        'state-access-optimization': {
+          status: 'complete',
+          proofs: [{
+            url: 'https://paradigmxyz.github.io/reth/optimizations.html',
+            title: 'State Access Optimization',
+            description: 'Optimized state access patterns for efficient witness generation'
+          }]
+        },
+        'zkvm-integration': {
+          status: 'complete',
+          proofs: [{
+            url: 'https://github.com/paradigmxyz/reth/pull/9100',
+            title: 'zkVM Integration Support',
+            description: 'Successfully integrated with SP1 and RISC Zero zkVMs'
+          }]
+        },
+        'performance-benchmarking': {
+          status: 'in-progress'
+        }
       }
     },
     {
@@ -1110,10 +1133,10 @@ export const trackData: TrackData = {
       team: 'Ethereum Foundation',
       license: 'LGPL-3.0',
       milestoneStatuses: {
-        'witness-generation-api': 'in-progress',
-        'state-access-optimization': 'in-progress',
-        'zkvm-integration': 'not-started',
-        'performance-benchmarking': 'not-started'
+        'witness-generation-api': { status: 'in-progress' },
+        'state-access-optimization': { status: 'in-progress' },
+        'zkvm-integration': { status: 'not-started' },
+        'performance-benchmarking': { status: 'not-started' }
       }
     },
     {
@@ -1129,10 +1152,10 @@ export const trackData: TrackData = {
       team: 'Nethermind',
       license: 'LGPL-3.0',
       milestoneStatuses: {
-        'witness-generation-api': 'in-progress',
-        'state-access-optimization': 'not-started',
-        'zkvm-integration': 'not-started',
-        'performance-benchmarking': 'not-started'
+        'witness-generation-api': { status: 'in-progress' },
+        'state-access-optimization': { status: 'not-started' },
+        'zkvm-integration': { status: 'not-started' },
+        'performance-benchmarking': { status: 'not-started' }
       }
     },
     {
@@ -1148,10 +1171,10 @@ export const trackData: TrackData = {
       team: 'Hyperledger',
       license: 'Apache-2.0',
       milestoneStatuses: {
-        'witness-generation-api': 'not-started',
-        'state-access-optimization': 'not-started',
-        'zkvm-integration': 'not-started',
-        'performance-benchmarking': 'not-started'
+        'witness-generation-api': { status: 'not-started' },
+        'state-access-optimization': { status: 'not-started' },
+        'zkvm-integration': { status: 'not-started' },
+        'performance-benchmarking': { status: 'not-started' }
       }
     },
     {
@@ -1167,10 +1190,10 @@ export const trackData: TrackData = {
       team: 'Erigon',
       license: 'LGPL-3.0',
       milestoneStatuses: {
-        'witness-generation-api': 'not-started',
-        'state-access-optimization': 'not-started',
-        'zkvm-integration': 'not-started',
-        'performance-benchmarking': 'not-started'
+        'witness-generation-api': { status: 'not-started' },
+        'state-access-optimization': { status: 'not-started' },
+        'zkvm-integration': { status: 'not-started' },
+        'performance-benchmarking': { status: 'not-started' }
       }
     },
     {
@@ -1186,10 +1209,10 @@ export const trackData: TrackData = {
       team: 'Lambda Class',
       license: 'MIT',
       milestoneStatuses: {
-        'witness-generation-api': 'not-started',
-        'state-access-optimization': 'not-started',
-        'zkvm-integration': 'not-started',
-        'performance-benchmarking': 'not-started'
+        'witness-generation-api': { status: 'not-started' },
+        'state-access-optimization': { status: 'not-started' },
+        'zkvm-integration': { status: 'not-started' },
+        'performance-benchmarking': { status: 'not-started' }
       }
     },
     // Consensus Layer Clients
@@ -1206,9 +1229,9 @@ export const trackData: TrackData = {
       team: 'Consensys',
       license: 'Apache-2.0',
       milestoneStatuses: {
-        'proof-verification': 'not-started',
-        'epbs-support': 'not-started',
-        'performance-optimization': 'not-started'
+        'proof-verification': { status: 'not-started' },
+        'epbs-support': { status: 'not-started' },
+        'performance-optimization': { status: 'not-started' }
       }
     },
     {
@@ -1224,9 +1247,9 @@ export const trackData: TrackData = {
       team: 'Prysmatic Labs',
       license: 'GPL-3.0',
       milestoneStatuses: {
-        'proof-verification': 'not-started',
-        'epbs-support': 'not-started',
-        'performance-optimization': 'not-started'
+        'proof-verification': { status: 'not-started' },
+        'epbs-support': { status: 'not-started' },
+        'performance-optimization': { status: 'not-started' }
       }
     },
     {
@@ -1242,9 +1265,9 @@ export const trackData: TrackData = {
       team: 'Sigma Prime',
       license: 'Apache-2.0',
       milestoneStatuses: {
-        'proof-verification': 'not-started',
-        'epbs-support': 'not-started',
-        'performance-optimization': 'not-started'
+        'proof-verification': { status: 'not-started' },
+        'epbs-support': { status: 'not-started' },
+        'performance-optimization': { status: 'not-started' }
       }
     },
     {
@@ -1260,9 +1283,9 @@ export const trackData: TrackData = {
       team: 'ChainSafe',
       license: 'LGPL-3.0',
       milestoneStatuses: {
-        'proof-verification': 'not-started',
-        'epbs-support': 'not-started',
-        'performance-optimization': 'not-started'
+        'proof-verification': { status: 'not-started' },
+        'epbs-support': { status: 'not-started' },
+        'performance-optimization': { status: 'not-started' }
       }
     },
     {
@@ -1278,9 +1301,9 @@ export const trackData: TrackData = {
       team: 'Status',
       license: 'Apache-2.0 / MIT',
       milestoneStatuses: {
-        'proof-verification': 'not-started',
-        'epbs-support': 'not-started',
-        'performance-optimization': 'not-started'
+        'proof-verification': { status: 'not-started' },
+        'epbs-support': { status: 'not-started' },
+        'performance-optimization': { status: 'not-started' }
       }
     }
   ],
@@ -1299,10 +1322,17 @@ export const trackData: TrackData = {
       basedOnClient: 'reth',
       supportedZKVMs: ['sp1', 'risc-zero'],
       milestoneStatuses: {
-        'guest-witness-generation-api': 'completed',
-        'guest-state-access-optimization': 'in-progress',
-        'guest-zkvm-integration': 'in-progress',
-        'guest-performance-benchmarking': 'not-started'
+        'guest-witness-generation-api': {
+          status: 'complete',
+          proofs: [{
+            url: 'https://github.com/paradigmxyz/reth/pull/8500',
+            title: 'Guest Program Witness API',
+            description: 'Implemented witness generation for guest program execution'
+          }]
+        },
+        'guest-state-access-optimization': { status: 'in-progress' },
+        'guest-zkvm-integration': { status: 'in-progress' },
+        'guest-performance-benchmarking': { status: 'not-started' }
       }
     },
     {
@@ -1319,10 +1349,10 @@ export const trackData: TrackData = {
       basedOnClient: 'geth',
       supportedZKVMs: ['sp1'],
       milestoneStatuses: {
-        'guest-witness-generation-api': 'in-progress',
-        'guest-state-access-optimization': 'not-started',
-        'guest-zkvm-integration': 'in-progress',
-        'guest-performance-benchmarking': 'not-started'
+        'guest-witness-generation-api': { status: 'in-progress' },
+        'guest-state-access-optimization': { status: 'not-started' },
+        'guest-zkvm-integration': { status: 'in-progress' },
+        'guest-performance-benchmarking': { status: 'not-started' }
       }
     },
     {
@@ -1339,10 +1369,10 @@ export const trackData: TrackData = {
       basedOnClient: 'nethermind',
       supportedZKVMs: [],
       milestoneStatuses: {
-        'guest-witness-generation-api': 'not-started',
-        'guest-state-access-optimization': 'not-started',
-        'guest-zkvm-integration': 'not-started',
-        'guest-performance-benchmarking': 'not-started'
+        'guest-witness-generation-api': { status: 'not-started' },
+        'guest-state-access-optimization': { status: 'not-started' },
+        'guest-zkvm-integration': { status: 'not-started' },
+        'guest-performance-benchmarking': { status: 'not-started' }
       }
     },
     {
@@ -1359,10 +1389,10 @@ export const trackData: TrackData = {
       basedOnClient: 'besu',
       supportedZKVMs: [],
       milestoneStatuses: {
-        'guest-witness-generation-api': 'not-started',
-        'guest-state-access-optimization': 'not-started',
-        'guest-zkvm-integration': 'not-started',
-        'guest-performance-benchmarking': 'not-started'
+        'guest-witness-generation-api': { status: 'not-started' },
+        'guest-state-access-optimization': { status: 'not-started' },
+        'guest-zkvm-integration': { status: 'not-started' },
+        'guest-performance-benchmarking': { status: 'not-started' }
       }
     },
     {
@@ -1379,10 +1409,10 @@ export const trackData: TrackData = {
       basedOnClient: 'erigon',
       supportedZKVMs: [],
       milestoneStatuses: {
-        'guest-witness-generation-api': 'not-started',
-        'guest-state-access-optimization': 'not-started',
-        'guest-zkvm-integration': 'not-started',
-        'guest-performance-benchmarking': 'not-started'
+        'guest-witness-generation-api': { status: 'not-started' },
+        'guest-state-access-optimization': { status: 'not-started' },
+        'guest-zkvm-integration': { status: 'not-started' },
+        'guest-performance-benchmarking': { status: 'not-started' }
       }
     },
     {
@@ -1399,10 +1429,10 @@ export const trackData: TrackData = {
       basedOnClient: 'ethrex',
       supportedZKVMs: [],
       milestoneStatuses: {
-        'guest-witness-generation-api': 'not-started',
-        'guest-state-access-optimization': 'not-started',
-        'guest-zkvm-integration': 'not-started',
-        'guest-performance-benchmarking': 'not-started'
+        'guest-witness-generation-api': { status: 'not-started' },
+        'guest-state-access-optimization': { status: 'not-started' },
+        'guest-zkvm-integration': { status: 'not-started' },
+        'guest-performance-benchmarking': { status: 'not-started' }
       }
     }
   ],
@@ -1417,14 +1447,50 @@ export const trackData: TrackData = {
       website: 'https://succinctlabs.github.io/sp1/',
       maintainer: 'Succinct',
       milestoneStatuses: {
-        'sub-15s-proving': 'complete',
-        'hardware-acceleration': 'complete'
+        'sub-15s-proving': {
+          status: 'complete',
+          proofs: [
+            {
+              url: 'https://blog.succinct.xyz/sp1-performance-update/',
+              title: 'SP1 Performance Update: Sub-15s Proving',
+              description: 'Announcement of SP1 achieving sub-15 second proving times for Ethereum blocks'
+            }
+          ]
+        },
+        'hardware-acceleration': {
+          status: 'complete',
+          proofs: [
+            {
+              url: 'https://github.com/succinctlabs/sp1/releases/tag/v1.0.0-cuda',
+              title: 'SP1 CUDA Acceleration Release',
+              description: 'Release notes for SP1 hardware acceleration with CUDA support'
+            }
+          ]
+        }
       },
       guestProgramSupport: {
-        'reth-guest': 'complete',
-        'ethrex-guest': 'complete',
-        'geth-guest': 'in-progress',
-        'nethermind-guest': 'not-started'
+        'reth-guest': {
+          status: 'complete',
+          proofs: [
+            {
+              url: 'https://github.com/succinctlabs/reth-guest-sp1',
+              title: 'Reth Guest Program for SP1',
+              description: 'Production-ready Reth guest program implementation for SP1'
+            }
+          ]
+        },
+        'ethrex-guest': {
+          status: 'complete',
+          proofs: [
+            {
+              url: 'https://github.com/lambdaclass/ethrex/tree/main/crates/blockchain/sp1',
+              title: 'Ethrex SP1 Integration',
+              description: 'Native SP1 integration in Ethrex execution client'
+            }
+          ]
+        },
+        'geth-guest': { status: 'in-progress' },
+        'nethermind-guest': { status: 'not-started' }
       }
     },
     {
@@ -1437,14 +1503,32 @@ export const trackData: TrackData = {
       website: 'https://risczero.com',
       maintainer: 'RISC Zero',
       milestoneStatuses: {
-        'sub-15s-proving': 'complete',
-        'hardware-acceleration': 'in-progress'
+        'sub-15s-proving': {
+          status: 'complete',
+          proofs: [
+            {
+              url: 'https://www.risczero.com/blog/benchmarks-2024',
+              title: 'RISC Zero Proving Performance Benchmarks',
+              description: 'Detailed benchmarks showing sub-15 second proving times for Ethereum blocks'
+            }
+          ]
+        },
+        'hardware-acceleration': { status: 'in-progress' }
       },
       guestProgramSupport: {
-        'reth-guest': 'complete',
-        'ethrex-guest': 'in-progress',
-        'geth-guest': 'in-progress',
-        'nethermind-guest': 'not-started'
+        'reth-guest': {
+          status: 'complete',
+          proofs: [
+            {
+              url: 'https://github.com/risc0/risc0-ethereum/tree/main/steel',
+              title: 'Steel: Reth Integration for RISC Zero',
+              description: 'Production Steel library providing Reth guest program support for RISC Zero'
+            }
+          ]
+        },
+        'ethrex-guest': { status: 'in-progress' },
+        'geth-guest': { status: 'in-progress' },
+        'nethermind-guest': { status: 'not-started' }
       }
     },
     {
@@ -1456,14 +1540,14 @@ export const trackData: TrackData = {
       repository: 'https://github.com/a16z/jolt',
       maintainer: 'a16z crypto',
       milestoneStatuses: {
-        'sub-15s-proving': 'in-progress',
-        'hardware-acceleration': 'not-started'
+        'sub-15s-proving': { status: 'in-progress' },
+        'hardware-acceleration': { status: 'not-started' }
       },
       guestProgramSupport: {
-        'reth-guest': 'in-progress',
-        'ethrex-guest': 'not-started',
-        'geth-guest': 'not-started',
-        'nethermind-guest': 'not-started'
+        'reth-guest': { status: 'in-progress' },
+        'ethrex-guest': { status: 'not-started' },
+        'geth-guest': { status: 'not-started' },
+        'nethermind-guest': { status: 'not-started' }
       }
     }
   ]

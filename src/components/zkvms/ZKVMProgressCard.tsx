@@ -12,8 +12,8 @@ interface ZKVMProgressCardProps {
 export default function ZKVMProgressCard({ zkvm }: ZKVMProgressCardProps) {
   // Calculate milestone statistics
   const milestoneStatuses = Object.values(zkvm.milestoneStatuses);
-  const completedMilestones = milestoneStatuses.filter(s => s === 'complete').length;
-  const inProgressMilestones = milestoneStatuses.filter(s => s === 'in-progress').length;
+  const completedMilestones = milestoneStatuses.filter(s => s.status === 'complete').length;
+  const inProgressMilestones = milestoneStatuses.filter(s => s.status === 'in-progress').length;
   const totalMilestones = milestoneStatuses.length;
   const progressPercentage = totalMilestones > 0
     ? Math.round((completedMilestones / totalMilestones) * 100)
@@ -21,8 +21,8 @@ export default function ZKVMProgressCard({ zkvm }: ZKVMProgressCardProps) {
 
   // Calculate guest program support statistics
   const guestProgramSupportStatuses = Object.values(zkvm.guestProgramSupport);
-  const supportedGuestPrograms = guestProgramSupportStatuses.filter(s => s === 'complete').length;
-  const inProgressGuestPrograms = guestProgramSupportStatuses.filter(s => s === 'in-progress').length;
+  const supportedGuestPrograms = guestProgramSupportStatuses.filter(s => s.status === 'complete').length;
+  const inProgressGuestPrograms = guestProgramSupportStatuses.filter(s => s.status === 'in-progress').length;
   const totalGuestPrograms = guestProgramSupportStatuses.length;
 
   const getStatusColor = () => {

@@ -203,7 +203,7 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
   }, []);
 
   const categories = Object.keys(categoryNames);
-  const statuses = ['not-started', 'in-progress', 'completed'];
+  const statuses = ['not-started', 'in-progress', 'complete'];
 
   return (
     <>

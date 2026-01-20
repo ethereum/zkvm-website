@@ -10,7 +10,7 @@ interface ZKVMCardProps {
 export default function ZKVMCard({ zkvm }: ZKVMCardProps) {
   // Calculate performance progress
   const performanceStatuses = Object.values(zkvm.milestoneStatuses);
-  const performanceCompleted = performanceStatuses.filter(s => s === 'complete').length;
+  const performanceCompleted = performanceStatuses.filter(s => s.status === 'complete').length;
   const performanceTotal = performanceStatuses.length;
   const performancePercentage = performanceTotal > 0
     ? Math.round((performanceCompleted / performanceTotal) * 100)
@@ -18,7 +18,7 @@ export default function ZKVMCard({ zkvm }: ZKVMCardProps) {
 
   // Calculate guest program support progress
   const guestProgramStatuses = Object.values(zkvm.guestProgramSupport);
-  const guestProgramsSupported = guestProgramStatuses.filter(s => s === 'complete').length;
+  const guestProgramsSupported = guestProgramStatuses.filter(s => s.status === 'complete').length;
   const guestProgramsTotal = guestProgramStatuses.length;
   const guestProgramPercentage = guestProgramsTotal > 0
     ? Math.round((guestProgramsSupported / guestProgramsTotal) * 100)
