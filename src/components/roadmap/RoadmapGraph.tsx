@@ -207,7 +207,7 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
             ...node,
             style: {
               ...node.style,
-              opacity: subgraphNodeIds.has(node.id) ? 1 : 0,
+              opacity: subgraphNodeIds.has(node.id) ? 1 : 0.2,
             },
           }))
         );
@@ -218,7 +218,7 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
             ...edge,
             style: {
               ...edge.style,
-              opacity: isInSubgraph ? 1 : 0,
+              opacity: isInSubgraph ? 1 : 0.1,
             },
           };
         });
@@ -313,7 +313,7 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
           proOptions={{ hideAttribution: true }}
         >
           <Background />
-          <Controls className="!bottom-20 md:!bottom-4" />
+          <Controls />
 
           {/* Header */}
           <Panel position="top-center" className="bg-background/95 backdrop-blur-sm border rounded-lg px-3 py-2 md:px-6 md:py-3 text-center">
@@ -374,8 +374,8 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
           </Panel>
         </ReactFlow>
 
-        {/* Bottom description panel */}
-        <div className={`absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t transition-all duration-200 ${hoveredItem ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
+        {/* Top description panel */}
+        <div className={`absolute top-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-b transition-all duration-200 z-10 ${hoveredItem ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
           <div className="max-w-4xl mx-auto px-4 py-3 md:px-6 md:py-4">
             {hoveredItem && (
               <>
