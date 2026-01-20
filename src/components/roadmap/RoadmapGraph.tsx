@@ -150,38 +150,41 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
         }))
       );
     } else {
-      // Highlight edges connected to hovered node
+      // Highlight only incoming edges (dependencies pointing to hovered node)
       setEdges((eds) => {
-        const connectedNodeIds = new Set<string>();
+        const dependencyNodeIds = new Set<string>();
         eds.forEach((edge) => {
-          if (edge.source === hoveredNodeId) connectedNodeIds.add(edge.target);
-          if (edge.target === hoveredNodeId) connectedNodeIds.add(edge.source);
+          // Only add nodes that point TO the hovered node
+          if (edge.target === hoveredNodeId) {
+            dependencyNodeIds.add(edge.source);
+          }
         });
-        connectedNodeIds.add(hoveredNodeId);
+        dependencyNodeIds.add(hoveredNodeId);
 
         const updatedEdges = eds.map((edge) => {
-          const isConnected = edge.source === hoveredNodeId || edge.target === hoveredNodeId;
+          // Only highlight edges that point TO the hovered node
+          const isIncoming = edge.target === hoveredNodeId;
           return {
             ...edge,
             style: {
-              stroke: isConnected ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))',
-              strokeWidth: isConnected ? 3 : 2,
-              opacity: isConnected ? 1 : 0.3,
+              stroke: isIncoming ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))',
+              strokeWidth: isIncoming ? 3 : 2,
+              opacity: isIncoming ? 1 : 0.3,
             },
             markerEnd: {
               type: MarkerType.ArrowClosed,
-              color: isConnected ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))',
+              color: isIncoming ? 'hsl(var(--primary))' : 'hsl(var(--muted-foreground))',
             },
           };
         });
 
-        // Dim non-connected nodes
+        // Highlight only dependency nodes
         setNodes((nds) =>
           nds.map((node) => ({
             ...node,
             style: {
               ...node.style,
-              opacity: connectedNodeIds.has(node.id) ? 1 : 0.3,
+              opacity: dependencyNodeIds.has(node.id) ? 1 : 0.3,
             },
           }))
         );
