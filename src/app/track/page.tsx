@@ -48,13 +48,13 @@ export default function TrackPage() {
                   key={item.id}
                   onClick={() => setActiveView(item.id)}
                   className={cn(
-                    "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-foreground",
+                    "flex items-start gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-foreground text-left",
                     isActive
                       ? "bg-muted font-medium"
                       : "hover:bg-muted"
                   )}
                 >
-                  <Icon className="h-4 w-4 flex-shrink-0" />
+                  <Icon className="h-4 w-4 flex-shrink-0 mt-0.5" />
                   <span>{item.name}</span>
                 </button>
               );
@@ -65,16 +65,16 @@ export default function TrackPage() {
 
             <Link
               href="/clients"
-              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-muted transition-colors text-foreground"
+              className="flex items-start gap-3 px-3 py-2 rounded-lg text-sm hover:bg-muted transition-colors text-foreground text-left"
             >
-              <Network className="h-4 w-4 flex-shrink-0" />
+              <Network className="h-4 w-4 flex-shrink-0 mt-0.5" />
               <span>All Clients</span>
             </Link>
             <Link
               href="/zkvms"
-              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-muted transition-colors text-foreground"
+              className="flex items-start gap-3 px-3 py-2 rounded-lg text-sm hover:bg-muted transition-colors text-foreground text-left"
             >
-              <Cpu className="h-4 w-4 flex-shrink-0" />
+              <Cpu className="h-4 w-4 flex-shrink-0 mt-0.5" />
               <span>All zkVMs</span>
             </Link>
           </div>
