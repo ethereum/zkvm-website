@@ -12,9 +12,10 @@ const iconMap: Record<string, LucideIcon> = {
 
 interface TrackSidebarProps {
   activeCategory?: string;
+  activeSubpage?: string;
 }
 
-export default function TrackSidebar({ activeCategory }: TrackSidebarProps) {
+export default function TrackSidebar({ activeCategory, activeSubpage }: TrackSidebarProps) {
   const sidebarItems = trackData.categories.map(cat => ({
     id: cat.id,
     name: cat.name,
@@ -36,16 +37,36 @@ export default function TrackSidebar({ activeCategory }: TrackSidebarProps) {
             const isActive = activeCategory === item.id;
 
             return (
-              <Link
-                key={item.id}
-                href={item.href}
-                className={`flex items-start gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-foreground text-left ${
-                  isActive ? 'bg-muted font-medium' : 'hover:bg-muted'
-                }`}
-              >
-                <Icon className="h-4 w-4 flex-shrink-0 mt-0.5" />
-                <span>{item.name}</span>
-              </Link>
+              <div key={item.id}>
+                <Link
+                  href={item.href}
+                  className={`flex items-start gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-foreground text-left ${
+                    isActive ? 'bg-muted font-medium' : 'hover:bg-muted'
+                  }`}
+                >
+                  <Icon className="h-4 w-4 flex-shrink-0 mt-0.5" />
+                  <span>{item.name}</span>
+                </Link>
+                {/* Show subsections when this category is active */}
+                {isActive && item.id === 'testing-validation' && (
+                  <div className="ml-7 mt-1 space-y-1">
+                    <Link
+                      href="/track/testing-validation#monitors"
+                      className="block px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
+                    >
+                      Monitors
+                    </Link>
+                    {activeSubpage === 'monitors' && (
+                      <Link
+                        href="/track/monitors"
+                        className="block px-3 py-1.5 text-sm ml-4 text-foreground font-medium bg-muted rounded-lg"
+                      >
+                        ISA Compliance
+                      </Link>
+                    )}
+                  </div>
+                )}
+              </div>
             );
           })}
 

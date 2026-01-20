@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { trackData } from '@/data/track-data';
+import { zkvmSecurityData } from '@/data/zkvm-security';
 import MilestoneChecklist from '@/components/MilestoneChecklist';
 import TrackSidebar from '@/components/track/TrackSidebar';
 import { ClientProgressCard } from '@/components/track/ClientProgressCard';
@@ -8,8 +9,9 @@ import { ZKVMComparisonTable } from '@/components/track/ZKVMComparisonTable';
 import ClientCard from '@/components/ClientCard';
 import AuditStatus from '@/components/track/AuditStatus';
 import DependencyGraph from '@/components/track/DependencyGraph';
-import RiscVTestingCard from '@/components/track/RiscVTestingCard';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import Link from 'next/link';
+import { FlaskConical, ChevronRight } from 'lucide-react';
 
 // Dynamic imports for chart components (reduces initial bundle)
 const BenchmarkChart = dynamic(() => import('@/components/track/BenchmarkChart'), {
@@ -82,10 +84,35 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </div>
 
             <div className="space-y-8">
-          {/* Show testing card for testing-validation, milestones for others */}
-          {category.id === 'testing-validation' ? (
-            <RiscVTestingCard />
-          ) : (
+          {/* Testing & Validation - zkVM Comparison Table at top */}
+          {category.id === 'testing-validation' && (
+            <ZKVMComparisonTable implementations={zkvmSecurityData} />
+          )}
+
+          {/* Monitors section link for testing-validation */}
+          {category.id === 'testing-validation' && (
+            <div id="monitors" className="space-y-4 scroll-mt-8">
+              <h2 className="text-xl font-semibold">Monitors</h2>
+              <Link
+                href="/track/monitors"
+                className="flex items-center justify-between p-4 rounded-lg border hover:bg-muted/50 transition-colors group"
+              >
+                <div className="flex items-center gap-3">
+                  <FlaskConical className="h-5 w-5 text-primary" />
+                  <div>
+                    <div className="font-medium">RISC-V Compliance Test Monitor</div>
+                    <div className="text-sm text-muted-foreground">
+                      View automated compliance testing results
+                    </div>
+                  </div>
+                </div>
+                <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </Link>
+            </div>
+          )}
+
+          {/* Show milestones for other categories */}
+          {category.id !== 'testing-validation' && (
             <MilestoneChecklist milestones={category.milestones} />
           )}
 
@@ -182,18 +209,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </div>
           )}
 
-          {/* Testing & Validation - zkVM Implementations */}
-          {category.id === 'testing-validation' && category.zkvmImplementations && (
-            <div className="space-y-6">
-              <div className="border-t pt-8">
-                <h2 className="text-2xl font-bold mb-2">zkVM Implementations</h2>
-                <p className="text-muted-foreground mb-6">
-                  Comparison of zero-knowledge virtual machine implementations and their test results
-                </p>
-                <ZKVMComparisonTable implementations={category.zkvmImplementations} />
-              </div>
-            </div>
-          )}
 
           {/* Audit status for economic-security */}
           {category.id === 'economic-security' && (

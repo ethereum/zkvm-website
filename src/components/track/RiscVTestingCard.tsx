@@ -1,31 +1,57 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
-import { Card, CardContent } from '@/components/ui/card';
-import { ExternalLink, FlaskConical } from 'lucide-react';
+import { ExternalLink, FlaskConical, Maximize2, Minimize2 } from 'lucide-react';
 
 const TEST_MONITOR_URL = 'https://eth-act.github.io/zkevm-test-monitor/';
 
 export default function RiscVTestingCard() {
+  const [expanded, setExpanded] = useState(false);
+
   return (
-    <Card>
-      <CardContent className="pt-6">
-        <Link
-          href={TEST_MONITOR_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-between p-4 rounded-lg border hover:bg-muted/50 transition-colors group"
-        >
-          <div className="flex items-center gap-3">
-            <FlaskConical className="h-5 w-5 text-primary" />
-            <div>
-              <div className="font-medium">RISC-V Compliance Test Monitor</div>
-              <div className="text-sm text-muted-foreground">
-                View automated compliance testing results
-              </div>
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <FlaskConical className="h-5 w-5 text-primary" />
+          <div>
+            <div className="font-medium">RISC-V Compliance Test Monitor</div>
+            <div className="text-sm text-muted-foreground">
+              Automated compliance testing results
             </div>
           </div>
-          <ExternalLink className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
-        </Link>
-      </CardContent>
-    </Card>
+        </div>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="p-2 rounded-lg hover:bg-muted transition-colors"
+            title={expanded ? 'Collapse' : 'Expand'}
+          >
+            {expanded ? (
+              <Minimize2 className="h-4 w-4 text-muted-foreground" />
+            ) : (
+              <Maximize2 className="h-4 w-4 text-muted-foreground" />
+            )}
+          </button>
+          <Link
+            href={TEST_MONITOR_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-lg hover:bg-muted transition-colors"
+            title="Open in new tab"
+          >
+            <ExternalLink className="h-4 w-4 text-muted-foreground" />
+          </Link>
+        </div>
+      </div>
+
+      <div className={`rounded-lg border overflow-hidden transition-all ${expanded ? 'h-[800px]' : 'h-[400px]'}`}>
+        <iframe
+          src={TEST_MONITOR_URL}
+          className="w-full h-full"
+          title="RISC-V Compliance Test Monitor"
+        />
+      </div>
+    </div>
   );
 }
