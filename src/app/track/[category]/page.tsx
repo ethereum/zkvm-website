@@ -5,7 +5,6 @@ import MilestoneChecklist from '@/components/MilestoneChecklist';
 import TrackSidebar from '@/components/track/TrackSidebar';
 import { ClientProgressCard } from '@/components/track/ClientProgressCard';
 import { ZKVMComparisonTable } from '@/components/track/ZKVMComparisonTable';
-import ZKVMProgressCard from '@/components/zkvms/ZKVMProgressCard';
 import ClientCard from '@/components/ClientCard';
 import AuditStatus from '@/components/track/AuditStatus';
 import DependencyGraph from '@/components/track/DependencyGraph';
@@ -192,23 +191,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                   Comparison of zero-knowledge virtual machine implementations and their test results
                 </p>
                 <ZKVMComparisonTable implementations={category.zkvmImplementations} />
-              </div>
-            </div>
-          )}
-
-          {/* Testing & Validation - zkVM Progress Tracking */}
-          {category.id === 'testing-validation' && trackData.zkvms && trackData.zkvms.length > 0 && (
-            <div className="space-y-6">
-              <div className="border-t pt-8">
-                <h2 className="text-2xl font-bold mb-2">zkVM Progress</h2>
-                <p className="text-muted-foreground mb-6">
-                  Track performance milestones and client support for zkVM implementations
-                </p>
-                <div className="grid gap-6 md:grid-cols-2">
-                  {trackData.zkvms.map((zkvm) => (
-                    <ZKVMProgressCard key={zkvm.id} zkvm={zkvm} />
-                  ))}
-                </div>
               </div>
             </div>
           )}
