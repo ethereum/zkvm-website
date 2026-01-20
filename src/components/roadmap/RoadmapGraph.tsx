@@ -12,6 +12,8 @@ import {
   ConnectionLineType,
   Panel,
   MarkerType,
+  useReactFlow,
+  ReactFlowProvider,
 } from '@xyflow/react';
 import dagre from 'dagre';
 import { RoadmapItem } from '@/lib/track-types';
@@ -19,6 +21,15 @@ import RoadmapNode from './RoadmapNode';
 import RoadmapItemModal from './RoadmapItemModal';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from '@/components/ui/drawer';
+import { Filter } from 'lucide-react';
 import '@xyflow/react/dist/style.css';
 
 const nodeTypes = {
@@ -43,14 +54,13 @@ const getLayoutedElements = (nodes: Node[], edges: Edge[]) => {
   // Compact dagre settings
   dagreGraph.setGraph({
     rankdir: 'LR',
-    ranksep: 80,        // tight horizontal spacing
-    nodesep: 25,        // tight vertical spacing
+    ranksep: 80,
+    nodesep: 25,
     edgesep: 15,
     marginx: 20,
     marginy: 20,
   });
 
-  // Use actual node dimensions
   const NODE_WIDTH = 180;
   const NODE_HEIGHT = 50;
 
@@ -78,12 +88,14 @@ const getLayoutedElements = (nodes: Node[], edges: Edge[]) => {
   return { nodes: positionedNodes, edges };
 };
 
-export default function RoadmapGraph({ items }: RoadmapGraphProps) {
+function RoadmapGraphInner({ items }: RoadmapGraphProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [selectedItem, setSelectedItem] = useState<RoadmapItem | null>(null);
   const [hoveredNodeId, setHoveredNodeId] = useState<string | null>(null);
   const [hoveredItem, setHoveredItem] = useState<RoadmapItem | null>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const { fitView } = useReactFlow();
 
   // Filter items
   const filteredItems = useMemo(() => {
@@ -103,14 +115,13 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
         item,
         onClick: () => setSelectedItem(item),
       },
-      position: { x: 0, y: 0 }, // Will be set by dagre
+      position: { x: 0, y: 0 },
     }));
 
     const edges: Edge[] = [];
     filteredItems.forEach((item) => {
       if (item.dependencies) {
         item.dependencies.forEach((depId) => {
-          // Only add edge if the dependency is in filtered items
           if (filteredItems.some(i => i.id === depId)) {
             edges.push({
               id: `${depId}-${item.id}`,
@@ -136,17 +147,18 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
-  // Update nodes/edges when filtered items change
-  useMemo(() => {
+  // Update nodes/edges when filtered items change and fit view
+  useEffect(() => {
     const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialNodes, initialEdges);
     setNodes(layoutedNodes);
     setEdges(layoutedEdges);
-  }, [initialNodes, initialEdges, setNodes, setEdges]);
+    // Fit view after layout with padding
+    setTimeout(() => fitView({ padding: 0.2 }), 50);
+  }, [initialNodes, initialEdges, setNodes, setEdges, fitView]);
 
-  // Update node and edge visibility based on hovered node (show only dependency subgraph)
+  // Update node and edge visibility based on hovered node
   useEffect(() => {
     if (!hoveredNodeId) {
-      // Reset all nodes and edges to visible
       setNodes((nds) =>
         nds.map((node) => ({
           ...node,
@@ -160,16 +172,13 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
         }))
       );
     } else {
-      // Use callback form to access current edges and compute subgraph
       setEdges((eds) => {
-        // Build adjacency list for traversal
         const incomingEdgesMap = new Map<string, string[]>();
         eds.forEach((edge) => {
           if (!incomingEdgesMap.has(edge.target)) incomingEdgesMap.set(edge.target, []);
           incomingEdgesMap.get(edge.target)!.push(edge.source);
         });
 
-        // Find all nodes in the dependency subgraph (BFS from hovered node going backwards)
         const subgraphNodeIds = new Set<string>();
         const queue = [hoveredNodeId];
         while (queue.length > 0) {
@@ -180,7 +189,6 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
           deps.forEach(dep => queue.push(dep));
         }
 
-        // Hide nodes not in subgraph
         setNodes((nds) =>
           nds.map((node) => ({
             ...node,
@@ -191,7 +199,6 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
           }))
         );
 
-        // Hide edges not in subgraph
         return eds.map((edge) => {
           const isInSubgraph = subgraphNodeIds.has(edge.source) && subgraphNodeIds.has(edge.target);
           return {
@@ -214,6 +221,58 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
 
   const categories = Object.keys(categoryNames);
   const statuses = ['not-started', 'in-progress', 'complete'];
+  const hasFilters = selectedCategory !== 'all' || selectedStatus !== 'all';
+
+  const FilterContent = () => (
+    <div className="space-y-4">
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Category</label>
+        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Categories</SelectItem>
+            {categories.map((cat) => (
+              <SelectItem key={cat} value={cat}>
+                {categoryNames[cat]}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="space-y-2">
+        <label className="text-sm font-medium">Status</label>
+        <Select value={selectedStatus} onValueChange={setSelectedStatus}>
+          <SelectTrigger>
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Statuses</SelectItem>
+            {statuses.map((status) => (
+              <SelectItem key={status} value={status}>
+                {status.replace('-', ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <Button variant="outline" size="sm" onClick={handleReset} className="w-full">
+        Reset Filters
+      </Button>
+
+      <div className="pt-3 border-t text-xs text-muted-foreground space-y-1">
+        <div>
+          <span className="font-semibold text-foreground">{filteredItems.length}</span> items shown
+        </div>
+        <div>
+          <span className="font-semibold text-foreground">{edges.length}</span> dependencies
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <>
@@ -234,21 +293,17 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
           nodeTypes={nodeTypes}
           connectionLineType={ConnectionLineType.Bezier}
           fitView
+          fitViewOptions={{ padding: 0.2 }}
           minZoom={0.1}
-          maxZoom={1.5}
+          maxZoom={2}
           elevateEdgesOnSelect={false}
           proOptions={{ hideAttribution: true }}
         >
           <Background />
-          <Controls />
+          <Controls className="!bottom-20 md:!bottom-4" />
 
-          <Panel position="top-center" className="bg-background/95 backdrop-blur-sm border rounded-lg px-6 py-3 text-center">
-            <h1 className="text-2xl font-bold">zkEVM Roadmap Visualization</h1>
-            <p className="text-sm text-muted-foreground">Hover for details, click for more info</p>
-          </Panel>
-
-          {/* Legend */}
-          <Panel position="top-right" className="bg-background/95 backdrop-blur-sm border rounded-lg p-3">
+          {/* Legend - hidden on mobile */}
+          <Panel position="top-right" className="hidden sm:block bg-background/95 backdrop-blur-sm border rounded-lg p-3">
             <div className="text-xs font-medium mb-2">Status</div>
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
@@ -266,65 +321,49 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
             </div>
           </Panel>
 
-          <Panel position="top-left" className="bg-background/95 backdrop-blur-sm border rounded-lg p-4 space-y-3">
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Category</label>
-              <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-                <SelectTrigger className="w-[200px]">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Categories</SelectItem>
-                  {categories.map((cat) => (
-                    <SelectItem key={cat} value={cat}>
-                      {categoryNames[cat]}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
+          {/* Desktop filters */}
+          <Panel position="top-left" className="hidden md:block bg-background/95 backdrop-blur-sm border rounded-lg p-4">
+            <FilterContent />
+          </Panel>
 
-            <div className="space-y-2">
-              <label className="text-sm font-medium">Status</label>
-              <Select value={selectedStatus} onValueChange={setSelectedStatus}>
-                <SelectTrigger className="w-[200px]">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">All Statuses</SelectItem>
-                  {statuses.map((status) => (
-                    <SelectItem key={status} value={status}>
-                      {status.replace('-', ' ').replace(/\b\w/g, (l) => l.toUpperCase())}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-
-            <Button variant="outline" size="sm" onClick={handleReset} className="w-full">
-              Reset Filters
-            </Button>
-
-            <div className="pt-3 border-t text-xs text-muted-foreground space-y-1">
-              <div>
-                <span className="font-semibold text-foreground">{filteredItems.length}</span> items shown
-              </div>
-              <div>
-                <span className="font-semibold text-foreground">{edges.length}</span> dependencies
-              </div>
-            </div>
+          {/* Mobile filter button */}
+          <Panel position="top-left" className="md:hidden">
+            <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
+              <DrawerTrigger asChild>
+                <Button variant="outline" size="sm" className="bg-background/95 backdrop-blur-sm">
+                  <Filter className="h-4 w-4 mr-2" />
+                  Filters
+                  {hasFilters && (
+                    <span className="ml-2 bg-primary text-primary-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                      !
+                    </span>
+                  )}
+                </Button>
+              </DrawerTrigger>
+              <DrawerContent>
+                <DrawerHeader>
+                  <DrawerTitle>Filter Roadmap</DrawerTitle>
+                </DrawerHeader>
+                <div className="px-4 pb-6">
+                  <FilterContent />
+                  <DrawerClose asChild>
+                    <Button className="w-full mt-4">Apply</Button>
+                  </DrawerClose>
+                </div>
+              </DrawerContent>
+            </Drawer>
           </Panel>
         </ReactFlow>
 
         {/* Bottom description panel */}
         <div className={`absolute bottom-0 left-0 right-0 bg-background/95 backdrop-blur-sm border-t transition-all duration-200 ${hoveredItem ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'}`}>
-          <div className="max-w-4xl mx-auto px-6 py-4">
+          <div className="max-w-4xl mx-auto px-4 py-3 md:px-6 md:py-4">
             {hoveredItem && (
               <>
-                <div className="font-semibold text-lg">{hoveredItem.title}</div>
-                <p className="text-muted-foreground mt-1">{hoveredItem.description}</p>
+                <div className="font-semibold text-base md:text-lg">{hoveredItem.title}</div>
+                <p className="text-muted-foreground text-sm mt-1">{hoveredItem.description}</p>
                 {hoveredItem.targetDate && (
-                  <div className="text-sm text-muted-foreground mt-2">Target: {hoveredItem.targetDate}</div>
+                  <div className="text-xs md:text-sm text-muted-foreground mt-2">Target: {hoveredItem.targetDate}</div>
                 )}
               </>
             )}
@@ -340,5 +379,13 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
         />
       )}
     </>
+  );
+}
+
+export default function RoadmapGraph({ items }: RoadmapGraphProps) {
+  return (
+    <ReactFlowProvider>
+      <RoadmapGraphInner items={items} />
+    </ReactFlowProvider>
   );
 }
