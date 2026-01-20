@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { ZKVM, RoadmapItem } from '@/lib/track-types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Target } from 'lucide-react';
 
 interface RelatedRoadmapProps {
@@ -43,13 +42,6 @@ export default function RelatedRoadmap({ zkvm, roadmap, allZKVMs }: RelatedRoadm
     };
   };
 
-  const priorityStyles = {
-    critical: 'bg-red-500 hover:bg-red-600 text-white',
-    high: 'bg-orange-500 hover:bg-orange-600 text-white',
-    medium: 'bg-yellow-500 hover:bg-yellow-600 text-white',
-    low: 'bg-blue-500 hover:bg-blue-600 text-white',
-  };
-
   return (
     <Card>
       <CardHeader>
@@ -67,9 +59,6 @@ export default function RelatedRoadmap({ zkvm, roadmap, allZKVMs }: RelatedRoadm
               <div key={item.id} className="space-y-2 pb-4 border-b last:border-b-0 last:pb-0">
                 <div className="flex items-start justify-between gap-2">
                   <h3 className="text-sm font-medium">{item.title}</h3>
-                  <Badge className={priorityStyles[item.priority]} variant="secondary">
-                    {item.priority.toUpperCase()}
-                  </Badge>
                 </div>
                 <p className="text-sm text-muted-foreground">
                   {item.description}
