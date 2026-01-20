@@ -313,16 +313,16 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
           proOptions={{ hideAttribution: true }}
         >
           <Background />
-          <Controls />
+          <Controls position="top-left" />
 
-          {/* Header */}
-          <Panel position="top-center" className="bg-background/95 backdrop-blur-sm border rounded-lg px-3 py-2 md:px-6 md:py-3 text-center">
+          {/* Header - bottom center */}
+          <Panel position="bottom-center" className="bg-background/95 backdrop-blur-sm border rounded-lg px-3 py-2 md:px-6 md:py-3 text-center">
             <h1 className="text-base md:text-2xl font-bold">zkEVM Roadmap</h1>
             <p className="hidden md:block text-sm text-muted-foreground">Hover for details, click for more info</p>
           </Panel>
 
-          {/* Legend - hidden on mobile */}
-          <Panel position="top-right" className="hidden sm:block bg-background/95 backdrop-blur-sm border rounded-lg p-3">
+          {/* Legend - bottom right, hidden on mobile */}
+          <Panel position="bottom-right" className="hidden sm:block bg-background/95 backdrop-blur-sm border rounded-lg p-3 mb-0">
             <div className="text-xs font-medium mb-2">Status</div>
             <div className="space-y-1.5">
               <div className="flex items-center gap-2">
@@ -340,13 +340,13 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
             </div>
           </Panel>
 
-          {/* Desktop filters */}
-          <Panel position="top-left" className="hidden md:block bg-background/95 backdrop-blur-sm border rounded-lg p-4">
+          {/* Desktop filters - bottom left */}
+          <Panel position="bottom-left" className="hidden md:block bg-background/95 backdrop-blur-sm border rounded-lg p-4 !left-16">
             <FilterContent />
           </Panel>
 
-          {/* Mobile filter button */}
-          <Panel position="top-left" className="md:hidden">
+          {/* Mobile filter button - bottom left */}
+          <Panel position="bottom-left" className="md:hidden !left-16">
             <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
               <DrawerTrigger asChild>
                 <Button variant="outline" size="sm" className="bg-background/95 backdrop-blur-sm">
