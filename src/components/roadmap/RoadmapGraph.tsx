@@ -9,6 +9,7 @@ import {
   Background,
   useNodesState,
   useEdgesState,
+  ConnectionLineType,
   Panel,
   MarkerType,
 } from '@xyflow/react';
@@ -231,7 +232,7 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
             setHoveredItem(null);
           }}
           nodeTypes={nodeTypes}
-          connectionLineType="default"
+          connectionLineType={ConnectionLineType.Bezier}
           fitView
           minZoom={0.1}
           maxZoom={1.5}
