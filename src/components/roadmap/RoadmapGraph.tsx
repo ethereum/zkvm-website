@@ -55,11 +55,11 @@ const getLayoutedElements = (nodes: Node[], edges: Edge[], direction: 'LR' | 'TB
   const isVertical = direction === 'TB';
   dagreGraph.setGraph({
     rankdir: direction,
-    ranksep: isVertical ? 60 : 80,
-    nodesep: isVertical ? 40 : 25,
-    edgesep: 15,
-    marginx: 20,
-    marginy: 20,
+    ranksep: isVertical ? 50 : 70,
+    nodesep: isVertical ? 30 : 20,
+    edgesep: 10,
+    marginx: 10,
+    marginy: 10,
   });
 
   const NODE_WIDTH = 180;
@@ -165,8 +165,8 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
     const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(initialNodes, initialEdges, layoutDirection);
     setNodes(layoutedNodes);
     setEdges(layoutedEdges);
-    // Fit view after layout with padding
-    setTimeout(() => fitView({ padding: 0.2 }), 50);
+    // Fit view after layout with minimal padding
+    setTimeout(() => fitView({ padding: 0.05, minZoom: 0.5 }), 50);
   }, [initialNodes, initialEdges, setNodes, setEdges, fitView, layoutDirection]);
 
   // Update node and edge visibility based on hovered node
@@ -306,7 +306,7 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
           nodeTypes={nodeTypes}
           connectionLineType={ConnectionLineType.Bezier}
           fitView
-          fitViewOptions={{ padding: 0.2 }}
+          fitViewOptions={{ padding: 0.05, minZoom: 0.5 }}
           minZoom={0.1}
           maxZoom={2}
           elevateEdgesOnSelect={false}
