@@ -10,6 +10,7 @@ import ReactFlow, {
   useEdgesState,
   ConnectionLineType,
   Panel,
+  MarkerType,
 } from 'reactflow';
 import dagre from 'dagre';
 import { RoadmapItem } from '@/lib/track-types';
@@ -103,6 +104,10 @@ export default function RoadmapGraph({ items }: RoadmapGraphProps) {
               type: ConnectionLineType.SmoothStep,
               animated: true,
               style: { stroke: 'hsl(var(--muted-foreground))', strokeWidth: 2 },
+              markerEnd: {
+                type: MarkerType.ArrowClosed,
+                color: 'hsl(var(--muted-foreground))',
+              },
             });
           }
         });
