@@ -1,15 +1,17 @@
 import { notFound } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { trackData } from '@/data/track-data';
-import Breadcrumbs from '@/components/Breadcrumbs';
+import { zkvmSecurityData } from '@/data/zkvm-security';
 import MilestoneChecklist from '@/components/MilestoneChecklist';
+import TrackSidebar from '@/components/track/TrackSidebar';
 import { ClientProgressCard } from '@/components/track/ClientProgressCard';
 import { ZKVMComparisonTable } from '@/components/track/ZKVMComparisonTable';
-import ZKVMProgressCard from '@/components/zkvms/ZKVMProgressCard';
 import ClientCard from '@/components/ClientCard';
 import AuditStatus from '@/components/track/AuditStatus';
 import DependencyGraph from '@/components/track/DependencyGraph';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import Link from 'next/link';
+import { FlaskConical, ChevronRight } from 'lucide-react';
 
 // Dynamic imports for chart components (reduces initial bundle)
 const BenchmarkChart = dynamic(() => import('@/components/track/BenchmarkChart'), {
@@ -65,25 +67,54 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   }
 
   return (
-    <div className="container mx-auto px-4 pb-16">
-      <div className="mx-auto max-w-4xl">
-        <Breadcrumbs items={[
-          { label: 'Track', href: '/track' },
-          { label: category.name }
-        ]} />
+    <div className="flex h-[calc(100vh-4rem)] overflow-hidden">
+      <TrackSidebar activeCategory={categoryId} />
 
-        <div className="mt-8 mb-12">
-          <h1 className="mb-4 text-4xl font-bold">{category.name}</h1>
-          <p className="text-lg text-muted-foreground">{category.description}</p>
-          {category.workstream && (
-            <div className="mt-4 inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
-              Workstream {category.workstream}
+      <main className="flex-1 overflow-y-auto">
+        <div className="container mx-auto px-4 py-8 pb-16">
+          <div className="mx-auto max-w-4xl">
+            <div className="mb-8">
+              <h1 className="mb-4 text-3xl font-bold">{category.name}</h1>
+              <p className="text-lg text-muted-foreground">{category.description}</p>
+              {category.workstream && (
+                <div className="mt-4 inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+                  Workstream {category.workstream}
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-8">
+          {/* Testing & Validation - zkVM Comparison Table at top */}
+          {category.id === 'testing-validation' && (
+            <ZKVMComparisonTable implementations={zkvmSecurityData} />
+          )}
+
+          {/* Monitors section link for testing-validation */}
+          {category.id === 'testing-validation' && (
+            <div id="monitors" className="space-y-4 scroll-mt-8">
+              <h2 className="text-xl font-semibold">Monitors</h2>
+              <Link
+                href="/track/monitors"
+                className="flex items-center justify-between p-4 rounded-lg border hover:bg-muted/50 transition-colors group"
+              >
+                <div className="flex items-center gap-3">
+                  <FlaskConical className="h-5 w-5 text-primary" />
+                  <div>
+                    <div className="font-medium">RISC-V Compliance Test Monitor</div>
+                    <div className="text-sm text-muted-foreground">
+                      View automated compliance testing results
+                    </div>
+                  </div>
+                </div>
+                <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-primary transition-colors" />
+              </Link>
             </div>
           )}
-        </div>
 
-        <div className="space-y-8">
-          <MilestoneChecklist milestones={category.milestones} />
+          {/* Show milestones for other categories */}
+          {category.id !== 'testing-validation' && (
+            <MilestoneChecklist milestones={category.milestones} />
+          )}
 
           {/* Tabbed interface for real-time-proving */}
           {category.id === 'real-time-proving' && (category.benchmarks || category.opcodeRepricings) && (
@@ -178,35 +209,6 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             </div>
           )}
 
-          {/* Testing & Validation - zkVM Implementations */}
-          {category.id === 'testing-validation' && category.zkvmImplementations && (
-            <div className="space-y-6">
-              <div className="border-t pt-8">
-                <h2 className="text-2xl font-bold mb-2">zkVM Implementations</h2>
-                <p className="text-muted-foreground mb-6">
-                  Comparison of zero-knowledge virtual machine implementations and their test results
-                </p>
-                <ZKVMComparisonTable implementations={category.zkvmImplementations} />
-              </div>
-            </div>
-          )}
-
-          {/* Testing & Validation - zkVM Progress Tracking */}
-          {category.id === 'testing-validation' && trackData.zkvms && trackData.zkvms.length > 0 && (
-            <div className="space-y-6">
-              <div className="border-t pt-8">
-                <h2 className="text-2xl font-bold mb-2">zkVM Progress</h2>
-                <p className="text-muted-foreground mb-6">
-                  Track performance milestones and client support for zkVM implementations
-                </p>
-                <div className="grid gap-6 md:grid-cols-2">
-                  {trackData.zkvms.map((zkvm) => (
-                    <ZKVMProgressCard key={zkvm.id} zkvm={zkvm} />
-                  ))}
-                </div>
-              </div>
-            </div>
-          )}
 
           {/* Audit status for economic-security */}
           {category.id === 'economic-security' && (
@@ -227,13 +229,15 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
                 Charts, graphs, and detailed metrics will be added here
               </p>
             </div>
-          )}
-        </div>
+            )}
+            </div>
 
-        <div className="mt-8 text-sm text-muted-foreground">
-          Last updated: {new Date(category.lastUpdated).toLocaleDateString()}
+            <div className="mt-8 text-sm text-muted-foreground">
+              Last updated: {new Date(category.lastUpdated).toLocaleDateString()}
+            </div>
+          </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

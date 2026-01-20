@@ -44,4 +44,5 @@ old-html.html
 docs
 .worktrees
 
-pnpm-lock.yaml
+pnpm-lock.yamlflow-site
+zkevm-test-monitor

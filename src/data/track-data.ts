@@ -811,8 +811,8 @@ export const trackData: TrackData = {
     },
     {
       id: 'testing-validation',
-      name: 'zkVM Integration',
-      description: 'zkVM implementations, test coverage, performance milestones, and client support',
+      name: 'zkVM Readiness',
+      description: 'zkVM readiness assessment: ISA compliance, verifier testing, and implementation verification',
       workstream: null,
       icon: 'check-circle',
       lastUpdated: '2026-01-19',

@@ -9,9 +9,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import { Button } from '@/components/ui/button';
 import { RoadmapItem, Client, ZKVM, CommonMilestone } from '@/lib/track-types';
-import { Target, Calendar, Link2, Users, CheckCircle2, Loader2, Circle, GitBranch } from 'lucide-react';
+import { Target, Calendar, Link2, Users, CheckCircle2, Loader2, Circle } from 'lucide-react';
 
 interface RoadmapViewProps {
   items: RoadmapItem[];
@@ -124,18 +123,10 @@ export default function RoadmapView({
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center gap-2">
-            <Target className="h-5 w-5" />
-            Strategic Roadmap
-          </CardTitle>
-          <Link href="/roadmap-visual">
-            <Button variant="outline" size="sm">
-              <GitBranch className="mr-2 h-4 w-4" />
-              Visualize
-            </Button>
-          </Link>
-        </div>
+        <CardTitle className="flex items-center gap-2">
+          <Target className="h-5 w-5" />
+          Strategic Roadmap
+        </CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
