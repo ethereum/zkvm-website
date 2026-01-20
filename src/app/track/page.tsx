@@ -35,10 +35,10 @@ export default function TrackPage() {
   return (
     <div className="flex h-[calc(100vh-4rem)] overflow-hidden">
       {/* Sidebar */}
-      <aside className="w-48 md:w-56 border-r bg-muted/30 flex-shrink-0 overflow-y-auto">
+      <aside className="w-52 md:w-60 border-r bg-muted/30 flex-shrink-0 overflow-y-auto">
         <div className="p-3 md:p-4">
           <h2 className="font-semibold text-sm md:text-lg mb-3 md:mb-4">Track Progress</h2>
-          <nav className="space-y-1">
+          <nav className="flex flex-col space-y-1">
             {sidebarItems.map((item) => {
               const Icon = item.icon;
               const isActive = activeView === item.id;
@@ -48,7 +48,7 @@ export default function TrackPage() {
                   key={item.id}
                   onClick={() => setActiveView(item.id)}
                   className={cn(
-                    "w-full flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 rounded-lg text-xs md:text-sm transition-colors text-left",
+                    "flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-foreground",
                     isActive
                       ? "bg-muted font-medium"
                       : "hover:bg-muted"
@@ -62,19 +62,19 @@ export default function TrackPage() {
           </nav>
 
           {/* Quick Links */}
-          <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t space-y-1">
+          <div className="mt-4 md:mt-6 pt-4 md:pt-6 border-t flex flex-col space-y-1">
             <Link
               href="/clients"
-              className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 rounded-lg text-xs md:text-sm hover:bg-muted transition-colors"
+              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-muted transition-colors text-foreground"
             >
-              <Network className="h-4 w-4" />
+              <Network className="h-4 w-4 flex-shrink-0" />
               <span>All Clients</span>
             </Link>
             <Link
               href="/zkvms"
-              className="flex items-center gap-2 md:gap-3 px-2 md:px-3 py-2 rounded-lg text-xs md:text-sm hover:bg-muted transition-colors"
+              className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm hover:bg-muted transition-colors text-foreground"
             >
-              <Cpu className="h-4 w-4" />
+              <Cpu className="h-4 w-4 flex-shrink-0" />
               <span>All zkVMs</span>
             </Link>
           </div>
