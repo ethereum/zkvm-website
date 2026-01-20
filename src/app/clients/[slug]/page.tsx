@@ -12,44 +12,56 @@ interface ClientPageProps {
 }
 
 export function generateStaticParams() {
-  return trackData.clients.map((client) => ({
+  const clientParams = trackData.clients.map((client) => ({
     slug: client.slug,
   }));
+  const guestProgramParams = trackData.guestPrograms.map((gp) => ({
+    slug: gp.slug,
+  }));
+  return [...clientParams, ...guestProgramParams];
 }
 
 export async function generateMetadata({ params }: ClientPageProps) {
   const { slug } = await params;
   const client = trackData.clients.find(c => c.slug === slug);
+  const guestProgram = trackData.guestPrograms.find(gp => gp.slug === slug);
 
-  if (!client) {
+  if (!client && !guestProgram) {
     return {
-      title: 'Client Not Found',
+      title: 'Not Found',
     };
   }
 
+  const item = client || guestProgram!;
   return {
-    title: `${client.name} - Ethereum Client Progress`,
-    description: client.description,
+    title: `${item.name} - ${client ? 'Ethereum Client' : 'Guest Program'} Progress`,
+    description: item.description,
   };
 }
 
 export default async function ClientPage({ params }: ClientPageProps) {
   const { slug } = await params;
   const client = trackData.clients.find(c => c.slug === slug);
+  const guestProgram = trackData.guestPrograms.find(gp => gp.slug === slug);
 
-  if (!client) {
+  if (!client && !guestProgram) {
     notFound();
   }
 
-  // Get common milestones based on client type
-  const commonMilestones = client.type === 'execution'
-    ? trackData.commonExecutionMilestones
-    : trackData.commonConsensusMilestones;
+  const item = client || guestProgram!;
+  const isGuestProgram = !!guestProgram;
+
+  // Get common milestones based on type
+  const commonMilestones = isGuestProgram
+    ? trackData.commonGuestProgramMilestones
+    : client!.type === 'execution'
+      ? trackData.commonExecutionMilestones
+      : trackData.commonConsensusMilestones;
 
   // Build milestones with status
   const milestones = commonMilestones.map(m => ({
     ...m,
-    status: client.milestoneStatuses[m.id] || 'not-started'
+    status: item.milestoneStatuses[m.id] || 'not-started'
   }));
 
   // Calculate milestone statistics
@@ -62,7 +74,9 @@ export default async function ClientPage({ params }: ClientPageProps) {
 
   // Find related roadmap items
   const relatedRoadmapItems = trackData.roadmap.filter(
-    item => item.relatedClients?.includes(client.id)
+    item => isGuestProgram
+      ? item.relatedGuestPrograms?.includes(guestProgram!.id)
+      : item.relatedClients?.includes(client!.id)
   );
 
   // Status badge color
@@ -96,7 +110,7 @@ export default async function ClientPage({ params }: ClientPageProps) {
       <div className="mx-auto max-w-4xl">
         <Breadcrumbs items={[
           { label: 'Clients', href: '/clients' },
-          { label: client.name }
+          { label: item.name }
         ]} />
 
         {/* Back link */}
@@ -108,49 +122,80 @@ export default async function ClientPage({ params }: ClientPageProps) {
           Back to all clients
         </Link>
 
-        {/* Client header */}
+        {/* Header */}
         <div className="mb-8">
           <div className="flex items-start justify-between gap-4 mb-4">
             <div className="flex-1">
-              <h1 className="text-4xl font-bold mb-3">{client.name}</h1>
+              <h1 className="text-4xl font-bold mb-3">{item.name}</h1>
               <div className="flex gap-2">
-                <span className={`rounded-full px-3 py-1 text-sm font-semibold ${
-                  client.type === 'execution'
-                    ? 'bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-200'
-                    : 'bg-cyan-100 text-cyan-800 dark:bg-cyan-950 dark:text-cyan-200'
-                }`}>
-                  {client.type === 'execution' ? 'Execution Layer' : 'Consensus Layer'}
-                </span>
+                {isGuestProgram ? (
+                  <span className="rounded-full px-3 py-1 text-sm font-semibold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-200">
+                    Guest Program
+                  </span>
+                ) : (
+                  <span className={`rounded-full px-3 py-1 text-sm font-semibold ${
+                    client!.type === 'execution'
+                      ? 'bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-200'
+                      : 'bg-cyan-100 text-cyan-800 dark:bg-cyan-950 dark:text-cyan-200'
+                  }`}>
+                    {client!.type === 'execution' ? 'Execution Layer' : 'Consensus Layer'}
+                  </span>
+                )}
               </div>
             </div>
-            <span className={`rounded-full px-3 py-1 text-sm font-semibold capitalize whitespace-nowrap ${getStatusColor(client.status)}`}>
-              {client.status.replace('-', ' ')}
+            <span className={`rounded-full px-3 py-1 text-sm font-semibold capitalize whitespace-nowrap ${getStatusColor(item.status)}`}>
+              {item.status.replace('-', ' ')}
             </span>
           </div>
-          <p className="text-lg text-muted-foreground mb-4">{client.description}</p>
+          <p className="text-lg text-muted-foreground mb-4">{item.description}</p>
 
           {/* Technical details */}
           <div className="flex flex-wrap gap-4 text-sm">
             <div className="flex items-center gap-1.5">
               <GitBranch className="h-4 w-4 text-muted-foreground" />
-              <span><strong>Language:</strong> {client.language}</span>
+              <span><strong>Language:</strong> {item.language}</span>
             </div>
-            {client.team && (
+            {item.team && (
               <div>
-                <strong>Team:</strong> {client.team}
+                <strong>Team:</strong> {item.team}
               </div>
             )}
-            {client.license && (
+            {item.license && (
               <div>
-                <strong>License:</strong> {client.license}
+                <strong>License:</strong> {item.license}
               </div>
             )}
           </div>
 
+          {/* Guest program specific: supported zkVMs */}
+          {isGuestProgram && guestProgram!.supportedZKVMs.length > 0 && (
+            <div className="mt-4">
+              <div className="text-sm font-semibold mb-2">Supported zkVMs:</div>
+              <div className="flex flex-wrap gap-2">
+                {guestProgram!.supportedZKVMs.map((zkvmId) => {
+                  const zkvm = trackData.zkvms.find(z => z.id === zkvmId);
+                  return zkvm ? (
+                    <Link
+                      key={zkvmId}
+                      href={`/zkvms/${zkvmId}`}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-200 px-3 py-1 text-sm font-semibold hover:bg-blue-200 dark:hover:bg-blue-900 transition-colors"
+                    >
+                      {zkvm.name}
+                    </Link>
+                  ) : (
+                    <span key={zkvmId} className="inline-block rounded-full bg-blue-100 dark:bg-blue-950 text-blue-800 dark:text-blue-200 px-3 py-1 text-sm font-semibold uppercase">
+                      {zkvmId}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
           {/* Links */}
           <div className="flex gap-4 mt-4">
             <a
-              href={client.repository}
+              href={item.repository}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
@@ -158,9 +203,9 @@ export default async function ClientPage({ params }: ClientPageProps) {
               <ExternalLink className="h-4 w-4" />
               Repository
             </a>
-            {client.documentation && (
+            {item.documentation && (
               <a
-                href={client.documentation}
+                href={item.documentation}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"

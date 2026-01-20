@@ -1,5 +1,6 @@
 import { trackData } from '@/data/track-data';
 import ClientCard from '@/components/ClientCard';
+import GuestProgramCard from '@/components/GuestProgramCard';
 
 export const metadata = {
   title: 'Ethereum Clients - zkEVM Initiative',
@@ -9,6 +10,7 @@ export const metadata = {
 export default function ClientsPage() {
   const executionClients = trackData.clients.filter(c => c.type === 'execution');
   const consensusClients = trackData.clients.filter(c => c.type === 'consensus');
+  const guestPrograms = trackData.guestPrograms || [];
 
   return (
     <div className="container mx-auto px-4 pb-16">
@@ -38,7 +40,7 @@ export default function ClientsPage() {
 
         {/* Consensus Clients */}
         {consensusClients.length > 0 && (
-          <div>
+          <div className="mb-12">
             <div className="mb-6">
               <h2 className="text-2xl font-bold">Consensus Layer Clients</h2>
               <p className="mt-2 text-sm text-muted-foreground">
@@ -53,7 +55,24 @@ export default function ClientsPage() {
           </div>
         )}
 
-        {trackData.clients.length === 0 && (
+        {/* Guest Programs */}
+        {guestPrograms.length > 0 && (
+          <div>
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold">Guest Programs</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Execution clients compiled as guest programs to run inside zkVMs for zero-knowledge block validation. Guest programs bridge execution layer clients with zkVM proving systems.
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2">
+              {guestPrograms.map((guestProgram) => (
+                <GuestProgramCard key={guestProgram.id} guestProgram={guestProgram} />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {trackData.clients.length === 0 && guestPrograms.length === 0 && (
           <div className="rounded-lg border border-dashed p-12 text-center text-muted-foreground">
             <p className="text-sm">No clients available</p>
           </div>

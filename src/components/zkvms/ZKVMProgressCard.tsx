@@ -19,11 +19,11 @@ export default function ZKVMProgressCard({ zkvm }: ZKVMProgressCardProps) {
     ? Math.round((completedMilestones / totalMilestones) * 100)
     : 0;
 
-  // Calculate client support statistics
-  const clientSupportStatuses = Object.values(zkvm.clientSupport);
-  const supportedClients = clientSupportStatuses.filter(s => s === 'complete').length;
-  const inProgressClients = clientSupportStatuses.filter(s => s === 'in-progress').length;
-  const totalClients = clientSupportStatuses.length;
+  // Calculate guest program support statistics
+  const guestProgramSupportStatuses = Object.values(zkvm.guestProgramSupport);
+  const supportedGuestPrograms = guestProgramSupportStatuses.filter(s => s === 'complete').length;
+  const inProgressGuestPrograms = guestProgramSupportStatuses.filter(s => s === 'in-progress').length;
+  const totalGuestPrograms = guestProgramSupportStatuses.length;
 
   const getStatusColor = () => {
     if (progressPercentage >= 75) return 'bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-200';
@@ -90,21 +90,21 @@ export default function ZKVMProgressCard({ zkvm }: ZKVMProgressCardProps) {
           </div>
         </div>
 
-        {/* Client Support */}
+        {/* Guest Program Support */}
         <div className="border-t pt-4">
           <div className="flex items-center justify-between text-sm mb-2">
-            <span className="font-medium">Client Support</span>
-            <span className="text-muted-foreground">{supportedClients}/{totalClients} clients</span>
+            <span className="font-medium">Guest Program Support</span>
+            <span className="text-muted-foreground">{supportedGuestPrograms}/{totalGuestPrograms} programs</span>
           </div>
           <div className="flex gap-2 flex-wrap">
-            {supportedClients > 0 && (
+            {supportedGuestPrograms > 0 && (
               <span className="text-xs px-2 py-1 rounded-full bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-200">
-                {supportedClients} supported
+                {supportedGuestPrograms} supported
               </span>
             )}
-            {inProgressClients > 0 && (
+            {inProgressGuestPrograms > 0 && (
               <span className="text-xs px-2 py-1 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-200">
-                {inProgressClients} in progress
+                {inProgressGuestPrograms} in progress
               </span>
             )}
           </div>

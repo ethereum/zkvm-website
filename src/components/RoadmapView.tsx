@@ -95,37 +95,15 @@ export default function RoadmapView({
       return acc;
     }, {} as Record<string, RoadmapItem[]>);
 
-    // Sort items within each group by priority
-    const priorityOrder = { critical: 0, high: 1, medium: 2, low: 3 };
-    Object.keys(groups).forEach(category => {
-      groups[category].sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
-    });
-
     return groups;
   }, [items]);
 
   // Category display names
   const categoryNames: Record<string, string> = {
     'client-integration': 'Client Integration',
-    'real-time-proving': 'Real-Time Proving',
+    'real-time-proving': 'Benchmarks',
     'economic-security': 'Economic Security',
     'testing-validation': 'Testing & Validation',
-  };
-
-  // Priority badge colors
-  const getPriorityColor = (priority: string) => {
-    switch (priority) {
-      case 'critical':
-        return 'bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-200 border-red-300 dark:border-red-800';
-      case 'high':
-        return 'bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-200 border-orange-300 dark:border-orange-800';
-      case 'medium':
-        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-950 dark:text-yellow-200 border-yellow-300 dark:border-yellow-800';
-      case 'low':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-200 border-blue-300 dark:border-blue-800';
-      default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-950 dark:text-gray-200 border-gray-300 dark:border-gray-800';
-    }
   };
 
   // Status badge colors
@@ -140,13 +118,6 @@ export default function RoadmapView({
       default:
         return 'bg-gray-100 text-gray-800 dark:bg-gray-950 dark:text-gray-200';
     }
-  };
-
-  // Get category statistics
-  const getCategoryStats = (categoryItems: RoadmapItem[]) => {
-    const criticalCount = categoryItems.filter(item => item.priority === 'critical').length;
-    const inProgressCount = categoryItems.filter(item => item.status === 'in-progress').length;
-    return { criticalCount, inProgressCount };
   };
 
   return (
@@ -166,11 +137,6 @@ export default function RoadmapView({
             </div>
             <div>
               <span className="font-semibold text-foreground">
-                {items.filter(i => i.priority === 'critical').length}
-              </span> critical priority
-            </div>
-            <div>
-              <span className="font-semibold text-foreground">
                 {items.filter(i => i.status === 'in-progress').length}
               </span> in progress
             </div>
@@ -179,7 +145,6 @@ export default function RoadmapView({
           {/* Grouped accordion */}
           <Accordion type="multiple" defaultValue={Object.keys(categoryNames)} className="w-full">
             {Object.entries(groupedItems).map(([category, categoryItems]) => {
-              const stats = getCategoryStats(categoryItems);
               const categoryName = categoryNames[category] || category;
 
               return (
@@ -189,11 +154,6 @@ export default function RoadmapView({
                       <span className="font-semibold">{categoryName}</span>
                       <div className="flex items-center gap-3 text-sm text-muted-foreground">
                         <span>{categoryItems.length} items</span>
-                        {stats.criticalCount > 0 && (
-                          <span className="text-red-600 dark:text-red-400 font-medium">
-                            {stats.criticalCount} critical
-                          </span>
-                        )}
                       </div>
                     </div>
                   </AccordionTrigger>
@@ -208,11 +168,6 @@ export default function RoadmapView({
                           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
                             <h3 className="font-semibold text-base">{item.title}</h3>
                             <div className="flex flex-wrap gap-2">
-                              <span
-                                className={`inline-block rounded-full border px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wide ${getPriorityColor(item.priority)}`}
-                              >
-                                {item.priority}
-                              </span>
                               <span
                                 className={`inline-block rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize ${getStatusColor(item.status)}`}
                               >
@@ -354,34 +309,42 @@ export default function RoadmapView({
 
                             return (
                               <div className="pt-4 border-t">
-                                <p className="text-xs font-medium text-muted-foreground mb-3">
-                                  Milestone Progress:
-                                </p>
-                                <div className="space-y-3">
-                                  {relevantMilestones.map((milestone) => (
-                                    <div key={milestone.id} className="rounded-lg border p-3 bg-muted/30">
-                                      <div className="mb-2">
-                                        <h4 className="text-sm font-semibold">{milestone.name}</h4>
-                                        <p className="text-xs text-muted-foreground">{milestone.description}</p>
+                                <Accordion type="single" collapsible className="w-full">
+                                  <AccordionItem value="milestones" className="border-0">
+                                    <AccordionTrigger className="py-2 hover:no-underline">
+                                      <span className="text-xs font-medium text-muted-foreground">
+                                        View Milestone Progress ({relevantMilestones.length} milestones)
+                                      </span>
+                                    </AccordionTrigger>
+                                    <AccordionContent>
+                                      <div className="space-y-3 pt-2">
+                                        {relevantMilestones.map((milestone) => (
+                                          <div key={milestone.id} className="rounded-lg border p-3 bg-muted/30">
+                                            <div className="mb-2">
+                                              <h4 className="text-sm font-semibold">{milestone.name}</h4>
+                                              <p className="text-xs text-muted-foreground">{milestone.description}</p>
+                                            </div>
+                                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                                              {relatedClientData.map((client) => {
+                                                const status = client.milestoneStatuses[milestone.id] || 'not-started';
+                                                return (
+                                                  <Link
+                                                    key={client.id}
+                                                    href={`/clients/${client.slug}`}
+                                                    className="flex items-center gap-1.5 px-2 py-1 rounded bg-background hover:bg-muted/50 transition-colors"
+                                                  >
+                                                    {getMilestoneIcon(status)}
+                                                    <span className="text-xs font-medium truncate">{client.name}</span>
+                                                  </Link>
+                                                );
+                                              })}
+                                            </div>
+                                          </div>
+                                        ))}
                                       </div>
-                                      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-                                        {relatedClientData.map((client) => {
-                                          const status = client.milestoneStatuses[milestone.id] || 'not-started';
-                                          return (
-                                            <Link
-                                              key={client.id}
-                                              href={`/clients/${client.slug}`}
-                                              className="flex items-center gap-1.5 px-2 py-1 rounded bg-background hover:bg-muted/50 transition-colors"
-                                            >
-                                              {getMilestoneIcon(status)}
-                                              <span className="text-xs font-medium truncate">{client.name}</span>
-                                            </Link>
-                                          );
-                                        })}
-                                      </div>
-                                    </div>
-                                  ))}
-                                </div>
+                                    </AccordionContent>
+                                  </AccordionItem>
+                                </Accordion>
                               </div>
                             );
                           })()}

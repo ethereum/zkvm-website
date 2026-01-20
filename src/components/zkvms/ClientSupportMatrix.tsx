@@ -1,13 +1,13 @@
 'use client';
 
 import Link from 'next/link';
-import { ZKVM, Client, MilestoneStatus } from '@/lib/track-types';
+import { ZKVM, GuestProgram, MilestoneStatus } from '@/lib/track-types';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CheckCircle, AlertCircle, Circle, XCircle } from 'lucide-react';
 
 interface ClientSupportMatrixProps {
   zkvm: ZKVM;
-  clients: Client[];
+  guestPrograms: GuestProgram[];
 }
 
 const statusConfig: Record<MilestoneStatus, {
@@ -37,52 +37,48 @@ const statusConfig: Record<MilestoneStatus, {
   }
 };
 
-export default function ClientSupportMatrix({ zkvm, clients }: ClientSupportMatrixProps) {
-  // Calculate overall client support progress
-  const clientStatuses = Object.values(zkvm.clientSupport);
-  const supported = clientStatuses.filter(s => s === 'complete').length;
-  const total = clientStatuses.length;
+export default function ClientSupportMatrix({ zkvm, guestPrograms }: ClientSupportMatrixProps) {
+  // Calculate overall guest program support progress
+  const guestProgramStatuses = Object.values(zkvm.guestProgramSupport);
+  const supported = guestProgramStatuses.filter(s => s === 'complete').length;
+  const total = guestProgramStatuses.length;
   const percentage = total > 0 ? Math.round((supported / total) * 100) : 0;
 
-  // Get clients for this zkvm's support matrix
-  const supportedClients = clients.filter(c =>
-    zkvm.clientSupport.hasOwnProperty(c.id)
+  // Get guest programs for this zkvm's support matrix
+  const supportedGuestPrograms = guestPrograms.filter(gp =>
+    zkvm.guestProgramSupport.hasOwnProperty(gp.id)
   );
-
-  // Group by client type
-  const executionClients = supportedClients.filter(c => c.type === 'execution');
-  const consensusClients = supportedClients.filter(c => c.type === 'consensus');
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Client Support</CardTitle>
+        <CardTitle>Guest Program Support</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
-          {/* Execution Clients */}
-          {executionClients.length > 0 && (
+          {/* Guest Programs */}
+          {supportedGuestPrograms.length > 0 && (
             <div className="space-y-3">
-              <h3 className="text-sm font-medium">Execution Clients</h3>
+              <h3 className="text-sm font-medium">Supported Guest Programs</h3>
               <div className="space-y-3">
-                {executionClients.map((client) => {
-                  const status = zkvm.clientSupport[client.id];
+                {supportedGuestPrograms.map((guestProgram) => {
+                  const status = zkvm.guestProgramSupport[guestProgram.id];
                   const config = statusConfig[status];
                   const Icon = config.icon;
 
                   return (
-                    <div key={client.id} className="space-y-1">
+                    <div key={guestProgram.id} className="space-y-1">
                       <div className="flex items-start gap-3">
                         <Icon className={`h-5 w-5 flex-shrink-0 mt-0.5 ${config.color}`} />
                         <div className="flex-1">
                           <Link
-                            href={`/clients/${client.slug}`}
+                            href={`/clients/${guestProgram.slug}`}
                             className="text-sm font-medium hover:underline"
                           >
-                            {client.name}
+                            {guestProgram.name}
                           </Link>
                           <p className="text-sm text-muted-foreground">
-                            {client.description}
+                            {guestProgram.description}
                           </p>
                           <p className="text-xs text-muted-foreground mt-1">
                             Status: <span className="font-medium">{config.label}</span>
@@ -96,48 +92,12 @@ export default function ClientSupportMatrix({ zkvm, clients }: ClientSupportMatr
             </div>
           )}
 
-          {/* Consensus Clients */}
-          {consensusClients.length > 0 && (
-            <div className="space-y-3">
-              <h3 className="text-sm font-medium">Consensus Clients</h3>
-              <div className="space-y-3">
-                {consensusClients.map((client) => {
-                  const status = zkvm.clientSupport[client.id];
-                  const config = statusConfig[status];
-                  const Icon = config.icon;
-
-                  return (
-                    <div key={client.id} className="space-y-1">
-                      <div className="flex items-start gap-3">
-                        <Icon className={`h-5 w-5 flex-shrink-0 mt-0.5 ${config.color}`} />
-                        <div className="flex-1">
-                          <Link
-                            href={`/clients/${client.slug}`}
-                            className="text-sm font-medium hover:underline"
-                          >
-                            {client.name}
-                          </Link>
-                          <p className="text-sm text-muted-foreground">
-                            {client.description}
-                          </p>
-                          <p className="text-xs text-muted-foreground mt-1">
-                            Status: <span className="font-medium">{config.label}</span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-
-          {/* Overall client support */}
+          {/* Overall guest program support */}
           <div className="space-y-2 pt-4 border-t">
             <div className="flex items-center justify-between text-sm">
-              <span className="font-medium">Client Support Progress</span>
+              <span className="font-medium">Guest Program Support Progress</span>
               <span className="text-muted-foreground">
-                {supported}/{total} clients ({percentage}%)
+                {supported}/{total} guest programs ({percentage}%)
               </span>
             </div>
             <div className="h-3 bg-muted rounded-full overflow-hidden">

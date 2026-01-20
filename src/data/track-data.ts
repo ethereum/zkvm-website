@@ -50,6 +50,34 @@ const commonConsensusMilestones: CommonMilestone[] = [
   }
 ];
 
+// Common milestones that all guest programs must complete
+const commonGuestProgramMilestones: CommonMilestone[] = [
+  {
+    id: 'guest-witness-generation-api',
+    name: 'Witness Generation API',
+    description: 'Implement API endpoints for execution witness generation in guest program',
+    priority: 'critical'
+  },
+  {
+    id: 'guest-state-access-optimization',
+    name: 'State Access Optimization',
+    description: 'Optimize state access patterns for efficient witness generation in zkVM environment',
+    priority: 'high'
+  },
+  {
+    id: 'guest-zkvm-integration',
+    name: 'zkVM Integration',
+    description: 'Successfully compile and run in target zkVM environment',
+    priority: 'critical'
+  },
+  {
+    id: 'guest-performance-benchmarking',
+    name: 'Performance Benchmarking',
+    description: 'Benchmark guest program performance and optimize for zkVM execution',
+    priority: 'medium'
+  }
+];
+
 const executionCriteria = [
   {
     id: 'hardforks',
@@ -948,6 +976,7 @@ export const trackData: TrackData = {
   ],
   commonExecutionMilestones,
   commonConsensusMilestones,
+  commonGuestProgramMilestones,
   roadmap: [
     {
       id: 'production-client-integration',
@@ -959,8 +988,21 @@ export const trackData: TrackData = {
       targetDate: '2026-Q2',
       dependencies: [],
       relatedClients: ['reth', 'geth'],
-      commonMilestoneIds: ['witness-generation-api', 'state-access-optimization', 'zkvm-integration', 'performance-benchmarking'],
+      commonMilestoneIds: ['witness-generation-api', 'state-access-optimization', 'performance-benchmarking'],
       applicableType: 'execution' as const
+    },
+    {
+      id: 'guest-program-zkvm-integration',
+      title: 'Guest Program zkVM Integration',
+      description: 'Integrate guest programs with zkVM provers for production-ready block validation',
+      category: 'client-integration',
+      priority: 'critical' as const,
+      status: 'in-progress' as const,
+      targetDate: '2026-Q2',
+      dependencies: ['production-client-integration'],
+      relatedGuestPrograms: ['reth-guest', 'geth-guest'],
+      commonMilestoneIds: ['guest-zkvm-integration', 'guest-performance-benchmarking'],
+      applicableType: 'guest-program' as const
     },
     {
       id: 'real-time-proving-milestone',
@@ -1024,6 +1066,19 @@ export const trackData: TrackData = {
       relatedClients: ['reth', 'geth', 'nethermind', 'besu', 'erigon', 'ethrex'],
       commonMilestoneIds: ['witness-generation-api', 'state-access-optimization'],
       applicableType: 'execution' as const
+    },
+    {
+      id: 'universal-guest-program-support',
+      title: 'Universal Guest Program Support',
+      description: 'Compile and optimize all major execution clients as guest programs for zkVM proving',
+      category: 'client-integration',
+      priority: 'high' as const,
+      status: 'in-progress' as const,
+      targetDate: '2026-Q3',
+      dependencies: ['guest-program-zkvm-integration'],
+      relatedGuestPrograms: ['reth-guest', 'geth-guest', 'nethermind-guest', 'besu-guest', 'erigon-guest', 'ethrex-guest'],
+      commonMilestoneIds: ['guest-witness-generation-api', 'guest-state-access-optimization', 'guest-zkvm-integration'],
+      applicableType: 'guest-program' as const
     },
     {
       id: 'opcode-repricing',
@@ -1263,6 +1318,128 @@ export const trackData: TrackData = {
       }
     }
   ],
+  guestPrograms: [
+    {
+      id: 'reth-guest',
+      name: 'Reth Guest Program',
+      slug: 'reth-guest',
+      description: 'Reth execution client compiled as a guest program for zkVM proving',
+      status: 'in-development' as const,
+      language: 'Rust',
+      repository: 'https://github.com/paradigmxyz/reth',
+      documentation: 'https://paradigmxyz.github.io/reth',
+      team: 'Paradigm',
+      license: 'MIT/Apache-2.0',
+      basedOnClient: 'reth',
+      supportedZKVMs: ['sp1', 'risc-zero'],
+      milestoneStatuses: {
+        'guest-witness-generation-api': 'completed',
+        'guest-state-access-optimization': 'in-progress',
+        'guest-zkvm-integration': 'in-progress',
+        'guest-performance-benchmarking': 'not-started'
+      }
+    },
+    {
+      id: 'geth-guest',
+      name: 'Geth Guest Program',
+      slug: 'geth-guest',
+      description: 'Geth execution client compiled as a guest program for zkVM proving',
+      status: 'in-development' as const,
+      language: 'Go',
+      repository: 'https://github.com/ethereum/go-ethereum',
+      documentation: 'https://geth.ethereum.org/docs',
+      team: 'Ethereum Foundation',
+      license: 'LGPL-3.0',
+      basedOnClient: 'geth',
+      supportedZKVMs: ['sp1'],
+      milestoneStatuses: {
+        'guest-witness-generation-api': 'in-progress',
+        'guest-state-access-optimization': 'not-started',
+        'guest-zkvm-integration': 'in-progress',
+        'guest-performance-benchmarking': 'not-started'
+      }
+    },
+    {
+      id: 'nethermind-guest',
+      name: 'Nethermind Guest Program',
+      slug: 'nethermind-guest',
+      description: 'Nethermind execution client compiled as a guest program for zkVM proving',
+      status: 'planning' as const,
+      language: 'C#',
+      repository: 'https://github.com/NethermindEth/nethermind',
+      documentation: 'https://docs.nethermind.io',
+      team: 'Nethermind',
+      license: 'LGPL-3.0 / MIT',
+      basedOnClient: 'nethermind',
+      supportedZKVMs: [],
+      milestoneStatuses: {
+        'guest-witness-generation-api': 'not-started',
+        'guest-state-access-optimization': 'not-started',
+        'guest-zkvm-integration': 'not-started',
+        'guest-performance-benchmarking': 'not-started'
+      }
+    },
+    {
+      id: 'besu-guest',
+      name: 'Besu Guest Program',
+      slug: 'besu-guest',
+      description: 'Besu execution client compiled as a guest program for zkVM proving',
+      status: 'planning' as const,
+      language: 'Java',
+      repository: 'https://github.com/hyperledger/besu',
+      documentation: 'https://besu.hyperledger.org',
+      team: 'Hyperledger',
+      license: 'Apache-2.0',
+      basedOnClient: 'besu',
+      supportedZKVMs: [],
+      milestoneStatuses: {
+        'guest-witness-generation-api': 'not-started',
+        'guest-state-access-optimization': 'not-started',
+        'guest-zkvm-integration': 'not-started',
+        'guest-performance-benchmarking': 'not-started'
+      }
+    },
+    {
+      id: 'erigon-guest',
+      name: 'Erigon Guest Program',
+      slug: 'erigon-guest',
+      description: 'Erigon execution client compiled as a guest program for zkVM proving',
+      status: 'planning' as const,
+      language: 'Go',
+      repository: 'https://github.com/ledgerwatch/erigon',
+      documentation: 'https://github.com/ledgerwatch/erigon#erigon',
+      team: 'Erigon',
+      license: 'LGPL-3.0',
+      basedOnClient: 'erigon',
+      supportedZKVMs: [],
+      milestoneStatuses: {
+        'guest-witness-generation-api': 'not-started',
+        'guest-state-access-optimization': 'not-started',
+        'guest-zkvm-integration': 'not-started',
+        'guest-performance-benchmarking': 'not-started'
+      }
+    },
+    {
+      id: 'ethrex-guest',
+      name: 'EthRex Guest Program',
+      slug: 'ethrex-guest',
+      description: 'EthRex execution client compiled as a guest program for zkVM proving',
+      status: 'planning' as const,
+      language: 'Rust',
+      repository: 'https://github.com/lambdaclass/ethrex',
+      documentation: 'https://github.com/lambdaclass/ethrex#readme',
+      team: 'LambdaClass',
+      license: 'Apache-2.0 / MIT',
+      basedOnClient: 'ethrex',
+      supportedZKVMs: [],
+      milestoneStatuses: {
+        'guest-witness-generation-api': 'not-started',
+        'guest-state-access-optimization': 'not-started',
+        'guest-zkvm-integration': 'not-started',
+        'guest-performance-benchmarking': 'not-started'
+      }
+    }
+  ],
   zkvms: [
     {
       id: 'sp1',
@@ -1277,11 +1454,11 @@ export const trackData: TrackData = {
         'sub-15s-proving': 'complete',
         'hardware-acceleration': 'complete'
       },
-      clientSupport: {
-        'reth': 'complete',
-        'ethrex': 'complete',
-        'geth': 'in-progress',
-        'nethermind': 'not-started'
+      guestProgramSupport: {
+        'reth-guest': 'complete',
+        'ethrex-guest': 'complete',
+        'geth-guest': 'in-progress',
+        'nethermind-guest': 'not-started'
       }
     },
     {
@@ -1297,11 +1474,11 @@ export const trackData: TrackData = {
         'sub-15s-proving': 'complete',
         'hardware-acceleration': 'in-progress'
       },
-      clientSupport: {
-        'reth': 'complete',
-        'ethrex': 'in-progress',
-        'geth': 'in-progress',
-        'nethermind': 'not-started'
+      guestProgramSupport: {
+        'reth-guest': 'complete',
+        'ethrex-guest': 'in-progress',
+        'geth-guest': 'in-progress',
+        'nethermind-guest': 'not-started'
       }
     },
     {
@@ -1316,11 +1493,11 @@ export const trackData: TrackData = {
         'sub-15s-proving': 'in-progress',
         'hardware-acceleration': 'not-started'
       },
-      clientSupport: {
-        'reth': 'in-progress',
-        'ethrex': 'not-started',
-        'geth': 'not-started',
-        'nethermind': 'not-started'
+      guestProgramSupport: {
+        'reth-guest': 'in-progress',
+        'ethrex-guest': 'not-started',
+        'geth-guest': 'not-started',
+        'nethermind-guest': 'not-started'
       }
     }
   ]

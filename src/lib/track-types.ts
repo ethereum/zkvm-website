@@ -172,6 +172,26 @@ export interface Client {
   license?: string;
 }
 
+export interface GuestProgram {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  status: 'production' | 'in-development' | 'planning';
+  language: string;
+  repository: string;
+  documentation?: string;
+  // Track progress against common guest program milestones
+  milestoneStatuses: {
+    [milestoneId: string]: 'not-started' | 'in-progress' | 'completed';
+  };
+  // Which zkVMs support this guest program
+  supportedZKVMs: string[]; // IDs of zkVMs
+  team?: string;
+  license?: string;
+  basedOnClient?: string; // ID of the EL client this is based on (e.g., 'reth', 'geth')
+}
+
 export interface ZKVM {
   id: string;
   name: string;
@@ -187,9 +207,9 @@ export interface ZKVM {
     [milestoneId: string]: MilestoneStatus;
   };
 
-  // Client support matrix
-  clientSupport: {
-    [clientId: string]: MilestoneStatus;
+  // Guest program support matrix
+  guestProgramSupport: {
+    [guestProgramId: string]: MilestoneStatus;
   };
 }
 
@@ -203,9 +223,10 @@ export interface RoadmapItem {
   targetDate?: string;
   dependencies?: string[]; // IDs of other roadmap items
   relatedClients?: string[]; // IDs of related clients
+  relatedGuestPrograms?: string[]; // IDs of related guest programs
   milestoneIds?: string[]; // IDs of milestones this roadmap item tracks
-  commonMilestoneIds?: string[]; // IDs of common milestones (execution or consensus) this roadmap item tracks
-  applicableType?: 'execution' | 'consensus' | 'zkvm' | 'both'; // Type of implementations this applies to
+  commonMilestoneIds?: string[]; // IDs of common milestones (execution/consensus/guest-program) this roadmap item tracks
+  applicableType?: 'execution' | 'consensus' | 'zkvm' | 'guest-program' | 'both'; // Type of implementations this applies to
 }
 
 export interface TrackData {
@@ -213,6 +234,8 @@ export interface TrackData {
   roadmap: RoadmapItem[];
   commonExecutionMilestones: CommonMilestone[];
   commonConsensusMilestones: CommonMilestone[];
+  commonGuestProgramMilestones: CommonMilestone[];
   clients: Client[];
+  guestPrograms: GuestProgram[];
   zkvms: ZKVM[];
 }

@@ -133,8 +133,8 @@ export default async function ZKVMPage({ params }: ZKVMPageProps) {
           <PerformanceMilestones zkvm={zkvm} milestones={milestones} />
         </div>
 
-        {/* Client Support */}
-        <ClientSupportMatrix zkvm={zkvm} clients={trackData.clients} />
+        {/* Guest Program Support */}
+        <ClientSupportMatrix zkvm={zkvm} guestPrograms={trackData.guestPrograms} />
 
         {/* Related Roadmap Items */}
         <div className="mt-8">

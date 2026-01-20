@@ -16,12 +16,12 @@ export default function ZKVMCard({ zkvm }: ZKVMCardProps) {
     ? Math.round((performanceCompleted / performanceTotal) * 100)
     : 0;
 
-  // Calculate client support progress
-  const clientStatuses = Object.values(zkvm.clientSupport);
-  const clientsSupported = clientStatuses.filter(s => s === 'complete').length;
-  const clientsTotal = clientStatuses.length;
-  const clientPercentage = clientsTotal > 0
-    ? Math.round((clientsSupported / clientsTotal) * 100)
+  // Calculate guest program support progress
+  const guestProgramStatuses = Object.values(zkvm.guestProgramSupport);
+  const guestProgramsSupported = guestProgramStatuses.filter(s => s === 'complete').length;
+  const guestProgramsTotal = guestProgramStatuses.length;
+  const guestProgramPercentage = guestProgramsTotal > 0
+    ? Math.round((guestProgramsSupported / guestProgramsTotal) * 100)
     : 0;
 
   // Proving system badge styling
@@ -68,17 +68,17 @@ export default function ZKVMCard({ zkvm }: ZKVMCardProps) {
               </div>
             </div>
 
-            {/* Client Support Progress */}
+            {/* Guest Program Support Progress */}
             <div className="space-y-1">
               <div className="flex items-center justify-between text-xs">
                 <span className="text-muted-foreground">
-                  Client Support: {clientsSupported}/{clientsTotal} clients ({clientPercentage}%)
+                  Guest Program Support: {guestProgramsSupported}/{guestProgramsTotal} programs ({guestProgramPercentage}%)
                 </span>
               </div>
               <div className="h-2 bg-muted rounded-full overflow-hidden">
                 <div
                   className="h-full bg-primary transition-all"
-                  style={{ width: `${clientPercentage}%` }}
+                  style={{ width: `${guestProgramPercentage}%` }}
                 />
               </div>
             </div>
