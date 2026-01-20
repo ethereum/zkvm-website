@@ -971,7 +971,7 @@ export const trackData: TrackData = {
       priority: 'critical' as const,
       status: 'in-progress' as const,
       targetDate: '2026-Q3',
-      dependencies: ['opcode-repricing']
+      dependencies: ['opcode-repricing', 'hardware-acceleration', 'guest-program-zkvm-integration']
     },
     {
       id: 'sub-15s-proving',
@@ -981,6 +981,7 @@ export const trackData: TrackData = {
       targetDate: 'Q2 2026',
       priority: 'critical' as const,
       status: 'in-progress' as const,
+      dependencies: ['guest-program-zkvm-integration'],
       milestoneIds: ['sub-15s-proving'],
       applicableType: 'zkvm' as const
     },
@@ -992,6 +993,7 @@ export const trackData: TrackData = {
       targetDate: 'Q3 2026',
       priority: 'high' as const,
       status: 'not-started' as const,
+      dependencies: ['sub-15s-proving'],
       milestoneIds: ['hardware-acceleration'],
       applicableType: 'zkvm' as const
     },
@@ -1002,7 +1004,8 @@ export const trackData: TrackData = {
       category: 'economic-security',
       priority: 'high' as const,
       status: 'in-progress' as const,
-      targetDate: '2026-Q2'
+      targetDate: '2026-Q2',
+      dependencies: ['production-client-integration', 'guest-program-zkvm-integration']
     },
     {
       id: 'evm-test-compliance',
@@ -1011,7 +1014,8 @@ export const trackData: TrackData = {
       category: 'testing-validation',
       priority: 'high' as const,
       status: 'in-progress' as const,
-      targetDate: '2026-Q3'
+      targetDate: '2026-Q3',
+      dependencies: ['witness-generation-integration', 'universal-guest-program-support']
     },
     {
       id: 'witness-generation-integration',
@@ -1046,7 +1050,8 @@ export const trackData: TrackData = {
       category: 'real-time-proving',
       priority: 'medium' as const,
       status: 'in-progress' as const,
-      targetDate: '2026-Q4'
+      targetDate: '2026-Q4',
+      dependencies: ['sub-15s-proving']
     },
     {
       id: 'consensus-client-integration',
@@ -1056,6 +1061,7 @@ export const trackData: TrackData = {
       priority: 'critical' as const,
       status: 'not-started' as const,
       targetDate: '2026-Q4',
+      dependencies: ['real-time-proving-milestone', 'comprehensive-security-audits'],
       relatedClients: ['teku', 'prysm', 'lighthouse', 'lodestar', 'nimbus'],
       commonMilestoneIds: ['proof-verification', 'epbs-support', 'performance-optimization'],
       applicableType: 'consensus' as const
@@ -1067,7 +1073,8 @@ export const trackData: TrackData = {
       category: 'economic-security',
       priority: 'medium' as const,
       status: 'not-started' as const,
-      targetDate: '2027-Q1'
+      targetDate: '2027-Q1',
+      dependencies: ['consensus-client-integration', 'evm-test-compliance']
     }
   ],
   clients: [
