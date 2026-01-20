@@ -5,7 +5,6 @@ import {
   ReactFlow,
   Node,
   Edge,
-  Controls,
   Background,
   useNodesState,
   useEdgesState,
@@ -313,40 +312,14 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
           proOptions={{ hideAttribution: true }}
         >
           <Background />
-          <Controls position="top-left" />
 
-          {/* Header - bottom center */}
-          <Panel position="bottom-center" className="bg-background/95 backdrop-blur-sm border rounded-lg px-3 py-2 md:px-6 md:py-3 text-center">
-            <h1 className="text-base md:text-2xl font-bold">zkEVM Roadmap</h1>
-            <p className="hidden md:block text-sm text-muted-foreground">Hover for details, click for more info</p>
-          </Panel>
-
-          {/* Legend - bottom right, hidden on mobile */}
-          <Panel position="bottom-right" className="hidden sm:block bg-background/95 backdrop-blur-sm border rounded-lg p-3 mb-0">
-            <div className="text-xs font-medium mb-2">Status</div>
-            <div className="space-y-1.5">
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-3 rounded bg-background" style={{ border: '3px solid rgb(34 197 94)' }} />
-                <span className="text-xs">Complete</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-3 rounded bg-background" style={{ border: '3px solid rgb(59 130 246)' }} />
-                <span className="text-xs">In Progress</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-5 h-3 rounded bg-background" style={{ border: '3px solid rgb(156 163 175)' }} />
-                <span className="text-xs">Not Started</span>
-              </div>
-            </div>
-          </Panel>
-
-          {/* Desktop filters - bottom left */}
-          <Panel position="bottom-left" className="hidden md:block bg-background/95 backdrop-blur-sm border rounded-lg p-4 !left-16">
+          {/* Desktop filters - top left, below info panel */}
+          <Panel position="top-left" className="hidden md:block bg-background/95 backdrop-blur-sm border rounded-lg p-4 !top-28">
             <FilterContent />
           </Panel>
 
-          {/* Mobile filter button - bottom left */}
-          <Panel position="bottom-left" className="md:hidden !left-16">
+          {/* Mobile filter button - top left, below info panel */}
+          <Panel position="top-left" className="md:hidden !top-28">
             <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
               <DrawerTrigger asChild>
                 <Button variant="outline" size="sm" className="bg-background/95 backdrop-blur-sm">
@@ -371,6 +344,31 @@ function RoadmapGraphInner({ items }: RoadmapGraphProps) {
                 </div>
               </DrawerContent>
             </Drawer>
+          </Panel>
+
+          {/* Header - bottom center */}
+          <Panel position="bottom-center" className="bg-background/95 backdrop-blur-sm border rounded-lg px-3 py-2 md:px-6 md:py-3 text-center">
+            <h1 className="text-base md:text-2xl font-bold">zkEVM Roadmap</h1>
+            <p className="hidden md:block text-sm text-muted-foreground">Hover for details, click for more info</p>
+          </Panel>
+
+          {/* Legend - bottom right, hidden on mobile */}
+          <Panel position="bottom-right" className="hidden sm:block bg-background/95 backdrop-blur-sm border rounded-lg p-3">
+            <div className="text-xs font-medium mb-2">Status</div>
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-3 rounded bg-background" style={{ border: '3px solid rgb(34 197 94)' }} />
+                <span className="text-xs">Complete</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-3 rounded bg-background" style={{ border: '3px solid rgb(59 130 246)' }} />
+                <span className="text-xs">In Progress</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-5 h-3 rounded bg-background" style={{ border: '3px solid rgb(156 163 175)' }} />
+                <span className="text-xs">Not Started</span>
+              </div>
+            </div>
           </Panel>
         </ReactFlow>
 
