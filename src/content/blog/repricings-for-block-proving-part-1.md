@@ -4,6 +4,8 @@ date: "2025-12-17"
 excerpt: "This is a two-part article series exploring gas repricing driven by block proof generation in the Ethereum protocol."
 author: "Ignacio Hagopian"
 featured: true
+workstream: "economic-security"
+topics: ["economics", "gas-costs", "repricing"]
 ---
 
 *Thanks to Cody, Kev, Marius, Maria, Ladislaus, Justin, and Thomas for their feedback.*
