@@ -4,6 +4,8 @@ date: "2025-10-22"
 excerpt: "A comprehensive overview of our Q2 achievements, upcoming milestones, and how the community can get involved in the zkEVM initiative."
 author: "Ignacio Hagopian"
 featured: true
+workstream: "real-time-proving"
+topics: ["performance", "benchmarks", "proving"]
 ---
 
 *Thanks to Marius van der Wijden, Jochem Brouwer, Ladislaus von Daniels, and Kevaundray Wedderburn for their feedback.*

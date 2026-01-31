@@ -3,6 +3,7 @@ import MarkdownContent from '@/components/MarkdownContent';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getAuthorTwitterUrl } from '@/lib/author-mapping';
+import WorkstreamBadge from '@/components/WorkstreamBadge';
 
 interface BlogPostPageParams {
   slug: string;
@@ -60,6 +61,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     </span>
                   )}
                 </div>
+                {post.workstream && (
+                  <div className="mb-4">
+                    <WorkstreamBadge workstream={post.workstream} />
+                  </div>
+                )}
                 <h1 className="text-4xl font-bold mb-4">{post.title}</h1>
                 <div className="flex items-center justify-between">
                   <p className="text-muted-foreground">By <AuthorLink author={post.author} /></p>
