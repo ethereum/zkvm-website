@@ -32,9 +32,10 @@ This standard defines a C-based API that allows guest programs to call these zkV
 
 ### C interface for IO
 
-Guest programs need to communicate with the _outside_ world: receiving private inputs and committing to public outputs that verifiers can check. The **zkVM IO interface** standardizes how this communication happens.
+Guest programs need to communicate with the _outside_ world: receiving private inputs and committing to public outputs that verifiers can check. The IO interface standardizes how this communication happens.
 
-This C interface provides two key functions: accessing private input data provided by the host, and committing to public outputs that verifiers can check. Subtly, the interface assumes the region of memory being used to hold the input will not change during program execution.
+This standard defines a C-based API for the IO interface, providing two key functions for accessing private input data provided by the host, and committing to public outputs that verifiers can check. 
+Subtly, the interface assumes the region of memory being used to hold the input will not change during program execution.
 
 ## What's Next
 
