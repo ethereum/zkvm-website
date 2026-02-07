@@ -14,7 +14,7 @@ To address this fragmentation, today we're announcing three initial standards.
 
 These standards create a cleaner separation between zkVM implementations and guest programs, reducing integration friction and making subsequent updates easier; whether it's to the zkVM or the guest program.
 
-Note: while guest programs still require recompilation and relinking for each zkVM, the benefit is that the core execution logic; how you call precompiles, handle IO, and structure your code remains unchanged across implementations.
+Note: while guest programs still require recompilation and relinking for each zkVM, the benefit is that the core execution logic (how you call precompiles, handle IO, and structure your code) remains unchanged across implementations.
 
 ### RV64IM Target Architecture with Zicclsm Extension
 
@@ -32,7 +32,7 @@ This standard defines a C-based API that allows guest programs to call these zkV
 
 ### C interface for IO
 
-Guest programs need to communicate with the _outside_ world: receiving private inputs and committing to public outputs that verifiers can check. The IO interface standardizes how this communication happens.
+Guest programs need to communicate with the *outside* world: receiving private inputs and committing to public outputs that verifiers can check. The IO interface standardizes how this communication happens.
 
 This standard defines a C-based API for the IO interface, providing two key functions for accessing private input data provided by the host, and committing to public outputs that verifiers can check. 
 Subtly, the interface assumes the region of memory being used to hold the input will not change during program execution.
