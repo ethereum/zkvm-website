@@ -1,5 +1,5 @@
 ---
-title: "zkVM standards v0: Ethereum zkVM Interoperability"  
+title: "Ethereum zkVM Interoperability: zkVM Standards v0"  
 date: "2026-02-07"  
 excerpt: "The first release of zkvm-standards establishes three initial standards for zkVM development: RV64IM target architecture, C interfaces for precompiles, and standardized IO handling."  
 author: "Kevaundray Wedderburn, Marcin Bugaj"  
