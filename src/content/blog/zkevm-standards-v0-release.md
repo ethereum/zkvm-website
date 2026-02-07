@@ -6,21 +6,21 @@ author: "Kevaundray Wedderburn, Marcin Bugaj"
 topics: ["standards", "interoperability", "zkvm"]
 ---
 
-Imagine an Ethereum execution client team preparing for zkVM-based proving. They face a fragmented landscape: each zkVM requires custom compilation targets, different precompile interfaces, and unique IO handling. Supporting three zkVMs means potentially three separate and distinct integrations.
+Imagine an Ethereum execution client team preparing for zkVM-based proving. They face a fragmented landscape: each zkVM requires custom compilation targets, different precompile interfaces, and unique IO handling. Supporting three zkVMs means potentially three separate integrations.
 
 To address this fragmentation, today we're announcing **zkVM standards v0**: three initial standards that were created in collaboration with multiple zkVM and client teams.
 
 ## The Three Standards
 
-These standards create a cleaner separation between zkVM implementations and guest programs, reducing integration friction and making subsequent updates easier; whether it's to the zkVM or the guest program.
+These standards create a cleaner separation between zkVM implementations and guest programs, reducing integration friction and making subsequent updates easier for both zkVMs and guest programs.
 
-It's worth noting that guest programs will still require recompilation and relinking for each zkVM. The benefit, as one will see, of these initial standards is that the core execution logic (how you call precompiles, handle IO, and structure your code) will remain unchanged across implementations.
+It's worth noting that guest programs will still require recompilation and relinking for each zkVM. The benefit of these initial standards is that the core execution logic (how you call precompiles, handle IO, and structure your code) will remain unchanged across implementations.
 
 ### RV64IM Target Architecture with Zicclsm Extension
 
 The first standard establishes **RV64IM** as the common instruction set architecture (ISA) for RISC-V compatible zkVMs.
 
-The standard also includes the **Zicclsm extension**, which enables zkVM support for misaligned loads and stores. This acts as a pragmatic safety net: if a compiler mistakenly introduces misaligned accesses, execution remains correct but possibly slow; preventing subtle toolchain differences from becoming consensus or liveness issues.
+The standard also includes the **Zicclsm extension**, which enables zkVM support for misaligned loads and stores. This acts as a pragmatic safety net: if a compiler mistakenly introduces misaligned accesses, execution remains correct but possibly slow, preventing subtle toolchain differences from becoming consensus or liveness issues.
 
 By standardizing on RV64IM+Zicclsm, we establish a common compilation baseline that RISC-V zkVMs can target. Each zkVM still has implementation-specific details like memory layouts, however, a shared ISA foundation means optimizations and tooling improvements can benefit the entire ecosystem rather than being siloed per RISC-V zkVM.
 
