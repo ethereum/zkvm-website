@@ -14,7 +14,7 @@ To address this fragmentation, today we're announcing three initial standards th
 
 These standards create a cleaner separation between zkVM implementations and guest programs, reducing integration friction and making subsequent updates easier; whether it's to the zkVM or the guest program.
 
-Note: while guest programs still require recompilation and relinking for each zkVM, the benefit is that the core execution logic (how you call precompiles, handle IO, and structure your code) remains unchanged across implementations.
+Minor note: *While guest programs still require recompilation and relinking for each zkVM, the benefit of these initial standards is that the core execution logic (how you call precompiles, handle IO, and structure your code) will remain unchanged across implementations.*
 
 ### RV64IM Target Architecture with Zicclsm Extension
 
