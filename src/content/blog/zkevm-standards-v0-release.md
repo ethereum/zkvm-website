@@ -41,14 +41,12 @@ Subtly, the interface assumes the region of memory being used to hold the input 
 
 **For zkVM implementers**: Adopt these standards and help us refine them. Open issues in the repository or on the [Ethereum R&D Discord](https://discord.com/invite/qGpsxSA) for anything that doesn't fit your architecture.
 
-**For execution client teams**: Start experimenting with the common compilation target. We want to hear what breaks.
+**For execution client teams**: Start experimenting with the common compilation target and C interfaces. We want to hear what breaks.
 
 **For the broader ecosystem**: Review the standards and share your perspective.
 
-We expect these standards to evolve. Version 0 signals a foundation, not a commitment freeze. As zkVM technology matures and we move closer to deploying zkEVM on L1, the standards will adapt.
+We expect these standards to evolve. Version 0 signals a foundation, not a commitment freeze. As zkVM technology matures and we move closer to deploying zkEVM on L1, the standards will inevitably adapt.
 
-All three standards are documented in the [zkvm-standards repository](https://github.com/eth-act/zkvm-standards), along with the rationale and design decisions behind each. The repository also tracks ongoing discussions and potential future standards—areas like memory models, debugging interfaces, and additional precompile specifications.
+All three standards are documented in the [zkvm-standards repository](https://github.com/eth-act/zkvm-standards), along with the rationale and design decisions behind each.
 
 Join the conversation on [Ethereum R&D Discord](https://discord.com/invite/qGpsxSA) to discuss these standards and watch the ongoing progress towards zkEVM on L1.
-
-Building Ethereum's zkVM future requires coordination across many teams. These standards are a step toward that coordination, providing common ground for the challenging work ahead.
