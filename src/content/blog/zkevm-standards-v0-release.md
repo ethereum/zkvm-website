@@ -18,17 +18,17 @@ Note: while guest programs still require recompilation and relinking for each zk
 
 ### RV64IM Target Architecture with Zicclsm Extension
 
-The first standard establishes RV64IM as the common instruction set architecture (ISA) for RISC-V compatible zkVMs.
+The first standard establishes **RV64IM** as the common instruction set architecture (ISA) for RISC-V compatible zkVMs.
 
 The standard also includes the **Zicclsm extension**, which enables zkVM support for misaligned loads and stores. This acts as a pragmatic safety net: if a compiler mistakenly introduces misaligned accesses, execution remains correct but possibly slow; preventing subtle toolchain differences from becoming consensus or liveness issues.
 
-By standardizing on RV64IM+Zicclsm, we establish a **common compilation baseline** that RISC-V zkVMs can target. Each zkVM still has implementation-specific details like memory layouts, however, a shared ISA foundation means optimizations and tooling improvements can benefit the entire ecosystem rather than being siloed per RISC-V zkVM.
+By standardizing on RV64IM+Zicclsm, we establish a common compilation baseline that RISC-V zkVMs can target. Each zkVM still has implementation-specific details like memory layouts, however, a shared ISA foundation means optimizations and tooling improvements can benefit the entire ecosystem rather than being siloed per RISC-V zkVM.
 
 ### C Interface for Precompiles
 
 Ethereum's EVM has a set of precompiles like BLAKE2F, MODEXP, and BLS12-381. Most if not all are expensive to prove using standard instruction traces, so zkVMs implement them as optimized **zkVM precompiles**.
 
-This standard defines a **C-based API** that allows guest programs to call these zkVM precompiles. In short, this allows execution client teams to write precompile-calling code once and switch zkVM backends without invasive refactors.
+This standard defines a C-based API that allows guest programs to call these zkVM precompiles. In short, this allows execution client teams to write precompile-calling code once and switch zkVM backends without invasive refactors.
 
 ### C interface for IO
 
