@@ -26,9 +26,9 @@ By standardizing on RV64IM+Zicclsm, we establish a common compilation baseline t
 
 ### C Interface for Precompiles
 
-Ethereum's EVM has a set of precompiles like BLAKE2F, MODEXP, and BLS12-381. Most if not all are expensive to prove using standard instruction traces, so zkVMs implement them as optimized **zkVM precompiles**.
+Ethereum's EVM has a set of precompiles like BLAKE2F, MODEXP, BLS12-381, etc. Most if not all are expensive to prove using standard instruction traces, so zkVMs implement them as optimized **zkVM precompiles**.
 
-This standard defines a C-based API that allows guest programs to call these zkVM precompiles. In short, this allows execution client teams to write precompile-calling code once and switch zkVM backends without invasive refactors.
+This standard defines a C-based API that allows guest programs to call these zkVM precompiles. This allows execution client teams to write precompile-calling code once and switch zkVM backends without invasive refactors.
 
 ### C interface for IO
 
