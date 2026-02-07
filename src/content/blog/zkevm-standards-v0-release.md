@@ -6,7 +6,7 @@ author: "Kevaundray Wedderburn, Marcin Bugaj"
 topics: ["standards", "interoperability", "zkvm"]
 ---
 
-Imagine an Ethereum execution client team preparing for zkVM-based proving. They face a fragmented landscape: each zkVM requires custom compilation targets, different precompile interfaces, and unique IO handling. Supporting three zkVMs means potentially three separate integrations.
+Imagine an Ethereum execution client team preparing for zkVM-based proving. They face a fragmented landscape: each zkVM requires custom compilation targets, different precompile interfaces, and unique IO handling. Supporting three zkVMs means potentially three separate and distinct integrations.
 
 To address this fragmentation, today we're announcing three initial standards that were created in collaboration with multiple zkVM and client teams.
 
