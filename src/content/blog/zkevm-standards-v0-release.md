@@ -12,7 +12,7 @@ To address this fragmentation, today we're announcing **zkVM standards v0**: thr
 
 ## The Three Standards
 
-These standards create a cleaner separation between zkVM implementations and guest programs, reducing integration friction and making subsequent updates easier for both zkVMs and guest programs.
+These standards create a cleaner separation between zkVM implementations and guest programs, reducing integration friction and making subsequent updates easier on both sides of the zkVM-guest boundary.
 
 It's worth noting that guest programs will still require recompilation and relinking for each zkVM. The benefit of these initial standards is that the core execution logic (how you call precompiles, handle IO, and structure your code) will remain unchanged across implementations.
 
@@ -45,7 +45,7 @@ Subtly, the interface assumes the region of memory being used to hold the input 
 
 **For the broader ecosystem**: Review the standards and share your perspective.
 
-We expect these standards to evolve. Version 0 signals a foundation, not a commitment freeze. As zkVM technology matures and we move closer to deploying zkEVM on L1, the standards will inevitably adapt.
+We expect these standards to evolve. Version 0 signals a foundation, not a commitment freeze. As zkVM technology matures and we move closer to deploying zkEVM on L1, these standards will continue to evolve.
 
 All three standards are documented in the [zkvm-standards repository](https://github.com/eth-act/zkvm-standards), along with the rationale and design decisions behind each.
 
