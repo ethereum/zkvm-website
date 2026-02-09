@@ -8,7 +8,7 @@ featured: true
 
 *(Guest post by the [EF Cryptography Research team](https://crypto.ethereum.org/))*
 
-![image](https://hackmd.io/_uploads/Sy91UNwvWg.png)
+![Cryptography milestones timeline](/blog/crypto-milestone.png)
 
 Updates from [the zkEVM security sprint](https://blog.ethereum.org/2025/12/18/zkevm-security-foundations):
 
