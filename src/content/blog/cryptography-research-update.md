@@ -44,4 +44,3 @@ Check out [our document](https://crypto.ethereum.org/docs/zkvm_architecture_whit
 We've moved the M3 deadline to early December 2026, allowing time for review before the holidays. This also aligns M3 with the W3 whitepaper deadline.
 
 Please reach out at `cryptography@ethereum.org` if you need help or have any questions.
-
