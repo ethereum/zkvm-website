@@ -1,6 +1,6 @@
 ---
 title: "zkEVM Security Sprint: February Update"
-date: "2026-02-10"
+date: "2026-02-11"
 excerpt: "zkEVM Security Sprint: Whitepaper guidelines, lookups in soundcalc, and an updated deadline."
 author: "Dmitry Khovratovich, Arantxa Zapico, George Kadianakis"
 featured: true
