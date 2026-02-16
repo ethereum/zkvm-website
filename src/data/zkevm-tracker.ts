@@ -21,7 +21,7 @@ export const zkevmData: ZKEVMData[] = [
   {
     name: 'Jolt',
     description: 'A high-performance RISC-V ZKVM optimized for speed and developer experience.',
-    architecture: 'rv32im',
+    architecture: 'rv64imac',
     testResults: { passed: 47, total: 47, percentage: 100 },
     status: 'In Development',
     securityTests: true,
