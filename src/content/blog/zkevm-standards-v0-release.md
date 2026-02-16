@@ -1,12 +1,12 @@
 ---
 title: "Ethereum zkVM Interoperability: zkVM Standards v0"  
 date: "2026-02-16"  
-excerpt: "The first release of zkvm-standards establishes three initial standards for zkVM development: RV64IM target architecture, C interfaces for precompiles, and standardized IO handling."  
+excerpt: "The first release of zkVM-standards establishes three initial standards for zkVM development: RV64IM target architecture, C interfaces for precompiles, and standardized IO handling."  
 author: "Kevaundray Wedderburn, Marcin Bugaj"  
 topics: ["standards", "interoperability", "zkvm"]
 ---
 
-Imagine an Ethereum execution client team preparing for zkVM-based proving. They face a fragmented landscape: each zkVM requires custom compilation targets, different precompile interfaces, and unique IO handling. Supporting three zkVMs means potentially three separate integrations.
+Imagine an Ethereum execution client team preparing for zkVM-based proving. They face a fragmented landscape: each zkVM requires custom compilation targets, different precompile interfaces, and unique IO handling. Supporting three zkVMs potentially means three separate integrations.
 
 To address this fragmentation, today we're announcing **zkVM standards v0**: three initial standards that were created in collaboration with multiple zkVM and client teams.
 
@@ -34,12 +34,12 @@ This standard defines a C-based API that allows guest programs to call these zkV
 
 Guest programs need to communicate with the *outside* world: receiving private inputs and committing to public outputs that verifiers can check. The IO interface standardizes how this communication happens.
 
-This standard defines a C-based API for the IO interface, providing two key functions for accessing private input data provided by the host, and committing to public outputs that verifiers can check. 
+This standard defines a C-based API for the IO interface. It provides two key functions for accessing private input data provided by the host, and committing to public outputs that verifiers can check. 
 Subtly, the interface assumes the region of memory being used to hold the input will not change during program execution.
 
 ## What's Next
 
-**For zkVM implementers**: Adopt these standards and help us refine them. Open issues in the repository or on the [Ethereum R&D Discord](https://discord.com/invite/qGpsxSA) for anything that doesn't fit your architecture.
+**For zkVM implementers**: Adopt these standards and help us refine them. Open issues in the [zkvm-standards repository](https://github.com/eth-act/zkvm-standards) or on the [Ethereum R&D Discord](https://discord.com/invite/qGpsxSA) for anything that doesn't fit your architecture.
 
 **For execution client teams**: Start experimenting with the common compilation target and C interfaces. We want to hear what breaks.
 
