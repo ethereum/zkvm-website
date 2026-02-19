@@ -164,7 +164,7 @@ Another way to interpret raw proving times is to view them through the lens of t
 
 The Ethereum Proving Gas Repricing Analysis [dashboard](https://eth-act.github.io/zkevm-benchmark-runs/repricing/) is a bit packed, so let’s explain a bit more about what it includes.
 
-![Repricing dashbaord filters](/blog/repricings-part2-dashboard1.png)
+![Repricing dashboard filters](/blog/repricings-part2-dashboard1.png)
 
 - The *Hardware* and *Dataset* comboboxes let us select which prover hardware and datasets we want to show results for.
 - The *EL/ZKVM* radio buttons allow us to filter which EL/zkVM combinations to show. For example, *Slowest* lets us simplify the results if we only care about the slowest variant for each fixture.

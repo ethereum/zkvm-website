@@ -37,7 +37,7 @@ With zkEVMs:
  - Provers, entities distinct from Ethereum nodes, construct execution proofs for Ethereum blocks, and broadcast those proofs.
  - CL waits for proofs to arrive.
  - CL now verifies those proofs.
- - Stateful ELs are still responsible for syncing, state mangement, and more.
+ - Stateful ELs are still responsible for syncing, state management, and more.
 
 ![A diagram showing how guest program generation, proving, and verification fit together in a complete ZKEVM stack. Dotted arrows represent data being sent or requested across a network.](/blog/pipeline.svg)
 
@@ -122,7 +122,7 @@ In brief:
 
 Rust support for [RV32IM is only Tier 2](https://doc.rust-lang.org/rustc/platform-support/riscv32-unknown-none-elf.html), while [RV64GC is Tier 2 "with host tools"](https://doc.rust-lang.org/rustc/platform-support/riscv64gc-unknown-linux-gnu.html) (but this target emits Linux syscalls). An example CI run of Rust tests against a RISC-V 64-bit target is [here](https://github.com/rust-lang/rust/actions/runs/19116334329/job/54626328406).
 
-Go, by contrast, seems to do robust testing of RISC-V. For instance, on [this Go CI dashboard](https://build.golang.org/) one can find this [CI failure of a RISC-V target](https://ci.chromium.org/ui/p/golang/builders/ci/gotip-linux-riscv64/b8699006944076070321/overview) where 127 out of 61836 tests fail. Unfortunately, Go offer much less control over the RISC-V code that is emitted, which (at present) can use a rather large set of extensions, Linux syscalls, and does not ofter built-in floating point emulation.
+Go, by contrast, seems to do robust testing of RISC-V. For instance, on [this Go CI dashboard](https://build.golang.org/) one can find this [CI failure of a RISC-V target](https://ci.chromium.org/ui/p/golang/builders/ci/gotip-linux-riscv64/b8699006944076070321/overview) where 127 out of 61836 tests fail. Unfortunately, Go offer much less control over the RISC-V code that is emitted, which (at present) can use a rather large set of extensions, Linux syscalls, and does not offer built-in floating point emulation.
 
 Regarding C++ compilers, [GCC](https://gcc.gnu.org/gcc-16/criteria.html) does not have higher-tier support for RISC-V, though it does support MIPS. Clang does test RISC-V, for instance, it seems to run over 6000 RISC-V specific unit tests [here](https://lab.llvm.org/buildbot/#/builders/87/builds/4010/steps/11/logs/stdio). But, as with Go compiler, only large target ISAs are covered.
 
@@ -142,7 +142,7 @@ Projects such as [Valida](https://github.com/valida-xyz/valida) introduce bespok
 
 **Level of concern:** Medium-High
 
-One the one hand, the LLVM stack has tons of eyes on it. On the other hand, it's massively complex, and bugs are regularly found in it. Still, on balance, it feels safer to use a standard compiler, at the very least because one can switch compilers (say, between GCC to Clang) in the event of a critical bug in either one.
+On the one hand, the LLVM stack has tons of eyes on it. On the other hand, it's massively complex, and bugs are regularly found in it. Still, on balance, it feels safer to use a standard compiler, at the very least because one can switch compilers (say, between GCC to Clang) in the event of a critical bug in either one.
 
 **Mitigations:** Thorough testing and auditing. If the compiler is sufficiently simple and stable, we can become more confident in its security with time "in the wild."
 
@@ -167,7 +167,7 @@ Each zkVM implements a custom VM emulator to execute a given program. If the emu
 
 **Level of concern:** Medium-High
 
-**Mitigations:** Thorough test suites exist to test compliance of of RISC-V emulators. These are being run in the zkEVM Team's [zkEVM Test Monitor](https://eth-act.github.io/zkevm-test-monitor/). Compliance testing for additional ISAs should be run nightly and tracked similarly. When ready, formal verification will provide greater assurances of correctness.
+**Mitigations:** Thorough test suites exist to test compliance of RISC-V emulators. These are being run in the zkEVM Team's [zkEVM Test Monitor](https://eth-act.github.io/zkevm-test-monitor/). Compliance testing for additional ISAs should be run nightly and tracked similarly. When ready, formal verification will provide greater assurances of correctness.
 
 ### Potential Issue 9: Circuit correctness
 At the core of every zkVM library is the implementation of machine specification using arithmetic circuits. It is required that this machine implements the correct semantics. Otherwise, demonstrating that it has executed correctly after being fed a STF and a set of inputs and outputs does not mean that the state transition was valid in the sense of conforming to the Ethereum protocol specification.
@@ -209,7 +209,7 @@ Bugs, including the famous ZCash bug (see p.25 of [BCTV](https://eprint.iacr.org
 **Mitigations:** When implementing systems described in less well-studied papers, the implementing teams and their auditors should conduct a review of the paper, possibly seeking guidance and opinions from an expert in the theory. Formal verification will help significantly here&mdash;it will require an in-depth rewrite of the protocols, then reducing correctness statements (such as completeness and soundness of the protocol) to certain basic axioms.
 
 ### Potential Issue 14: Paper is under-specified or inexplicit
-The well known [Frozen Heart Vulernability](https://blog.trailofbits.com/2022/04/15/the-frozen-heart-vulnerability-in-bulletproofs/) can be attributed in some cases to papers being unclear about what data is to be hashed in order to correctly implement the Fiat-Shamir transformation, a ubiquitous component of zkEVMs. One could argue that this is a protocol bug, but it feels more accurate to attribute this to the gap between theory and implementation.
+The well known [Frozen Heart Vulnerability](https://blog.trailofbits.com/2022/04/15/the-frozen-heart-vulnerability-in-bulletproofs/) can be attributed in some cases to papers being unclear about what data is to be hashed in order to correctly implement the Fiat-Shamir transformation, a ubiquitous component of zkEVMs. One could argue that this is a protocol bug, but it feels more accurate to attribute this to the gap between theory and implementation.
 
 **Level of concern:** Medium
 
@@ -236,7 +236,7 @@ Potential impact is high, but audits focus on such issues and should catch this.
 The security of any cryptographic protocol depends on computation hardness assumptions. zkVMs rely on a variety of assumptions, as well as the correct setting of security parameters. Such parameters can include choices of elliptic curves, lattice parameters, and hash functions. One prominent security parameter is the number of query rounds executed during proving of "proximity proofs," which are the heart of the most widely used polynomial commitment schemes. In such settings, it is known how to set the number of queries securely (say, to achieve 128 bits of security), but it is [conjectured](https://eprint.iacr.org/2021/582) that around half as many queries would in fact give this level of security. A forthcoming [ethresear.ch](https://ethresear.ch/) post by Arantxa Zapico will detail these issues. If such conjectures turned out to be incorrect, then the zkEVM using the protocol would in fact be more vulnerable to brute force attacks than believed, allowing provers to find malicious inputs that could cause proofs to be incorrectly accepted.
 
 **Level of concern:** Medium
-The goal here is security by deterrance. The potential impact is high, but unless community standards erode significantly or there is a massive gap in the security analysis, exploitability is low when compared to more mundane attacks on the code.
+The goal here is security by deterrence. The potential impact is high, but unless community standards erode significantly or there is a massive gap in the security analysis, exploitability is low when compared to more mundane attacks on the code.
 
 **Mitigations:** Audits by cryptographers are essential. It would be wise to implement and regularly test fallback systems using parameters that are either proven secure or have a longer track record of use "in the wild."
 
