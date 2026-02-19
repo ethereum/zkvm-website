@@ -57,6 +57,6 @@ export default async function BlogPage() {
 export async function generateMetadata() {
   return {
     title: 'Blog | zkEVM',
-    description: 'Latest updates and insights about zkEVM technology, community updates, and technical developments.',
+    description: 'Latest updates and insights about L1-zkEVM developments.',
   };
 }
