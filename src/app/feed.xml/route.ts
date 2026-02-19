@@ -23,7 +23,7 @@ export async function GET() {
   <channel>
     <title>zkEVM Blog</title>
     <link>${SITE_URL}/blog</link>
-    <description>Latest updates and insights about zkEVM technology from the Ethereum Foundation.</description>
+    <description>Latest updates and insights about L1-zkEVM developments from the EF's zkEVM team.</description>
     <language>en</language>
     <atom:link href="${SITE_URL}/feed.xml" rel="self" type="application/rss+xml"/>
 ${items}
