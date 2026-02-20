@@ -1,6 +1,6 @@
 import { getAllBlogPosts } from '@/lib/blog';
 
-const SITE_URL = 'https://zkevm.ethereum.org';
+const SITE_URL = 'https://zkevm.ethereum.foundation';
 
 export async function GET() {
   const posts = await getAllBlogPosts();
@@ -12,14 +12,14 @@ export async function GET() {
       <link>${SITE_URL}/blog/${post.slug}</link>
       <guid isPermaLink="true">${SITE_URL}/blog/${post.slug}</guid>
       <description>${escapeXml(post.excerpt)}</description>
-      <author>${escapeXml(post.author)}</author>
+      <dc:creator>${escapeXml(post.author)}</dc:creator>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
     </item>`
     )
     .join('\n');
 
   const feed = `<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
   <channel>
     <title>zkEVM Blog</title>
     <link>${SITE_URL}/blog</link>
