@@ -1,30 +1,21 @@
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import ScalabilitySection, { ZKEVMSolutionSection } from "@/components/ScalabilitySection";
-import ImpactSection from "@/components/ImpactSection";
-import RoadmapSection from "@/components/RoadmapSection";
-import ZKEVMReadiness from "@/components/ZKEVMReadiness";
-import ClientStatus from "@/components/ClientStatus";
-import BookSection from "@/components/BookSection";
-import BlogSection from "@/components/BlogSection";
-import TeamSection from "@/components/TeamSection";
-import Footer from "@/components/Footer";
+import MinimalHeader from '@/components/MinimalHeader';
+import MinimalHero from '@/components/MinimalHero';
+import NavigationCards from '@/components/NavigationCards';
+import TeamSection from '@/components/TeamSection';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <MinimalHeader />
       <main>
-        <Hero />
-        <ScalabilitySection />
-        <ZKEVMSolutionSection />
-        <ImpactSection />
-        <RoadmapSection />
-        <BlogSection />
-        <ZKEVMReadiness />
-        <ClientStatus />
-        <BookSection /> 
-        <TeamSection />
+        <MinimalHero />
+        <div className="container mx-auto px-4 pb-16">
+          <NavigationCards />
+        </div>
+        <div className="container mx-auto px-4 pb-16">
+          <TeamSection />
+        </div>
       </main>
       <Footer />
     </div>
