@@ -1,0 +1,45 @@
+name: Sync zkVM Test Monitor Data
+
+on:
+  # Run daily at 06:00 UTC
+  schedule:
+    - cron: '0 6 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+  # Trigger when Cody's repo dispatches an event
+  repository_dispatch:
+    types: [test-monitor-updated]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website repo
+        uses: actions/checkout@v4
+
+      - name: Fetch test monitor results
+        run: |
+          curl -s https://raw.githubusercontent.com/eth-act/zkevm-test-monitor/main/data/results.json \
+            -o src/data/test-monitor-results.json
+
+      - name: Transform data for website
+        run: |
+          node scripts/transform-test-data.js
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet src/data/ && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/test-monitor-results.json src/data/test-monitor-summary.json
+          git commit -m "data: sync zkVM test monitor results $(date -u +%Y-%m-%d)"
+          git push
