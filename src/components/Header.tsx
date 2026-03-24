@@ -41,7 +41,7 @@ const Header = () => {
       <nav className="max-w-[1200px] mx-auto px-4 py-4 flex items-center justify-between">
         <div className="logo flex items-center">
           <Link href="/" className="flex items-center">
-            <Logo className="h-7 w-auto" variant="blue" />
+            <Logo className="h-9 w-auto" variant="blue" />
           </Link>
         </div>
 

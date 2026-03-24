@@ -15,11 +15,14 @@ export function Logo({ className = "h-10 w-auto", variant = "auto" }: LogoProps)
 
   useEffect(() => setMounted(true), []);
 
+  const isDark = mounted && resolvedTheme === "dark";
+
   let src: string;
   if (variant === "blue") {
-    src = "/logo-blue.svg";
+    // Darker blue on light bg for contrast, brighter blue on dark bg
+    src = isDark ? "/logo-blue-dark.svg" : "/logo-blue-light.svg";
   } else {
-    src = mounted && resolvedTheme === "dark" ? "/logo-white.svg" : "/logo-black.svg";
+    src = isDark ? "/logo-white.svg" : "/logo-black.svg";
   }
 
   return (
