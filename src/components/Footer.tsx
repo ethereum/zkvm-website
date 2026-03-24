@@ -1,13 +1,16 @@
-import Image from "next/image";
+"use client";
+
+import Link from "next/link";
+import { Logo } from "@/components/Logo";
 
 const Footer = () => {
   return (
     <footer className="px-4 py-6">
       <div className="flex flex-col items-center gap-6 md:flex-row md:items-start md:justify-between max-w-[1200px] mx-auto">
         <div className="footer-logo text-center md:text-left">
-          <a href="#" className="logo inline-flex justify-center">
-            <Image src="/logo.svg" alt="Ethereum Foundation zkEVM" width={176} height={40} className="w-[176px] h-auto dark:brightness-200" />
-          </a>
+          <Link href="/" className="logo inline-flex justify-center">
+            <Logo className="w-[176px] h-auto" />
+          </Link>
         </div>
         <div className="footer-copy flex flex-col items-center gap-3 text-center md:flex-row md:items-center md:gap-2 md:text-left">
           <span className="leading-relaxed text-muted-foreground">

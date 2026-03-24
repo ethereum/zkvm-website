@@ -2,7 +2,6 @@
 
 import { Menu } from "lucide-react";
 import Link from "next/link";
-import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +11,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { Logo } from "@/components/Logo";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,13 +27,7 @@ const Header = () => {
       <nav className="max-w-[1200px] mx-auto px-4 py-4 flex items-center justify-between">
         <div className="logo flex items-center">
           <Link href="/" className="flex items-center">
-            <Image
-              src="/logo.svg"
-              alt="Ethereum Foundation zkEVM"
-              width={120}
-              height={120}
-              className="h-10 w-auto dark:brightness-200"
-            />
+            <Logo className="h-10 w-auto" />
           </Link>
         </div>
 
@@ -68,13 +62,7 @@ const Header = () => {
               <SheetHeader className="pb-6">
                 <div className="flex justify-center">
                   <Link href="/" className="flex items-center">
-                    <Image
-                      src="/logo.svg"
-                      alt="Ethereum Foundation zkEVM"
-                      width={120}
-                      height={120}
-                      className="h-8 w-auto dark:brightness-200"
-                    />
+                    <Logo className="h-8 w-auto" />
                   </Link>
                 </div>
               </SheetHeader>
