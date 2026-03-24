@@ -46,7 +46,8 @@ export default function Home() {
               <div className="flex gap-4 flex-wrap">
                 <Link
                   href="/track"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#0C9FDE] text-white rounded-lg hover:bg-[#0a8bc5] transition-colors font-medium"
+                  className="inline-flex items-center gap-2 px-6 py-3 text-white rounded-lg transition-colors font-medium"
+                  style={{ backgroundColor: '#0C9FDE' }}
                 >
                   Track Progress <ArrowRight className="w-4 h-4" />
                 </Link>
