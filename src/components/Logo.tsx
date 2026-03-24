@@ -4,14 +4,23 @@ import Image from "next/image";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-export function Logo({ className = "h-10 w-auto" }: { className?: string }) {
+interface LogoProps {
+  className?: string;
+  variant?: "auto" | "blue";
+}
+
+export function Logo({ className = "h-10 w-auto", variant = "auto" }: LogoProps) {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
 
-  // Before mount, show black logo (light default) to avoid flash
-  const src = mounted && resolvedTheme === "dark" ? "/logo-white.svg" : "/logo-black.svg";
+  let src: string;
+  if (variant === "blue") {
+    src = "/logo-blue.svg";
+  } else {
+    src = mounted && resolvedTheme === "dark" ? "/logo-white.svg" : "/logo-black.svg";
+  }
 
   return (
     <Image

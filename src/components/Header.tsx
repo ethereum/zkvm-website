@@ -41,7 +41,7 @@ const Header = () => {
       <nav className="max-w-[1200px] mx-auto px-4 py-4 flex items-center justify-between">
         <div className="logo flex items-center">
           <Link href="/" className="flex items-center">
-            <Logo className="h-7 w-auto" />
+            <Logo className="h-7 w-auto" variant="blue" />
           </Link>
         </div>
 
@@ -82,7 +82,7 @@ const Header = () => {
               <SheetHeader className="pb-6">
                 <div className="flex justify-center">
                   <Link href="/" className="flex items-center">
-                    <Logo className="h-8 w-auto" />
+                    <Logo className="h-8 w-auto" variant="blue" />
                   </Link>
                 </div>
               </SheetHeader>
