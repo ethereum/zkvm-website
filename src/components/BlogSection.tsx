@@ -11,18 +11,18 @@ const BlogSection = async () => {
       <div className="section-title">
         <h2>Latest Updates</h2>
       </div>
-      <div className="max-w-3xl mx-auto divide-y divide-border">
+      <div className="divide-y divide-border">
         {latestPosts.map((post) => (
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="flex items-baseline justify-between gap-4 py-4 group"
+            className="flex items-baseline justify-between gap-6 py-6 group"
           >
             <div className="min-w-0">
-              <h3 className="text-base font-semibold text-foreground group-hover:text-[#0C9FDE] transition-colors truncate">
+              <h3 className="text-lg font-semibold text-foreground group-hover:text-[#0C9FDE] transition-colors">
                 {post.title}
               </h3>
-              <p className="text-sm text-muted-foreground mt-0.5 truncate">{post.excerpt}</p>
+              <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{post.excerpt}</p>
             </div>
             <span className="text-sm text-muted-foreground whitespace-nowrap flex-shrink-0">
               {post.date}
