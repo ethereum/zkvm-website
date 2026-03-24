@@ -13,26 +13,22 @@ const Footer = () => {
           </Link>
         </div>
         <div className="footer-copy flex flex-col items-center gap-3 text-center md:flex-row md:items-center md:gap-2 md:text-left">
-          <span className="leading-relaxed text-muted-foreground">
-            &copy; {new Date().getFullYear()} zkEVM team —{" "}
-            <a
-              href="https://ethereum.foundation"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-[var(--accent-orange)] transition-colors duration-200 inline-flex items-center gap-1 underline hover:no-underline"
+          <a
+            href="https://ethereum.foundation"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-[var(--accent-orange)] transition-colors duration-200 inline-flex items-center gap-1 text-sm"
+          >
+            Ethereum Foundation
+            <svg
+              className="w-3 h-3"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
             >
-              Ethereum Foundation
-              <svg
-                className="w-3 h-3"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-            </a>
-            .
-          </span>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
           <div className="flex items-center gap-3">
             <a
               href="https://github.com/ethereum/zkvm-website"
