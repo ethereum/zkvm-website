@@ -298,13 +298,13 @@
     color: hsl(var(--muted-foreground));
   }
 
-  nav ul {
+  nav:not(.fixed *) ul {
     display: flex;
     list-style: none;
     gap: 2.5rem;
   }
 
-  nav a {
+  nav:not(.fixed *) a {
     font-family: 'Inter', sans-serif;
     color: hsl(var(--foreground) / 0.8);
     text-decoration: none;
@@ -314,7 +314,7 @@
     transition: color 0.3s ease;
   }
 
-  nav a:hover {
+  nav:not(.fixed *) a:hover {
     color: var(--primary);
   }
 

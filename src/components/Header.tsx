@@ -3,6 +3,8 @@
 import { Menu } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { useTheme } from "next-themes";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -15,6 +17,12 @@ import { Logo } from "@/components/Logo";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  const isDark = mounted && resolvedTheme === "dark";
 
   const navItems = [
     { href: "/track", label: "Track" },
@@ -23,7 +31,13 @@ const Header = () => {
   ];
 
   return (
-    <header className="fixed top-0 w-full bg-white/95 dark:bg-gray-950/95 backdrop-blur-sm z-[100] border-b border-gray-200 dark:border-gray-800 shadow-sm">
+    <header
+      className="fixed top-0 w-full backdrop-blur-sm z-[100] border-b shadow-sm"
+      style={{
+        backgroundColor: isDark ? "rgba(3,7,18,0.95)" : "rgba(255,255,255,0.95)",
+        borderColor: isDark ? "rgb(31,41,55)" : "rgb(229,231,235)",
+      }}
+    >
       <nav className="max-w-[1200px] mx-auto px-4 py-4 flex items-center justify-between">
         <div className="logo flex items-center">
           <Link href="/" className="flex items-center">
@@ -38,7 +52,8 @@ const Header = () => {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-gray-700 dark:text-gray-300 hover:text-[#0C9FDE] dark:hover:text-[#0C9FDE] transition-colors duration-200 font-medium"
+                  className="transition-colors duration-200 font-medium hover:text-[#0C9FDE]"
+                  style={{ color: isDark ? "#d1d5db" : "#374151" }}
                 >
                   {item.label}
                 </Link>
@@ -53,7 +68,12 @@ const Header = () => {
           <ThemeToggle />
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-gray-700 dark:text-gray-300 hover:text-[#0C9FDE]">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="hover:text-[#0C9FDE]"
+                style={{ color: isDark ? "#d1d5db" : "#374151" }}
+              >
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Open menu</span>
               </Button>
@@ -72,8 +92,8 @@ const Header = () => {
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="block w-full text-center font-medium text-gray-700 dark:text-gray-300 hover:text-[#0C9FDE] hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 py-3 px-4 rounded-lg"
-                        style={{ fontSize: '1.3rem' }}
+                        className="block w-full text-center font-medium hover:text-[#0C9FDE] transition-all duration-200 py-3 px-4 rounded-lg"
+                        style={{ color: isDark ? "#d1d5db" : "#374151", fontSize: '1.3rem' }}
                         onClick={() => setIsOpen(false)}
                       >
                         {item.label}
