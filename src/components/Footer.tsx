@@ -14,7 +14,7 @@ const Footer = () => {
         </div>
         <div className="footer-copy flex flex-col items-center gap-3 text-center md:flex-row md:items-center md:gap-2 md:text-left">
           <span className="leading-relaxed text-muted-foreground">
-            &copy; 2025 zkEVM team —{" "}
+            &copy; {new Date().getFullYear()} zkEVM team —{" "}
             <a
               href="https://ethereum.foundation"
               target="_blank"

@@ -11,7 +11,7 @@ interface BlogCardProps {
 export default function BlogCard({ post, isHighlighted = false }: BlogCardProps) {
   return (
     <Link href={`/blog/${post.slug}`} className="block group">
-      <Card className="overflow-hidden hover:scale-[1.02] transition-transform duration-300">
+      <Card className="overflow-hidden">
         <CardContent className="p-6">
           <div className="flex items-center gap-3 mb-3">
             <span className="text-sm text-muted-foreground">{post.date}</span>
