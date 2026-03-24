@@ -645,6 +645,23 @@
     to { stroke-dashoffset: 0; }
   }
 
+  /* Accent button hover */
+  .btn-accent {
+    background-color: var(--accent-blue);
+    color: var(--accent-btn-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .btn-accent:hover {
+    background-color: var(--accent-orange);
+  }
+  .btn-outline-hover {
+    transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+  }
+  .btn-outline-hover:hover {
+    border-color: var(--accent-orange);
+    color: var(--accent-orange);
+  }
+
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 6px;
