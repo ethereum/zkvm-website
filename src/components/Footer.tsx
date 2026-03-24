@@ -6,7 +6,7 @@ import { Logo } from "@/components/Logo";
 const Footer = () => {
   return (
     <footer className="px-4 py-6">
-      <div className="flex flex-col items-center gap-6 md:flex-row md:items-start md:justify-between max-w-[1200px] mx-auto">
+      <div className="flex flex-col items-center gap-2 md:flex-row md:items-start md:justify-between max-w-[1200px] mx-auto">
         <div className="footer-logo text-center md:text-left">
           <Link href="/" className="logo inline-flex justify-center">
             <Logo className="w-[176px] h-auto" />
