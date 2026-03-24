@@ -38,7 +38,7 @@ export default function TrackPage() {
         <p className="text-muted-foreground mb-6">
           zkVMs under active consideration for Ethereum L1 integration. Only implementations
           meeting our{" "}
-          <a href="#listing-criteria" className="text-[#0C9FDE] hover:underline">
+          <a href="#listing-criteria" className="text-[var(--accent-blue)] hover:underline">
             inclusion criteria
           </a>{" "}
           are listed.
@@ -131,7 +131,7 @@ export default function TrackPage() {
               href="https://eth-act.github.io/zkevm-test-monitor/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#0C9FDE] hover:underline inline-flex items-center gap-1"
+              className="text-[var(--accent-blue)] hover:underline inline-flex items-center gap-1"
             >
               RISC-V Compliance Test Monitor <ExternalLink className="w-3 h-3" />
             </a>

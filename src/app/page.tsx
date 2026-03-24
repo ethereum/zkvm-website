@@ -22,14 +22,14 @@ export default function Home() {
               </p>
               <div className="space-y-4 mb-10">
                 <div className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#0C9FDE] mt-2.5 flex-shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent-blue)] mt-2.5 flex-shrink-0" />
                   <p className="text-foreground text-base">
                     <strong>Short term:</strong> Our work focuses around{" "}
                     <a
                       href="https://eips.ethereum.org/EIPS/eip-8025"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#0C9FDE] hover:underline inline-flex items-center gap-1"
+                      className="text-[var(--accent-blue)] hover:underline inline-flex items-center gap-1"
                     >
                       EIP-8025 <ExternalLink className="w-3 h-3" />
                     </a>
@@ -37,7 +37,7 @@ export default function Home() {
                   </p>
                 </div>
                 <div className="flex items-start gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#0C9FDE] mt-2.5 flex-shrink-0" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent-blue)] mt-2.5 flex-shrink-0" />
                   <p className="text-foreground text-base">
                     <strong>Longer term:</strong> We aim to ship mandatory proofs, enabling full ZK-based scaling of Ethereum L1.
                   </p>
@@ -47,7 +47,7 @@ export default function Home() {
                 <Link
                   href="/track"
                   className="inline-flex items-center gap-2 px-6 py-3 text-white rounded-lg transition-colors font-medium"
-                  style={{ backgroundColor: '#0C9FDE' }}
+                  style={{ backgroundColor: 'var(--accent-blue)' }}
                 >
                   Track Progress <ArrowRight className="w-4 h-4" />
                 </Link>

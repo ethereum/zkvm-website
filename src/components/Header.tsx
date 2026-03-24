@@ -52,7 +52,7 @@ const Header = () => {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="transition-colors duration-200 font-medium hover:text-[#0C9FDE]"
+                  className="transition-colors duration-200 font-medium hover:text-[var(--accent-blue)]"
                   style={{ color: isDark ? "#d1d5db" : "#374151" }}
                 >
                   {item.label}
@@ -71,7 +71,7 @@ const Header = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="hover:text-[#0C9FDE]"
+                className="hover:text-[var(--accent-blue)]"
                 style={{ color: isDark ? "#d1d5db" : "#374151" }}
               >
                 <Menu className="h-6 w-6" />
@@ -92,7 +92,7 @@ const Header = () => {
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="block w-full text-center font-medium hover:text-[#0C9FDE] transition-all duration-200 py-3 px-4 rounded-lg"
+                        className="block w-full text-center font-medium hover:text-[var(--accent-blue)] transition-all duration-200 py-3 px-4 rounded-lg"
                         style={{ color: isDark ? "#d1d5db" : "#374151", fontSize: '1.3rem' }}
                         onClick={() => setIsOpen(false)}
                       >

@@ -17,7 +17,7 @@ const TeamSection = () => {
       <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-8 mt-16">
         {teamMembers.map((member) => (
           <div key={member.name} className="text-center">
-            <div className="h-[100px] w-[100px] bg-blue-50 dark:bg-blue-950 rounded-full mx-auto mb-4 flex items-center justify-center text-[#0C9FDE] text-3xl font-bold">
+            <div className="h-[100px] w-[100px] bg-blue-50 dark:bg-blue-950 rounded-full mx-auto mb-4 flex items-center justify-center text-[var(--accent-blue)] text-3xl font-bold">
               {member.image ? (
                 <Image
                   src={member.image}
@@ -37,7 +37,7 @@ const TeamSection = () => {
                   href={`https://twitter.com/${member.twitter.replace('@', '')}`} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-muted-foreground transition-colors duration-300 hover:text-[#0C9FDE]"
+                  className="text-muted-foreground transition-colors duration-300 hover:text-[var(--accent-blue)]"
                 >
                   <XIcon />
                 </a>

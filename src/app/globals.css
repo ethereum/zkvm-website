@@ -10,6 +10,7 @@
   :root {
     /* Brand Colors - Exact match to prototype */
     --primary: #0C9FDE; /* Base Blue */
+    --accent-blue: #0C9FDE;
     --primary-dark: #0A7BB8;
     --primary-light: #E6F7FF;
     --dark: #062873;
@@ -113,6 +114,7 @@
     --success: 142 76% 45%;
     --fail: #EF4444;
 
+    --accent-blue: #09d5f1;
     --dark: #c5d5f0;
     --slate: #94a3b8;
     --gray: #94a3b8;

@@ -57,7 +57,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <article className="mb-12">
               <header className="mb-16">
                 <span className="text-sm text-muted-foreground">{post.date}</span>
-                <h1 className="text-7xl font-black text-[#0C9FDE] mb-4 tracking-tight mt-2">{post.title}</h1>
+                <h1 className="text-7xl font-black text-[var(--accent-blue)] mb-4 tracking-tight mt-2">{post.title}</h1>
                 <p className="text-lg text-muted-foreground">By <AuthorLink author={post.author} /></p>
               </header>
 
@@ -74,10 +74,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   Published on {post.date} by <AuthorLink author={post.author} />
                 </p>
                 <div className="flex gap-4">
-                  <Link href="/blog" className="text-sm text-[#0C9FDE] hover:underline">
+                  <Link href="/blog" className="text-sm text-[var(--accent-blue)] hover:underline">
                     View All Posts
                   </Link>
-                  <Link href="/" className="text-sm text-[#0C9FDE] hover:underline">
+                  <Link href="/" className="text-sm text-[var(--accent-blue)] hover:underline">
                     Back to Home
                   </Link>
                 </div>

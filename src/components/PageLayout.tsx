@@ -15,7 +15,7 @@ export default function PageLayout({ title, description, children, extra }: Page
       <main className="pt-48 pb-36">
         <div className="max-w-[1200px] mx-auto px-4">
           <div className="mb-32">
-            <h1 className="text-7xl font-black text-[#0C9FDE] mb-4 tracking-tight">{title}</h1>
+            <h1 className="text-7xl font-black text-[var(--accent-blue)] mb-4 tracking-tight">{title}</h1>
             <p className="text-lg text-muted-foreground max-w-2xl">{description}</p>
             {extra}
           </div>
