@@ -1,26 +1,41 @@
-import { getFeaturedPosts } from '@/lib/blog';
-import BlogCard from '@/components/BlogCard';
+import { getAllBlogPosts } from '@/lib/blog';
 import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
 
 const BlogSection = async () => {
-  const featuredPosts = await getFeaturedPosts();
+  const posts = await getAllBlogPosts();
+  const latestPosts = posts.slice(0, 4);
 
   return (
     <section id="blog" className="section">
       <div className="section-title">
-        <h2>Latest Updates & Insights</h2>
+        <h2>Latest Updates</h2>
       </div>
-      <div className="blog-grid">
-        {featuredPosts.slice(0, 2).map((post) => (
-          <BlogCard key={post.slug} post={post} />
+      <div className="max-w-3xl mx-auto divide-y divide-border">
+        {latestPosts.map((post) => (
+          <Link
+            key={post.slug}
+            href={`/blog/${post.slug}`}
+            className="flex items-baseline justify-between gap-4 py-4 group"
+          >
+            <div className="min-w-0">
+              <h3 className="text-base font-semibold text-foreground group-hover:text-[#0C9FDE] transition-colors truncate">
+                {post.title}
+              </h3>
+              <p className="text-sm text-muted-foreground mt-0.5 truncate">{post.excerpt}</p>
+            </div>
+            <span className="text-sm text-muted-foreground whitespace-nowrap flex-shrink-0">
+              {post.date}
+            </span>
+          </Link>
         ))}
       </div>
-      <div className="text-center mt-12">
-        <Link 
-          href="/blog" 
-          className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
+      <div className="text-center mt-8">
+        <Link
+          href="/blog"
+          className="inline-flex items-center gap-1 text-sm font-medium text-[#0C9FDE] hover:underline"
         >
-          View All Posts
+          View all posts <ArrowRight className="w-3.5 h-3.5" />
         </Link>
       </div>
     </section>
