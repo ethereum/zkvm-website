@@ -19,7 +19,7 @@ const BlogSection = async () => {
             className="flex items-baseline justify-between gap-8 py-8 group"
           >
             <div className="min-w-0">
-              <h3 className="text-xl font-semibold text-foreground group-hover:text-[#0C9FDE] transition-colors">
+              <h3 className="text-2xl font-semibold text-foreground group-hover:text-[#0C9FDE] transition-colors">
                 {post.title}
               </h3>
               <p className="text-sm text-muted-foreground mt-2 line-clamp-2 max-w-[700px]">{post.excerpt}</p>
