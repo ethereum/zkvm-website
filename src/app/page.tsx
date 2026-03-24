@@ -11,19 +11,19 @@ export default function Home() {
       <Header />
       <main>
         {/* Hero — concise one-pager intro */}
-        <section className="relative min-h-[70vh] flex items-center bg-[var(--dark)] overflow-hidden py-8 pt-24 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[radial-gradient(circle,rgba(15,118,110,0.2),transparent_70%)] before:opacity-60">
+        <section className="relative min-h-[70vh] flex items-center bg-[#062873] dark:bg-[#0a1628] overflow-hidden py-8 pt-24 before:content-[''] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-[radial-gradient(circle,rgba(15,118,110,0.2),transparent_70%)] before:opacity-60">
           <div className="max-w-[1200px] mx-auto px-4 z-[2] w-full">
             <div className="text-left max-w-[750px]">
               <h1 className="text-[clamp(2.5rem,5vw,4rem)] mb-6 text-white font-black tracking-[-2px] leading-[1.1]">
                 Scaling Ethereum Through Zero Knowledge Proofs
               </h1>
-              <p className="font-['Inter',sans-serif] text-[clamp(1rem,2vw,1.2rem)] text-gray-300 mb-6 leading-[1.7] max-w-[650px]">
+              <p className="font-['Inter',sans-serif] text-[clamp(1rem,2vw,1.2rem)] text-gray-100 mb-6 leading-[1.7] max-w-[650px]">
                 The zkVM team at the Ethereum Foundation is working on shipping scaling of the Ethereum mainnet through zero-knowledge virtual machines (zkVMs).
               </p>
               <div className="space-y-4 mb-10">
                 <div className="flex items-start gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#0C9FDE] mt-2.5 flex-shrink-0" />
-                  <p className="text-gray-300 text-base">
+                  <p className="text-gray-100 text-base">
                     <strong className="text-white">Short term:</strong> Our work focuses around{" "}
                     <a
                       href="https://eips.ethereum.org/EIPS/eip-8025"
@@ -38,7 +38,7 @@ export default function Home() {
                 </div>
                 <div className="flex items-start gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-[#0C9FDE] mt-2.5 flex-shrink-0" />
-                  <p className="text-gray-300 text-base">
+                  <p className="text-gray-100 text-base">
                     <strong className="text-white">Longer term:</strong> We aim to ship mandatory proofs, enabling full ZK-based scaling of Ethereum L1.
                   </p>
                 </div>
@@ -52,7 +52,7 @@ export default function Home() {
                 </Link>
                 <Link
                   href="/blog"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-white text-[var(--dark)] rounded-lg hover:bg-gray-200 transition-colors font-medium"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 rounded-lg hover:bg-gray-200 transition-colors font-medium"
                 >
                   Read the Blog
                 </Link>

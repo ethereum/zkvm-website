@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClientWrapper } from "@/components/QueryClientWrapper";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "zkEVM - Scaling Ethereum Without Compromise",
@@ -24,7 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -35,13 +36,15 @@ export default function RootLayout({
         <link rel="alternate" type="application/rss+xml" title="zkEVM Blog" href="/feed.xml" />
       </head>
       <body>
-        <QueryClientWrapper>
-          <TooltipProvider delayDuration={100}>
-            <Toaster />
-            <Sonner />
-            {children}
-          </TooltipProvider>
-        </QueryClientWrapper>
+        <ThemeProvider>
+          <QueryClientWrapper>
+            <TooltipProvider delayDuration={100}>
+              <Toaster />
+              <Sonner />
+              {children}
+            </TooltipProvider>
+          </QueryClientWrapper>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -16,11 +16,11 @@ function ReadinessCheck({ pass }: { pass: boolean }) {
 function ComplianceStatus({ status }: { status?: string }) {
   switch (status) {
     case 'compliant':
-      return <Badge className="bg-green-100 text-green-800">Spec Compliant</Badge>;
+      return <Badge className="bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-300">Spec Compliant</Badge>;
     case 'in-progress':
-      return <Badge className="bg-orange-100 text-orange-800">In Progress</Badge>;
+      return <Badge className="bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-300">In Progress</Badge>;
     default:
-      return <Badge className="bg-gray-100 text-gray-600">Not Started</Badge>;
+      return <Badge className="bg-gray-100 text-gray-600 dark:bg-gray-800 dark:text-gray-400">Not Started</Badge>;
   }
 }
 

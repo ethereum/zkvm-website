@@ -85,46 +85,59 @@
   }
 
   .dark {
-    --background: 210 22% 15%;
-    --foreground: 210 40% 98%;
+    --background: 220 20% 10%;
+    --foreground: 210 40% 95%;
 
-    --card: 210 22% 15%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 20% 13%;
+    --card-foreground: 210 40% 95%;
 
-    --popover: 210 22% 15%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 20% 13%;
+    --popover-foreground: 210 40% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 200 100% 46%;
-    --primary-dark: 200 100% 85%;
+    --primary: 200 100% 46%;
+    --primary-foreground: 0 0% 100%;
+    --primary-dark: 200 100% 55%;
     --primary-light: 200 100% 15%;
 
     --secondary: 217 33% 18%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary-foreground: 210 40% 95%;
 
-    --muted: 217 33% 18%;
+    --muted: 217 33% 16%;
     --muted-foreground: 215 20% 65%;
 
     --accent: 217 33% 18%;
-    --accent-foreground: 210 40% 98%;
+    --accent-foreground: 210 40% 95%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
     --success: 142 76% 45%;
+    --fail: #EF4444;
 
-    --slate: 215 25% 65%;
-    --gray: 215 20% 75%;
-    --border: 217 33% 18%;
-    --input: 217 33% 18%;
-    --ring: 213 27% 84%;
-    --sidebar-background: 240 5.9% 10%;
+    --dark: #c5d5f0;
+    --slate: #94a3b8;
+    --gray: #94a3b8;
+    --light-gray: hsl(220 20% 13%);
+    --white: hsl(220 20% 13%);
+    --border-color: hsl(217 33% 20%);
+
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 200 100% 46%;
+
+    --shadow-sm: 0 1px 2px 0 hsl(220 20% 5% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(220 20% 5% / 0.4);
+    --shadow-lg: 0 10px 15px -3px hsl(220 20% 5% / 0.4);
+    --shadow-xl: 0 20px 25px -5px hsl(220 20% 5% / 0.4);
+    --shadow-glow: 0 0 40px hsl(200 100% 46% / 0.15);
+
+    --sidebar-background: 220 20% 8%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary: 200 100% 46%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent: 220 20% 15%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-border: 217 33% 20%;
+    --sidebar-ring: 200 100% 46%;
   }
 }
 
@@ -143,8 +156,8 @@
   body {
     font-family: 'Space Grotesk', sans-serif;
     line-height: 1.7;
-    color: var(--slate);
-    background: var(--light-gray);
+    color: hsl(var(--foreground));
+    background: hsl(var(--background));
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -152,7 +165,7 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
-    color: var(--dark);
+    color: hsl(var(--foreground));
   }
 }
 
@@ -192,7 +205,7 @@
   .section-title p {
     font-family: 'Inter', sans-serif;
     font-size: 1.125rem;
-    color: var(--gray);
+    color: hsl(var(--muted-foreground));
     line-height: 1.7;
   }
 
@@ -206,20 +219,20 @@
   .graphic {
     width: 100%;
     height: 400px;
-    background: var(--white);
+    background: hsl(var(--card));
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--border-color);
+    border: 1px solid hsl(var(--border));
   }
   
   .text-content p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: var(--slate);
+    color: hsl(var(--foreground) / 0.8);
     margin-top: 1rem;
   }
 
@@ -276,13 +289,13 @@
     font-family: 'Inter', sans-serif;
     font-size: 1.1rem;
     font-weight: 600;
-    color: var(--dark);
+    color: hsl(var(--foreground));
     letter-spacing: -0.25px;
   }
 
   .logo .logo-text span {
     font-weight: 400;
-    color: var(--gray);
+    color: hsl(var(--muted-foreground));
   }
 
   nav ul {
@@ -293,7 +306,7 @@
 
   nav a {
     font-family: 'Inter', sans-serif;
-    color: var(--slate);
+    color: hsl(var(--foreground) / 0.8);
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
@@ -343,7 +356,7 @@
   
   .feature-card p {
     font-family: 'Inter', sans-serif;
-    color: var(--gray);
+    color: hsl(var(--muted-foreground));
     font-size: 1rem;
   }
 
@@ -371,7 +384,7 @@
     display: flex;
     gap: 2rem;
     padding: 2.5rem 0;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid hsl(var(--border));
   }
 
   .workstream-item:first-child { padding-top: 0; }
@@ -405,7 +418,7 @@
   .workstream-content p {
     font-family: 'Inter', sans-serif;
     margin-bottom: 1rem;
-    color: var(--slate);
+    color: hsl(var(--muted-foreground));
     line-height: 1.7;
     max-width: 70ch;
   }
@@ -437,7 +450,7 @@
   }
   .zkevm-card .description {
     font-family: 'Inter', sans-serif;
-    color: var(--gray);
+    color: hsl(var(--muted-foreground));
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
   }
@@ -453,7 +466,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1rem;
-    border-bottom: 1px solid var(--light-gray);
+    border-bottom: 1px solid hsl(var(--border));
     padding-bottom: 1rem;
   }
    .criteria-item:last-child {
@@ -463,7 +476,7 @@
 
   .criteria-item .name {
     font-weight: 500;
-    color: var(--slate);
+    color: hsl(var(--foreground) / 0.8);
   }
   .criteria-item .value {
     font-weight: 600;
@@ -529,7 +542,7 @@
   /* Footer */
   footer {
     background: transparent;
-    color: var(--slate);
+    color: hsl(var(--muted-foreground));
     padding: 4rem 1rem 2rem;
     text-align: center;
   }
@@ -554,8 +567,8 @@
   .footer-logo svg {
      height: 32px;
   }
-  .footer-logo .logo-text { color: var(--slate); }
-  .footer-logo .logo-text span { color: var(--gray); }
+  .footer-logo .logo-text { color: hsl(var(--foreground) / 0.8); }
+  .footer-logo .logo-text span { color: hsl(var(--muted-foreground)); }
 
   .footer-links {
     display: flex;
@@ -567,7 +580,7 @@
 
   .footer-links a {
     font-family: 'Inter', sans-serif;
-    color: var(--slate);
+    color: hsl(var(--foreground) / 0.8);
     text-decoration: none;
     transition: color 0.3s ease;
     font-weight: 500;
@@ -578,7 +591,7 @@
   .footer-copy {
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
-    color: var(--slate);
+    color: hsl(var(--muted-foreground));
     padding-top: 2rem;
   }
 
