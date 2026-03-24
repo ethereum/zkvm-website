@@ -16,13 +16,13 @@ const BlogSection = async () => {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="flex items-baseline justify-between gap-6 py-6 group"
+            className="flex items-baseline justify-between gap-8 py-8 group"
           >
             <div className="min-w-0">
-              <h3 className="text-lg font-semibold text-foreground group-hover:text-[#0C9FDE] transition-colors">
+              <h3 className="text-xl font-semibold text-foreground group-hover:text-[#0C9FDE] transition-colors">
                 {post.title}
               </h3>
-              <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{post.excerpt}</p>
+              <p className="text-sm text-muted-foreground mt-2 line-clamp-2 max-w-[700px]">{post.excerpt}</p>
             </div>
             <span className="text-sm text-muted-foreground whitespace-nowrap flex-shrink-0">
               {post.date}
