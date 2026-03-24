@@ -10,9 +10,9 @@ const XIcon = () => (
 const TeamSection = () => {
   return (
     <section id="team" className="section mb-16">
-      <div className="section-title">
-        <h2>Who We Are</h2>
-        <p>A collaborative effort from researchers and developers dedicated to scaling Ethereum securely.</p>
+      <div className="mb-12">
+        <h2 className="text-4xl font-black tracking-tight" style={{ color: 'var(--accent-blue)' }}>Who We Are</h2>
+        <p className="text-lg text-muted-foreground mt-2">A collaborative effort from researchers and developers dedicated to scaling Ethereum securely.</p>
       </div>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-8 mt-16">
         {teamMembers.map((member) => (

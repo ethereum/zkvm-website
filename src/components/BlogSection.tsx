@@ -8,8 +8,8 @@ const BlogSection = async () => {
 
   return (
     <section id="blog" className="section">
-      <div className="section-title">
-        <h2>Latest Updates</h2>
+      <div className="mb-12">
+        <h2 className="text-4xl font-black tracking-tight" style={{ color: 'var(--accent-blue)' }}>Latest Updates</h2>
       </div>
       <div className="divide-y divide-border">
         {latestPosts.map((post) => (
@@ -26,7 +26,7 @@ const BlogSection = async () => {
           </Link>
         ))}
       </div>
-      <div className="text-center mt-8">
+      <div className="mt-8">
         <Link
           href="/blog"
           className="inline-flex items-center gap-1 text-sm font-medium text-[var(--accent-blue)] hover:underline"
