@@ -92,7 +92,7 @@ const Header = () => {
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="block w-full text-center font-medium text-foreground hover:text-[var(--accent-link)] transition-all duration-200 py-3 px-4 rounded-lg"
+                        className="block w-full text-center font-medium text-foreground hover:text-[var(--accent-orange)] transition-all duration-200 py-3 px-4 rounded-lg"
                         style={{ fontSize: '1.3rem' }}
                         onClick={() => setIsOpen(false)}
                       >

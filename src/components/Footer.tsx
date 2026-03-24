@@ -19,7 +19,7 @@ const Footer = () => {
               href="https://ethereum.foundation"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-[var(--accent-link)] transition-colors duration-200 inline-flex items-center gap-1 underline hover:no-underline"
+              className="text-muted-foreground hover:text-[var(--accent-orange)] transition-colors duration-200 inline-flex items-center gap-1 underline hover:no-underline"
             >
               Ethereum Foundation
               <svg
