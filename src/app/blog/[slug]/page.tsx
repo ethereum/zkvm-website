@@ -41,7 +41,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     return (
       <div className="min-h-screen bg-background">
         <Header />
-        <main className="pt-40 pb-28">
+        <main className="pt-48 pb-36">
           <div className="max-w-[1200px] mx-auto px-4">
             {/* Back Navigation */}
             <div className="mb-8">
