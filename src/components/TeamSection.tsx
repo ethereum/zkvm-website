@@ -37,7 +37,7 @@ const TeamSection = () => {
                   href={`https://twitter.com/${member.twitter.replace('@', '')}`} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-muted-foreground transition-colors duration-300 hover:text-[var(--accent-blue)]"
+                  className="text-muted-foreground transition-colors duration-300 hover:text-[var(--accent-link)]"
                 >
                   <XIcon />
                 </a>

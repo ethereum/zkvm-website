@@ -19,7 +19,7 @@ const BlogSection = async () => {
             className="block py-8 px-4 -mx-4 rounded-lg group hover:bg-muted/50 transition-colors"
           >
             <span className="text-sm text-muted-foreground">{post.date}</span>
-            <h3 className="text-3xl font-bold text-foreground group-hover:text-[var(--accent-blue)] transition-colors mt-1">
+            <h3 className="text-3xl font-bold text-foreground group-hover:text-[var(--accent-link)] transition-colors mt-1">
               {post.title}
             </h3>
             <p className="text-sm text-muted-foreground mt-2 line-clamp-2 max-w-[700px]">{post.excerpt}</p>
@@ -29,7 +29,7 @@ const BlogSection = async () => {
       <div className="mt-8">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-1 text-sm font-medium text-[var(--accent-blue)] hover:underline"
+          className="inline-flex items-center gap-1 text-sm font-medium text-[var(--accent-link)] hover:underline"
         >
           View all posts <ArrowRight className="w-3.5 h-3.5" />
         </Link>

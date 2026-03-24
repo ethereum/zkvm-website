@@ -74,10 +74,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   Published on {post.date} by <AuthorLink author={post.author} />
                 </p>
                 <div className="flex gap-4">
-                  <Link href="/blog" className="text-sm text-[var(--accent-blue)] hover:underline">
+                  <Link href="/blog" className="text-sm text-[var(--accent-link)] hover:underline">
                     View All Posts
                   </Link>
-                  <Link href="/" className="text-sm text-[var(--accent-blue)] hover:underline">
+                  <Link href="/" className="text-sm text-[var(--accent-link)] hover:underline">
                     Back to Home
                   </Link>
                 </div>

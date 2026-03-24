@@ -16,7 +16,7 @@ export default function Home() {
             <div className="text-left max-w-[750px]">
               <h1 className="mb-6 font-black tracking-[-2px] leading-[1.1]" style={{ color: 'var(--accent-blue)' }}>
                 <span className="text-[clamp(4.5rem,9vw,7rem)] block">Scaling Ethereum</span>
-                <span className="text-[clamp(2rem,4vw,3rem)] block">Through Zero Knowledge Proofs</span>
+                <span className="text-[clamp(2rem,4vw,3rem)] block">Through <span style={{ color: 'var(--accent-link)' }}>Zero Knowledge Proofs</span></span>
               </h1>
               <p className="font-['Inter',sans-serif] text-[clamp(1rem,2vw,1.2rem)] text-muted-foreground mb-6 leading-[1.7] max-w-[650px]">
                 The zkVM team at the Ethereum Foundation is working on shipping scaling of the Ethereum mainnet through zero-knowledge virtual machines (zkVMs).
@@ -30,7 +30,7 @@ export default function Home() {
                       href="https://eips.ethereum.org/EIPS/eip-8025"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[var(--accent-blue)] hover:underline inline-flex items-center gap-1"
+                      className="text-[var(--accent-link)] hover:underline inline-flex items-center gap-1"
                     >
                       EIP-8025 <ExternalLink className="w-3 h-3" />
                     </a>
