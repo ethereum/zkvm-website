@@ -16,7 +16,7 @@ const BlogSection = async () => {
           <Link
             key={post.slug}
             href={`/blog/${post.slug}`}
-            className="flex items-baseline justify-between gap-8 py-8 group"
+            className="flex items-baseline justify-between gap-8 py-8 px-4 -mx-4 rounded-lg group hover:bg-muted/50 transition-colors"
           >
             <div className="min-w-0">
               <h3 className="text-2xl font-semibold text-foreground group-hover:text-[#0C9FDE] transition-colors">
