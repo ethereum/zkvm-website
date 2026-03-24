@@ -36,7 +36,7 @@ export default function TrackPage() {
 
           {/* Page Header */}
           <div className="mb-12">
-            <h1 className="text-6xl font-black text-foreground mb-4 tracking-tight">Track Progress</h1>
+            <h1 className="text-7xl font-black text-[#0C9FDE] mb-4 tracking-tight">Track Progress</h1>
             <p className="text-lg text-muted-foreground max-w-3xl">
               Tracking the readiness of zkVM implementations and Ethereum client integration
               for ZK-based L1 scaling.

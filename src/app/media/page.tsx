@@ -27,7 +27,7 @@ export default function MediaPage() {
         <div className="max-w-[1200px] mx-auto px-4">
 
           <div className="mb-12">
-            <h1 className="text-6xl font-black text-foreground mb-4 tracking-tight">Media</h1>
+            <h1 className="text-7xl font-black text-[#0C9FDE] mb-4 tracking-tight">Media</h1>
             <p className="text-lg text-muted-foreground max-w-3xl">
               Talks, presentations, and external content from the zkVM team.
             </p>

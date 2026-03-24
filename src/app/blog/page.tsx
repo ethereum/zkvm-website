@@ -12,7 +12,7 @@ export default async function BlogPage() {
       <main className="pt-24 pb-16">
         <div className="max-w-[1200px] mx-auto px-4">
           <div className="mb-12">
-            <h1 className="text-6xl font-black text-foreground mb-4 tracking-tight">Blog</h1>
+            <h1 className="text-7xl font-black text-[#0C9FDE] mb-4 tracking-tight">Blog</h1>
             <p className="text-lg text-muted-foreground max-w-2xl">
               Latest developments in zkEVM technology, community updates, and technical insights from our team.
             </p>
