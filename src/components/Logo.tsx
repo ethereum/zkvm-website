@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 interface LogoProps {
   className?: string;
-  variant?: "auto" | "blue";
+  variant?: "auto" | "blue" | "header";
 }
 
 export function Logo({ className = "h-10 w-auto", variant = "auto" }: LogoProps) {
@@ -18,8 +18,10 @@ export function Logo({ className = "h-10 w-auto", variant = "auto" }: LogoProps)
   const isDark = mounted && resolvedTheme === "dark";
 
   let src: string;
-  if (variant === "blue") {
-    // Darker blue on light bg for contrast, brighter blue on dark bg
+  if (variant === "header") {
+    // On accent bg: white logo in light, dark logo in dark
+    src = isDark ? "/logo-dark-on-accent.svg" : "/logo-white-on-accent.svg";
+  } else if (variant === "blue") {
     src = isDark ? "/logo-blue-dark.svg" : "/logo-blue-light.svg";
   } else {
     src = isDark ? "/logo-white.svg" : "/logo-black.svg";

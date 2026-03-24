@@ -19,15 +19,18 @@ export function ThemeToggle() {
     );
   }
 
+  const isDark = resolvedTheme === "dark";
+
   return (
     <Button
       variant="ghost"
       size="icon"
-      className="w-9 h-9 text-gray-700 dark:text-gray-300 hover:text-[var(--accent-blue)]"
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      className="w-9 h-9 hover:opacity-70"
+      style={{ color: isDark ? "#0a1628" : "#ffffff" }}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label="Toggle theme"
     >
-      {resolvedTheme === "dark" ? (
+      {isDark ? (
         <Sun className="h-4 w-4" />
       ) : (
         <Moon className="h-4 w-4" />

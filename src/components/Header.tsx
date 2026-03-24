@@ -2,9 +2,8 @@
 
 import { Menu } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -23,6 +22,7 @@ const Header = () => {
   useEffect(() => setMounted(true), []);
 
   const isDark = mounted && resolvedTheme === "dark";
+  const textColor = isDark ? "#0a1628" : "#ffffff";
 
   const navItems = [
     { href: "/track", label: "Track" },
@@ -32,28 +32,28 @@ const Header = () => {
 
   return (
     <header
-      className="fixed top-0 w-full backdrop-blur-sm z-[100] border-b shadow-sm"
+      className="fixed top-0 w-full backdrop-blur-md z-[100] border-b shadow-sm"
       style={{
-        backgroundColor: isDark ? "rgba(3,7,18,0.95)" : "rgba(255,255,255,0.95)",
-        borderColor: isDark ? "rgb(31,41,55)" : "rgb(229,231,235)",
+        backgroundColor: 'color-mix(in srgb, var(--accent-blue) 97%, transparent)',
+        borderColor: isDark ? "rgba(10,22,40,0.2)" : "rgba(255,255,255,0.2)",
       }}
     >
       <nav className="max-w-[1200px] mx-auto px-4 py-4 flex items-center justify-between">
         <div className="logo flex items-center">
           <Link href="/" className="flex items-center">
-            <Logo className="h-9 w-auto" variant="blue" />
+            <Logo className="h-9 w-auto" variant="header" />
           </Link>
         </div>
 
         {/* Desktop Navigation */}
         <div className="hidden sm:flex items-center gap-4">
-          <ul className="flex items-center" style={{gap: '1rem'}}>
+          <ul className="flex items-center" style={{ gap: '1rem' }}>
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="transition-colors duration-200 font-medium hover:text-[var(--accent-blue)]"
-                  style={{ color: isDark ? "#d1d5db" : "#374151" }}
+                  className="transition-opacity duration-200 font-medium hover:opacity-70"
+                  style={{ color: textColor }}
                 >
                   {item.label}
                 </Link>
@@ -71,8 +71,8 @@ const Header = () => {
               <Button
                 variant="ghost"
                 size="icon"
-                className="hover:text-[var(--accent-blue)]"
-                style={{ color: isDark ? "#d1d5db" : "#374151" }}
+                className="hover:opacity-70"
+                style={{ color: textColor }}
               >
                 <Menu className="h-6 w-6" />
                 <span className="sr-only">Open menu</span>
@@ -92,8 +92,8 @@ const Header = () => {
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="block w-full text-center font-medium hover:text-[var(--accent-blue)] transition-all duration-200 py-3 px-4 rounded-lg"
-                        style={{ color: isDark ? "#d1d5db" : "#374151", fontSize: '1.3rem' }}
+                        className="block w-full text-center font-medium text-foreground hover:text-[var(--accent-blue)] transition-all duration-200 py-3 px-4 rounded-lg"
+                        style={{ fontSize: '1.3rem' }}
                         onClick={() => setIsOpen(false)}
                       >
                         {item.label}
