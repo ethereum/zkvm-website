@@ -12,6 +12,7 @@
     --primary: #0C9FDE; /* Base Blue */
     --accent-blue: #06677C;
     --accent-link: #0B8FAF;
+    --accent-orange: #D4620A;
     --accent-btn-text: #ffffff;
     --primary-dark: #0A7BB8;
     --primary-light: #E6F7FF;
@@ -118,6 +119,7 @@
 
     --accent-blue: #09d5f1;
     --accent-link: #5CE6F6;
+    --accent-orange: #F5A623;
     --accent-btn-text: #0a1628;
     --dark: #c5d5f0;
     --slate: #94a3b8;
