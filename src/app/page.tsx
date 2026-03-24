@@ -11,7 +11,7 @@ export default function Home() {
       <Header />
       <main>
         {/* Hero — concise one-pager intro */}
-        <section className="relative min-h-[70vh] flex items-center overflow-hidden py-8 pt-24">
+        <section className="relative min-h-[70vh] flex items-center overflow-hidden py-8 pt-48">
           <div className="max-w-[1200px] mx-auto px-4 z-[2] w-full">
             <div className="text-left max-w-[750px]">
               <h1 className="mb-6 font-black tracking-[-2px] leading-[1.1]" style={{ color: 'var(--accent-blue)' }}>
