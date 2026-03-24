@@ -14,8 +14,9 @@ export default function Home() {
         <section className="relative min-h-[70vh] flex items-center overflow-hidden py-8 pt-24">
           <div className="max-w-[1200px] mx-auto px-4 z-[2] w-full">
             <div className="text-left max-w-[750px]">
-              <h1 className="text-[clamp(2.5rem,5vw,4rem)] mb-6 font-black tracking-[-2px] leading-[1.1]" style={{ color: 'var(--accent-blue)' }}>
-                Scaling Ethereum Through Zero Knowledge Proofs
+              <h1 className="mb-6 font-black tracking-[-2px] leading-[1.1]" style={{ color: 'var(--accent-blue)' }}>
+                <span className="text-[clamp(3.5rem,7vw,5.5rem)] block">Scaling Ethereum</span>
+                <span className="text-[clamp(2rem,4vw,3rem)] block">Through Zero Knowledge Proofs</span>
               </h1>
               <p className="font-['Inter',sans-serif] text-[clamp(1rem,2vw,1.2rem)] text-muted-foreground mb-6 leading-[1.7] max-w-[650px]">
                 The zkVM team at the Ethereum Foundation is working on shipping scaling of the Ethereum mainnet through zero-knowledge virtual machines (zkVMs).
