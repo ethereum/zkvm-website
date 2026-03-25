@@ -552,7 +552,7 @@
     background: transparent;
     color: hsl(var(--muted-foreground));
     padding: 1.5rem 1rem;
-    text-align: center;
+    text-align: left;
   }
 
   @media (min-width: 640px) {
@@ -570,7 +570,7 @@
   .footer-logo {
     margin-bottom: 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .footer-logo svg {
      height: 32px;
