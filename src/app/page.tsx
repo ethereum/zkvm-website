@@ -25,13 +25,13 @@ export default function Home() {
               <div className="flex gap-4 flex-wrap">
                 <Link
                   href="/track"
-                  className="btn-accent inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium"
+                  className="btn-accent inline-flex items-center gap-2 px-6 py-3 font-medium"
                 >
                   Track Progress <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/blog"
-                  className="btn-outline-hover inline-flex items-center gap-2 px-6 py-3 border border-border text-foreground rounded-lg font-medium"
+                  className="btn-outline-hover inline-flex items-center gap-2 px-6 py-3 border border-border text-foreground font-medium"
                 >
                   Read the Blog
                 </Link>

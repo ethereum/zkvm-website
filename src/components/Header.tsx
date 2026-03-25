@@ -52,8 +52,8 @@ const Header = () => {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="transition-opacity duration-200 font-medium hover:opacity-70"
-                  style={{ color: textColor }}
+                  className="transition-opacity duration-200 font-bold hover:opacity-70 uppercase"
+                  style={{ color: textColor, letterSpacing: '1px', fontSize: '14px' }}
                 >
                   {item.label}
                 </Link>
