@@ -70,7 +70,7 @@ export default function TrackPage() {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className="px-5 py-3 text-sm font-medium transition-colors relative"
+            className="px-5 py-3 text-sm font-medium transition-colors duration-300 relative hover:text-[var(--accent-orange)]"
             style={{
               color: activeTab === tab.id ? 'var(--accent-blue)' : undefined,
             }}
