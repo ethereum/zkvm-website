@@ -36,32 +36,44 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* Progress approach — two columns */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
-                <div className="relative pl-6">
-                  <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-full" style={{ backgroundColor: 'var(--accent-blue)' }} />
-                  <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--accent-blue)' }}>Now</p>
-                  <h3 className="text-lg font-bold text-foreground mb-2">Short term</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    Our work focuses around{" "}
-                    <a
-                      href="https://eips.ethereum.org/EIPS/eip-8025"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[var(--accent-link)] hover:underline inline-flex items-center gap-1"
-                    >
-                      EIP-8025 <ExternalLink className="w-3 h-3" />
-                    </a>
-                    {" "}— optional execution proofs for Ethereum blocks.
-                  </p>
-                </div>
-                <div className="relative pl-6">
-                  <div className="absolute left-0 top-0 bottom-0 w-[3px] rounded-full" style={{ backgroundColor: 'var(--accent-orange)' }} />
-                  <p className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: 'var(--accent-orange)' }}>Next</p>
-                  <h3 className="text-lg font-bold text-foreground mb-2">Longer term</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    We aim to ship mandatory proofs, enabling full ZK-based scaling of Ethereum L1.
-                  </p>
+              {/* Timeline */}
+              <div className="relative">
+                {/* Timeline line */}
+                <div className="hidden sm:block absolute top-[18px] left-0 right-0 h-[2px] bg-border" />
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  {/* Now */}
+                  <div className="relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-3.5 h-3.5 rounded-full flex-shrink-0 z-10 ring-4 ring-background" style={{ backgroundColor: 'var(--accent-blue)' }} />
+                      <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--accent-blue)' }}>Now</span>
+                    </div>
+                    <h3 className="text-lg font-bold text-foreground mb-2">Optional Proofs</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Our work focuses around{" "}
+                      <a
+                        href="https://eips.ethereum.org/EIPS/eip-8025"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[var(--accent-link)] hover:underline inline-flex items-center gap-1"
+                      >
+                        EIP-8025 <ExternalLink className="w-3 h-3" />
+                      </a>
+                      {" "}— optional execution proofs for Ethereum blocks.
+                    </p>
+                  </div>
+
+                  {/* Later */}
+                  <div className="relative">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-3.5 h-3.5 rounded-full flex-shrink-0 z-10 ring-4 ring-background border-2" style={{ borderColor: 'var(--accent-orange)' }} />
+                      <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--accent-orange)' }}>Later</span>
+                    </div>
+                    <h3 className="text-lg font-bold text-foreground mb-2">Mandatory Proofs</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Ship mandatory proofs, enabling full ZK-based scaling of Ethereum L1.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
