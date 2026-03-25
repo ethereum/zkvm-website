@@ -202,7 +202,7 @@ export default function TrackPage() {
               minimum criteria. This is a curated list — the team evaluates and updates these
               criteria as the project evolves.
             </p>
-            <div className="grid sm:grid-cols-2 gap-x-12 gap-y-8">
+            <div className="grid sm:grid-cols-2 gap-x-16 gap-y-12">
               {[
                 {
                   title: "Open Source",
@@ -222,7 +222,7 @@ export default function TrackPage() {
                 },
               ].map((criterion) => (
                 <div key={criterion.title}>
-                  <h3 className="font-semibold text-foreground mb-2">{criterion.title}</h3>
+                  <h3 className="text-xl font-bold text-foreground mb-3">{criterion.title}</h3>
                   <p className="text-sm text-muted-foreground">{criterion.description}</p>
                 </div>
               ))}
