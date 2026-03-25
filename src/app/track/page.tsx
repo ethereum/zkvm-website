@@ -222,7 +222,7 @@ export default function TrackPage() {
                 },
               ].map((criterion) => (
                 <div key={criterion.title}>
-                  <h3 className="text-xl font-bold mb-3" style={{ color: 'var(--accent-blue)' }}>{criterion.title}</h3>
+                  <h3 className="text-4xl font-bold mb-3" style={{ color: 'var(--accent-blue)' }}>{criterion.title}</h3>
                   <p className="text-sm text-muted-foreground">{criterion.description}</p>
                 </div>
               ))}
