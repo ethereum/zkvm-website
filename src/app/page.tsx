@@ -41,13 +41,13 @@ export default function Home() {
             {/* Timeline — full container width */}
             <div className="relative">
               {/* Timeline line */}
-              <div className="hidden sm:block absolute top-[18px] left-0 right-0 h-[2px] bg-border" />
+              <div className="hidden sm:block absolute top-[10px] left-0 right-0 h-[2px] bg-border" />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {/* Now */}
                 <div className="relative">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-[2px] h-5 flex-shrink-0 z-10 -my-1" style={{ backgroundColor: 'var(--accent-blue)' }} />
+                    <div className="w-[2px] h-6 flex-shrink-0 z-10 -mt-2" style={{ backgroundColor: 'var(--accent-blue)' }} />
                     <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--accent-blue)' }}>Now</span>
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Optional Proofs</h3>
@@ -68,7 +68,7 @@ export default function Home() {
                 {/* Later */}
                 <div className="relative">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-[2px] h-5 flex-shrink-0 z-10 -my-1" style={{ backgroundColor: 'var(--accent-orange)' }} />
+                    <div className="w-[2px] h-6 flex-shrink-0 z-10 -mt-2" style={{ backgroundColor: 'var(--accent-orange)' }} />
                     <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--accent-orange)' }}>Later</span>
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Mandatory Proofs</h3>
