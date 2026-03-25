@@ -40,16 +40,14 @@ export default function Home() {
 
             {/* Timeline — full container width */}
             <div className="relative">
-              {/* Timeline line */}
-              <div className="hidden sm:block absolute top-[10px] left-0 right-0 h-[2px] bg-border" />
+              {/* Timeline line — positioned to cross through the tick marks */}
+              <div className="hidden sm:block absolute top-[30px] left-0 right-0 h-[2px] bg-border" />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {/* Now */}
                 <div className="relative">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-[2px] h-6 flex-shrink-0 z-10 -mt-2" style={{ backgroundColor: 'var(--accent-blue)' }} />
-                    <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--accent-blue)' }}>Now</span>
-                  </div>
+                  <span className="text-xs font-semibold uppercase tracking-wider block mb-1" style={{ color: 'var(--accent-blue)' }}>Now</span>
+                  <div className="w-[2px] h-8 z-10 mb-4" style={{ backgroundColor: 'var(--accent-blue)' }} />
                   <h3 className="text-lg font-bold text-foreground mb-2">Optional Proofs</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     Our work focuses around{" "}
@@ -67,10 +65,8 @@ export default function Home() {
 
                 {/* Later */}
                 <div className="relative">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-[2px] h-6 flex-shrink-0 z-10 -mt-2" style={{ backgroundColor: 'var(--accent-orange)' }} />
-                    <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--accent-orange)' }}>Later</span>
-                  </div>
+                  <span className="text-xs font-semibold uppercase tracking-wider block mb-1" style={{ color: 'var(--accent-orange)' }}>Later</span>
+                  <div className="w-[2px] h-8 z-10 mb-4" style={{ backgroundColor: 'var(--accent-orange)' }} />
                   <h3 className="text-lg font-bold text-foreground mb-2">Mandatory Proofs</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     Ship mandatory proofs, enabling full ZK-based scaling of Ethereum L1.
