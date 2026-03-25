@@ -667,10 +667,10 @@
     content: '';
     position: fixed;
     top: 50%;
-    left: 50%;
-    width: 120vw;
+    right: -25%;
+    width: 80vh;
     height: 120vh;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
     background: url('/glyph.svg') no-repeat center center;
     background-size: contain;
     opacity: 0;
@@ -686,11 +686,11 @@
   @keyframes watermark-in {
     0% {
       opacity: 0;
-      transform: translate(-50%, -50%) scale(0.8);
+      transform: translateY(-50%) scale(0.8);
     }
     100% {
-      opacity: 0.03;
-      transform: translate(-50%, -50%) scale(1);
+      opacity: 0.04;
+      transform: translateY(-50%) scale(1);
     }
   }
 
