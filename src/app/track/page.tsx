@@ -251,79 +251,71 @@ export default function TrackPage() {
 
           {/* Execution Layer */}
           <h3 className="text-xl font-semibold text-foreground mb-4">Execution Layer</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+          <div className="divide-y divide-border mb-12">
             {executionClients.map((client) => (
-              <Card key={client.name}>
-                <CardContent className="p-5">
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-semibold text-foreground">{client.name}</h4>
-                    <ComplianceStatus status={client.specCompliance} />
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-3">{client.description}</p>
-                  <div className="flex items-center justify-between">
-                    <Badge variant="outline" className="text-xs">{client.language}</Badge>
-                    <div className="flex items-center gap-2">
-                      <a
-                        href={client.links.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        <Github className="w-4 h-4" />
-                      </a>
-                      {client.links.website && (
-                        <a
-                          href={client.links.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-foreground transition-colors"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors">
+                <div className="flex items-center gap-3 mb-1">
+                  <h4 className="text-2xl font-bold text-foreground">{client.name}</h4>
+                  <ComplianceStatus status={client.specCompliance} />
+                  <Badge variant="outline" className="text-xs">{client.language}</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground mb-2 max-w-[700px]">{client.description}</p>
+                <div className="flex items-center gap-3">
+                  <a
+                    href={client.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1"
+                  >
+                    <Github className="w-3.5 h-3.5" /> GitHub
+                  </a>
+                  {client.links.website && (
+                    <a
+                      href={client.links.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" /> Website
+                    </a>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
 
           {/* Consensus Layer */}
           <h3 className="text-xl font-semibold text-foreground mb-4">Consensus Layer</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="divide-y divide-border">
             {consensusClients.map((client) => (
-              <Card key={client.name}>
-                <CardContent className="p-5">
-                  <div className="flex items-center justify-between mb-2">
-                    <h4 className="font-semibold text-foreground">{client.name}</h4>
-                    <ComplianceStatus status={client.specCompliance} />
-                  </div>
-                  <p className="text-sm text-muted-foreground mb-3">{client.description}</p>
-                  <div className="flex items-center justify-between">
-                    <Badge variant="outline" className="text-xs">{client.language}</Badge>
-                    <div className="flex items-center gap-2">
-                      <a
-                        href={client.links.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        <Github className="w-4 h-4" />
-                      </a>
-                      {client.links.website && (
-                        <a
-                          href={client.links.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-foreground transition-colors"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors">
+                <div className="flex items-center gap-3 mb-1">
+                  <h4 className="text-2xl font-bold text-foreground">{client.name}</h4>
+                  <ComplianceStatus status={client.specCompliance} />
+                  <Badge variant="outline" className="text-xs">{client.language}</Badge>
+                </div>
+                <p className="text-sm text-muted-foreground mb-2 max-w-[700px]">{client.description}</p>
+                <div className="flex items-center gap-3">
+                  <a
+                    href={client.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1"
+                  >
+                    <Github className="w-3.5 h-3.5" /> GitHub
+                  </a>
+                  {client.links.website && (
+                    <a
+                      href={client.links.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" /> Website
+                    </a>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
         </section>
