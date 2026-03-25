@@ -22,7 +22,7 @@ const Header = () => {
   useEffect(() => setMounted(true), []);
 
   const isDark = mounted && resolvedTheme === "dark";
-  const textColor = isDark ? "#0a1628" : "#ffffff";
+  const textColor = isDark ? "#001B2E" : "#F8F4ED";
 
   const navItems = [
     { href: "/track", label: "Track" },

@@ -8,50 +8,50 @@
 
 @layer base {
   :root {
-    /* Brand Colors - Exact match to prototype */
-    --primary: #0C9FDE; /* Base Blue */
-    --accent-blue: #06677C;
-    --accent-link: #0B8FAF;
-    --accent-orange: #D4620A;
-    --accent-btn-text: #ffffff;
-    --primary-dark: #0A7BB8;
-    --primary-light: #E6F7FF;
-    --dark: #062873;
-    --slate: #334155;
-    --gray: #64748B;
-    --light-gray: #F8FAFC;
-    --white: #FFFFFF;
-    --border-color: #E2E8F0;
+    /* Brand Colors — New palette */
+    --primary: #2A4B5F; /* Deep Ocean */
+    --accent-blue: #2A4B5F; /* Deep Ocean — headings, buttons */
+    --accent-link: #2A4B5F; /* Deep Ocean — links */
+    --accent-orange: #E35C38; /* Sohi Red — hover, highlights */
+    --accent-btn-text: #F8F4ED; /* Crystal Cut */
+    --primary-dark: #001B2E; /* Oxford by Night */
+    --primary-light: #C6D6D7; /* Skydiving */
+    --dark: #001B2E; /* Oxford by Night */
+    --slate: #2A4B5F;
+    --gray: #5A7A8A;
+    --light-gray: #F8F4ED; /* Crystal Cut */
+    --white: #F8F4ED;
+    --border-color: #C6D6D7; /* Skydiving */
     --success: #10B981;
-    --fail: #EF4444;
+    --fail: #E35C38;
 
     /* Tailwind-compatible HSL values */
-    --background: 220 13% 97%;
-    --foreground: 210 22% 22%;
+    --background: 40 33% 95%; /* Crystal Cut */
+    --foreground: 200 38% 27%; /* Deep Ocean */
 
-    --card: 0 0% 100%;
-    --card-foreground: 210 22% 22%;
+    --card: 40 33% 97%;
+    --card-foreground: 200 38% 27%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 22% 22%;
+    --popover: 40 33% 97%;
+    --popover-foreground: 200 38% 27%;
 
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 40 33% 95%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 210 22% 22%;
+    --secondary: 192 12% 83%; /* Skydiving */
+    --secondary-foreground: 200 38% 27%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 192 12% 88%;
+    --muted-foreground: 200 20% 45%;
 
-    --accent: 210 40% 96%;
-    --accent-foreground: 210 22% 22%;
+    --accent: 192 12% 88%;
+    --accent-foreground: 200 38% 27%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 13 74% 55%;
+    --destructive-foreground: 40 33% 95%;
 
-    --input: 220 13% 91%;
-    --ring: 200 100% 46%;
-    --border: 220 13% 91%;
+    --input: 192 12% 83%;
+    --ring: 200 38% 27%;
+    --border: 192 12% 80%;
 
     --radius: 0.375rem;
 
@@ -89,54 +89,54 @@
   }
 
   .dark {
-    --background: 220 20% 10%;
-    --foreground: 210 40% 95%;
+    --background: 204 100% 9%; /* Oxford by Night */
+    --foreground: 192 12% 83%; /* Skydiving */
 
-    --card: 220 20% 13%;
-    --card-foreground: 210 40% 95%;
+    --card: 204 100% 11%;
+    --card-foreground: 192 12% 83%;
 
-    --popover: 220 20% 13%;
-    --popover-foreground: 210 40% 95%;
+    --popover: 204 100% 11%;
+    --popover-foreground: 192 12% 83%;
 
-    --primary: 200 100% 46%;
-    --primary-foreground: 0 0% 100%;
-    --primary-dark: 200 100% 55%;
-    --primary-light: 200 100% 15%;
+    --primary: 192 12% 83%;
+    --primary-foreground: 204 100% 9%;
+    --primary-dark: 200 38% 27%;
+    --primary-light: 204 100% 15%;
 
-    --secondary: 217 33% 18%;
-    --secondary-foreground: 210 40% 95%;
+    --secondary: 204 50% 15%;
+    --secondary-foreground: 192 12% 83%;
 
-    --muted: 217 33% 16%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 204 50% 14%;
+    --muted-foreground: 192 12% 60%;
 
-    --accent: 217 33% 18%;
-    --accent-foreground: 210 40% 95%;
+    --accent: 204 50% 15%;
+    --accent-foreground: 192 12% 83%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 13 74% 40%;
+    --destructive-foreground: 40 33% 95%;
     --success: 142 76% 45%;
-    --fail: #EF4444;
+    --fail: #E35C38;
 
-    --accent-blue: #09d5f1;
-    --accent-link: #5CE6F6;
-    --accent-orange: #F5A623;
-    --accent-btn-text: #0a1628;
-    --dark: #c5d5f0;
-    --slate: #94a3b8;
-    --gray: #94a3b8;
-    --light-gray: hsl(220 20% 13%);
-    --white: hsl(220 20% 13%);
-    --border-color: hsl(217 33% 20%);
+    --accent-blue: #C6D6D7; /* Skydiving — headings on dark */
+    --accent-link: #C6D6D7;
+    --accent-orange: #E35C38; /* Sohi Red */
+    --accent-btn-text: #001B2E; /* Oxford by Night */
+    --dark: #C6D6D7;
+    --slate: #8AABB8;
+    --gray: #8AABB8;
+    --light-gray: hsl(204 100% 11%);
+    --white: hsl(204 100% 11%);
+    --border-color: hsl(204 50% 18%);
 
-    --border: 217 33% 20%;
-    --input: 217 33% 20%;
-    --ring: 200 100% 46%;
+    --border: 204 50% 18%;
+    --input: 204 50% 18%;
+    --ring: 192 12% 83%;
 
-    --shadow-sm: 0 1px 2px 0 hsl(220 20% 5% / 0.3);
-    --shadow-md: 0 4px 6px -1px hsl(220 20% 5% / 0.4);
-    --shadow-lg: 0 10px 15px -3px hsl(220 20% 5% / 0.4);
-    --shadow-xl: 0 20px 25px -5px hsl(220 20% 5% / 0.4);
-    --shadow-glow: 0 0 40px hsl(200 100% 46% / 0.15);
+    --shadow-sm: 0 1px 2px 0 hsl(204 100% 4% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(204 100% 4% / 0.4);
+    --shadow-lg: 0 10px 15px -3px hsl(204 100% 4% / 0.4);
+    --shadow-xl: 0 20px 25px -5px hsl(204 100% 4% / 0.4);
+    --shadow-glow: 0 0 40px hsl(192 12% 83% / 0.1);
 
     --sidebar-background: 220 20% 8%;
     --sidebar-foreground: 240 4.8% 95.9%;
