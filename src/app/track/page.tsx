@@ -277,8 +277,8 @@ export default function TrackPage() {
               <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
                 <ClientFavicon website={client.links.website} name={client.name} />
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 mb-1 flex-wrap">
-                    <h4 className="text-2xl font-bold text-foreground">{client.name}</h4>
+                  <h4 className="text-3xl font-bold text-foreground">{client.name}</h4>
+                  <div className="flex items-center gap-2 mt-1 mb-1 flex-wrap">
                     <ComplianceStatus status={client.specCompliance} />
                     <Badge variant="outline" className="text-xs">{client.language}</Badge>
                   </div>
@@ -315,8 +315,8 @@ export default function TrackPage() {
               <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
                 <ClientFavicon website={client.links.website} name={client.name} />
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 mb-1 flex-wrap">
-                    <h4 className="text-2xl font-bold text-foreground">{client.name}</h4>
+                  <h4 className="text-3xl font-bold text-foreground">{client.name}</h4>
+                  <div className="flex items-center gap-2 mt-1 mb-1 flex-wrap">
                     <ComplianceStatus status={client.specCompliance} />
                     <Badge variant="outline" className="text-xs">{client.language}</Badge>
                   </div>
