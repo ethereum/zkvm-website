@@ -35,7 +35,7 @@ const Header = () => {
       className="fixed top-0 w-full z-[100]"
       style={{
         backgroundColor: isDark ? '#001B2E' : '#F8F4ED',
-        borderBottom: `2px solid ${isDark ? 'rgba(227,92,56,0.3)' : '#E35C38'}`,
+        borderBottom: `1px solid ${isDark ? 'rgba(227,92,56,0.2)' : 'rgba(227,92,56,0.3)'}`,
       }}
     >
       <nav className="max-w-[1200px] mx-auto px-4 py-4 flex items-center justify-between">
