@@ -8,15 +8,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink, CheckCircle, XCircle, Clock, Github } from "lucide-react";
 import Image from "next/image";
 
-function ClientFavicon({ url, name }: { url?: string; name: string }) {
-  if (!url) {
+function ClientFavicon({ website, name }: { website?: string; name: string }) {
+  if (!website) {
     return (
-      <div className="w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0 bg-muted text-muted-foreground">
-        {name[0]}
+      <div className="w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0" style={{ backgroundColor: 'var(--accent-blue)', color: 'var(--accent-btn-text)' }}>
+        {name.slice(0, 2)}
       </div>
     );
   }
-  const domain = new URL(url).hostname;
+  const domain = new URL(website).hostname;
   return (
     <Image
       src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
@@ -275,7 +275,7 @@ export default function TrackPage() {
           <div className="divide-y divide-border mb-12">
             {executionClients.map((client) => (
               <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
-                <ClientFavicon url={client.links.website || client.links.github} name={client.name} />
+                <ClientFavicon website={client.links.website} name={client.name} />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 mb-1 flex-wrap">
                     <h4 className="text-2xl font-bold text-foreground">{client.name}</h4>
@@ -313,7 +313,7 @@ export default function TrackPage() {
           <div className="divide-y divide-border">
             {consensusClients.map((client) => (
               <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
-                <ClientFavicon url={client.links.website || client.links.github} name={client.name} />
+                <ClientFavicon website={client.links.website} name={client.name} />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-3 mb-1 flex-wrap">
                     <h4 className="text-2xl font-bold text-foreground">{client.name}</h4>
