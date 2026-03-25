@@ -271,7 +271,7 @@ export default function TrackPage() {
           </p>
 
           {/* Execution Layer */}
-          <h3 className="text-xl font-semibold text-foreground mb-4">Execution Layer</h3>
+          <h3 className="text-xl font-semibold mb-4" style={{ color: 'var(--accent-blue)' }}>Execution Layer</h3>
           <div className="divide-y divide-border mb-12">
             {executionClients.map((client) => (
               <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
@@ -309,7 +309,7 @@ export default function TrackPage() {
           </div>
 
           {/* Consensus Layer */}
-          <h3 className="text-xl font-semibold text-foreground mb-4">Consensus Layer</h3>
+          <h3 className="text-xl font-semibold mb-4" style={{ color: 'var(--accent-blue)' }}>Consensus Layer</h3>
           <div className="divide-y divide-border">
             {consensusClients.map((client) => (
               <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
