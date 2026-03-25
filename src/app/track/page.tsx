@@ -65,12 +65,12 @@ export default function TrackPage() {
       description="Tracking the readiness of zkVM implementations and Ethereum client integration for ZK-based L1 scaling."
     >
       {/* Tabs */}
-      <div className="flex gap-1 border-b border-border mb-10">
+      <div className="flex gap-1 border-b border-border mb-16">
         {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className="px-5 py-3 text-sm font-medium transition-colors duration-300 relative hover:text-[var(--accent-orange)]"
+            className="px-6 py-4 text-lg font-bold transition-colors duration-300 relative hover:text-[var(--accent-orange)]"
             style={{
               color: activeTab === tab.id ? 'var(--accent-blue)' : undefined,
             }}
@@ -89,8 +89,8 @@ export default function TrackPage() {
       {/* zkVM Readiness Tab */}
       {activeTab === "zkvm" && (
         <>
-          <section className="mb-16">
-            <p className="text-muted-foreground mb-6">
+          <section className="mb-24">
+            <p className="text-muted-foreground mb-8">
               zkVMs under active consideration for Ethereum L1 integration. Only implementations
               meeting our{" "}
               <a href="#listing-criteria" className="text-[var(--accent-link)] hover:underline">
@@ -195,14 +195,14 @@ export default function TrackPage() {
           </section>
 
           {/* Inclusion Criteria */}
-          <section id="listing-criteria" className="mb-16">
+          <section id="listing-criteria" className="mb-24">
             <h2 className="text-2xl font-bold text-foreground mb-4">Inclusion Criteria</h2>
-            <p className="text-muted-foreground mb-6">
+            <p className="text-muted-foreground mb-8">
               To be listed in the zkVM Readiness table, implementations must meet the following
               minimum criteria. This is a curated list — the team evaluates and updates these
               criteria as the project evolves.
             </p>
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="grid sm:grid-cols-2 gap-x-12 gap-y-8">
               {[
                 {
                   title: "Open Source",
@@ -221,18 +221,16 @@ export default function TrackPage() {
                   description: "Integration into the soundcalc framework for standardized verification and interoperability testing.",
                 },
               ].map((criterion) => (
-                <Card key={criterion.title}>
-                  <CardContent className="p-6">
-                    <h3 className="font-semibold text-foreground mb-2">{criterion.title}</h3>
-                    <p className="text-sm text-muted-foreground">{criterion.description}</p>
-                  </CardContent>
-                </Card>
+                <div key={criterion.title}>
+                  <h3 className="font-semibold text-foreground mb-2">{criterion.title}</h3>
+                  <p className="text-sm text-muted-foreground">{criterion.description}</p>
+                </div>
               ))}
             </div>
           </section>
 
           {/* External Dashboards */}
-          <section className="mb-16">
+          <section className="mb-24">
             <h2 className="text-2xl font-bold text-foreground mb-4">External Dashboards</h2>
             <p className="text-muted-foreground mb-6">
               Detailed tracking data is maintained on external dashboards managed by the team.
