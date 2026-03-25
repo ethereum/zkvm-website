@@ -32,9 +32,9 @@ const Header = () => {
 
   return (
     <header
-      className="fixed top-0 w-full z-[100]"
+      className="fixed top-0 w-full z-[100] backdrop-blur-md"
       style={{
-        backgroundColor: isDark ? '#001B2E' : '#F8F4ED',
+        backgroundColor: isDark ? 'rgba(0,27,46,0.97)' : 'rgba(248,244,237,0.97)',
         borderBottom: `1px solid ${isDark ? 'rgba(227,92,56,0.2)' : 'rgba(227,92,56,0.3)'}`,
       }}
     >
