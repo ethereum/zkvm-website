@@ -235,25 +235,20 @@ export default function TrackPage() {
             <p className="text-muted-foreground mb-6">
               Detailed tracking data is maintained on external dashboards managed by the team.
             </p>
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className="divide-y divide-border">
               <a
                 href="https://eth-act.github.io/zkevm-test-monitor/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block"
+                className="flex items-center justify-between py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors group"
               >
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <div className="flex items-center gap-2 mb-2">
-                      <h3 className="font-semibold text-foreground">RISC-V Compliance Test Monitor</h3>
-                      <ExternalLink className="w-4 h-4 text-muted-foreground" />
-                    </div>
-                    <p className="text-sm text-muted-foreground">
-                      Nightly ISA compliance test results across all zkVM implementations.
-                      Tracks pass/fail rates for RISC-V Architecture Tests v3.9.1.
-                    </p>
-                  </CardContent>
-                </Card>
+                <div>
+                  <h3 className="text-lg font-bold text-foreground group-hover:text-[var(--accent-orange)] transition-colors">RISC-V Compliance Test Monitor</h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Nightly ISA compliance test results across all zkVM implementations.
+                  </p>
+                </div>
+                <ExternalLink className="w-4 h-4 text-muted-foreground flex-shrink-0 ml-4" />
               </a>
             </div>
           </section>
