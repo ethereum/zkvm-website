@@ -196,7 +196,7 @@ export default function TrackPage() {
 
           {/* Inclusion Criteria */}
           <section id="listing-criteria" className="mb-24">
-            <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--accent-blue)' }}>Inclusion Criteria</h2>
+            <h2 className="text-xl font-semibold mb-4" style={{ color: 'var(--accent-blue)' }}>Inclusion Criteria</h2>
             <p className="text-muted-foreground mb-8">
               To be listed in the zkVM Readiness table, implementations must meet the following
               minimum criteria. This is a curated list — the team evaluates and updates these
@@ -231,7 +231,7 @@ export default function TrackPage() {
 
           {/* External Dashboards */}
           <section className="mb-24">
-            <h2 className="text-2xl font-bold mb-4" style={{ color: 'var(--accent-blue)' }}>External Dashboards</h2>
+            <h2 className="text-xl font-semibold mb-4" style={{ color: 'var(--accent-blue)' }}>External Dashboards</h2>
             <p className="text-muted-foreground mb-6">
               Detailed tracking data is maintained on external dashboards managed by the team.
             </p>
