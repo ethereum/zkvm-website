@@ -6,8 +6,8 @@ import { ExternalLink } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="px-4 py-10 sm:py-16 border-t border-border">
-      <div className="max-w-[1200px] mx-auto">
+    <footer className="py-10 sm:py-16 border-t border-border">
+      <div className="max-w-[1200px] mx-auto px-6 sm:px-8">
         {/* Logo */}
         <div className="mb-8">
           <Link href="/" className="inline-flex">
