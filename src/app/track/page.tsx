@@ -6,6 +6,27 @@ import { zkevmData, clientData } from "@/data/zkevm-tracker";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink, CheckCircle, XCircle, Clock, Github } from "lucide-react";
+import Image from "next/image";
+
+function ClientFavicon({ url, name }: { url?: string; name: string }) {
+  if (!url) {
+    return (
+      <div className="w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0 bg-muted text-muted-foreground">
+        {name[0]}
+      </div>
+    );
+  }
+  const domain = new URL(url).hostname;
+  return (
+    <Image
+      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
+      alt={name}
+      width={40}
+      height={40}
+      className="w-10 h-10 rounded-lg flex-shrink-0"
+    />
+  );
+}
 
 function ReadinessCheck({ pass }: { pass: boolean }) {
   return pass ? (
@@ -254,34 +275,32 @@ export default function TrackPage() {
           <div className="divide-y divide-border mb-12">
             {executionClients.map((client) => (
               <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold flex-shrink-0" style={{ backgroundColor: 'var(--accent-blue)', color: 'var(--accent-btn-text)' }}>
-                  {client.name[0]}
-                </div>
+                <ClientFavicon url={client.links.website || client.links.github} name={client.name} />
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 mb-1">
+                  <div className="flex items-center gap-3 mb-1 flex-wrap">
                     <h4 className="text-2xl font-bold text-foreground">{client.name}</h4>
                     <ComplianceStatus status={client.specCompliance} />
                     <Badge variant="outline" className="text-xs">{client.language}</Badge>
                   </div>
                   <p className="text-sm text-muted-foreground max-w-[700px]">{client.description}</p>
                 </div>
-                <div className="flex items-center gap-3 flex-shrink-0 pt-1">
+                <div className="flex items-center gap-2 flex-shrink-0 pt-1">
                   <a
                     href={client.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1"
+                    className="text-xs text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
                   >
-                    <Github className="w-4 h-4" />
+                    <Github className="w-3.5 h-3.5" /> GitHub
                   </a>
                   {client.links.website && (
                     <a
                       href={client.links.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1"
+                      className="text-xs text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
                     >
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className="w-3.5 h-3.5" /> Website
                     </a>
                   )}
                 </div>
@@ -294,34 +313,32 @@ export default function TrackPage() {
           <div className="divide-y divide-border">
             {consensusClients.map((client) => (
               <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold flex-shrink-0" style={{ backgroundColor: 'var(--accent-blue)', color: 'var(--accent-btn-text)' }}>
-                  {client.name[0]}
-                </div>
+                <ClientFavicon url={client.links.website || client.links.github} name={client.name} />
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-3 mb-1">
+                  <div className="flex items-center gap-3 mb-1 flex-wrap">
                     <h4 className="text-2xl font-bold text-foreground">{client.name}</h4>
                     <ComplianceStatus status={client.specCompliance} />
                     <Badge variant="outline" className="text-xs">{client.language}</Badge>
                   </div>
                   <p className="text-sm text-muted-foreground max-w-[700px]">{client.description}</p>
                 </div>
-                <div className="flex items-center gap-3 flex-shrink-0 pt-1">
+                <div className="flex items-center gap-2 flex-shrink-0 pt-1">
                   <a
                     href={client.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1"
+                    className="text-xs text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
                   >
-                    <Github className="w-4 h-4" />
+                    <Github className="w-3.5 h-3.5" /> GitHub
                   </a>
                   {client.links.website && (
                     <a
                       href={client.links.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1"
+                      className="text-xs text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
                     >
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className="w-3.5 h-3.5" /> Website
                     </a>
                   )}
                 </div>
