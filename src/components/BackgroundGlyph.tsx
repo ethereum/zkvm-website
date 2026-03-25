@@ -17,16 +17,32 @@ const layers = [
 
 export function BackgroundGlyph() {
   const [visible, setVisible] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setVisible(true), 300);
-    return () => clearTimeout(timer);
+
+    const onScroll = () => {
+      setScrolled(window.scrollY > 100);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('scroll', onScroll);
+    };
   }, []);
 
   return (
     <div
       className="fixed top-1/2 -translate-y-1/2 pointer-events-none z-0"
-      style={{ right: '-10%', width: '60vh', height: '90vh' }}
+      style={{
+        right: '-10%',
+        width: '60vh',
+        height: '90vh',
+        opacity: scrolled ? 0 : 1,
+        transition: 'opacity 0.6s ease',
+      }}
     >
       <svg
         viewBox="-20 -20 180 280"
