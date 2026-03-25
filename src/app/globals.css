@@ -662,38 +662,6 @@
     color: var(--accent-orange);
   }
 
-  /* Watermark glyph */
-  body::before {
-    content: '';
-    position: fixed;
-    top: 50%;
-    right: -25%;
-    width: 80vh;
-    height: 120vh;
-    transform: translateY(-50%);
-    background: url('/glyph.svg') no-repeat center center;
-    background-size: contain;
-    opacity: 0;
-    pointer-events: none;
-    z-index: 0;
-    animation: watermark-in 2s ease-out 0.3s forwards;
-  }
-
-  html.dark body::before {
-    filter: invert(1);
-  }
-
-  @keyframes watermark-in {
-    0% {
-      opacity: 0;
-      transform: translateY(-50%) scale(0.8);
-    }
-    100% {
-      opacity: 0.04;
-      transform: translateY(-50%) scale(1);
-    }
-  }
-
   /* Custom scrollbar */
   ::-webkit-scrollbar {
     width: 6px;

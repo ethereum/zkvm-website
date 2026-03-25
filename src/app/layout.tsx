@@ -7,6 +7,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClientWrapper } from "@/components/QueryClientWrapper";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { BackgroundGlyph } from "@/components/BackgroundGlyph";
 
 export const metadata: Metadata = {
   title: "zkEVM - Scaling Ethereum Without Compromise",
@@ -41,6 +42,7 @@ export default function RootLayout({
             <TooltipProvider delayDuration={100}>
               <Toaster />
               <Sonner />
+              <BackgroundGlyph />
               {children}
             </TooltipProvider>
           </QueryClientWrapper>
