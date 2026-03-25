@@ -47,7 +47,7 @@ export default function Home() {
                 {/* Now */}
                 <div className="relative">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3.5 h-3.5 rounded-full flex-shrink-0 z-10 ring-4 ring-background" style={{ backgroundColor: 'var(--accent-blue)' }} />
+                    <div className="w-[2px] h-5 flex-shrink-0 z-10 -my-1" style={{ backgroundColor: 'var(--accent-blue)' }} />
                     <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--accent-blue)' }}>Now</span>
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Optional Proofs</h3>
@@ -68,7 +68,7 @@ export default function Home() {
                 {/* Later */}
                 <div className="relative">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="w-3.5 h-3.5 rounded-full flex-shrink-0 z-10 ring-4 ring-background border-2" style={{ borderColor: 'var(--accent-orange)' }} />
+                    <div className="w-[2px] h-5 flex-shrink-0 z-10 -my-1" style={{ backgroundColor: 'var(--accent-orange)' }} />
                     <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: 'var(--accent-orange)' }}>Later</span>
                   </div>
                   <h3 className="text-lg font-bold text-foreground mb-2">Mandatory Proofs</h3>
