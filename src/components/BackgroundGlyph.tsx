@@ -3,11 +3,16 @@
 import { useEffect, useState } from "react";
 
 const layers = [
-  { dx: 0, dy: 0, delay: 0, opacity: 0.08, duration: 2 },
-  { dx: 8, dy: -12, delay: 0.3, opacity: 0.05, duration: 2.2 },
-  { dx: -6, dy: 10, delay: 0.6, opacity: 0.04, duration: 2.4 },
-  { dx: 14, dy: 6, delay: 0.9, opacity: 0.03, duration: 2.6 },
-  { dx: -10, dy: -8, delay: 1.2, opacity: 0.025, duration: 2.8 },
+  { dx: 0, dy: 0, delay: 0, opacity: 0.08, duration: 1.8 },
+  { dx: 18, dy: -25, delay: 0.2, opacity: 0.06, duration: 2.5 },
+  { dx: -15, dy: 20, delay: 0.5, opacity: 0.05, duration: 3.2 },
+  { dx: 35, dy: 12, delay: 0.1, opacity: 0.04, duration: 2.0 },
+  { dx: -28, dy: -18, delay: 0.7, opacity: 0.035, duration: 3.8 },
+  { dx: 10, dy: 40, delay: 0.4, opacity: 0.03, duration: 2.8 },
+  { dx: -40, dy: -5, delay: 0.9, opacity: 0.025, duration: 4.0 },
+  { dx: 50, dy: -35, delay: 0.3, opacity: 0.02, duration: 3.5 },
+  { dx: -20, dy: 50, delay: 1.1, opacity: 0.02, duration: 4.5 },
+  { dx: 42, dy: 30, delay: 0.6, opacity: 0.015, duration: 3.0 },
 ];
 
 export function BackgroundGlyph() {
