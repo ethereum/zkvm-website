@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import PageLayout from "@/components/PageLayout";
 import { zkevmData, clientData } from "@/data/zkevm-tracker";
 import { Badge } from "@/components/ui/badge";
@@ -23,7 +26,15 @@ function ComplianceStatus({ status }: { status?: string }) {
   }
 }
 
+const tabs = [
+  { id: "zkvm", label: "zkVM Readiness" },
+  { id: "clients", label: "Ethereum Clients" },
+] as const;
+
+type TabId = typeof tabs[number]["id"];
+
 export default function TrackPage() {
+  const [activeTab, setActiveTab] = useState<TabId>("zkvm");
   const executionClients = clientData.filter(c => c.type === 'execution');
   const consensusClients = clientData.filter(c => c.type === 'consensus');
 
@@ -32,266 +43,291 @@ export default function TrackPage() {
       title="Track Progress"
       description="Tracking the readiness of zkVM implementations and Ethereum client integration for ZK-based L1 scaling."
     >
-      {/* ZKVM Readiness Table */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-foreground mb-2">zkVM Readiness</h2>
-        <p className="text-muted-foreground mb-6">
-          zkVMs under active consideration for Ethereum L1 integration. Only implementations
-          meeting our{" "}
-          <a href="#listing-criteria" className="text-[var(--accent-link)] hover:underline">
-            inclusion criteria
-          </a>{" "}
-          are listed.
-        </p>
+      {/* Tabs */}
+      <div className="flex gap-1 border-b border-border mb-10">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className="px-5 py-3 text-sm font-medium transition-colors relative"
+            style={{
+              color: activeTab === tab.id ? 'var(--accent-blue)' : undefined,
+            }}
+          >
+            {tab.label}
+            {activeTab === tab.id && (
+              <span
+                className="absolute bottom-0 left-0 right-0 h-[2px]"
+                style={{ backgroundColor: 'var(--accent-blue)' }}
+              />
+            )}
+          </button>
+        ))}
+      </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse">
-            <thead>
-              <tr className="border-b-2 border-border">
-                <th className="text-left py-3 px-4 font-semibold text-foreground">zkVM</th>
-                <th className="text-center py-3 px-4 font-semibold text-foreground">Open Source</th>
-                <th className="text-center py-3 px-4 font-semibold text-foreground">ISA Compliance (RV64)</th>
-                <th className="text-center py-3 px-4 font-semibold text-foreground">Real-Time Proving</th>
-                <th className="text-center py-3 px-4 font-semibold text-foreground">Soundcalc Integration</th>
-                <th className="text-left py-3 px-4 font-semibold text-foreground">Links</th>
-              </tr>
-            </thead>
-            <tbody>
-              {zkevmData.map((zkvm) => {
-                const isRV64 = zkvm.architecture.startsWith('rv64');
-                return (
-                  <tr key={zkvm.name} className="border-b border-border hover:bg-muted/30 transition-colors">
-                    <td className="py-4 px-4">
-                      <div>
-                        <span className="font-semibold text-foreground">{zkvm.name}</span>
-                        <div className="text-sm text-muted-foreground mt-0.5">
-                          {zkvm.architecture}
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4 text-center">
-                      <div className="flex justify-center">
-                        <ReadinessCheck pass={zkvm.openSource} />
-                      </div>
-                    </td>
-                    <td className="py-4 px-4 text-center">
-                      <div className="flex flex-col items-center gap-1">
-                        <ReadinessCheck pass={isRV64} />
-                        <span className="text-xs text-muted-foreground">
-                          {zkvm.testResults.passed}/{zkvm.testResults.total} tests
-                        </span>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4 text-center">
-                      <div className="flex justify-center">
-                        <Clock className="w-5 h-5 text-orange-500" />
-                      </div>
-                      <span className="text-xs text-muted-foreground">TBD</span>
-                    </td>
-                    <td className="py-4 px-4 text-center">
-                      <div className="flex justify-center">
-                        <Clock className="w-5 h-5 text-orange-500" />
-                      </div>
-                      <span className="text-xs text-muted-foreground">TBD</span>
-                    </td>
-                    <td className="py-4 px-4">
-                      <div className="flex items-center gap-2">
+      {/* zkVM Readiness Tab */}
+      {activeTab === "zkvm" && (
+        <>
+          <section className="mb-16">
+            <p className="text-muted-foreground mb-6">
+              zkVMs under active consideration for Ethereum L1 integration. Only implementations
+              meeting our{" "}
+              <a href="#listing-criteria" className="text-[var(--accent-link)] hover:underline">
+                inclusion criteria
+              </a>{" "}
+              are listed.
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse">
+                <thead>
+                  <tr className="border-b-2 border-border">
+                    <th className="text-left py-3 px-4 font-semibold text-foreground">zkVM</th>
+                    <th className="text-center py-3 px-4 font-semibold text-foreground">Open Source</th>
+                    <th className="text-center py-3 px-4 font-semibold text-foreground">ISA Compliance (RV64)</th>
+                    <th className="text-center py-3 px-4 font-semibold text-foreground">Real-Time Proving</th>
+                    <th className="text-center py-3 px-4 font-semibold text-foreground">Soundcalc Integration</th>
+                    <th className="text-left py-3 px-4 font-semibold text-foreground">Links</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {zkevmData.map((zkvm) => {
+                    const isRV64 = zkvm.architecture.startsWith('rv64');
+                    return (
+                      <tr key={zkvm.name} className="border-b border-border hover:bg-muted/30 transition-colors">
+                        <td className="py-4 px-4">
+                          <div>
+                            <span className="font-semibold text-foreground">{zkvm.name}</span>
+                            <div className="text-sm text-muted-foreground mt-0.5">
+                              {zkvm.architecture}
+                            </div>
+                          </div>
+                        </td>
+                        <td className="py-4 px-4 text-center">
+                          <div className="flex justify-center">
+                            <ReadinessCheck pass={zkvm.openSource} />
+                          </div>
+                        </td>
+                        <td className="py-4 px-4 text-center">
+                          <div className="flex flex-col items-center gap-1">
+                            <ReadinessCheck pass={isRV64} />
+                            <span className="text-xs text-muted-foreground">
+                              {zkvm.testResults.passed}/{zkvm.testResults.total} tests
+                            </span>
+                          </div>
+                        </td>
+                        <td className="py-4 px-4 text-center">
+                          <div className="flex justify-center">
+                            <Clock className="w-5 h-5 text-orange-500" />
+                          </div>
+                          <span className="text-xs text-muted-foreground">TBD</span>
+                        </td>
+                        <td className="py-4 px-4 text-center">
+                          <div className="flex justify-center">
+                            <Clock className="w-5 h-5 text-orange-500" />
+                          </div>
+                          <span className="text-xs text-muted-foreground">TBD</span>
+                        </td>
+                        <td className="py-4 px-4">
+                          <div className="flex items-center gap-2">
+                            <a
+                              href={zkvm.links.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-muted-foreground hover:text-foreground transition-colors"
+                              title="GitHub"
+                            >
+                              <Github className="w-4 h-4" />
+                            </a>
+                            <a
+                              href={zkvm.links.docs}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-muted-foreground hover:text-foreground transition-colors"
+                              title="Documentation"
+                            >
+                              <ExternalLink className="w-4 h-4" />
+                            </a>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-4 p-4 bg-muted/50 rounded-lg border border-border">
+              <p className="text-sm text-muted-foreground">
+                Detailed ISA compliance results are tracked on the{" "}
+                <a
+                  href="https://eth-act.github.io/zkevm-test-monitor/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--accent-link)] hover:underline inline-flex items-center gap-1"
+                >
+                  RISC-V Compliance Test Monitor <ExternalLink className="w-3 h-3" />
+                </a>
+                , which runs nightly against the latest RISC-V Architecture Tests v3.9.1.
+              </p>
+            </div>
+          </section>
+
+          {/* Inclusion Criteria */}
+          <section id="listing-criteria" className="mb-16">
+            <h2 className="text-2xl font-bold text-foreground mb-4">Inclusion Criteria</h2>
+            <p className="text-muted-foreground mb-6">
+              To be listed in the zkVM Readiness table, implementations must meet the following
+              minimum criteria. This is a curated list — the team evaluates and updates these
+              criteria as the project evolves.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {[
+                {
+                  title: "Open Source",
+                  description: "The zkVM must be released under a permissive open-source license. We link to the license for each listed project.",
+                },
+                {
+                  title: "ISA Compliance (RV64IM minimum)",
+                  description: "The zkVM must support the RISC-V 64-bit base integer instruction set with the multiply extension. This is verified via our compliance test suite.",
+                },
+                {
+                  title: "Real-Time Proving",
+                  description: "The ability to generate a proof for a full Ethereum block within slot time. Criteria for timing targets will evolve (e.g., P99 latency requirements).",
+                },
+                {
+                  title: "Soundcalc Integration",
+                  description: "Integration into the soundcalc framework for standardized verification and interoperability testing.",
+                },
+              ].map((criterion) => (
+                <Card key={criterion.title}>
+                  <CardContent className="p-6">
+                    <h3 className="font-semibold text-foreground mb-2">{criterion.title}</h3>
+                    <p className="text-sm text-muted-foreground">{criterion.description}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </section>
+
+          {/* External Dashboards */}
+          <section className="mb-16">
+            <h2 className="text-2xl font-bold text-foreground mb-4">External Dashboards</h2>
+            <p className="text-muted-foreground mb-6">
+              Detailed tracking data is maintained on external dashboards managed by the team.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <a
+                href="https://eth-act.github.io/zkevm-test-monitor/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                <Card className="h-full">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-2 mb-2">
+                      <h3 className="font-semibold text-foreground">RISC-V Compliance Test Monitor</h3>
+                      <ExternalLink className="w-4 h-4 text-muted-foreground" />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      Nightly ISA compliance test results across all zkVM implementations.
+                      Tracks pass/fail rates for RISC-V Architecture Tests v3.9.1.
+                    </p>
+                  </CardContent>
+                </Card>
+              </a>
+            </div>
+          </section>
+        </>
+      )}
+
+      {/* Ethereum Clients Tab */}
+      {activeTab === "clients" && (
+        <section>
+          <p className="text-muted-foreground mb-8">
+            Client teams working towards zkVM integration. High-level status of each client&apos;s
+            readiness for ZK-based proving.
+          </p>
+
+          {/* Execution Layer */}
+          <h3 className="text-xl font-semibold text-foreground mb-4">Execution Layer</h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+            {executionClients.map((client) => (
+              <Card key={client.name}>
+                <CardContent className="p-5">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-semibold text-foreground">{client.name}</h4>
+                    <ComplianceStatus status={client.specCompliance} />
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3">{client.description}</p>
+                  <div className="flex items-center justify-between">
+                    <Badge variant="outline" className="text-xs">{client.language}</Badge>
+                    <div className="flex items-center gap-2">
+                      <a
+                        href={client.links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        <Github className="w-4 h-4" />
+                      </a>
+                      {client.links.website && (
                         <a
-                          href={zkvm.links.github}
+                          href={client.links.website}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-muted-foreground hover:text-foreground transition-colors"
-                          title="GitHub"
-                        >
-                          <Github className="w-4 h-4" />
-                        </a>
-                        <a
-                          href={zkvm.links.docs}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-muted-foreground hover:text-foreground transition-colors"
-                          title="Documentation"
                         >
                           <ExternalLink className="w-4 h-4" />
                         </a>
-                      </div>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+                      )}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
 
-        {/* External Dashboard Link */}
-        <div className="mt-4 p-4 bg-muted/50 rounded-lg border border-border">
-          <p className="text-sm text-muted-foreground">
-            Detailed ISA compliance results are tracked on the{" "}
-            <a
-              href="https://eth-act.github.io/zkevm-test-monitor/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--accent-link)] hover:underline inline-flex items-center gap-1"
-            >
-              RISC-V Compliance Test Monitor <ExternalLink className="w-3 h-3" />
-            </a>
-            , which runs nightly against the latest RISC-V Architecture Tests v3.9.1.
-          </p>
-        </div>
-      </section>
-
-      {/* Listing Criteria */}
-      <section id="listing-criteria" className="mb-16">
-        <h2 className="text-2xl font-bold text-foreground mb-4">Inclusion Criteria</h2>
-        <p className="text-muted-foreground mb-6">
-          To be listed in the zkVM Readiness table, implementations must meet the following
-          minimum criteria. This is a curated list — the team evaluates and updates these
-          criteria as the project evolves.
-        </p>
-        <div className="grid sm:grid-cols-2 gap-4">
-          {[
-            {
-              title: "Open Source",
-              description: "The zkVM must be released under a permissive open-source license. We link to the license for each listed project.",
-            },
-            {
-              title: "ISA Compliance (RV64IM minimum)",
-              description: "The zkVM must support the RISC-V 64-bit base integer instruction set with the multiply extension. This is verified via our compliance test suite.",
-            },
-            {
-              title: "Real-Time Proving",
-              description: "The ability to generate a proof for a full Ethereum block within slot time. Criteria for timing targets will evolve (e.g., P99 latency requirements).",
-            },
-            {
-              title: "Soundcalc Integration",
-              description: "Integration into the soundcalc framework for standardized verification and interoperability testing.",
-            },
-          ].map((criterion) => (
-            <Card key={criterion.title}>
-              <CardContent className="p-6">
-                <h3 className="font-semibold text-foreground mb-2">{criterion.title}</h3>
-                <p className="text-sm text-muted-foreground">{criterion.description}</p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* Ethereum Clients */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-foreground mb-2">Ethereum Clients</h2>
-        <p className="text-muted-foreground mb-6">
-          Client teams working towards zkVM integration. High-level status of each client&apos;s
-          readiness for ZK-based proving.
-        </p>
-
-        {/* Execution Layer */}
-        <h3 className="text-xl font-semibold text-foreground mb-4">Execution Layer</h3>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
-          {executionClients.map((client) => (
-            <Card key={client.name}>
-              <CardContent className="p-5">
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-semibold text-foreground">{client.name}</h4>
-                  <ComplianceStatus status={client.specCompliance} />
-                </div>
-                <p className="text-sm text-muted-foreground mb-3">{client.description}</p>
-                <div className="flex items-center justify-between">
-                  <Badge variant="outline" className="text-xs">{client.language}</Badge>
-                  <div className="flex items-center gap-2">
-                    <a
-                      href={client.links.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      <Github className="w-4 h-4" />
-                    </a>
-                    {client.links.website && (
+          {/* Consensus Layer */}
+          <h3 className="text-xl font-semibold text-foreground mb-4">Consensus Layer</h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {consensusClients.map((client) => (
+              <Card key={client.name}>
+                <CardContent className="p-5">
+                  <div className="flex items-center justify-between mb-2">
+                    <h4 className="font-semibold text-foreground">{client.name}</h4>
+                    <ComplianceStatus status={client.specCompliance} />
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3">{client.description}</p>
+                  <div className="flex items-center justify-between">
+                    <Badge variant="outline" className="text-xs">{client.language}</Badge>
+                    <div className="flex items-center gap-2">
                       <a
-                        href={client.links.website}
+                        href={client.links.github}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-muted-foreground hover:text-foreground transition-colors"
                       >
-                        <ExternalLink className="w-4 h-4" />
+                        <Github className="w-4 h-4" />
                       </a>
-                    )}
+                      {client.links.website && (
+                        <a
+                          href={client.links.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-foreground transition-colors"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Consensus Layer */}
-        <h3 className="text-xl font-semibold text-foreground mb-4">Consensus Layer</h3>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {consensusClients.map((client) => (
-            <Card key={client.name}>
-              <CardContent className="p-5">
-                <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-semibold text-foreground">{client.name}</h4>
-                  <ComplianceStatus status={client.specCompliance} />
-                </div>
-                <p className="text-sm text-muted-foreground mb-3">{client.description}</p>
-                <div className="flex items-center justify-between">
-                  <Badge variant="outline" className="text-xs">{client.language}</Badge>
-                  <div className="flex items-center gap-2">
-                    <a
-                      href={client.links.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      <Github className="w-4 h-4" />
-                    </a>
-                    {client.links.website && (
-                      <a
-                        href={client.links.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        <ExternalLink className="w-4 h-4" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* External Resources */}
-      <section className="mb-16">
-        <h2 className="text-2xl font-bold text-foreground mb-4">External Dashboards</h2>
-        <p className="text-muted-foreground mb-6">
-          Detailed tracking data is maintained on external dashboards managed by the team.
-        </p>
-        <div className="grid sm:grid-cols-2 gap-4">
-          <a
-            href="https://eth-act.github.io/zkevm-test-monitor/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block"
-          >
-            <Card className="h-full">
-              <CardContent className="p-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <h3 className="font-semibold text-foreground">RISC-V Compliance Test Monitor</h3>
-                  <ExternalLink className="w-4 h-4 text-muted-foreground" />
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  Nightly ISA compliance test results across all zkVM implementations.
-                  Tracks pass/fail rates for RISC-V Architecture Tests v3.9.1.
-                </p>
-              </CardContent>
-            </Card>
-          </a>
-        </div>
-      </section>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </section>
+      )}
     </PageLayout>
   );
 }
