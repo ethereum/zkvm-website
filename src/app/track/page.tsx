@@ -253,21 +253,26 @@ export default function TrackPage() {
           <h3 className="text-xl font-semibold text-foreground mb-4">Execution Layer</h3>
           <div className="divide-y divide-border mb-12">
             {executionClients.map((client) => (
-              <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors">
-                <div className="flex items-center gap-3 mb-1">
-                  <h4 className="text-2xl font-bold text-foreground">{client.name}</h4>
-                  <ComplianceStatus status={client.specCompliance} />
-                  <Badge variant="outline" className="text-xs">{client.language}</Badge>
+              <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold flex-shrink-0" style={{ backgroundColor: 'var(--accent-blue)', color: 'var(--accent-btn-text)' }}>
+                  {client.name[0]}
                 </div>
-                <p className="text-sm text-muted-foreground mb-2 max-w-[700px]">{client.description}</p>
-                <div className="flex items-center gap-3">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-3 mb-1">
+                    <h4 className="text-2xl font-bold text-foreground">{client.name}</h4>
+                    <ComplianceStatus status={client.specCompliance} />
+                    <Badge variant="outline" className="text-xs">{client.language}</Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground max-w-[700px]">{client.description}</p>
+                </div>
+                <div className="flex items-center gap-3 flex-shrink-0 pt-1">
                   <a
                     href={client.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1"
                   >
-                    <Github className="w-3.5 h-3.5" /> GitHub
+                    <Github className="w-4 h-4" />
                   </a>
                   {client.links.website && (
                     <a
@@ -276,7 +281,7 @@ export default function TrackPage() {
                       rel="noopener noreferrer"
                       className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1"
                     >
-                      <ExternalLink className="w-3.5 h-3.5" /> Website
+                      <ExternalLink className="w-4 h-4" />
                     </a>
                   )}
                 </div>
@@ -288,21 +293,26 @@ export default function TrackPage() {
           <h3 className="text-xl font-semibold text-foreground mb-4">Consensus Layer</h3>
           <div className="divide-y divide-border">
             {consensusClients.map((client) => (
-              <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors">
-                <div className="flex items-center gap-3 mb-1">
-                  <h4 className="text-2xl font-bold text-foreground">{client.name}</h4>
-                  <ComplianceStatus status={client.specCompliance} />
-                  <Badge variant="outline" className="text-xs">{client.language}</Badge>
+              <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
+                <div className="w-12 h-12 rounded-lg flex items-center justify-center text-lg font-bold flex-shrink-0" style={{ backgroundColor: 'var(--accent-blue)', color: 'var(--accent-btn-text)' }}>
+                  {client.name[0]}
                 </div>
-                <p className="text-sm text-muted-foreground mb-2 max-w-[700px]">{client.description}</p>
-                <div className="flex items-center gap-3">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-3 mb-1">
+                    <h4 className="text-2xl font-bold text-foreground">{client.name}</h4>
+                    <ComplianceStatus status={client.specCompliance} />
+                    <Badge variant="outline" className="text-xs">{client.language}</Badge>
+                  </div>
+                  <p className="text-sm text-muted-foreground max-w-[700px]">{client.description}</p>
+                </div>
+                <div className="flex items-center gap-3 flex-shrink-0 pt-1">
                   <a
                     href={client.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1"
                   >
-                    <Github className="w-3.5 h-3.5" /> GitHub
+                    <Github className="w-4 h-4" />
                   </a>
                   {client.links.website && (
                     <a
@@ -311,7 +321,7 @@ export default function TrackPage() {
                       rel="noopener noreferrer"
                       className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1"
                     >
-                      <ExternalLink className="w-3.5 h-3.5" /> Website
+                      <ExternalLink className="w-4 h-4" />
                     </a>
                   )}
                 </div>
