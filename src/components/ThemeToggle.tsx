@@ -26,7 +26,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="icon"
       className="w-9 h-9 hover:opacity-70"
-      style={{ color: isDark ? "#001B2E" : "#F8F4ED" }}
+      style={{ color: isDark ? "#C6D6D7" : "#2A4B5F" }}
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label="Toggle theme"
     >

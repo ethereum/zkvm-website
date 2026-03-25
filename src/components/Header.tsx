@@ -22,7 +22,7 @@ const Header = () => {
   useEffect(() => setMounted(true), []);
 
   const isDark = mounted && resolvedTheme === "dark";
-  const textColor = isDark ? "#001B2E" : "#F8F4ED";
+  const textColor = isDark ? "#C6D6D7" : "#2A4B5F";
 
   const navItems = [
     { href: "/track", label: "Track" },
@@ -32,16 +32,16 @@ const Header = () => {
 
   return (
     <header
-      className="fixed top-0 w-full backdrop-blur-md z-[100] border-b shadow-sm"
+      className="fixed top-0 w-full z-[100]"
       style={{
-        backgroundColor: 'color-mix(in srgb, var(--accent-blue) 97%, transparent)',
-        borderColor: isDark ? "rgba(10,22,40,0.2)" : "rgba(255,255,255,0.2)",
+        backgroundColor: isDark ? '#001B2E' : '#F8F4ED',
+        borderBottom: `2px solid ${isDark ? 'rgba(227,92,56,0.3)' : '#E35C38'}`,
       }}
     >
       <nav className="max-w-[1200px] mx-auto px-4 py-4 flex items-center justify-between">
         <div className="logo flex items-center">
           <Link href="/" className="flex items-center">
-            <Logo className="h-9 w-auto" variant="header" />
+            <Logo className="h-9 w-auto" variant="blue" />
           </Link>
         </div>
 
