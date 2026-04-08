@@ -7,25 +7,11 @@ import testMonitorData from "@/data/test-monitor-summary.json";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink, CheckCircle, XCircle, Clock, Github } from "lucide-react";
-import Image from "next/image";
-
-function ClientFavicon({ website, name }: { website?: string; name: string }) {
-  if (!website) {
-    return (
-      <div className="w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0" style={{ backgroundColor: 'var(--accent-blue)', color: 'var(--accent-btn-text)' }}>
-        {name.slice(0, 2)}
-      </div>
-    );
-  }
-  const domain = new URL(website).hostname;
+function ClientIcon({ name }: { name: string }) {
   return (
-    <Image
-      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=64`}
-      alt={name}
-      width={40}
-      height={40}
-      className="w-10 h-10 rounded-lg flex-shrink-0"
-    />
+    <div className="w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0" style={{ backgroundColor: 'var(--accent-blue)', color: 'var(--accent-btn-text)' }}>
+      {name.slice(0, 2)}
+    </div>
   );
 }
 
@@ -244,7 +230,7 @@ export default function TrackPage() {
           <div className="divide-y divide-border mb-12">
             {executionClients.map((client) => (
               <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
-                <ClientFavicon website={client.links.website} name={client.name} />
+                <ClientIcon name={client.name} />
                 <div className="flex-1 min-w-0">
                   <h4 className="text-3xl font-bold text-foreground">{client.name}</h4>
                   <div className="flex items-center gap-2 mt-1 mb-1 flex-wrap">
@@ -282,7 +268,7 @@ export default function TrackPage() {
           <div className="divide-y divide-border">
             {consensusClients.map((client) => (
               <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
-                <ClientFavicon website={client.links.website} name={client.name} />
+                <ClientIcon name={client.name} />
                 <div className="flex-1 min-w-0">
                   <h4 className="text-3xl font-bold text-foreground">{client.name}</h4>
                   <div className="flex items-center gap-2 mt-1 mb-1 flex-wrap">
