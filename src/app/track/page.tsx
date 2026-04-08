@@ -103,7 +103,15 @@ export default function TrackPage() {
               </a>. Data updated daily.
             </p>
             <p className="text-xs text-muted-foreground mb-8">
-              Last synced: {new Date(testMonitorData.lastUpdated).toLocaleDateString()}
+              Last synced: {new Date(testMonitorData.lastUpdated).toLocaleDateString()} · Source:{" "}
+              <a
+                href="https://github.com/eth-act/zkevm-test-monitor"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--accent-link)] hover:underline inline-flex items-center gap-1"
+              >
+                github.com/eth-act/zkevm-test-monitor <ExternalLink className="w-3 h-3" />
+              </a>
             </p>
 
             <div className="overflow-x-auto">
