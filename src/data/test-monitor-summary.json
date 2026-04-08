@@ -1,82 +1,131 @@
 {
-  "lastUpdated": "2026-04-08T14:44:46.671Z",
+  "lastUpdated": "2026-04-08T15:00:14.603Z",
   "zkvms": {
     "airbender": {
       "isa": "RV32IM",
       "commit": "6353d63d",
-      "monitorCommit": "283ec44d",
       "lastRun": "2026-03-19T16:50:16Z",
-      "passed": 0,
-      "failed": 72,
-      "total": 72,
-      "passRate": "0.0",
-      "isRV64": false
+      "isRV64": false,
+      "full": {
+        "passed": 42,
+        "failed": 5,
+        "total": 47,
+        "passRate": "89.4"
+      },
+      "standard": {
+        "passed": 0,
+        "failed": 72,
+        "total": 72,
+        "passRate": "0.0"
+      }
     },
     "jolt": {
       "isa": "RV64IMAC",
       "commit": "3adde10f",
-      "monitorCommit": "283ec44d",
       "lastRun": "2026-03-19T16:27:24Z",
-      "passed": 62,
-      "failed": 8,
-      "total": 72,
-      "passRate": "86.1",
-      "isRV64": true
+      "isRV64": true,
+      "full": {
+        "passed": 108,
+        "failed": 11,
+        "total": 119,
+        "passRate": "90.8"
+      },
+      "standard": {
+        "passed": 62,
+        "failed": 8,
+        "total": 72,
+        "passRate": "86.1"
+      }
     },
     "openvm": {
       "isa": "RV32IM",
       "commit": "bf11b4a5",
-      "monitorCommit": "283ec44d",
       "lastRun": "2026-03-19T16:23:41Z",
-      "passed": 0,
-      "failed": 72,
-      "total": 72,
-      "passRate": "0.0",
-      "isRV64": false
+      "isRV64": false,
+      "full": {
+        "passed": 47,
+        "failed": 0,
+        "total": 47,
+        "passRate": "100.0"
+      },
+      "standard": {
+        "passed": 0,
+        "failed": 72,
+        "total": 72,
+        "passRate": "0.0"
+      }
     },
     "pico": {
       "isa": "RV32IM",
       "commit": "e4d8f22d",
-      "monitorCommit": "283ec44d",
       "lastRun": "2026-03-19T16:25:51Z",
-      "passed": 0,
-      "failed": 72,
-      "total": 72,
-      "passRate": "0.0",
-      "isRV64": false
+      "isRV64": false,
+      "full": {
+        "passed": 45,
+        "failed": 2,
+        "total": 47,
+        "passRate": "95.7"
+      },
+      "standard": {
+        "passed": 0,
+        "failed": 72,
+        "total": 72,
+        "passRate": "0.0"
+      }
     },
     "r0vm": {
       "isa": "RV32IM",
       "commit": "6bc23889",
-      "monitorCommit": "283ec44d",
       "lastRun": "2026-03-19T16:25:59Z",
-      "passed": 0,
-      "failed": 72,
-      "total": 72,
-      "passRate": "0.0",
-      "isRV64": false
+      "isRV64": false,
+      "full": {
+        "passed": 46,
+        "failed": 1,
+        "total": 47,
+        "passRate": "97.9"
+      },
+      "standard": {
+        "passed": 0,
+        "failed": 72,
+        "total": 72,
+        "passRate": "0.0"
+      }
     },
     "sp1": {
       "isa": "RV64IM",
       "commit": "213fc1ab",
-      "monitorCommit": "283ec44d",
       "lastRun": "2026-03-19T16:24:45Z",
-      "passed": 62,
-      "failed": 10,
-      "total": 72,
-      "passRate": "86.1",
-      "isRV64": true
+      "isRV64": true,
+      "full": {
+        "passed": 62,
+        "failed": 2,
+        "total": 64,
+        "passRate": "96.9"
+      },
+      "standard": {
+        "passed": 62,
+        "failed": 10,
+        "total": 72,
+        "passRate": "86.1"
+      }
     },
     "zisk": {
       "isa": "RV64IMFDAC",
       "commit": "aacf0a73",
-      "monitorCommit": "2070faee",
       "lastRun": "2026-03-20T14:49:25Z",
-      "passed": 63,
-      "failed": 1,
-      "total": 72,
-      "passRate": "87.5",
-      "isRV64": true
+      "isRV64": true,
+      "full": {
+        "passed": 236,
+        "failed": 3,
+        "total": 239,
+        "passRate": "98.7"
+      },
+      "standard": {
+        "passed": 63,
+        "failed": 1,
+        "total": 72,
+        "passRate": "87.5"
+      }
     }
   }
 }

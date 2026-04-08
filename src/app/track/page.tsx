@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import PageLayout from "@/components/PageLayout";
-import { zkevmData, clientData } from "@/data/zkevm-tracker";
+import { clientData } from "@/data/zkevm-tracker";
+import testMonitorData from "@/data/test-monitor-summary.json";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink, CheckCircle, XCircle, Clock, Github } from "lucide-react";
@@ -90,13 +91,19 @@ export default function TrackPage() {
       {activeTab === "zkvm" && (
         <>
           <section className="mb-24">
-            <p className="text-muted-foreground mb-8">
-              zkVMs under active consideration for Ethereum L1 integration. Only implementations
-              meeting our{" "}
-              <a href="#listing-criteria" className="text-[var(--accent-link)] hover:underline">
-                inclusion criteria
-              </a>{" "}
-              are listed.
+            <p className="text-muted-foreground mb-2">
+              ISA compliance test results from the{" "}
+              <a
+                href="https://eth-act.github.io/zkevm-test-monitor/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--accent-link)] hover:underline inline-flex items-center gap-1"
+              >
+                RISC-V Compliance Test Monitor <ExternalLink className="w-3 h-3" />
+              </a>. Data updated daily.
+            </p>
+            <p className="text-xs text-muted-foreground mb-8">
+              Last synced: {new Date(testMonitorData.lastUpdated).toLocaleDateString()}
             </p>
 
             <div className="overflow-x-auto">
@@ -104,93 +111,54 @@ export default function TrackPage() {
                 <thead>
                   <tr className="border-b-2 border-border">
                     <th className="text-left py-3 px-4 font-semibold text-foreground">zkVM</th>
-                    <th className="text-center py-3 px-4 font-semibold text-foreground">Open Source</th>
-                    <th className="text-center py-3 px-4 font-semibold text-foreground">ISA Compliance (RV64)</th>
-                    <th className="text-center py-3 px-4 font-semibold text-foreground">Real-Time Proving</th>
-                    <th className="text-center py-3 px-4 font-semibold text-foreground">Soundcalc Integration</th>
-                    <th className="text-left py-3 px-4 font-semibold text-foreground">Links</th>
+                    <th className="text-left py-3 px-4 font-semibold text-foreground">Commit</th>
+                    <th className="text-left py-3 px-4 font-semibold text-foreground">ISA</th>
+                    <th className="text-center py-3 px-4 font-semibold text-foreground">Full ISA</th>
+                    <th className="text-center py-3 px-4 font-semibold text-foreground">Standard ISA</th>
+                    <th className="text-left py-3 px-4 font-semibold text-foreground">Last Run</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {zkevmData.map((zkvm) => {
-                    const isRV64 = zkvm.architecture.startsWith('rv64');
-                    return (
-                      <tr key={zkvm.name} className="border-b border-border hover:bg-muted/30 transition-colors">
-                        <td className="py-4 px-4">
-                          <div>
-                            <span className="font-semibold text-foreground">{zkvm.name}</span>
-                            <div className="text-sm text-muted-foreground mt-0.5">
-                              {zkvm.architecture}
-                            </div>
-                          </div>
-                        </td>
-                        <td className="py-4 px-4 text-center">
-                          <div className="flex justify-center">
-                            <ReadinessCheck pass={zkvm.openSource} />
-                          </div>
-                        </td>
-                        <td className="py-4 px-4 text-center">
-                          <div className="flex flex-col items-center gap-1">
-                            <ReadinessCheck pass={isRV64} />
-                            <span className="text-xs text-muted-foreground">
-                              {zkvm.testResults.passed}/{zkvm.testResults.total} tests
-                            </span>
-                          </div>
-                        </td>
-                        <td className="py-4 px-4 text-center">
-                          <div className="flex justify-center">
-                            <Clock className="w-5 h-5 text-orange-500" />
-                          </div>
-                          <span className="text-xs text-muted-foreground">TBD</span>
-                        </td>
-                        <td className="py-4 px-4 text-center">
-                          <div className="flex justify-center">
-                            <Clock className="w-5 h-5 text-orange-500" />
-                          </div>
-                          <span className="text-xs text-muted-foreground">TBD</span>
-                        </td>
-                        <td className="py-4 px-4">
-                          <div className="flex items-center gap-2">
-                            <a
-                              href={zkvm.links.github}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-muted-foreground hover:text-foreground transition-colors"
-                              title="GitHub"
-                            >
-                              <Github className="w-4 h-4" />
-                            </a>
-                            <a
-                              href={zkvm.links.docs}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-muted-foreground hover:text-foreground transition-colors"
-                              title="Documentation"
-                            >
-                              <ExternalLink className="w-4 h-4" />
-                            </a>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                  {Object.entries(testMonitorData.zkvms)
+                    .sort(([,a], [,b]) => (b.isRV64 ? 1 : 0) - (a.isRV64 ? 1 : 0))
+                    .map(([name, zkvm]) => (
+                    <tr key={name} className="border-b border-border hover:bg-muted/30 transition-colors">
+                      <td className="py-4 px-4">
+                        <span className="font-semibold text-foreground uppercase">{name}</span>
+                      </td>
+                      <td className="py-4 px-4">
+                        <code className="text-xs text-muted-foreground">{zkvm.commit}</code>
+                      </td>
+                      <td className="py-4 px-4">
+                        <span className="text-sm text-foreground">{zkvm.isa}</span>
+                      </td>
+                      <td className="py-4 px-4 text-center">
+                        {zkvm.full ? (
+                          <span className={`text-sm font-medium ${zkvm.full.passed === zkvm.full.total ? 'text-green-600' : zkvm.full.passed > 0 ? 'text-foreground' : 'text-red-500'}`}>
+                            {zkvm.full.passed}/{zkvm.full.total}
+                          </span>
+                        ) : (
+                          <span className="text-muted-foreground">—</span>
+                        )}
+                      </td>
+                      <td className="py-4 px-4 text-center">
+                        {zkvm.standard ? (
+                          <span className={`text-sm font-medium ${zkvm.standard.passed === zkvm.standard.total ? 'text-green-600' : zkvm.standard.passed > 0 ? 'text-foreground' : 'text-red-500'}`}>
+                            {zkvm.standard.passed}/{zkvm.standard.total}
+                          </span>
+                        ) : (
+                          <span className="text-muted-foreground">—</span>
+                        )}
+                      </td>
+                      <td className="py-4 px-4">
+                        <span className="text-xs text-muted-foreground">
+                          {zkvm.lastRun ? new Date(zkvm.lastRun).toLocaleDateString() : '—'}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
-            </div>
-
-            <div className="mt-4 p-4 bg-muted/50 rounded-lg border border-border">
-              <p className="text-sm text-muted-foreground">
-                Detailed ISA compliance results are tracked on the{" "}
-                <a
-                  href="https://eth-act.github.io/zkevm-test-monitor/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[var(--accent-link)] hover:underline inline-flex items-center gap-1"
-                >
-                  RISC-V Compliance Test Monitor <ExternalLink className="w-3 h-3" />
-                </a>
-                , which runs nightly against the latest RISC-V Architecture Tests v3.9.1.
-              </p>
             </div>
           </section>
 

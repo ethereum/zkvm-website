@@ -28,9 +28,11 @@ jobs:
           mkdir -p src/data/test-monitor-raw
           ZKVMS="zisk jolt sp1 r0vm openvm pico airbender"
           for zkvm in $ZKVMS; do
-            echo "Fetching ${zkvm}..."
-            gh api "repos/eth-act/zkevm-test-monitor/contents/data/history/${zkvm}-act4-standard.json" \
-              --jq '.content' 2>/dev/null | base64 -d > "src/data/test-monitor-raw/${zkvm}.json" 2>/dev/null || true
+            for suite in act4-standard act4-full; do
+              echo "Fetching ${zkvm} ${suite}..."
+              gh api "repos/eth-act/zkevm-test-monitor/contents/data/history/${zkvm}-${suite}.json" \
+                --jq '.content' 2>/dev/null | base64 -d > "src/data/test-monitor-raw/${zkvm}-${suite}.json" 2>/dev/null || true
+            done
           done
 
       - name: Transform data for website
