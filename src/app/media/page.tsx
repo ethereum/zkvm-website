@@ -1,40 +1,49 @@
+"use client";
+
+import { useState } from "react";
 import PageLayout from "@/components/PageLayout";
 import { mediaData } from "@/data/zkevm-tracker";
 import playlistData from "@/data/youtube-playlist.json";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ChevronDown } from "lucide-react";
 
 function getYouTubeId(url: string): string | null {
   const match = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
   return match ? match[1] : null;
 }
 
+const allMedia = [
+  ...mediaData.map((item) => ({
+    title: item.title,
+    url: item.url,
+    date: item.date,
+    type: item.type === 'talk' ? 'Talk' : item.type === 'podcast' ? 'Podcast' : item.type === 'blog-external' ? 'Article' : 'Video',
+    event: item.event,
+    speaker: item.speaker,
+  })),
+  ...playlistData.videos.map((video) => ({
+    title: video.title,
+    url: video.url,
+    date: video.date,
+    type: 'Breakout Call',
+    event: 'L1-zkEVM Breakout',
+    speaker: undefined,
+  })),
+].sort((a, b) => b.date.localeCompare(a.date));
+
+const types = ['All', ...Array.from(new Set(allMedia.map((m) => m.type)))];
+
 export default function MediaPage() {
-  const allMedia = [
-    ...mediaData.map((item) => ({
-      title: item.title,
-      url: item.url,
-      date: item.date,
-      type: item.type === 'talk' ? 'Talk' : item.type === 'podcast' ? 'Podcast' : item.type === 'blog-external' ? 'Article' : 'Video',
-      event: item.event,
-      speaker: item.speaker,
-    })),
-    ...playlistData.videos.map((video) => ({
-      title: video.title,
-      url: video.url,
-      date: video.date,
-      type: 'Breakout Call',
-      event: 'L1-zkEVM Breakout',
-      speaker: undefined,
-    })),
-  ].sort((a, b) => b.date.localeCompare(a.date));
+  const [filter, setFilter] = useState('All');
+
+  const filtered = filter === 'All' ? allMedia : allMedia.filter((m) => m.type === filter);
 
   return (
     <PageLayout
       title="Media"
       description="Talks, presentations, and external content from the zkVM team."
     >
-      {/* Playlist link */}
-      <div className="mb-10">
+      {/* Filter + playlist link */}
+      <div className="flex items-center justify-between mb-10 flex-wrap gap-4">
         <a
           href={playlistData.playlistUrl}
           target="_blank"
@@ -43,11 +52,24 @@ export default function MediaPage() {
         >
           View full L1-zkEVM Breakout playlist on YouTube <ExternalLink className="w-3 h-3" />
         </a>
+
+        <div className="relative">
+          <select
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="appearance-none bg-transparent border border-border rounded px-4 py-2 pr-8 text-sm text-foreground cursor-pointer focus:outline-none focus:ring-1 focus:ring-[var(--accent-blue)]"
+          >
+            {types.map((type) => (
+              <option key={type} value={type}>{type}</option>
+            ))}
+          </select>
+          <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
+        </div>
       </div>
 
       {/* Thumbnail grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {allMedia.map((item, i) => {
+        {filtered.map((item, i) => {
           const videoId = getYouTubeId(item.url);
           return (
             <a
