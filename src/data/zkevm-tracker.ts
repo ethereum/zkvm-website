@@ -195,4 +195,10 @@ export const mediaData: MediaItem[] = [
     url: 'https://www.youtube.com/watch?v=xPxH0dNlDUQ',
     date: '2026-03-01',
   },
+  {
+    title: 'Ethereum\'s Last Big Upgrade: The zkEVM | Ansgar Dietrichs',
+    type: 'talk',
+    url: 'https://www.youtube.com/watch?v=QK6yyRdJ-eY',
+    date: '2026-02-23',
+  },
 ];

@@ -20,7 +20,7 @@ export default function Home() {
                 <span className="text-[clamp(2rem,4vw,3rem)] block">Through <span style={{ color: 'var(--accent-orange)' }}>Zero Knowledge Proofs</span></span>
               </h1>
               <p className="font-['Inter',sans-serif] text-[clamp(1rem,2vw,1.2rem)] text-muted-foreground mb-10 leading-[1.7] max-w-[650px]">
-                The zkVM team at the Ethereum Foundation is working on shipping scaling of the Ethereum mainnet through zero-knowledge virtual machines (zkVMs).
+                The zkEVM team at the Ethereum Foundation is working on shipping scaling of the Ethereum mainnet through zero-knowledge virtual machines (zkVMs).
               </p>
               <div className="flex gap-4 flex-wrap">
                 <Link
