@@ -1,7 +1,12 @@
 import PageLayout from "@/components/PageLayout";
 import { mediaData } from "@/data/zkevm-tracker";
 import playlistData from "@/data/youtube-playlist.json";
-import { ExternalLink, Video, Presentation } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+
+function getYouTubeId(url: string): string | null {
+  const match = url.match(/(?:v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+  return match ? match[1] : null;
+}
 
 export default function MediaPage() {
   const allMedia = [
@@ -9,19 +14,15 @@ export default function MediaPage() {
       title: item.title,
       url: item.url,
       date: item.date,
-      type: item.type,
-      description: item.description,
-      speaker: item.speaker,
       event: item.event,
+      speaker: item.speaker,
     })),
     ...playlistData.videos.map((video) => ({
       title: video.title,
       url: video.url,
       date: video.date,
-      type: 'video' as const,
-      description: undefined,
-      speaker: undefined,
       event: 'L1-zkEVM Breakout',
+      speaker: undefined,
     })),
   ].sort((a, b) => b.date.localeCompare(a.date));
 
@@ -42,35 +43,50 @@ export default function MediaPage() {
         </a>
       </div>
 
-      {/* All media as rows */}
-      <div className="divide-y divide-border">
-        {allMedia.map((item, i) => (
-          <a
-            key={i}
-            href={item.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block py-8 px-4 -mx-4 rounded-lg group hover:bg-muted/50 transition-colors"
-          >
-            <div className="flex items-center gap-2 mb-1">
-              <span className="text-sm text-muted-foreground">{item.date}</span>
-              {item.event && (
-                <span className="text-xs text-muted-foreground">· {item.event}</span>
+      {/* Thumbnail grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {allMedia.map((item, i) => {
+          const videoId = getYouTubeId(item.url);
+          return (
+            <a
+              key={i}
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block"
+            >
+              {/* Thumbnail */}
+              <div className="relative aspect-video rounded-lg overflow-hidden mb-3 bg-muted">
+                {videoId ? (
+                  <img
+                    src={`https://img.youtube.com/vi/${videoId}/hqdefault.jpg`}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                    <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                )}
+                {/* Play overlay */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/20">
+                  <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--accent-orange)' }}>
+                    <svg className="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                  </div>
+                </div>
+              </div>
+
+              {/* Info */}
+              <span className="text-xs text-muted-foreground">{item.date}{item.event && ` · ${item.event}`}</span>
+              <h3 className="text-base font-semibold text-foreground group-hover:text-[var(--accent-orange)] transition-colors mt-1 line-clamp-2">
+                {item.title}
+              </h3>
+              {item.speaker && (
+                <span className="text-xs text-muted-foreground mt-1 block">{item.speaker}</span>
               )}
-            </div>
-            <h3 className="text-2xl font-bold text-foreground group-hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-2">
-              {item.type === 'video' ? <Video className="w-5 h-5 flex-shrink-0" /> : <Presentation className="w-5 h-5 flex-shrink-0" />}
-              {item.title}
-              <ExternalLink className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
-            </h3>
-            {item.description && (
-              <p className="text-sm text-muted-foreground mt-2 max-w-[700px]">{item.description}</p>
-            )}
-            {item.speaker && (
-              <span className="text-sm text-muted-foreground mt-1 block">{item.speaker}</span>
-            )}
-          </a>
-        ))}
+            </a>
+          );
+        })}
       </div>
     </PageLayout>
   );
