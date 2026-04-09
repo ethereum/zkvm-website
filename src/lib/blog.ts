@@ -7,7 +7,39 @@ import remarkMath from 'remark-math';
 import remarkRehype from 'remark-rehype';
 import rehypeKatex from 'rehype-katex';
 import rehypeStringify from 'rehype-stringify';
+import { visit } from 'unist-util-visit';
+import type { Root, Element } from 'hast';
 import { BlogPost, BlogPostSummary } from './types';
+
+/**
+ * Rehype plugin: wrap <img> tags in <a> links that open the image in a new tab.
+ */
+function rehypeImageLinks() {
+  return (tree: Root) => {
+    visit(tree, 'element', (node: Element, index, parent) => {
+      if (
+        node.tagName === 'img' &&
+        parent &&
+        'children' in parent &&
+        typeof index === 'number' &&
+        (parent as Element).tagName !== 'a'
+      ) {
+        const src = (node.properties?.src as string) || '';
+        const link: Element = {
+          type: 'element',
+          tagName: 'a',
+          properties: {
+            href: src,
+            target: '_blank',
+            rel: 'noopener noreferrer',
+          },
+          children: [node],
+        };
+        (parent as Element).children[index] = link;
+      }
+    });
+  };
+}
 
 const postsDirectory = path.join(process.cwd(), 'src/content/blog');
 
@@ -53,6 +85,7 @@ export async function getBlogPost(slug: string): Promise<BlogPost> {
     .use(remarkMath)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeKatex)
+    .use(rehypeImageLinks)
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(content);
 
