@@ -16,7 +16,7 @@ export default function BlogCard({ post, isHighlighted = false }: BlogCardProps)
           <div className="flex items-center gap-3 mb-3">
             <span className="text-sm text-muted-foreground">{post.date}</span>
             {post.featured && (
-              <Badge variant="default" className="text-xs">
+              <Badge variant="default" className="text-sm">
                 Featured
               </Badge>
             )}

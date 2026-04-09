@@ -17,7 +17,7 @@ const Footer = () => {
 
         {/* Useful Links */}
         <div className="mb-4">
-          <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Useful Links</h4>
+          <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">Useful Links</h4>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             <li>
               <a href="https://eips.ethereum.org/EIPS/eip-8025" target="_blank" rel="noopener noreferrer" className="text-sm text-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1">
@@ -39,7 +39,7 @@ const Footer = () => {
 
         {/* GitHub */}
         <div>
-          <h4 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">GitHub</h4>
+          <h4 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-3">GitHub</h4>
           <ul className="flex flex-wrap gap-x-6 gap-y-2">
             <li>
               <a href="https://github.com/ethereum/zkvm-website" target="_blank" rel="noopener noreferrer" className="text-sm text-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1">

@@ -105,12 +105,12 @@ export default function MediaPage() {
               </div>
 
               {/* Info */}
-              <span className="text-xs text-muted-foreground">{item.date}{item.event && ` · ${item.event}`}</span>
+              <span className="text-sm text-muted-foreground">{item.date}{item.event && ` · ${item.event}`}</span>
               <h3 className="text-base font-semibold text-foreground group-hover:text-[var(--accent-orange)] transition-colors mt-1 line-clamp-2">
                 {item.title}
               </h3>
               {item.speaker && (
-                <span className="text-xs text-muted-foreground mt-1 block">{item.speaker}</span>
+                <span className="text-sm text-muted-foreground mt-1 block">{item.speaker}</span>
               )}
             </a>
           );

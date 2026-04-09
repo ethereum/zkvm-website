@@ -1,1 +1,12 @@
 [  214250ms] [ERROR] [Turbopack HMR] Expected module to match pattern: [project]/git/zkvm-website/src/data/youtube-playlist.json (json) @ http://localhost:3000/_next/static/chunks/b883b_next_dist_67a02130._.js:2359
+[ 9631374ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/media?_rsc=1okl9:0
+[ 9631758ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/media?_rsc=1okl9:0
+[ 9631880ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/media?_rsc=1okl9:0
+[ 9631989ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/media?_rsc=1okl9:0
+[ 9632092ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/media?_rsc=1okl9:0
+[ 9632188ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/media?_rsc=1okl9:0
+[ 9632309ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/media?_rsc=1okl9:0
+[ 9632464ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/media:0
+[ 9632490ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/favicon.ico:0
+[ 9638802ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/:0
+[ 9638831ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/favicon.ico:0

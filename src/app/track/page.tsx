@@ -79,7 +79,7 @@ export default function TrackPage() {
                 RISC-V Compliance Test Monitor <ExternalLink className="w-3 h-3" />
               </a>. Data updated daily.
             </p>
-            <p className="text-xs text-muted-foreground mb-8">
+            <p className="text-sm text-muted-foreground mb-8">
               Last synced: {new Date(testMonitorData.lastUpdated).toLocaleDateString()} · Source:{" "}
               <a
                 href="https://github.com/eth-act/zkevm-test-monitor"
@@ -112,7 +112,7 @@ export default function TrackPage() {
                         <span className="font-semibold text-foreground uppercase">{name}</span>
                       </td>
                       <td className="py-4 px-4">
-                        <code className="text-xs text-muted-foreground">{zkvm.commit}</code>
+                        <code className="text-sm text-muted-foreground">{zkvm.commit}</code>
                       </td>
                       <td className="py-4 px-4">
                         <span className="text-sm text-foreground">{zkvm.isa}</span>
@@ -136,7 +136,7 @@ export default function TrackPage() {
                         )}
                       </td>
                       <td className="py-4 px-4">
-                        <span className="text-xs text-muted-foreground">
+                        <span className="text-sm text-muted-foreground">
                           {zkvm.lastRun ? new Date(zkvm.lastRun).toLocaleDateString() : '—'}
                         </span>
                       </td>
@@ -226,7 +226,7 @@ export default function TrackPage() {
                   <h4 className="text-3xl font-bold text-foreground">{client.name}</h4>
                   <div className="flex items-center gap-2 mt-1 mb-1 flex-wrap">
                     <ComplianceStatus status={client.specCompliance} />
-                    <Badge variant="outline" className="text-xs">{client.language}</Badge>
+                    <Badge variant="outline" className="text-sm">{client.language}</Badge>
                   </div>
                   <p className="text-sm text-muted-foreground max-w-[700px]">{client.description}</p>
                 </div>
@@ -235,7 +235,7 @@ export default function TrackPage() {
                     href={client.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
+                    className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
                   >
                     <Github className="w-3.5 h-3.5" /> GitHub
                   </a>
@@ -244,7 +244,7 @@ export default function TrackPage() {
                       href={client.links.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
+                      className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
                     >
                       <ExternalLink className="w-3.5 h-3.5" /> Website
                     </a>
@@ -264,7 +264,7 @@ export default function TrackPage() {
                   <h4 className="text-3xl font-bold text-foreground">{client.name}</h4>
                   <div className="flex items-center gap-2 mt-1 mb-1 flex-wrap">
                     <ComplianceStatus status={client.specCompliance} />
-                    <Badge variant="outline" className="text-xs">{client.language}</Badge>
+                    <Badge variant="outline" className="text-sm">{client.language}</Badge>
                   </div>
                   <p className="text-sm text-muted-foreground max-w-[700px]">{client.description}</p>
                 </div>
@@ -273,7 +273,7 @@ export default function TrackPage() {
                     href={client.links.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-xs text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
+                    className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
                   >
                     <Github className="w-3.5 h-3.5" /> GitHub
                   </a>
@@ -282,7 +282,7 @@ export default function TrackPage() {
                       href={client.links.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
+                      className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
                     >
                       <ExternalLink className="w-3.5 h-3.5" /> Website
                     </a>
