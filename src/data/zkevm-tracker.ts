@@ -189,4 +189,10 @@ export const mediaData: MediaItem[] = [
     date: '2026-03-01',
     description: 'An overview of the zkEVM team\'s work on scaling Ethereum L1 through zero-knowledge virtual machines.',
   },
+  {
+    title: 'zkEVM Talk',
+    type: 'talk',
+    url: 'https://www.youtube.com/watch?v=xPxH0dNlDUQ',
+    date: '2026-03-01',
+  },
 ];
