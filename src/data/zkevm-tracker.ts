@@ -182,15 +182,11 @@ export const clientData: ClientInfo[] = [
 
 // Media items — talks, videos, external blog posts
 export const mediaData: MediaItem[] = [
-  // Add media items as they come in — talks, YouTube videos, podcasts, etc.
-  // Example:
-  // {
-  //   title: 'Introduction to zkEVM L1 Scaling',
-  //   type: 'talk',
-  //   url: 'https://youtube.com/watch?v=...',
-  //   date: '2026-02-15',
-  //   speaker: 'Kev Wedderburn & Ignacio Hagopian',
-  //   event: 'Ethereum Protocol Fellowship',
-  //   description: 'A comprehensive introduction to the zkEVM team\'s work on L1 scaling.',
-  // },
+  {
+    title: 'zkEVM: Scaling Ethereum with Zero Knowledge Proofs',
+    type: 'talk',
+    url: 'https://www.youtube.com/watch?v=Z0Nad1wB_pY',
+    date: '2026-03-01',
+    description: 'An overview of the zkEVM team\'s work on scaling Ethereum L1 through zero-knowledge virtual machines.',
+  },
 ];

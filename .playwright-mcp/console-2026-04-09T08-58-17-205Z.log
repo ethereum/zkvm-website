@@ -46,3 +46,4 @@ https://react.dev/link/hydration-mismatch
     at performWorkOnRoot (http://localhost:3000/_next/static/chunks/b883b_next_dist_compiled_react-dom_2762548d._.js:7908:176)
     at performWorkOnRootViaSchedulerTask (http://localhost:3000/_next/static/chunks/b883b_next_dist_compiled_react-dom_2762548d._.js:8882:9)
     at MessagePort.performWorkUntilDeadline (http://localhost:3000/_next/static/chunks/b883b_next_dist_compiled_4a4e1bfd._.js:2601:64)
+[   31104ms] [WARNING] Detected `scroll-behavior: smooth` on the `<html>` element. In a future version, Next.js will no longer automatically disable smooth scrolling during route transitions. To prepare for this change, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior @ http://localhost:3000/_next/static/chunks/b883b_next_dist_67a02130._.js:968
