@@ -137,6 +137,14 @@ export const clientData: ClientInfo[] = [
     links: { github: 'https://github.com/lambdaclass/ethrex' },
     specCompliance: 'compliant',
   },
+  {
+    name: 'Zilkworm',
+    type: 'execution',
+    description: 'C++ ZKEVM core by Erigon, targeting zkVM provers with native RISC-V support.',
+    language: 'C++',
+    links: { github: 'https://github.com/erigontech/zilkworm', website: 'https://zilkworm.erigon.tech' },
+    specCompliance: 'in-progress',
+  },
   // Consensus Layer
   {
     name: 'Lighthouse',
