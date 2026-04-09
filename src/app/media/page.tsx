@@ -14,6 +14,7 @@ export default function MediaPage() {
       title: item.title,
       url: item.url,
       date: item.date,
+      type: item.type === 'talk' ? 'Talk' : item.type === 'podcast' ? 'Podcast' : item.type === 'blog-external' ? 'Article' : 'Video',
       event: item.event,
       speaker: item.speaker,
     })),
@@ -21,6 +22,7 @@ export default function MediaPage() {
       title: video.title,
       url: video.url,
       date: video.date,
+      type: 'Breakout Call',
       event: 'L1-zkEVM Breakout',
       speaker: undefined,
     })),
@@ -68,6 +70,10 @@ export default function MediaPage() {
                     <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                   </div>
                 )}
+                {/* Type tag */}
+                <span className="absolute top-2 left-2 text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-black/60 text-white">
+                  {item.type}
+                </span>
                 {/* Play overlay */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/20">
                   <div className="w-14 h-14 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--accent-orange)' }}>
