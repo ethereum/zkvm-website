@@ -44,3 +44,5 @@ old-html.html
 docs
 
 pnpm-lock.yaml
+# Raw test monitor data (intermediate, fetched by CI)
+src/data/test-monitor-raw/

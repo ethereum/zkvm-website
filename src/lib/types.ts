@@ -32,6 +32,8 @@ export interface SupportedClient {
 export interface ZKEVMLinks {
   github: string;
   docs: string;
+  website?: string;
+  license?: string;
 }
 
 export interface TestResults {
@@ -52,4 +54,37 @@ export interface ZKEVMData {
   openSource: boolean;
   supportedClients: SupportedClient[];
   links: ZKEVMLinks;
+}
+
+// Readiness criteria for the ZKVM Readiness table
+export interface ReadinessCriteria {
+  openSource: boolean;
+  isaCompliance: 'pass' | 'fail' | 'partial'; // RV64IM minimum
+  realTimeProving: boolean;
+  soundcalcIntegration: boolean;
+}
+
+// Simplified client info for the Track page
+export interface ClientInfo {
+  name: string;
+  type: 'execution' | 'consensus';
+  description: string;
+  language: string;
+  links: {
+    github: string;
+    website?: string;
+  };
+  specCompliance?: 'compliant' | 'in-progress' | 'not-started';
+}
+
+// Media item for the Media page
+export interface MediaItem {
+  title: string;
+  type: 'talk' | 'video' | 'podcast' | 'blog-external';
+  url: string;
+  date: string;
+  speaker?: string;
+  event?: string;
+  thumbnail?: string;
+  description?: string;
 }

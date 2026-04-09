@@ -8,46 +8,50 @@
 
 @layer base {
   :root {
-    /* Brand Colors - Exact match to prototype */
-    --primary: #0C9FDE; /* Base Blue */
-    --primary-dark: #0A7BB8;
-    --primary-light: #E6F7FF;
-    --dark: #062873;
-    --slate: #334155;
-    --gray: #64748B;
-    --light-gray: #F8FAFC;
-    --white: #FFFFFF;
-    --border-color: #E2E8F0;
+    /* Brand Colors — New palette */
+    --primary: #2A4B5F; /* Deep Ocean */
+    --accent-blue: #2A4B5F; /* Deep Ocean — headings, buttons */
+    --accent-link: #2A4B5F; /* Deep Ocean — links */
+    --accent-orange: #E35C38; /* Sohi Red — hover, highlights */
+    --accent-btn-text: #F8F4ED; /* Crystal Cut */
+    --primary-dark: #001B2E; /* Oxford by Night */
+    --primary-light: #C6D6D7; /* Skydiving */
+    --dark: #001B2E; /* Oxford by Night */
+    --slate: #2A4B5F;
+    --gray: #5A7A8A;
+    --light-gray: #F8F4ED; /* Crystal Cut */
+    --white: #F8F4ED;
+    --border-color: #C6D6D7; /* Skydiving */
     --success: #10B981;
-    --fail: #EF4444;
+    --fail: #E35C38;
 
     /* Tailwind-compatible HSL values */
-    --background: 220 13% 97%;
-    --foreground: 210 22% 22%;
+    --background: 40 33% 95%; /* Crystal Cut */
+    --foreground: 200 38% 27%; /* Deep Ocean */
 
-    --card: 0 0% 100%;
-    --card-foreground: 210 22% 22%;
+    --card: 40 33% 97%;
+    --card-foreground: 200 38% 27%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 22% 22%;
+    --popover: 40 33% 97%;
+    --popover-foreground: 200 38% 27%;
 
-    --primary-foreground: 0 0% 100%;
+    --primary-foreground: 40 33% 95%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 210 22% 22%;
+    --secondary: 192 12% 83%; /* Skydiving */
+    --secondary-foreground: 200 38% 27%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted: 192 12% 88%;
+    --muted-foreground: 200 20% 45%;
 
-    --accent: 210 40% 96%;
-    --accent-foreground: 210 22% 22%;
+    --accent: 192 12% 88%;
+    --accent-foreground: 200 38% 27%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 13 74% 55%;
+    --destructive-foreground: 40 33% 95%;
 
-    --input: 220 13% 91%;
-    --ring: 200 100% 46%;
-    --border: 220 13% 91%;
+    --input: 192 12% 83%;
+    --ring: 200 38% 27%;
+    --border: 192 12% 80%;
 
     --radius: 0.375rem;
 
@@ -85,46 +89,63 @@
   }
 
   .dark {
-    --background: 210 22% 15%;
-    --foreground: 210 40% 98%;
+    --background: 204 100% 9%; /* Oxford by Night */
+    --foreground: 192 12% 83%; /* Skydiving */
 
-    --card: 210 22% 15%;
-    --card-foreground: 210 40% 98%;
+    --card: 204 100% 11%;
+    --card-foreground: 192 12% 83%;
 
-    --popover: 210 22% 15%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 204 100% 11%;
+    --popover-foreground: 192 12% 83%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 200 100% 46%;
-    --primary-dark: 200 100% 85%;
-    --primary-light: 200 100% 15%;
+    --primary: 192 12% 83%;
+    --primary-foreground: 204 100% 9%;
+    --primary-dark: 200 38% 27%;
+    --primary-light: 204 100% 15%;
 
-    --secondary: 217 33% 18%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 204 50% 15%;
+    --secondary-foreground: 192 12% 83%;
 
-    --muted: 217 33% 18%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 204 50% 14%;
+    --muted-foreground: 192 12% 60%;
 
-    --accent: 217 33% 18%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 204 50% 15%;
+    --accent-foreground: 192 12% 83%;
 
-    --destructive: 0 63% 31%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 13 74% 40%;
+    --destructive-foreground: 40 33% 95%;
     --success: 142 76% 45%;
+    --fail: #E35C38;
 
-    --slate: 215 25% 65%;
-    --gray: 215 20% 75%;
-    --border: 217 33% 18%;
-    --input: 217 33% 18%;
-    --ring: 213 27% 84%;
-    --sidebar-background: 240 5.9% 10%;
+    --accent-blue: #C6D6D7; /* Skydiving — headings on dark */
+    --accent-link: #C6D6D7;
+    --accent-orange: #E35C38; /* Sohi Red */
+    --accent-btn-text: #001B2E; /* Oxford by Night */
+    --dark: #C6D6D7;
+    --slate: #8AABB8;
+    --gray: #8AABB8;
+    --light-gray: hsl(204 100% 11%);
+    --white: hsl(204 100% 11%);
+    --border-color: hsl(204 50% 18%);
+
+    --border: 204 50% 18%;
+    --input: 204 50% 18%;
+    --ring: 192 12% 83%;
+
+    --shadow-sm: 0 1px 2px 0 hsl(204 100% 4% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(204 100% 4% / 0.4);
+    --shadow-lg: 0 10px 15px -3px hsl(204 100% 4% / 0.4);
+    --shadow-xl: 0 20px 25px -5px hsl(204 100% 4% / 0.4);
+    --shadow-glow: 0 0 40px hsl(192 12% 83% / 0.1);
+
+    --sidebar-background: 220 20% 8%;
     --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary: 200 100% 46%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent: 220 20% 15%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-border: 217 33% 20%;
+    --sidebar-ring: 200 100% 46%;
   }
 }
 
@@ -143,8 +164,8 @@
   body {
     font-family: 'Space Grotesk', sans-serif;
     line-height: 1.7;
-    color: var(--slate);
-    background: var(--light-gray);
+    color: hsl(var(--foreground));
+    background: hsl(var(--background));
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -152,7 +173,7 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
-    color: var(--dark);
+    color: hsl(var(--foreground));
   }
 }
 
@@ -192,7 +213,7 @@
   .section-title p {
     font-family: 'Inter', sans-serif;
     font-size: 1.125rem;
-    color: var(--gray);
+    color: hsl(var(--muted-foreground));
     line-height: 1.7;
   }
 
@@ -206,20 +227,20 @@
   .graphic {
     width: 100%;
     height: 400px;
-    background: var(--white);
+    background: hsl(var(--card));
     border-radius: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--border-color);
+    border: 1px solid hsl(var(--border));
   }
   
   .text-content p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: var(--slate);
+    color: hsl(var(--foreground) / 0.8);
     margin-top: 1rem;
   }
 
@@ -276,24 +297,24 @@
     font-family: 'Inter', sans-serif;
     font-size: 1.1rem;
     font-weight: 600;
-    color: var(--dark);
+    color: hsl(var(--foreground));
     letter-spacing: -0.25px;
   }
 
   .logo .logo-text span {
     font-weight: 400;
-    color: var(--gray);
+    color: hsl(var(--muted-foreground));
   }
 
-  nav ul {
+  nav:not(.fixed *) ul {
     display: flex;
     list-style: none;
     gap: 2.5rem;
   }
 
-  nav a {
+  nav:not(.fixed *) a {
     font-family: 'Inter', sans-serif;
-    color: var(--slate);
+    color: hsl(var(--foreground) / 0.8);
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
@@ -301,7 +322,7 @@
     transition: color 0.3s ease;
   }
 
-  nav a:hover {
+  nav:not(.fixed *) a:hover {
     color: var(--primary);
   }
 
@@ -343,7 +364,7 @@
   
   .feature-card p {
     font-family: 'Inter', sans-serif;
-    color: var(--gray);
+    color: hsl(var(--muted-foreground));
     font-size: 1rem;
   }
 
@@ -371,7 +392,7 @@
     display: flex;
     gap: 2rem;
     padding: 2.5rem 0;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid hsl(var(--border));
   }
 
   .workstream-item:first-child { padding-top: 0; }
@@ -405,7 +426,7 @@
   .workstream-content p {
     font-family: 'Inter', sans-serif;
     margin-bottom: 1rem;
-    color: var(--slate);
+    color: hsl(var(--muted-foreground));
     line-height: 1.7;
     max-width: 70ch;
   }
@@ -437,7 +458,7 @@
   }
   .zkevm-card .description {
     font-family: 'Inter', sans-serif;
-    color: var(--gray);
+    color: hsl(var(--muted-foreground));
     margin-bottom: 1.5rem;
     font-size: 0.95rem;
   }
@@ -453,7 +474,7 @@
     justify-content: space-between;
     align-items: center;
     font-size: 1rem;
-    border-bottom: 1px solid var(--light-gray);
+    border-bottom: 1px solid hsl(var(--border));
     padding-bottom: 1rem;
   }
    .criteria-item:last-child {
@@ -463,7 +484,7 @@
 
   .criteria-item .name {
     font-weight: 500;
-    color: var(--slate);
+    color: hsl(var(--foreground) / 0.8);
   }
   .criteria-item .value {
     font-weight: 600;
@@ -529,11 +550,11 @@
   /* Footer */
   footer {
     background: transparent;
-    color: var(--slate);
-    padding: 4rem 1rem 2rem;
-    text-align: center;
+    color: hsl(var(--muted-foreground));
+    padding: 1.5rem 1rem;
+    text-align: left;
   }
-  
+
   @media (min-width: 640px) {
     footer {
       padding: 4rem 1.5rem 2rem;
@@ -547,15 +568,15 @@
   }
   
   .footer-logo {
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .footer-logo svg {
      height: 32px;
   }
-  .footer-logo .logo-text { color: var(--slate); }
-  .footer-logo .logo-text span { color: var(--gray); }
+  .footer-logo .logo-text { color: hsl(var(--foreground) / 0.8); }
+  .footer-logo .logo-text span { color: hsl(var(--muted-foreground)); }
 
   .footer-links {
     display: flex;
@@ -567,7 +588,7 @@
 
   .footer-links a {
     font-family: 'Inter', sans-serif;
-    color: var(--slate);
+    color: hsl(var(--foreground) / 0.8);
     text-decoration: none;
     transition: color 0.3s ease;
     font-weight: 500;
@@ -578,7 +599,7 @@
   .footer-copy {
     font-family: 'Inter', sans-serif;
     font-size: 0.9rem;
-    color: var(--slate);
+    color: hsl(var(--muted-foreground));
     padding-top: 2rem;
   }
 
@@ -622,6 +643,23 @@
 
   @keyframes draw-check {
     to { stroke-dashoffset: 0; }
+  }
+
+  /* Accent button hover */
+  .btn-accent {
+    background-color: var(--accent-blue);
+    color: var(--accent-btn-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .btn-accent:hover {
+    background-color: var(--accent-orange);
+  }
+  .btn-outline-hover {
+    transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+  }
+  .btn-outline-hover:hover {
+    border-color: var(--accent-orange);
+    color: var(--accent-orange);
   }
 
   /* Custom scrollbar */

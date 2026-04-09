@@ -1,0 +1,35 @@
+name: Sync YouTube Playlist
+
+on:
+  # Run daily at 07:00 UTC (after test monitor sync)
+  schedule:
+    - cron: '0 7 * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-playlist:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website repo
+        uses: actions/checkout@v4
+
+      - name: Fetch playlist videos
+        run: node scripts/sync-youtube-playlist.js
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet src/data/youtube-playlist.json && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/data/youtube-playlist.json
+          git commit -m "data: sync YouTube playlist $(date -u +%Y-%m-%d)"
+          git push
