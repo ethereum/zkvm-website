@@ -5,21 +5,12 @@ import PageLayout from "@/components/PageLayout";
 import { clientData } from "@/data/zkevm-tracker";
 import testMonitorData from "@/data/test-monitor-summary.json";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { ExternalLink, CheckCircle, XCircle, Clock, Github } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 function ClientIcon({ name }: { name: string }) {
   return (
     <div className="w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0" style={{ backgroundColor: 'var(--accent-blue)', color: 'var(--accent-btn-text)' }}>
       {name.slice(0, 2)}
     </div>
-  );
-}
-
-function ReadinessCheck({ pass }: { pass: boolean }) {
-  return pass ? (
-    <CheckCircle className="w-5 h-5 text-green-600" />
-  ) : (
-    <XCircle className="w-5 h-5 text-red-500" />
   );
 }
 
