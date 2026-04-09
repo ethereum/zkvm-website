@@ -46,7 +46,7 @@ export default function Home() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                 {/* Now */}
                 <div className="relative">
-                  <span className="text-xs font-semibold uppercase tracking-wider block mb-1" style={{ color: 'var(--accent-blue)' }}>Now</span>
+                  <span className="text-sm font-semibold uppercase tracking-wider block mb-1" style={{ color: 'var(--accent-blue)' }}>Now</span>
                   <div className="w-[2px] h-8 z-10 mb-4" style={{ backgroundColor: 'var(--accent-blue)' }} />
                   <h3 className="text-lg font-bold text-foreground mb-2">Optional Proofs</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
@@ -65,7 +65,7 @@ export default function Home() {
 
                 {/* Later */}
                 <div className="relative">
-                  <span className="text-xs font-semibold uppercase tracking-wider block mb-1" style={{ color: 'var(--accent-orange)' }}>Later</span>
+                  <span className="text-sm font-semibold uppercase tracking-wider block mb-1" style={{ color: 'var(--accent-orange)' }}>Later</span>
                   <div className="w-[2px] h-8 z-10 mb-4" style={{ backgroundColor: 'var(--accent-orange)' }} />
                   <h3 className="text-lg font-bold text-foreground mb-2">Mandatory Proofs</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">

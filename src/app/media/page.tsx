@@ -42,17 +42,8 @@ export default function MediaPage() {
       title="Media"
       description="Talks, presentations, and external content from the zkVM team."
     >
-      {/* Filter + playlist link */}
-      <div className="flex items-center justify-between mb-10 flex-wrap gap-4">
-        <a
-          href={playlistData.playlistUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-[var(--accent-link)] hover:underline inline-flex items-center gap-1"
-        >
-          View full L1-zkEVM Breakout playlist on YouTube <ExternalLink className="w-3 h-3" />
-        </a>
-
+      {/* Filter */}
+      <div className="flex items-center justify-end mb-10">
         <div className="relative">
           <select
             value={filter}
@@ -105,12 +96,12 @@ export default function MediaPage() {
               </div>
 
               {/* Info */}
-              <span className="text-xs text-muted-foreground">{item.date}{item.event && ` · ${item.event}`}</span>
+              <span className="text-sm text-muted-foreground">{item.date}{item.event && ` · ${item.event}`}</span>
               <h3 className="text-base font-semibold text-foreground group-hover:text-[var(--accent-orange)] transition-colors mt-1 line-clamp-2">
                 {item.title}
               </h3>
               {item.speaker && (
-                <span className="text-xs text-muted-foreground mt-1 block">{item.speaker}</span>
+                <span className="text-sm text-muted-foreground mt-1 block">{item.speaker}</span>
               )}
             </a>
           );

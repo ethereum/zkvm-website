@@ -79,7 +79,7 @@ export default function TrackPage() {
                 RISC-V Compliance Test Monitor <ExternalLink className="w-3 h-3" />
               </a>. Data updated daily.
             </p>
-            <p className="text-xs text-muted-foreground mb-8">
+            <p className="text-sm text-muted-foreground mb-8">
               Last synced: {new Date(testMonitorData.lastUpdated).toLocaleDateString()} · Source:{" "}
               <a
                 href="https://github.com/eth-act/zkevm-test-monitor"
@@ -112,7 +112,7 @@ export default function TrackPage() {
                         <span className="font-semibold text-foreground uppercase">{name}</span>
                       </td>
                       <td className="py-4 px-4">
-                        <code className="text-xs text-muted-foreground">{zkvm.commit}</code>
+                        <code className="text-sm text-muted-foreground">{zkvm.commit}</code>
                       </td>
                       <td className="py-4 px-4">
                         <span className="text-sm text-foreground">{zkvm.isa}</span>
@@ -136,7 +136,7 @@ export default function TrackPage() {
                         )}
                       </td>
                       <td className="py-4 px-4">
-                        <span className="text-xs text-muted-foreground">
+                        <span className="text-sm text-muted-foreground">
                           {zkvm.lastRun ? new Date(zkvm.lastRun).toLocaleDateString() : '—'}
                         </span>
                       </td>
@@ -220,35 +220,39 @@ export default function TrackPage() {
           <h3 className="text-xl font-semibold mb-4" style={{ color: 'var(--accent-blue)' }}>Execution Layer</h3>
           <div className="divide-y divide-border mb-12">
             {executionClients.map((client) => (
-              <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
-                <ClientIcon name={client.name} />
-                <div className="flex-1 min-w-0">
-                  <h4 className="text-3xl font-bold text-foreground">{client.name}</h4>
-                  <div className="flex items-center gap-2 mt-1 mb-1 flex-wrap">
-                    <ComplianceStatus status={client.specCompliance} />
-                    <Badge variant="outline" className="text-xs">{client.language}</Badge>
+              <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors">
+                <div className="flex items-start gap-4">
+                  <ClientIcon name={client.name} />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-4 flex-wrap">
+                      <h4 className="text-3xl font-bold text-foreground">{client.name}</h4>
+                      <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
+                        <a href={client.links.github} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5">
+                          <Github className="w-3.5 h-3.5" /> GitHub
+                        </a>
+                        {client.links.website && (
+                          <a href={client.links.website} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5">
+                            <ExternalLink className="w-3.5 h-3.5" /> Website
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 mt-1 mb-1 flex-wrap">
+                      <ComplianceStatus status={client.specCompliance} />
+                      <Badge variant="outline" className="text-sm">{client.language}</Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{client.description}</p>
+                    <div className="flex sm:hidden items-center gap-2 mt-3">
+                      <a href={client.links.github} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5">
+                        <Github className="w-3.5 h-3.5" /> GitHub
+                      </a>
+                      {client.links.website && (
+                        <a href={client.links.website} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5">
+                          <ExternalLink className="w-3.5 h-3.5" /> Website
+                        </a>
+                      )}
+                    </div>
                   </div>
-                  <p className="text-sm text-muted-foreground max-w-[700px]">{client.description}</p>
-                </div>
-                <div className="flex items-center gap-2 flex-shrink-0 pt-1">
-                  <a
-                    href={client.links.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
-                  >
-                    <Github className="w-3.5 h-3.5" /> GitHub
-                  </a>
-                  {client.links.website && (
-                    <a
-                      href={client.links.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" /> Website
-                    </a>
-                  )}
                 </div>
               </div>
             ))}
@@ -258,35 +262,39 @@ export default function TrackPage() {
           <h3 className="text-xl font-semibold mb-4" style={{ color: 'var(--accent-blue)' }}>Consensus Layer</h3>
           <div className="divide-y divide-border">
             {consensusClients.map((client) => (
-              <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors flex items-start gap-4">
-                <ClientIcon name={client.name} />
-                <div className="flex-1 min-w-0">
-                  <h4 className="text-3xl font-bold text-foreground">{client.name}</h4>
-                  <div className="flex items-center gap-2 mt-1 mb-1 flex-wrap">
-                    <ComplianceStatus status={client.specCompliance} />
-                    <Badge variant="outline" className="text-xs">{client.language}</Badge>
+              <div key={client.name} className="py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors">
+                <div className="flex items-start gap-4">
+                  <ClientIcon name={client.name} />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-4 flex-wrap">
+                      <h4 className="text-3xl font-bold text-foreground">{client.name}</h4>
+                      <div className="hidden sm:flex items-center gap-2 flex-shrink-0">
+                        <a href={client.links.github} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5">
+                          <Github className="w-3.5 h-3.5" /> GitHub
+                        </a>
+                        {client.links.website && (
+                          <a href={client.links.website} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5">
+                            <ExternalLink className="w-3.5 h-3.5" /> Website
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2 mt-1 mb-1 flex-wrap">
+                      <ComplianceStatus status={client.specCompliance} />
+                      <Badge variant="outline" className="text-sm">{client.language}</Badge>
+                    </div>
+                    <p className="text-sm text-muted-foreground">{client.description}</p>
+                    <div className="flex sm:hidden items-center gap-2 mt-3">
+                      <a href={client.links.github} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5">
+                        <Github className="w-3.5 h-3.5" /> GitHub
+                      </a>
+                      {client.links.website && (
+                        <a href={client.links.website} target="_blank" rel="noopener noreferrer" className="text-sm text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5">
+                          <ExternalLink className="w-3.5 h-3.5" /> Website
+                        </a>
+                      )}
+                    </div>
                   </div>
-                  <p className="text-sm text-muted-foreground max-w-[700px]">{client.description}</p>
-                </div>
-                <div className="flex items-center gap-2 flex-shrink-0 pt-1">
-                  <a
-                    href={client.links.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xs text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
-                  >
-                    <Github className="w-3.5 h-3.5" /> GitHub
-                  </a>
-                  {client.links.website && (
-                    <a
-                      href={client.links.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-muted-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1.5 border border-border rounded-md px-3 py-1.5"
-                    >
-                      <ExternalLink className="w-3.5 h-3.5" /> Website
-                    </a>
-                  )}
                 </div>
               </div>
             ))}
