@@ -190,6 +190,20 @@ export default function TrackPage() {
             </p>
             <div className="divide-y divide-border">
               <a
+                href="https://eth-act.github.io/zkevm-benchmark-runs/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between py-6 px-4 -mx-4 rounded-lg hover:bg-muted/50 transition-colors group"
+              >
+                <div>
+                  <h3 className="text-lg font-bold text-foreground group-hover:text-[var(--accent-orange)] transition-colors">zkEVM Benchmark Results</h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    Cross-zkVM proving, execution, and verification benchmarks
+                  </p>
+                </div>
+                <ExternalLink className="w-4 h-4 text-muted-foreground flex-shrink-0 ml-4" />
+              </a>
+              <a
                 href="https://eth-act.github.io/zkevm-test-monitor/"
                 target="_blank"
                 rel="noopener noreferrer"
