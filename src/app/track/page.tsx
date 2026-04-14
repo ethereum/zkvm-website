@@ -95,36 +95,22 @@ export default function TrackPage() {
               <table className="w-full border-collapse">
                 <thead>
                   <tr className="border-b-2 border-border">
-                    <th className="text-left py-3 px-4 font-semibold text-foreground">zkVM</th>
-                    <th className="text-left py-3 px-4 font-semibold text-foreground">Commit</th>
-                    <th className="text-left py-3 px-4 font-semibold text-foreground">ISA</th>
-                    <th className="text-center py-3 px-4 font-semibold text-foreground">Full ISA</th>
-                    <th className="text-center py-3 px-4 font-semibold text-foreground">Standard ISA</th>
-                    <th className="text-left py-3 px-4 font-semibold text-foreground">Last Run</th>
+                    <th className="text-center py-3 px-4 font-semibold text-foreground">zkVM</th>
+                    <th className="text-center py-3 px-4 font-semibold text-foreground">Commit</th>
+                    <th className="text-center py-3 px-4 font-semibold text-foreground">ISA Tests</th>
+                    <th className="text-center py-3 px-4 font-semibold text-foreground">Last Run</th>
                   </tr>
                 </thead>
                 <tbody>
                   {Object.entries(testMonitorData.zkvms)
-                    .sort(([,a], [,b]) => (b.isRV64 ? 1 : 0) - (a.isRV64 ? 1 : 0))
+                    .filter(([, zkvm]) => zkvm.isRV64)
                     .map(([name, zkvm]) => (
                     <tr key={name} className="border-b border-border hover:bg-muted/30 transition-colors">
-                      <td className="py-4 px-4">
+                      <td className="py-4 px-4 text-center">
                         <span className="font-semibold text-foreground uppercase">{name}</span>
                       </td>
-                      <td className="py-4 px-4">
-                        <code className="text-sm text-muted-foreground">{zkvm.commit}</code>
-                      </td>
-                      <td className="py-4 px-4">
-                        <span className="text-sm text-foreground">{zkvm.isa}</span>
-                      </td>
                       <td className="py-4 px-4 text-center">
-                        {zkvm.full ? (
-                          <span className={`text-sm font-medium ${zkvm.full.passed === zkvm.full.total ? 'text-green-600' : zkvm.full.passed > 0 ? 'text-foreground' : 'text-red-500'}`}>
-                            {zkvm.full.passed}/{zkvm.full.total}
-                          </span>
-                        ) : (
-                          <span className="text-muted-foreground">—</span>
-                        )}
+                        <code className="text-sm text-muted-foreground">{zkvm.commit}</code>
                       </td>
                       <td className="py-4 px-4 text-center">
                         {zkvm.standard ? (
@@ -135,7 +121,7 @@ export default function TrackPage() {
                           <span className="text-muted-foreground">—</span>
                         )}
                       </td>
-                      <td className="py-4 px-4">
+                      <td className="py-4 px-4 text-center">
                         <span className="text-sm text-muted-foreground">
                           {zkvm.lastRun ? new Date(zkvm.lastRun).toLocaleDateString() : '—'}
                         </span>
