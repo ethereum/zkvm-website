@@ -98,6 +98,14 @@ export const allZkvmData: ZKEVMData[] = [
 export const clientData: ClientInfo[] = [
   // Execution Layer
   {
+    name: 'Ethrex',
+    type: 'execution',
+    description: 'Lightweight Ethereum execution client written in Rust by Lambda Class.',
+    language: 'Rust',
+    links: { github: 'https://github.com/lambdaclass/ethrex', website: 'https://ethrex.xyz/' },
+    specCompliance: 'compliant',
+  },
+  {
     name: 'Reth',
     type: 'execution',
     description: 'Modular, contributor-friendly Ethereum execution client written in Rust.',
@@ -128,14 +136,6 @@ export const clientData: ClientInfo[] = [
     language: 'Java',
     links: { github: 'https://github.com/hyperledger/besu', website: 'https://besu.hyperledger.org' },
     specCompliance: 'not-started',
-  },
-  {
-    name: 'Ethrex',
-    type: 'execution',
-    description: 'Lightweight Ethereum execution client written in Rust by Lambda Class.',
-    language: 'Rust',
-    links: { github: 'https://github.com/lambdaclass/ethrex' },
-    specCompliance: 'compliant',
   },
   // Consensus Layer
   {
