@@ -56,7 +56,7 @@ The sp1-lean proofs use four explicit axioms, declared in [Assumptions.lean](htt
 @[simp] axiom plat_enable_htif_eq_false : plat_enable_htif () = false
 ```
 
-HTIF (Host/Target Interface Facility) is a mechanism that allows a simulated target machine to communicate with its host. It is not required — in fact, [an unofficial specification](https://github.com/riscv/sail-riscv/issues/147#issuecomment-4063872714) has only recently been prepared. But the Sail model of RISC-V supports this notion, so one assumes it needed to be addressed in the Lean.
+HTIF (Host/Target Interface Facility) is a mechanism that allows a simulated target machine to communicate with its host. It is not required—in fact, [an unofficial specification](https://github.com/riscv/sail-riscv/issues/147#issuecomment-4063872714) has only recently been prepared. But the Sail model of RISC-V supports this notion, so one assumes it needed to be addressed in the Lean.
 
 #### SP1 memory protection disabled
 ```lean
