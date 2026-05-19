@@ -26,7 +26,7 @@ Loosely speaking, formally verifying software promises to reduce the trusted com
 
 If there are no issues with the above, then the announcement entails that there are Lean proofs showing that a number of SP1's constraints implement the corresponding RISC-V machine instructions as defined by the Sail RISC-V specification; that is, satisfaction of the constraints implies correct execution of the corresponding instruction. (There is some nuance here: the other direction, that correct execution of the RISC-V instruction implies satisfying the corresponding constraint, is not shown as this would require reasoning about SP1's witness generation.)
 
-This helps increase confidence in the security of the system. Indeed, even a weaker statement with additional assumptions can still be useful by helping security professionals focus their efforts on features missed by formal verification.
+This helps increase confidence in the security of the system. Even a weaker statement with additional assumptions can still be useful by helping security professionals focus their efforts on features missed by formal verification.
 
 ## What's discussed in the announcement
 The formal verification source code is [publicly available](https://github.com/succinctlabs/sp1-lean/), and the blog post functions as a survey targeted at an audience with significant background in the subject matter. Some of the claims in the blog are:
@@ -46,7 +46,7 @@ The [sp1-lean repository](https://github.com/succinctlabs/sp1-lean/) at its most
 
 ### Axioms
 
-In Lean 4, `axiom` declares a proposition that the kernel accepts without proof. Unlike a `theorem`, which must be justified by a proof term that the kernel type-checks, an `axiom` is simply asserted. Any theorem that depends (even transitively) on an axiom is only as trustworthy as that axiom: if an axiom is inconsistent—if it asserts something false—then every proposition becomes provable.
+In Lean 4, `axiom` declares a proposition that the kernel accepts without proof. Unlike a `theorem`, which must be justified by a proof term that the kernel type-checks, an `axiom` is simply asserted. Any theorem that depends (even transitively) on an axiom is only as trustworthy as that axiom: if an axiom is inconsistent (asserts something false), then every proposition becomes provable.
 
 The sp1-lean proofs use four explicit axioms, declared in [Assumptions.lean](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Foundations/Assumptions.lean) and [SailM.lean](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Foundations/SailM.lean).
 
@@ -56,7 +56,7 @@ The sp1-lean proofs use four explicit axioms, declared in [Assumptions.lean](htt
 @[simp] axiom plat_enable_htif_eq_false : plat_enable_htif () = false
 ```
 
-HTIF (Host/Target Interface Facility) is a mechanism that allows a simulated target machine to communicate with its host. It is not required—in fact, [an unofficial specification](https://github.com/riscv/sail-riscv/issues/147#issuecomment-4063872714) has only recently been prepared. But the Sail model of RISC-V supports this notion, so one assumes it needed to be addressed in the Lean.
+HTIF (Host/Target Interface Facility) is a mechanism that allows a simulated target machine to communicate with its host. It is not required. In fact, [an unofficial specification](https://github.com/riscv/sail-riscv/issues/147#issuecomment-4063872714) has only recently been prepared. But the Sail model of RISC-V supports this notion, so one assumes it needed to be addressed in the Lean.
 
 #### SP1 memory protection disabled
 ```lean
@@ -64,7 +64,7 @@ HTIF (Host/Target Interface Facility) is a mechanism that allows a simulated tar
 @[simp] axiom mprotect_disabled : public_value () 151 = 0
 ```
 
-This axiom is unrelated to the RISC-V specification. SP1 implements its own application-level memory protection mechanism (`mprotect`) as a custom zkVM syscall. `public_value () 151` is a flag in SP1's constraint system that controls whether mprotect is active. Its effect is concrete: in every [instruction reader's constraints](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Operations/Reader/RTypeReader/Constraints.lean#L28), there is a term `(is_real - is_trusted) * (public_value () 151 - 1)` that must equal zero. When the flag is 0 (mprotect disabled), this simplifies to `(is_real - is_trusted) * (-1) = 0`, which forces `is_trusted = is_real`—every executed instruction must be validated against the program table via a bus lookup. When the flag is 1 (mprotect enabled), the term vanishes and `is_trusted` is unconstrained, allowing rows to execute without being checked against the loaded program. This axiom asserts the proofs assume mprotect is off, meaning all instructions are program-verified.
+This axiom is unrelated to the RISC-V specification. SP1 implements its own application-level memory protection mechanism (`mprotect`) as a custom zkVM syscall. `public_value () 151` is a flag in SP1's constraint system that controls whether mprotect is active. In every [instruction reader's constraints](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Operations/Reader/RTypeReader/Constraints.lean#L28), there is a term `(is_real - is_trusted) * (public_value () 151 - 1)` that must equal zero. When the flag is 0 (mprotect disabled), this simplifies to `(is_real - is_trusted) * (-1) = 0`, which forces `is_trusted = is_real`. Every executed instruction must be validated against the program table via a bus lookup. When the flag is 1 (mprotect enabled), the term vanishes and `is_trusted` is unconstrained, allowing rows to execute without being checked against the loaded program. This axiom asserts the proofs assume mprotect is off, meaning all instructions are program-verified.
 
 #### PMP checks always succeed
 ```lean
@@ -78,13 +78,13 @@ axiom pmp_check_machine' (reg_val offset : BitVec 64)
     EStateM.run (pmpCheck ...) s = EStateM.Result.ok none s
 ```
 
-Physical Memory Protection (PMP) is defined in [Section 3.7 of the RISC-V Privileged Architecture specification](https://github.com/riscv/riscv-isa-manual/blob/main/src/priv-csrs.adoc). The spec states: "If no PMP entry matches an M-mode access, the access succeeds." SP1 does not implement privilege modes, CSR instructions, or `MRET`—it is an M-mode-only system, which is the simplest valid RISC-V implementation per [Section 3.1.1](https://github.com/riscv/riscv-isa-manual/blob/main/src/priv-csrs.adoc) ("A simple RISC-V implementation may provide only M-mode"). Since SP1 runs exclusively in Machine mode and does not configure any PMP entries (all address-matching fields remain in their reset state of OFF), all memory accesses should succeed unconditionally. These axioms assert exactly this.
+Physical Memory Protection (PMP) is defined in [Section 3.7 of the RISC-V Privileged Architecture specification](https://github.com/riscv/riscv-isa-manual/blob/main/src/priv-csrs.adoc). The spec states: "If no PMP entry matches an M-mode access, the access succeeds." SP1 does not implement privilege modes, CSR instructions, or `MRET`. It is an M-mode-only system, which is the simplest valid RISC-V implementation per [Section 3.1.1](https://github.com/riscv/riscv-isa-manual/blob/main/src/priv-csrs.adoc) ("A simple RISC-V implementation may provide only M-mode"). Since SP1 runs exclusively in Machine mode and does not configure any PMP entries (all address-matching fields remain in their reset state of OFF), all memory accesses should succeed unconditionally. These axioms assert exactly this.
 
-The axioms exist due to a Lean technical limitation rather than because the claim is in doubt. Lean's kernel verifies proofs by stepwise reduction of terms—evaluating expressions until they reach a normal form. The Sail model's `pmpCheck` function contains a recursive loop that iterates over all PMP entries, and this loop exceeds Lean's reduction budget (controlled by `maxHeartbeats`). The kernel cannot compute the result by brute-force evaluation, so the authors assert it as an axiom instead.
+The axioms exist due to a Lean technical limitation rather than because the claim is in doubt. Lean's kernel verifies proofs by stepwise reduction of terms, evaluating expressions until they reach a normal form. The Sail model's `pmpCheck` function contains a recursive loop that iterates over all PMP entries, and this loop exceeds Lean's reduction budget (controlled by `maxHeartbeats`). The kernel cannot compute the result by brute-force evaluation, so the authors assert it as an axiom instead.
 
 ### Prerequisites: constraint tables and `Main`
 
-SP1 organizes its circuit into "chips," each handling a group of RISC-V instructions. Each chip has a constraint table where every row represents one instruction execution, and every column is a KoalaBear field element (`Fin KB`, where KB is the prime 2^31 - 2^24 + 1). The number of columns varies by chip; for instance, the ADD chip has 34, the JALR chip has 39, and the DivRem chip has 247. Column meanings are chip-specific—recoverable from how the [generated constraint code](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/Add/Constraints.lean#L10) passes `Main[N]` values to named struct fields, but not defined in a standalone schema.
+SP1 organizes its circuit into "chips," each handling a group of RISC-V instructions. Each chip has a constraint table where every row represents one instruction execution, and every column is a KoalaBear field element (`Fin KB`, where KB is the prime 2^31 - 2^24 + 1). The number of columns varies by chip; for instance, the ADD chip has 34, the JALR chip has 39, and the DivRem chip has 247. Column meanings are chip-specific. They can be recovered from how the [generated constraint code](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/Add/Constraints.lean#L10) passes `Main[N]` values to named struct fields, but they are not defined in a standalone schema.
 
 ### Hypotheses on theorems
 
@@ -104,7 +104,7 @@ The second, `h_is_real`, distinguishes real execution rows from padding. SP1's c
 (h_is_real : Main[N] = 1)  -- N varies by chip (e.g., Main[33] for ADD)
 ```
 
-The third, `state_cstrs`, ties the constraint columns to a concrete Sail machine state _before_ the instruction executes. It asserts that the register and memory values encoded in `Main` match the **input** state `s`—for example, that the PC columns match `s.regs[PC]` and that operand columns match the corresponding register values. The theorem's _conclusion_ then proves that the **output** states agree: the Sail spec and SP1 implementation produce the same result when run from this input.
+The third, `state_cstrs`, ties the constraint columns to a concrete Sail machine state _before_ the instruction executes. It asserts that the register and memory values encoded in `Main` match the **input** state `s`. For example, the PC columns match `s.regs[PC]` and operand columns match the corresponding register values. The theorem's _conclusion_ then proves that the **output** states agree: the Sail spec and SP1 implementation produce the same result when run from this input.
 
 ```lean
 (state_cstrs : (constraints Main).initialState s)
@@ -120,11 +120,11 @@ Theorems for instructions that read the PC or access memory additionally require
 (hs : isInitialized s)
 ```
 
-The Sail machine state stores registers in a hash map. [`isInitialized`](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Foundations/Register.lean#L9) is defined as `∀ reg : Register, reg ∈ s.regs` — every register key exists in the map. This is not about register values being nonzero; it is about the keys being present so that `s.regs.get Register.PC (hs _)` is well-defined. Without this hypothesis, register reads would be undefined at the type level. ALU-only chips (ADD, SUB, MUL, etc.) do not need this because they only read register values from the constraint columns, not from the Sail state directly.
+The Sail machine state stores registers in a hash map. [`isInitialized`](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Foundations/Register.lean#L9) is defined as `∀ reg : Register, reg ∈ s.regs`: every register key exists in the map. This is not about register values being nonzero; it is about the keys being present so that `s.regs.get Register.PC (hs _)` is well-defined. Without this hypothesis, register reads would be undefined at the type level. ALU-only chips (ADD, SUB, MUL, etc.) do not need this because they only read register values from the constraint columns, not from the Sail state directly.
 
 #### Opcode selectors (multi-opcode chips)
 
-Some chips handle multiple opcodes with a single constraint system. For example, the [BranchChip](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/BranchChip.lean) covers BEQ, BNE, BLT, BGE, BLTU, and BGEU. Rather than one theorem for all six, there is a separate theorem per opcode, each with a hypothesis like `h_is_beq : Main[29] = 1` selecting which opcode flag is active. These are not environmental assumptions—they are case splits, selecting which Sail specification function the SP1 implementation is compared against.
+Some chips handle multiple opcodes with a single constraint system. For example, the [BranchChip](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/BranchChip.lean) covers BEQ, BNE, BLT, BGE, BLTU, and BGEU. Rather than one theorem for all six, there is a separate theorem per opcode, each with a hypothesis like `h_is_beq : Main[29] = 1` selecting which opcode flag is active. These are not environmental assumptions but case splits, selecting which Sail specification function the SP1 implementation is compared against.
 
 This pattern appears across 8 chips covering ~40 opcode variants:
 - [BranchChip](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/BranchChip.lean) (6 branch types)
@@ -145,7 +145,7 @@ This pattern appears across 8 chips covering ~40 opcode variants:
 
 Each instruction reader in SP1 has an `is_trusted` column. When `is_trusted = 1`, the reader emits a [`send (.program ...)`](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Operations/Reader/RTypeReader/Constraints.lean#L67) bus interaction with multiplicity `is_trusted`. This is a lookup that proves the instruction exists in the loaded program table. When `is_trusted = 0`, no lookup occurs, and the instruction executes without being checked against the program.
 
-As explained in the "SP1 memory protection disabled" axiom above, when mprotect is disabled the constraints force `is_trusted = is_real`, so this hypothesis follows from `h_is_real` and `cstrs`. Most chip proofs derive this automatically. The [ADDW theorem](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/AddwChip.lean#L39) states it explicitly—likely because the proof was written before the automatic derivation was in place, or because the ALU reader's more complex structure made the automatic extraction inconvenient.
+As explained in the "SP1 memory protection disabled" axiom above, when mprotect is disabled the constraints force `is_trusted = is_real`, so this hypothesis follows from `h_is_real` and `cstrs`. Most chip proofs derive this automatically. The [ADDW theorem](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/AddwChip.lean#L39) states it explicitly, likely because the proof was written before the automatic derivation was in place, or because the ALU reader's more complex structure made the automatic extraction inconvenient.
 
 #### `h_valid_pc` (JALR only)
 
@@ -232,7 +232,7 @@ theorem correct_add
 
 `Main` refers to a single row of the relevant chip's constraint table, which is assumed to be filled in with witness values. The theorem asks: if the constraints accept this row, does it describe a correct state transition? Both sides of the conclusion describe the state update for a single ADD instruction. 
 - [`spec_add`](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/AddChip.lean#L15) is the RISC-V specification's version: read two source registers from state `s`, compute their sum via the [Sail model's](https://github.com/rems-project/sail-riscv) `execute_RTYPE`, write the result to the destination register, and set the next PC to `PC + 4`. 
-- [`sp1_add`](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/AddChip.lean#L20) is SP1's version: perform the same register writes but read all values from the constraint columns—the result from `Main[29..32]`, the next PC from `Main[3..5] + 4`. 
+- [`sp1_add`](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/AddChip.lean#L20) is SP1's version: perform the same register writes but read all values from the constraint columns. The result comes from `Main[29..32]` and the next PC from `Main[3..5] + 4`. 
 
 Both are just a few register writes. `.run s` applies those writes to the input state `s` and returns the resulting machine state.
 
@@ -364,7 +364,7 @@ While this does mean that SLTI had no valid soundness proof in the initial devel
 
 ## Wrong specifications
 
-The LoadHalf and LoadWord spec functions use the wrong access width. [LoadHalfChip.lean:26](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadHalfChip.lean#L26) defines `spec_lb` with `execute_LOAD ... (width := 1)` where it should be `width := 2` (half-word); [LoadWordChip.lean:27](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadWordChip.lean#L27) does the same where it should be `width := 4` (word). The theorems prove that the LoadHalf and LoadWord chip constraints match **byte-load** semantics—even if the `sorry` markers in these files were resolved, the proofs would be proving the wrong thing. **LH, LHU, LW, and LWU are effectively unverified.**
+The LoadHalf and LoadWord spec functions use the wrong access width. [LoadHalfChip.lean:26](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadHalfChip.lean#L26) defines `spec_lb` with `execute_LOAD ... (width := 1)` where it should be `width := 2` (half-word); [LoadWordChip.lean:27](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadWordChip.lean#L27) does the same where it should be `width := 4` (word). The theorems prove that the LoadHalf and LoadWord chip constraints match **byte-load** semantics. Even if the `sorry` markers in these files were resolved, the proofs would be proving the wrong thing. **LH, LHU, LW, and LWU are effectively unverified.**
 
 
 # Final accounting of the formal verification outcomes
@@ -380,25 +380,25 @@ The blog post claims 62 verified opcodes in three categories. The following list
   - Multiply: [MUL](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/MulChip.lean#L32), [MULH](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/MulChip.lean#L94), [MULHU](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/MulChip.lean#L155), [MULHSU](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/MulChip.lean#L214), [MULW](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/MulChip.lean#L274)
   - Divide/Remainder: [DIV](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/DivRemChip.lean#L40), [DIVU](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/DivRemChip.lean#L87), [DIVW](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/DivRemChip.lean#L133), [DIVUW](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/DivRemChip.lean#L179), [REM](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/DivRemChip.lean#L225), [REMU](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/DivRemChip.lean#L271), [REMW](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/DivRemChip.lean#L317), [REMUW](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/DivRemChip.lean#L363)
 
-  [SLTI](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LtChip.lean#L132) has a theorem but it is **vacuously true** due to contradictory hypotheses (see the "Vacuous proofs" section above). NOP is not a separate opcode—it is an alias for `ADDI x0, x0, 0` and is covered by the ADDI theorem.
+  [SLTI](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LtChip.lean#L132) has a theorem but it is **vacuously true** due to contradictory hypotheses (see the "Vacuous proofs" section above). NOP is not a separate opcode; it is an alias for `ADDI x0, x0, 0` and is covered by the ADDI theorem.
 - 7 of 10 control-flow-related opcodes have correct theorems:
   - [JAL](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/JalChip.lean#L40)
   - Branches: [BEQ](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/BranchChip.lean#L31), [BNE](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/BranchChip.lean#L158), [BLT](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/BranchChip.lean#L285), [BGE](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/BranchChip.lean#L414), [BLTU](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/BranchChip.lean#L547), [BGEU](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/BranchChip.lean#L680)
 
-  These assume 4-byte alignment on targets via `trusted_instr`, which is formally stricter than the spec's 2-byte requirement but excludes no programs with well-defined behavior in RV64I without the C extension (see the "This bug was outside the scope of the formal verification effort" section above). [JALR](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/JalrChip.lean#L33) is distinct: `h_valid_pc` assumes 4-byte alignment on the _pre-bit-clearing_ sum, which excludes valid inputs where `rs1 + imm` has bit 0 set — a case with well-defined spec behavior (clear bit 0, continue normally). [LUI and AUIPC](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/UTypeChip.lean) have **no theorem**—the file imports constraints but contains no proof.
+  These assume 4-byte alignment on targets via `trusted_instr`, which is formally stricter than the spec's 2-byte requirement but excludes no programs with well-defined behavior in RV64I without the C extension (see the "This bug was outside the scope of the formal verification effort" section above). [JALR](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/JalrChip.lean#L33) is distinct: `h_valid_pc` assumes 4-byte alignment on the _pre-bit-clearing_ sum, which excludes valid inputs where `rs1 + imm` has bit 0 set, a case with well-defined spec behavior (clear bit 0, continue normally). [LUI and AUIPC](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/UTypeChip.lean) have **no theorem**: the file imports constraints but contains no proof.
 - 4 of 11 memory-related opcodes have complete, correct theorems:
   - [SB](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/StoreByteChip.lean#L31)
   - [SH](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/StoreHalfChip.lean#L32)
   - [SW](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/StoreWordChip.lean#L32)
   - [SD](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/StoreDoubleChip.lean#L32)
 
-  All 6 load theorems depend on **sorry** (incomplete proofs in sign extension lemmas). Additionally, the [LH](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadHalfChip.lean#L32) and [LHU](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadHalfChip.lean#L317) theorems prove **byte-load semantics** (width=1) instead of half-word (width=2), and [LW](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadWordChip.lean#L33) and [LWU](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadWordChip.lean#L325) similarly prove byte-load instead of word-load (width=4)—even if completed, these proofs verify the **wrong specification** (see the "Wrong specifications" section above).
+  All 6 load theorems depend on **sorry** (incomplete proofs in sign extension lemmas). Additionally, the [LH](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadHalfChip.lean#L32) and [LHU](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadHalfChip.lean#L317) theorems prove **byte-load semantics** (width=1) instead of half-word (width=2), and [LW](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadWordChip.lean#L33) and [LWU](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadWordChip.lean#L325) similarly prove byte-load instead of word-load (width=4). Even if completed, these proofs verify the **wrong specification** (see the "Wrong specifications" section above).
 
   Only [LB](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadByteChip.lean#L39) and [LBU](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadByteChip.lean#L325) prove the correct spec, though they remain incomplete due to sorry.
 
-  [LD](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadDoubleChip.lean) has **no theorem**—the file contains definitions but no proof, despite having [fully extracted constraints](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/Load/LoadDouble/Constraints.lean).
+  [LD](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadDoubleChip.lean) has **no theorem**: the file contains definitions but no proof, despite having [fully extracted constraints](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/Load/LoadDouble/Constraints.lean).
 
-Beyond the 62-opcode claim, FENCE is part of the RV64I base integer ISA and is required for compliance, but it has never been implemented by SP1—neither in the executor nor in the constraint system.
+Beyond the 62-opcode claim, FENCE is part of the RV64I base integer ISA and is required for compliance, but it has never been implemented by SP1, neither in the executor nor in the constraint system.
 
 Accounting for all issues, **51 of the 62 claimed opcodes have complete, correct proofs**: 40 ALU-related (all except SLTI), 7 control-flow (JAL and all six branches), and 4 stores (SB, SH, SW, SD).
 
