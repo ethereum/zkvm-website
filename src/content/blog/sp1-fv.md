@@ -15,7 +15,7 @@ On 2025-10-09, [the following announcement was made on the blog of Succinct Labs
 This technical blog post will break down what precisely was achieved by the formal verification, which established some strong security properties for certain parts of SP1 Hypercube. It will highlight some known limitations of the formal verification, and it will also describe some additional unknown gaps that were recently discovered and disclosed to Succinct. The post ends by making some recommendations about how the community of zkVM security professionals might better communicate about formal verification to improve the security of Ethereum.
 
 
-# Formal Verification Claims
+# Formal verification claims
 Loosely speaking, formally verifying software promises to reduce the trusted computing base (TCB) of a piece of software to a short list of components that can then be highly scrutinized. Trusted components typically include the following:
 - Foundational logic; in this case, Lean's type theory and its implementation in the Lean kernel. Lean's elaborator, which translates high-level Lean to the kernel language, is not trusted in the sense that a bug in its implementation would not allow proving False, but could result in the kernel verifying a valid proof of something other than the intended statement.
 - Specifications; in this case, the ultimate source of truth is the [Sail RISC-V specification](https://github.com/riscv/sail-riscv). [Sail](https://github.com/rems-project/sail) is a domain-specific language for describing instruction set architectures, and the Sail RISC-V model is maintained by the [Golden Model Task Group](https://lists.riscv.org/g/tech-golden-model).
