@@ -380,6 +380,7 @@ Another development practice that should be followed is explicit reproducibility
 Public communication should properly contextualize the progress. The Succinct announcement deserves credit for explicitly calling out assumptions, but in an attempt to simplify things for a general audience, and also due to genuine errors in the formal verification, it contained significant misleading statements.
 
 Finally, validation is critical. For any large enough codebase, bugs are a statistical likelihood. In the case of formal verification, specifications are code and the same principle applies. Specifications and precise security goals (i.e. theorems) are difficult to get right in many cases; both humans and AIs regularly make mistakes. This must be mitigated by review processes that can be far more deterministic.
+
 Proper testing of the validation claims, plus a review by fresh eyes and an AI, should be done before putting forward public claims about the code.
 
 Given the strong promise of formal verification, and the general perception in many technical audiences that it is The Final Tool that makes other forms of security analysis inessential, great care is needed in communicating what has and has not been proven.
