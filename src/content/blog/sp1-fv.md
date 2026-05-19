@@ -185,7 +185,7 @@ This assumes Machine privilege mode ([Section 3.1 of the Privileged Architecture
 Every store and load theorem assumes the target address fits in memory. The bound varies by access width and direction:
 
 - Stores: `reg_val + offset + width ≤ ram_size` where width is 1 ([SB](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/StoreByteChip.lean#L37)), 2 ([SH](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/StoreHalfChip.lean#L38)), 4 ([SW](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/StoreWordChip.lean#L38)), or 8 ([SD](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/StoreDoubleChip.lean#L38))
-- Loads: `reg_val + offset + width < 2^64` — a weaker no-overflow bound for [LB](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadByteChip.lean#L45)/[LH](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadHalfChip.lean#L38)/[LW](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadWordChip.lean#L39) and their unsigned variants
+- Loads: `reg_val + offset + width < 2^64`, a weaker no-overflow bound for [LB](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadByteChip.lean#L45)/[LH](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadHalfChip.lean#L38)/[LW](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadWordChip.lean#L39) and their unsigned variants
 
 #### `h_is_aligned` (SH, SW, SD only)
 
