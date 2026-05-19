@@ -345,7 +345,7 @@ Slti.correct_slti (Main : ...) (s : SailState)
   ...
 ```
 
-Since `Main[31]` cannot simultaneously be 0 and 1, the hypotheses are contradictory and the theorem is discharged without proving anything — no `sorry` is needed because Lean's kernel can derive any conclusion from `False`.
+Since `Main[31]` cannot simultaneously be 0 and 1, the hypotheses are contradictory and the theorem is discharged without proving anything. No `sorry` is needed because Lean's kernel can derive any conclusion from `False`.
 
 While this does mean that SLTI had no valid soundness proof in the initial development, once the typo is corrected it is [straightforward to prove the theorem as intended](https://github.com/succinctlabs/sp1-lean/blob/7c76907a41f69b06682c177f8d03f72626015b58/SP1Chips/LtChip.lean#L73), meaning that the `Lt` chip implemented the `SLTI` instruction correctly from the start and that there were no related potential exploits whatsoever. With the fix, which is to be included in [this pull request](https://github.com/succinctlabs/sp1-lean/pull/92), SP1 becomes protected against silent regressions in `SLTI`.
 
