@@ -349,7 +349,7 @@ While this does mean that SLTI had no valid soundness proof in the initial devel
 The LoadHalf and LoadWord spec functions use the wrong access width. [LoadHalfChip.lean:26](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadHalfChip.lean#L26) defines `spec_lb` with `execute_LOAD ... (width := 1)` where it should be `width := 2` (half-word); [LoadWordChip.lean:27](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadWordChip.lean#L27) does the same where it should be `width := 4` (word). The theorems prove that the LoadHalf and LoadWord chip constraints match **byte-load** semantics — even if the `sorry` markers in these files were resolved, the proofs would be proving the wrong thing. **LH, LHU, LW, and LWU are effectively unverified.**
 
 
-# Final Accounting of the Formal Verification Outcomes
+# Final accounting of the formal verification outcomes
 The full list of chips with per-row soundness theorems:
 
 The blog post claims 62 verified opcodes in three categories. The following lists each opcode with a link to its soundness theorem, or notes its absence. Two labels are introduced here: **no theorem** means the constraints are extracted to Lean but no soundness proof is stated, and **sorry** means the theorem depends on an unfinished lemma. The remaining labels — **vacuously true** and **wrong specification** — are as discussed in the preceding sections of the same name.
