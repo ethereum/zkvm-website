@@ -351,7 +351,7 @@ While this does mean that SLTI had no valid soundness proof in the initial devel
 
 ## Wrong specifications
 
-The LoadHalf and LoadWord spec functions use the wrong access width. [LoadHalfChip.lean:26](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadHalfChip.lean#L26) defines `spec_lb` with `execute_LOAD ... (width := 1)` where it should be `width := 2` (half-word); [LoadWordChip.lean:27](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadWordChip.lean#L27) does the same where it should be `width := 4` (word). The theorems prove that the LoadHalf and LoadWord chip constraints match **byte-load** semantics — even if the `sorry` markers in these files were resolved, the proofs would be proving the wrong thing. **LH, LHU, LW, and LWU are effectively unverified.**
+The LoadHalf and LoadWord spec functions use the wrong access width. [LoadHalfChip.lean:26](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadHalfChip.lean#L26) defines `spec_lb` with `execute_LOAD ... (width := 1)` where it should be `width := 2` (half-word); [LoadWordChip.lean:27](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/LoadWordChip.lean#L27) does the same where it should be `width := 4` (word). The theorems prove that the LoadHalf and LoadWord chip constraints match **byte-load** semantics—even if the `sorry` markers in these files were resolved, the proofs would be proving the wrong thing. **LH, LHU, LW, and LWU are effectively unverified.**
 
 
 # Final accounting of the formal verification outcomes
