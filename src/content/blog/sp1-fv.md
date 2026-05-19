@@ -135,7 +135,7 @@ This pattern appears across 8 chips covering ~40 opcode variants: [BranchChip](h
 (h_is_trusted : Main[32] = 1)
 ```
 
-Each instruction reader in SP1 has an `is_trusted` column. When `is_trusted = 1`, the reader emits a [`send (.program ...)`](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Operations/Reader/RTypeReader/Constraints.lean#L67) bus interaction with multiplicity `is_trusted` — this is a lookup that proves the instruction exists in the loaded program table. When `is_trusted = 0`, no lookup occurs, and the instruction executes without being checked against the program.
+Each instruction reader in SP1 has an `is_trusted` column. When `is_trusted = 1`, the reader emits a [`send (.program ...)`](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Operations/Reader/RTypeReader/Constraints.lean#L67) bus interaction with multiplicity `is_trusted`. This is a lookup that proves the instruction exists in the loaded program table. When `is_trusted = 0`, no lookup occurs, and the instruction executes without being checked against the program.
 
 As explained in the "SP1 memory protection disabled" axiom above, when mprotect is disabled the constraints force `is_trusted = is_real`, so this hypothesis follows from `h_is_real` and `cstrs`. Most chip proofs derive this automatically. The [ADDW theorem](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/AddwChip.lean#L39) states it explicitly — likely because the proof was written before the automatic derivation was in place, or because the ALU reader's more complex structure made the automatic extraction inconvenient.
 
