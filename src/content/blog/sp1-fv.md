@@ -25,6 +25,7 @@ Loosely speaking, formally verifying software promises to reduce the trusted com
 - If executing a program, Lean's runtime execution is also trusted. This does not apply here.
 
 If there are no issues with the above, then the announcement entails that there are Lean proofs showing that a number of SP1's constraints implement the corresponding RISC-V machine instructions as defined by the Sail RISC-V specification; that is, satisfaction of the constraints implies correct execution of the corresponding instruction. (There is some nuance here: the other direction, that correct execution of the RISC-V instruction implies satisfying the corresponding constraint, is not shown as this would require reasoning about SP1's witness generation.)
+
 This helps increase confidence in the security of the system. Indeed, even a weaker statement with additional assumptions can still be useful by helping security professionals focus their efforts on features missed by formal verification.
 
 ## What's discussed in the announcement
