@@ -147,7 +147,7 @@ As explained in the "SP1 memory protection disabled" axiom above, when mprotect 
 (h_valid_pc : (Main[15].val + Main[21].val) % 4 = 0)
 ```
 
-The [JALR theorem](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/JalrChip.lean#L38) assumes `next_pc % 4 = 0`, the same alignment hypothesis that every other branching/jumping chip carries. Because SP1's JALR omits the spec's `& ~1` step, this amounts to requiring `(rs1 + imm) % 4 = 0` on the un-masked sum. The source comment acknowledges this is unproven and deferred to a newer SP1 branch. This is the hypothesis most relevant to this article's findings, and it is the central topic of the "This bug was outside the scope of the formal verification effort" section below.
+The [JALR theorem](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/JalrChip.lean#L38) assumes `next_pc % 4 = 0`, the same alignment hypothesis that every other branching/jumping chip carries. Because SP1's JALR omits the spec's `& ~1` step, this amounts to requiring `(rs1 + imm) % 4 = 0` on the un-masked sum. The source comment acknowledges this is unproven and deferred to a newer SP1 branch. This is **the hypothesis most relevant to this article's findings**, and it is the central topic of the "This bug was outside the scope of the formal verification effort" section below.
 
 #### `hs_config` (all memory chips)
 
