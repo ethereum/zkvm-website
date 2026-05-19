@@ -104,7 +104,7 @@ The second, `h_is_real`, distinguishes real execution rows from padding. SP1's c
 (h_is_real : Main[N] = 1)  -- N varies by chip (e.g., Main[33] for ADD)
 ```
 
-The third, `state_cstrs`, ties the constraint columns to a concrete Sail machine state _before_ the instruction executes. It asserts that the register and memory values encoded in `Main` match the **input** state `s` — for example, that the PC columns match `s.regs[PC]` and that operand columns match the corresponding register values. The theorem's _conclusion_ then proves that the **output** states agree: the Sail spec and SP1 implementation produce the same result when run from this input.
+The third, `state_cstrs`, ties the constraint columns to a concrete Sail machine state _before_ the instruction executes. It asserts that the register and memory values encoded in `Main` match the **input** state `s`—for example, that the PC columns match `s.regs[PC]` and that operand columns match the corresponding register values. The theorem's _conclusion_ then proves that the **output** states agree: the Sail spec and SP1 implementation produce the same result when run from this input.
 
 ```lean
 (state_cstrs : (constraints Main).initialState s)
