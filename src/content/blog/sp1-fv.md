@@ -310,7 +310,7 @@ For [branches](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Foundati
 
 After we reported the JALR bug to them, Succinct reported that they fixed it in SP1 [v6.1.0](https://github.com/succinctlabs/sp1/releases/tag/v6.1.0) (see the [`fix: JALR LSB clearing`](https://github.com/succinctlabs/sp1/commit/ea9cadcbcf0a582a9d78f19c9a9ce75f66781399) commit). We have not attempted to update the Lean proofs.
 
-# Reiterating the Value of Standards
+# Reiterating the value of standards
 
 When informed of the JALR bug, Succinct promptly acknowledged the finding, and their next release of SP1 contained a patch, demonstrating their commitment to following standards.
 
