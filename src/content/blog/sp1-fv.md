@@ -88,7 +88,7 @@ SP1 organizes its circuit into "chips," each handling a group of RISC-V instruct
 
 ### Hypotheses on theorems
 
-Beyond the global axioms, individual soundness theorems carry hypotheses — preconditions that must hold for the theorem to apply. Every hypothesis is a place where the proof's coverage ends and trust begins. The following is a complete enumeration of all distinct hypothesis types across the chip theorems.
+Beyond the global axioms, individual soundness theorems carry hypotheses: preconditions that must hold for the theorem to apply. Every hypothesis is a place where the proof's coverage ends and trust begins. The following is a complete enumeration of all distinct hypothesis types across the chip theorems.
 
 #### Standard hypotheses (all chips)
 
