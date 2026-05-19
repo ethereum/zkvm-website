@@ -46,7 +46,7 @@ The [sp1-lean repository](https://github.com/succinctlabs/sp1-lean/) at its most
 
 ### Axioms
 
-In Lean 4, `axiom` declares a proposition that the kernel accepts without proof. Unlike a `theorem`, which must be justified by a proof term that the kernel type-checks, an `axiom` is simply asserted. Any theorem that depends (even transitively) on an axiom is only as trustworthy as that axiom: if an axiom is inconsistent — if it asserts something false — then every proposition becomes provable.
+In Lean 4, `axiom` declares a proposition that the kernel accepts without proof. Unlike a `theorem`, which must be justified by a proof term that the kernel type-checks, an `axiom` is simply asserted. Any theorem that depends (even transitively) on an axiom is only as trustworthy as that axiom: if an axiom is inconsistent—if it asserts something false—then every proposition becomes provable.
 
 The sp1-lean proofs use four explicit axioms, declared in [Assumptions.lean](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Foundations/Assumptions.lean) and [SailM.lean](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Foundations/SailM.lean).
 
