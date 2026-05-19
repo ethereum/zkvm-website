@@ -39,7 +39,7 @@ This quote uses the term "correctness" but, as we will discuss later, it is more
 
 In the final section, the blog post enumerates standard assumptions: the correctness of Lean's kernel, of the extraction, and of the authors' translation of the official RISC-V specification. It also enumerates nonstandard assumptions and limitations. These include: correctness of the bus infrastructure that "binds together statements proven in different 'chips'" (an optimization), "memory consistency", and correctness of certain lookup tables.
 
-## Claims in the Code
+## Claims in the code
 
 The [sp1-lean repository](https://github.com/succinctlabs/sp1-lean/) at its most recent commit [`e4fa1b7`](https://github.com/succinctlabs/sp1-lean/tree/e4fa1b7), which was pushed on the day the announcement was published, contains the Lean 4 proofs. This section catalogs what is assumed and what is proven, working from the foundations up.
 
