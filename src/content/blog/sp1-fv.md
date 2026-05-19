@@ -27,7 +27,7 @@ Loosely speaking, formally verifying software promises to reduce the trusted com
 If there are no issues with the above, then the announcement entails that there are Lean proofs showing that a number of SP1's constraints implement the corresponding RISC-V machine instructions as defined by the Sail RISC-V specification; that is, satisfaction of the constraints implies correct execution of the corresponding instruction. (There is some nuance here: the other direction, that correct execution of the RISC-V instruction implies satisfying the corresponding constraint, is not shown as this would require reasoning about SP1's witness generation.)
 This helps increase confidence in the security of the system. Indeed, even a weaker statement with additional assumptions can still be useful by helping security professionals focus their efforts on features missed by formal verification.
 
-## What's Discussed in the Announcement
+## What's discussed in the announcement
 The formal verification source code is [publicly available](https://github.com/succinctlabs/sp1-lean/), and the blog post functions as a survey targeted at an audience with significant background in the subject matter. Some of the claims there are:
 
 > In particular, the behaviour of the relevant RISC-V opcodes was verified against the official 64-bit RISC-V Sail specification. ... we have used the Lean proof assistant to verify the correctness of the entire core of the 64-bit SP1 Hypercube RISC-V zkVM with respect to the official RISC-V Sail specification. This covers the following 62 opcodes:
