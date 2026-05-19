@@ -84,7 +84,7 @@ The axioms exist due to a Lean technical limitation rather than because the clai
 
 ### Prerequisites: constraint tables and `Main`
 
-SP1 organizes its circuit into "chips," each handling a group of RISC-V instructions. Each chip has a constraint table where every row represents one instruction execution, and every column is a KoalaBear field element (`Fin KB`, where KB is the prime 2^31 - 2^24 + 1). The number of columns varies by chip; for instance, the ADD chip has 34, the JALR chip has 39, and the DivRem chip has 247. Column meanings are chip-specific — recoverable from how the [generated constraint code](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/Add/Constraints.lean#L10) passes `Main[N]` values to named struct fields, but not defined in a standalone schema.
+SP1 organizes its circuit into "chips," each handling a group of RISC-V instructions. Each chip has a constraint table where every row represents one instruction execution, and every column is a KoalaBear field element (`Fin KB`, where KB is the prime 2^31 - 2^24 + 1). The number of columns varies by chip; for instance, the ADD chip has 34, the JALR chip has 39, and the DivRem chip has 247. Column meanings are chip-specific—recoverable from how the [generated constraint code](https://github.com/succinctlabs/sp1-lean/blob/e4fa1b7/SP1Chips/Add/Constraints.lean#L10) passes `Main[N]` values to named struct fields, but not defined in a standalone schema.
 
 ### Hypotheses on theorems
 
