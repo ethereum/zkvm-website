@@ -29,7 +29,7 @@ If there are no issues with the above, then the announcement entails that there 
 This helps increase confidence in the security of the system. Indeed, even a weaker statement with additional assumptions can still be useful by helping security professionals focus their efforts on features missed by formal verification.
 
 ## What's discussed in the announcement
-The formal verification source code is [publicly available](https://github.com/succinctlabs/sp1-lean/), and the blog post functions as a survey targeted at an audience with significant background in the subject matter. Some of the claims there are:
+The formal verification source code is [publicly available](https://github.com/succinctlabs/sp1-lean/), and the blog post functions as a survey targeted at an audience with significant background in the subject matter. Some of the claims in the blog are:
 
 > In particular, the behaviour of the relevant RISC-V opcodes was verified against the official 64-bit RISC-V Sail specification. ... we have used the Lean proof assistant to verify the correctness of the entire core of the 64-bit SP1 Hypercube RISC-V zkVM with respect to the official RISC-V Sail specification. This covers the following 62 opcodes:
 >   - 41 ALU-related opcodes: ADD, ADDW, ADDI, ADDIW, SUB, SUBW, XOR, XORI, OR, ORI, AND, ANDI, SLL, SLLI, SLLW, SLLIW, SRL, SRLI, SRLW, SRLIW, SRA, SRAI, SRAW, SRAIW, SLT, SLTI, SLTU, SLTIU, MUL, MULH, MULHU, MULHSU, MULW, DIV, DIVU, DIVW, DIVUW, REM, REMU, REMW, REMUW
