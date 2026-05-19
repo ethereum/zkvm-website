@@ -362,7 +362,7 @@ Beyond the 62-opcode claim, FENCE is part of the RV64I base integer ISA and is r
 
 Accounting for all issues, **51 of the 62 claimed opcodes have complete, correct proofs**: 40 ALU-related (all except SLTI), 7 control-flow (JAL and all six branches), and 4 stores (SB, SH, SW, SD).
 
-# Recommendations for Communicating and Validating Formal Verification
+# Recommendations for communicating and validating formal verification
 
 Formal verification is often spoken of as the ultimate form of security analysis, one that might even remove the need for other safeguards such as implementation diversity, testing, and auditing of source code. This makes it incredibly important that the verification efforts are done with great care, and that the communication of results is always precise.
 
