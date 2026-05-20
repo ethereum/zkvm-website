@@ -1,5 +1,5 @@
 ---
-title: "On Formal Verification and Bugs in SP1 Hypercube"
+title: "On Formal Verification and a Bug in SP1 Hypercube"
 date: "2026-05-20"
 excerpt: "A practical study in establishing and validating formal correctness guarantees"
 author: "Cody Gunton"
