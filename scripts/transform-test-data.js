@@ -25,8 +25,12 @@ function parseFile(filePath) {
   if (!content || content === '404: Not Found') return null;
   try {
     const data = JSON.parse(content);
-    const run = (data.runs || [])[0];
-    if (!run) return null;
+    const runs = data.runs || [];
+    if (!runs.length) return null;
+    // runs are stored oldest-first; pick the most recent by date
+    const run = runs.reduce((latest, r) =>
+      new Date(r.date) > new Date(latest.date) ? r : latest
+    );
     const passed = Array.isArray(run.passed) ? run.passed.length : 0;
     const failed = Array.isArray(run.failed) ? run.failed.length : 0;
     const total = run.total || (passed + failed);
