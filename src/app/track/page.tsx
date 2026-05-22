@@ -33,7 +33,6 @@ const zkvmDisplayNames: Record<string, string> = {
   openvm: "OpenVM",
   pico: "Pico",
   r0vm: "R0VM",
-  sp1: "SP1",
   zisk: "ZisK",
 };
 

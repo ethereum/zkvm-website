@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-22T17:22:18.194Z",
+  "lastUpdated": "2026-05-22T17:22:55.451Z",
   "zkvms": {
     "airbender": {
       "isa": "RV32IM",
@@ -107,24 +107,6 @@
         "failed": 72,
         "total": 72,
         "passRate": "0.0"
-      }
-    },
-    "sp1": {
-      "isa": "RV64IM",
-      "commit": "10995181",
-      "lastRun": "2026-04-15T20:52:07Z",
-      "isRV64": true,
-      "full": {
-        "passed": 62,
-        "failed": 2,
-        "total": 64,
-        "passRate": "96.9"
-      },
-      "standard": {
-        "passed": 62,
-        "failed": 10,
-        "total": 72,
-        "passRate": "86.1"
       }
     },
     "zisk": {
