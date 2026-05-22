@@ -137,31 +137,64 @@ export default function TrackPage() {
           <section id="listing-criteria" className="mb-24">
             <h2 className="text-3xl font-bold mb-3 pl-4 border-l-[3px]" style={{ color: 'var(--accent-blue)', borderColor: 'var(--accent-orange)' }}>Inclusion Criteria</h2>
             <p className="text-muted-foreground mb-8">
-              To be listed in the zkVM Readiness table, implementations must meet the following
-              minimum criteria. This is a curated list — the team evaluates and updates these
-              criteria as the project evolves.
+              To be listed in the zkVM Readiness table, implementations must meet certain
+              minimal criteria. Some of the expected criteria are listed below. The team
+              evaluates, updates, and activates certain requirements as the project evolves.
             </p>
             <div className="grid sm:grid-cols-2 gap-x-16 gap-y-12">
               {[
                 {
                   title: "Open Source",
-                  description: "The zkVM must be released under a permissive open-source license. We link to the license for each listed project.",
+                  description: "All components relevant to proving Ethereum execution must be released under a permissive open-source license.",
+                  active: true,
                 },
                 {
-                  title: "ISA Compliance (RV64IM minimum)",
-                  description: "The zkVM must support the RISC-V 64-bit base integer instruction set with the multiply extension. This is verified via our compliance test suite.",
+                  title: "ISA Compliance",
+                  description: (
+                    <>
+                      The zkVM must be a 64-bit RISC-V machine. This is verified via our
+                      compliance test suite. Eventually, full support for{" "}
+                      <a
+                        href="https://github.com/eth-act/zkvm-standards/tree/main/standards/riscv-target"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[var(--accent-link)] hover:underline"
+                      >
+                        the standard target
+                      </a>{" "}
+                      will be required.
+                    </>
+                  ),
+                  active: true,
                 },
                 {
                   title: "Real-Time Proving",
                   description: "The ability to generate a proof for a full Ethereum block within slot time. Criteria for timing targets will evolve (e.g., P99 latency requirements).",
+                  active: false,
                 },
                 {
                   title: "Soundcalc Integration",
                   description: "Integration into the soundcalc framework for standardized verification and interoperability testing.",
+                  active: false,
                 },
               ].map((criterion) => (
                 <div key={criterion.title}>
-                  <h3 className="text-2xl font-bold text-foreground mb-3">{criterion.title}</h3>
+                  <div className="flex items-center gap-3 mb-3 flex-wrap">
+                    <h3 className="text-2xl font-bold text-foreground">{criterion.title}</h3>
+                    {criterion.active && (
+                      <span
+                        className="inline-flex items-center gap-1.5 text-sm font-semibold"
+                        style={{ color: 'var(--accent-orange)' }}
+                      >
+                        <span
+                          className="w-2 h-2 rounded-full"
+                          style={{ backgroundColor: 'var(--accent-orange)' }}
+                          aria-hidden="true"
+                        />
+                        Active
+                      </span>
+                    )}
+                  </div>
                   <p className="text-sm text-muted-foreground">{criterion.description}</p>
                 </div>
               ))}
