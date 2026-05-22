@@ -25,6 +25,17 @@ function ComplianceStatus({ status }: { status?: string }) {
   }
 }
 
+// Display names for zkVMs — the test monitor keys them by lowercase identifier
+const zkvmDisplayNames: Record<string, string> = {
+  airbender: "Airbender",
+  jolt: "Jolt",
+  lambdavm: "LambdaVM",
+  openvm: "OpenVM",
+  pico: "Pico",
+  r0vm: "R0VM",
+  zisk: "ZisK",
+};
+
 const tabs = [
   { id: "zkvm", label: "zkVM Readiness" },
   { id: "clients", label: "Ethereum Clients" },
@@ -107,7 +118,7 @@ export default function TrackPage() {
                     .map(([name, zkvm]) => (
                     <tr key={name} className="border-b border-border hover:bg-muted/30 transition-colors">
                       <td className="py-4 px-4 text-center">
-                        <span className="font-semibold text-foreground uppercase">{name}</span>
+                        <span className="font-semibold text-foreground">{zkvmDisplayNames[name] ?? name.toUpperCase()}</span>
                       </td>
                       <td className="py-4 px-4 text-center">
                         <code className="text-sm text-muted-foreground">{zkvm.commit}</code>
