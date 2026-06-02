@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-01T07:42:29.153Z",
+  "lastUpdated": "2026-06-02T07:35:49.176Z",
   "zkvms": {
     "airbender": {
       "isa": "RV32IM",
@@ -39,8 +39,8 @@
     },
     "lambdavm": {
       "isa": "RV64IM",
-      "commit": "6dbdc2ec",
-      "lastRun": "2026-05-22T00:48:53Z",
+      "commit": "09ef37d9",
+      "lastRun": "2026-06-01T20:12:36Z",
       "isRV64": true,
       "full": {
         "passed": 64,
@@ -49,10 +49,10 @@
         "passRate": "100.0"
       },
       "standard": {
-        "passed": 61,
-        "failed": 8,
+        "passed": 72,
+        "failed": 0,
         "total": 72,
-        "passRate": "84.7"
+        "passRate": "100.0"
       }
     },
     "openvm": {
