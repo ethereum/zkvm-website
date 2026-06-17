@@ -1,10 +1,10 @@
 {
-  "lastUpdated": "2026-06-16T07:54:34.224Z",
+  "lastUpdated": "2026-06-17T07:46:58.366Z",
   "zkvms": {
     "airbender": {
       "isa": "RV32IM",
       "commit": "6353d63d",
-      "lastRun": "2026-03-19T16:50:16Z",
+      "lastRun": "2026-06-13T02:42:45Z",
       "isRV64": false,
       "full": {
         "passed": 42,
@@ -22,13 +22,13 @@
     "jolt": {
       "isa": "RV64IMAC",
       "commit": "3adde10f",
-      "lastRun": "2026-03-19T16:27:24Z",
+      "lastRun": "2026-06-12T18:08:44Z",
       "isRV64": true,
       "full": {
-        "passed": 108,
-        "failed": 11,
-        "total": 119,
-        "passRate": "90.8"
+        "passed": 115,
+        "failed": 3,
+        "total": 118,
+        "passRate": "97.5"
       },
       "standard": {
         "passed": 62,
@@ -38,14 +38,14 @@
       }
     },
     "lambdavm": {
-      "isa": "RV64IM",
+      "isa": "RV64IM_Zicclsm",
       "commit": "09ef37d9",
-      "lastRun": "2026-06-01T20:12:36Z",
+      "lastRun": "2026-06-16T18:48:04Z",
       "isRV64": true,
       "full": {
-        "passed": 64,
+        "passed": 72,
         "failed": 0,
-        "total": 64,
+        "total": 72,
         "passRate": "100.0"
       },
       "standard": {
@@ -58,7 +58,7 @@
     "openvm": {
       "isa": "RV32IM",
       "commit": "bf11b4a5",
-      "lastRun": "2026-03-19T16:23:41Z",
+      "lastRun": "2026-06-13T16:24:36Z",
       "isRV64": false,
       "full": {
         "passed": 47,
@@ -76,7 +76,7 @@
     "pico": {
       "isa": "RV32IM",
       "commit": "e4d8f22d",
-      "lastRun": "2026-03-19T16:25:51Z",
+      "lastRun": "2026-06-13T04:04:40Z",
       "isRV64": false,
       "full": {
         "passed": 45,
@@ -94,7 +94,7 @@
     "r0vm": {
       "isa": "RV32IM",
       "commit": "6bc23889",
-      "lastRun": "2026-03-19T16:25:59Z",
+      "lastRun": "2026-06-13T04:50:32Z",
       "isRV64": false,
       "full": {
         "passed": 46,
@@ -110,21 +110,21 @@
       }
     },
     "zisk": {
-      "isa": "RV64IMFDAC",
+      "isa": "RV64IMFDAC_Zicclsm",
       "commit": "790f9e28",
-      "lastRun": "2026-05-18T14:50:20Z",
+      "lastRun": "2026-06-12T20:03:49Z",
       "isRV64": true,
       "full": {
-        "passed": 236,
+        "passed": 315,
         "failed": 3,
-        "total": 239,
-        "passRate": "98.7"
+        "total": 318,
+        "passRate": "99.1"
       },
       "standard": {
-        "passed": 71,
+        "passed": 70,
         "failed": 1,
         "total": 72,
-        "passRate": "98.6"
+        "passRate": "97.2"
       }
     }
   }
