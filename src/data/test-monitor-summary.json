@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-15T06:43:24.964Z",
+  "lastUpdated": "2026-07-16T06:47:38.540Z",
   "zkvms": {
     "airbender": {
       "isa": "RV32IM",
@@ -73,58 +73,22 @@
         "passRate": "0.0"
       }
     },
-    "pico": {
-      "isa": "RV32IM",
-      "commit": "e4d8f22d",
-      "lastRun": "2026-06-13T04:04:40Z",
-      "isRV64": false,
-      "full": {
-        "passed": 45,
-        "failed": 2,
-        "total": 47,
-        "passRate": "95.7"
-      },
-      "standard": {
-        "passed": 0,
-        "failed": 72,
-        "total": 72,
-        "passRate": "0.0"
-      }
-    },
-    "r0vm": {
-      "isa": "RV32IM",
-      "commit": "6bc23889",
-      "lastRun": "2026-06-13T04:50:32Z",
-      "isRV64": false,
-      "full": {
-        "passed": 46,
-        "failed": 1,
-        "total": 47,
-        "passRate": "97.9"
-      },
-      "standard": {
-        "passed": 0,
-        "failed": 72,
-        "total": 72,
-        "passRate": "0.0"
-      }
-    },
     "zisk": {
       "isa": "RV64IMFDAC_Zicclsm",
-      "commit": "790f9e28",
-      "lastRun": "2026-06-12T20:03:49Z",
+      "commit": "4b9f758f",
+      "lastRun": "2026-07-15T18:37:56Z",
       "isRV64": true,
       "full": {
-        "passed": 315,
-        "failed": 3,
+        "passed": 138,
+        "failed": 180,
         "total": 318,
-        "passRate": "99.1"
+        "passRate": "43.4"
       },
       "standard": {
-        "passed": 70,
-        "failed": 1,
+        "passed": 71,
+        "failed": 0,
         "total": 72,
-        "passRate": "97.2"
+        "passRate": "98.6"
       }
     }
   }
