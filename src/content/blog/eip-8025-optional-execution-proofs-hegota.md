@@ -26,7 +26,7 @@ This property of zkEVM proofs is what **permits the gas limit to rise** without 
 
 ## What's in EIP-8025?
 
-The central proposal for inclusion in Hegotá is **[EIP-8025: Optional Execution Proofs](https://github.com/frisitano/EIPs/blob/2456bc217f50da7252f77b011a812a8c28ce8280/EIPS/eip-8025.md)**.
+The central proposal for inclusion in Hegotá is **[EIP-8025: Optional Execution Proofs](https://eips.ethereum.org/EIPS/eip-8025)**.
 
 It introduces a consensus-layer mechanism by which beacon nodes can verify the validity of an *execution payload* using zkEVM proofs received over the P2P network, rather than purely re-executing locally.
 
