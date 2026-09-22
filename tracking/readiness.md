@@ -1,40 +1,38 @@
 # Readiness
 
-
 ## zkevm-standards
 
 Status tracks the standard itself; implementation is tracked in the guest program and zkVM tables below.
 
-| Standard                                                                         | Status                                                                                                    |
-| -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| [Host randomness](https://github.com/eth-act/zkevm-standards/pull/42)            | 🟡 Proposed                                                                                                |
-| [Proving cost estimation](https://github.com/eth-act/zkevm-standards/pull/36)    | 🟡 Proposed                                                                                                |
-| [Logging function](https://github.com/eth-act/zkevm-standards/pull/27)           | 🟡 Proposed                                                                                                |
-| [Keccak-f[1600] permutation](https://github.com/eth-act/zkevm-standards/pull/26) | 🟡 Proposed                                                                                                |
-| [U256 interface](https://github.com/eth-act/zkevm-standards/pull/22)             | 🟡 Proposed                                                                                                |
-| [Minimum memory resources](https://github.com/eth-act/zkevm-standards/pull/20)   | 🟡 Proposed                                                                                                |
-| Open issues (excluding PRs)                                                      | [12](https://github.com/eth-act/zkevm-standards/issues?q=is%3Aissue%20is%3Aopen) as of September 21, 2026 |
+| Standard | Status |
+| --- | --- |
+| [Host randomness](https://github.com/eth-act/zkevm-standards/pull/42) | 🟡 Proposed |
+| [Proving cost estimation](https://github.com/eth-act/zkevm-standards/pull/36) | 🟡 Proposed |
+| [Logging function](https://github.com/eth-act/zkevm-standards/pull/27) | 🟡 Proposed |
+| [Keccak-f[1600] permutation](https://github.com/eth-act/zkevm-standards/pull/26) | 🟡 Proposed |
+| [U256 interface](https://github.com/eth-act/zkevm-standards/pull/22) | 🟡 Proposed |
+| [Minimum memory resources](https://github.com/eth-act/zkevm-standards/pull/20) | 🟡 Proposed |
+| Open issues (excluding PRs) | [12](https://github.com/eth-act/zkevm-standards/issues?q=is%3Aissue%20is%3Aopen) as of September 21, 2026 |
 
 ## Guest programs
 
-
 🟢 Supported · 🟡 Partial · 🔴 Unsupported · ❓ Unknown · 🚧 TBD (assessment criteria not yet defined)
 
-| Requirement                                                                                                                                                                                                                                                                                         | Ethrex                    | Reth                    | Zesu                    | Nethermind               | evm-asm               |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- | ----------------------- | ----------------------- | ------------------------ | --------------------- |
-| [MIT + Apache 2.0 dual licensing](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/guest-handbook.md#guest-program-rubric)                                                                                                                                                            | [🟢](https://github.com/lambdaclass/ethrex/blob/5b611f1/Cargo.toml#L47) | [🟢](https://github.com/paradigmxyz/stateless/blob/881516c/Cargo.toml#L5) | [🟢](https://github.com/Consensys-Incorporated/zesu/blob/1f5ef17/README.md#license) | 🔴                        | 🔴                     |
+| Requirement | Ethrex | Reth | Zesu | Nethermind | evm-asm |
+| --- | --- | --- | --- | --- | --- |
+| [MIT + Apache 2.0 dual licensing](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/guest-handbook.md#guest-program-rubric) | [🟢](https://github.com/lambdaclass/ethrex/blob/5b611f1/Cargo.toml#L47) | [🟢](https://github.com/paradigmxyz/stateless/blob/881516c/Cargo.toml#L5) | [🟢](https://github.com/Consensys-Incorporated/zesu/blob/1f5ef17/README.md#license) | 🔴 | 🔴 |
 | [EEST tests passing across zkVMs](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/guest-handbook.md#eest-specs-and-tests) ([dashboard: v0.8.4](https://eth-act.github.io/eest-execution-witness-dashboard/#/group/tests-zkevm%20v0.8.4)) | 🟡 | 🟢 | 🟡 | 🔴 | 🔴 |
-| [Signed ELF and verification-key release assets](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/guest-handbook.md#release-elfs-in-teams-gh-repo-via-ci)                                                                                                                             | [🟢](https://github.com/lambdaclass/ethrex/releases/tag/v27.0.0) | [🟢](https://github.com/paradigmxyz/stateless/blob/881516c/.github/workflows/reth-guests.yml)      | 🟡                       | 🟡                        | ❓                     |
-| [ELF builds via public, fully open-source CI](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/guest-handbook.md#release-elfs-in-teams-gh-repo-via-ci)                                                                                                                                | [🟢](https://github.com/lambdaclass/ethrex/blob/5b611f1/.github/workflows/tag_release.yaml)      | [🟢](https://github.com/paradigmxyz/stateless/blob/881516c/.github/workflows/reth-guests.yml)      | [🟢](https://github.com/Consensys-Incorporated/zesu-zkvm/blob/e9f6dd0/.github/workflows/release.yml)      | [🟢](https://github.com/NethermindEth/nethermind/blob/364eaaf/.github/workflows/stateless-tests.yml) | [🟢](https://github.com/Verified-zkEVM/evm-asm/blob/7e65e4d/.github/workflows/build.yml) |
-| [ELF formal verification](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/guest-handbook.md#guest-program-rubric)                                                                                                                                                                    | 🚧                         | 🚧                       | 🚧                       | 🚧                        | 🚧                     |
-| [RISC-V target](https://github.com/eth-act/zkevm-standards/blob/main/standards/riscv-target/target.md)                                                                                                                                                                                              | 🟢                         | 🟢                       | 🟢                       | 🟢                        | ❓                     |
-| [I/O interface](https://github.com/eth-act/zkevm-standards/blob/main/standards/io-interface/README.md)                                                                                                                                                                                              | ❓                         | ❓                       | [🟢](https://github.com/Consensys-Incorporated/zesu/blob/1f5ef17/src/zkvm/extern_io.zig)      | ❓                        | ❓                     |
-| [Cryptographic accelerators C interface](https://github.com/eth-act/zkevm-standards/blob/main/standards/c-interface-accelerators/README.md)                                                                                                                                                         | ❓                         | ❓                       | ❓                       | ❓                        | ❓                     |
-| [Accelerated memory operations](https://github.com/eth-act/zkevm-standards/blob/main/standards/accelerated-memory-operations/README.md)                                                                                                                                                             | ❓                         | ❓                       | ❓                       | ❓                        | ❓                     |
-| [Standard entry point and vendor-library linking](https://github.com/eth-act/zkevm-standards/blob/main/standards/static-library-and-linker-script/README.md), including [vendor memory layout](https://github.com/eth-act/zkevm-standards/blob/main/standards/memory-layout-restrictions/README.md) | ❓                         | ❓                       | ❓                       | ❓                        | ❓                     |
-| [ELF artifact compliance](https://github.com/eth-act/zkevm-standards/blob/main/standards/elf-loading-and-validation/README.md)                                                                                                                                                                      | ❓                         | ❓                       | ❓                       | ❓                        | ❓                     |
-| [Exit codes and language-level failure mapping](https://github.com/eth-act/zkevm-standards/blob/main/standards/standard-termination-semantics/README.md)                                                                                                                                            | ❓                         | ❓                       | ❓                       | ❓                        | ❓                     |
-| Uses non-bump allocator (TBD)   | ❓ | ❓ | ❓ | ❓ | ❓ |
+| [Signed ELF and verification-key release assets](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/guest-handbook.md#release-elfs-in-teams-gh-repo-via-ci) | [🟢](https://github.com/lambdaclass/ethrex/releases/tag/v27.0.0) | [🟢](https://github.com/paradigmxyz/stateless/blob/881516c/.github/workflows/reth-guests.yml) | 🟡 | 🟡 | ❓ |
+| [ELF builds via public, fully open-source CI](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/guest-handbook.md#release-elfs-in-teams-gh-repo-via-ci) | [🟢](https://github.com/lambdaclass/ethrex/blob/5b611f1/.github/workflows/tag_release.yaml) | [🟢](https://github.com/paradigmxyz/stateless/blob/881516c/.github/workflows/reth-guests.yml) | [🟢](https://github.com/Consensys-Incorporated/zesu-zkvm/blob/e9f6dd0/.github/workflows/release.yml) | [🟢](https://github.com/NethermindEth/nethermind/blob/364eaaf/.github/workflows/stateless-tests.yml) | [🟢](https://github.com/Verified-zkEVM/evm-asm/blob/7e65e4d/.github/workflows/build.yml) |
+| [ELF formal verification](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/guest-handbook.md#guest-program-rubric) | 🚧 | 🚧 | 🚧 | 🚧 | 🚧 |
+| [RISC-V target](https://github.com/eth-act/zkevm-standards/blob/main/standards/riscv-target/target.md) | 🟢 | 🟢 | 🟢 | 🟢 | ❓ |
+| [I/O interface](https://github.com/eth-act/zkevm-standards/blob/main/standards/io-interface/README.md) | ❓ | ❓ | [🟢](https://github.com/Consensys-Incorporated/zesu/blob/1f5ef17/src/zkvm/extern_io.zig) | ❓ | ❓ |
+| [Cryptographic accelerators C interface](https://github.com/eth-act/zkevm-standards/blob/main/standards/c-interface-accelerators/README.md) | ❓ | ❓ | ❓ | ❓ | ❓ |
+| [Accelerated memory operations](https://github.com/eth-act/zkevm-standards/blob/main/standards/accelerated-memory-operations/README.md) | ❓ | ❓ | ❓ | ❓ | ❓ |
+| [Standard entry point and vendor-library linking](https://github.com/eth-act/zkevm-standards/blob/main/standards/static-library-and-linker-script/README.md), including [vendor memory layout](https://github.com/eth-act/zkevm-standards/blob/main/standards/memory-layout-restrictions/README.md) | ❓ | ❓ | ❓ | ❓ | ❓ |
+| [ELF artifact compliance](https://github.com/eth-act/zkevm-standards/blob/main/standards/elf-loading-and-validation/README.md) | ❓ | ❓ | ❓ | ❓ | ❓ |
+| [Exit codes and language-level failure mapping](https://github.com/eth-act/zkevm-standards/blob/main/standards/standard-termination-semantics/README.md) | ❓ | ❓ | ❓ | ❓ | ❓ |
+| Uses non-bump allocator (TBD) | ❓ | ❓ | ❓ | ❓ | ❓ |
 
 Notes below apply only to non-green statuses.
 
@@ -73,29 +71,28 @@ Notes below apply only to non-green statuses.
 
 ## zkVMs
 
-
 🟢 Supported · 🟡 Partial · 🔴 Unsupported · 🚧 TBD (assessment criteria not yet defined) · ❓ Unknown · ⏸️ Delayed
 
-| Requirement                                                                                                                                                                       | Zisk | OpenVM | SP1 |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---- | ------ | --- |
-| [MIT + Apache 2.0 dual licensing](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#zkvm-rubric)                                                    | 🟢    | 🟢      | 🟢   |
-| [Circuit formal verification](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#formal-verification-requirements)                                   | 🚧    | 🚧      | 🚧   |
-| [RTP* on the EF reference cluster](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#real-time-proving-rtp) ([benchmark tracking](#benchmarks--repricings)) | 🚧    | 🚧      | 🚧   |
+| Requirement | Zisk | OpenVM | SP1 |
+| --- | --- | --- | --- |
+| [MIT + Apache 2.0 dual licensing](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#zkvm-rubric) | 🟢 | 🟢 | 🟢 |
+| [Circuit formal verification](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#formal-verification-requirements) | 🚧 | 🚧 | 🚧 |
+| [RTP\* on the EF reference cluster](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#real-time-proving-rtp) ([benchmark tracking](#benchmarks--repricings)) | 🚧 | 🚧 | 🚧 |
 | [Host randomness](https://github.com/eth-act/zkevm-standards/pull/42) | ❓ | 🟡 | ❓ |
 | [Deterministic program verification-key generation](https://github.com/eth-act/ere/blob/225ce841dbdc33f28e509c5516c907cb8e7a039f/docs/vk-generation.md) | 🟢 | 🟢 | 🟢 |
 | Documented cluster-mode support tested on the EF cluster | 🟡 | 🟡 | ❓ |
-| [Final proof size ≤300 KiB](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#zkvm-rubric)                                                          | ❓    | ❓      | ❓   |
-| [EF Cryptography review](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#cryptographic-security-proofs)                                           | ⏸️    | ⏸️      | ⏸️   |
-| [RISC-V target](https://github.com/eth-act/zkevm-standards/blob/main/standards/riscv-target/target.md) ([tracker](https://eth-act.github.io/zkevm-test-monitor/))                 | 🟡    | 🟢      | 🔴   |
-| [I/O interface](https://github.com/eth-act/zkevm-standards/blob/main/standards/io-interface/README.md)                                                                            | 🟡    | ❓      | 🟡   |
-| [Cryptographic accelerators C interface](https://github.com/eth-act/zkevm-standards/blob/main/standards/c-interface-accelerators/README.md)                                       | 🟢    | ❓      | ❓   |
-| [Accelerated memory operations](https://github.com/eth-act/zkevm-standards/blob/main/standards/accelerated-memory-operations/README.md)                                           | ❓    | ❓      | ❓   |
-| [Static library and linker script](https://github.com/eth-act/zkevm-standards/blob/main/standards/static-library-and-linker-script/README.md)                                     | 🟡    | ❓      | 🟡   |
-| [Memory layout restrictions](https://github.com/eth-act/zkevm-standards/blob/main/standards/memory-layout-restrictions/README.md)                                                 | 🟢    | ❓      | 🟢   |
-| [Memory safety guard regions](https://github.com/eth-act/zkevm-standards/blob/main/standards/memory-safety-guard-regions/README.md)                                               | ❓    | ❓      | ❓   |
-| [ELF loading and validation](https://github.com/eth-act/zkevm-standards/blob/main/standards/elf-loading-and-validation/README.md)                                                 | 🟡    | 🟡      | 🟡   |
-| [Execution termination semantics](https://github.com/eth-act/zkevm-standards/blob/main/standards/standard-termination-semantics/README.md)                                        | 🟡    | 🟡      | 🟡   |
-| [Instruction address misaligned exception semantics](https://github.com/eth-act/zkevm-standards/blob/main/standards/instruction-address-misaligned-exception-semantics/README.md) | ❓    | ❓      | ❓   |
+| [Final proof size ≤300 KiB](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#zkvm-rubric) | ❓ | ❓ | ❓ |
+| [EF Cryptography review](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#cryptographic-security-proofs) | ⏸️ | ⏸️ | ⏸️ |
+| [RISC-V target](https://github.com/eth-act/zkevm-standards/blob/main/standards/riscv-target/target.md) ([tracker](https://eth-act.github.io/zkevm-test-monitor/)) | 🟡 | 🟢 | 🔴 |
+| [I/O interface](https://github.com/eth-act/zkevm-standards/blob/main/standards/io-interface/README.md) | 🟡 | ❓ | 🟡 |
+| [Cryptographic accelerators C interface](https://github.com/eth-act/zkevm-standards/blob/main/standards/c-interface-accelerators/README.md) | 🟢 | ❓ | ❓ |
+| [Accelerated memory operations](https://github.com/eth-act/zkevm-standards/blob/main/standards/accelerated-memory-operations/README.md) | ❓ | ❓ | ❓ |
+| [Static library and linker script](https://github.com/eth-act/zkevm-standards/blob/main/standards/static-library-and-linker-script/README.md) | 🟡 | ❓ | 🟡 |
+| [Memory layout restrictions](https://github.com/eth-act/zkevm-standards/blob/main/standards/memory-layout-restrictions/README.md) | 🟢 | ❓ | 🟢 |
+| [Memory safety guard regions](https://github.com/eth-act/zkevm-standards/blob/main/standards/memory-safety-guard-regions/README.md) | ❓ | ❓ | ❓ |
+| [ELF loading and validation](https://github.com/eth-act/zkevm-standards/blob/main/standards/elf-loading-and-validation/README.md) | 🟡 | 🟡 | 🟡 |
+| [Execution termination semantics](https://github.com/eth-act/zkevm-standards/blob/main/standards/standard-termination-semantics/README.md) | 🟡 | 🟡 | 🟡 |
+| [Instruction address misaligned exception semantics](https://github.com/eth-act/zkevm-standards/blob/main/standards/instruction-address-misaligned-exception-semantics/README.md) | ❓ | ❓ | ❓ |
 
 Notes below apply only to non-green statuses.
 
@@ -161,13 +158,13 @@ The other reviewed rows remain unknown:
 
 ✅ Done · 🟡 Partial · 🔴 Not implemented · ⏳ Pending · ❓ Unknown · 🚧 Blocked: waiting for spec to be defined
 
-| Requirement                                                                                                    | Ethrex                    | Reth | Besu | Nethermind                    | Nimbus                    | Geth                      | Erigon |
-| -------------------------------------------------------------------------------------------------------------- | ------------------------- | ---- | ---- | ----------------------------- | ------------------------- | ------------------------- | ------ |
-| Integrate into [EEST execution witness dashboard](https://github.com/eth-act/eest-execution-witness-dashboard) | [✅](https://eth-act.github.io/eest-execution-witness-dashboard/listing.jsonl) | 🟡    | 🟡    | [✅](https://eth-act.github.io/eest-execution-witness-dashboard/listing.jsonl)     | [✅](https://eth-act.github.io/eest-execution-witness-dashboard/listing.jsonl) | [✅](https://eth-act.github.io/eest-execution-witness-dashboard/listing.jsonl) | ❓      |
-| Implement `engine_newPayloadWithWitness{V4, V5}`                                                               | 🟡                         | 🟡    | 🟡    | [✅](https://github.com/NethermindEth/nethermind/blob/93ca2644a45d1385d55e06d93a633408b4432c6f/src/Nethermind/Nethermind.Merge.Plugin/EngineRpcModule.Prague.cs#L25-L31) | [✅](https://github.com/status-im/nimbus-eth1/blob/08aec3a4c9709e8402b5630cbf64e5ed09b5b56d/execution_chain/rpc/engine_api.nim#L110-L140)    | [✅](https://github.com/ethereum/go-ethereum/blob/aa1f2fcf512988eb8890d9352e601b898d6fdb2c/eth/catalyst/witness.go#L139-L187)      | ❓      |
-| Implement EngineAPI block building with witness                                                              | 🚧                         | 🚧    | 🚧    | 🚧                             | 🚧                         | 🚧                         | 🚧      |
-| Implement [`debug_executionWitness` RPC](https://github.com/ethereum/execution-apis/pull/847)                  | 🟡                         | 🟡    | ❓    | ❓                             | 🟡                         | 🟡                         | 🟡      |
-| Implement [`POST /engine/v1/payloads/witness`](https://github.com/ethereum/execution-apis/pull/885)           | 🟡                         | 🔴    | 🔴    | 🔴                             | 🔴                         | 🔴                         | 🔴      |
+| Requirement | Ethrex | Reth | Besu | Nethermind | Nimbus | Geth | Erigon |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Integrate into [EEST execution witness dashboard](https://github.com/eth-act/eest-execution-witness-dashboard) | [✅](https://eth-act.github.io/eest-execution-witness-dashboard/listing.jsonl) | 🟡 | 🟡 | [✅](https://eth-act.github.io/eest-execution-witness-dashboard/listing.jsonl) | [✅](https://eth-act.github.io/eest-execution-witness-dashboard/listing.jsonl) | [✅](https://eth-act.github.io/eest-execution-witness-dashboard/listing.jsonl) | ❓ |
+| Implement `engine_newPayloadWithWitness{V4, V5}` | 🟡 | 🟡 | 🟡 | [✅](https://github.com/NethermindEth/nethermind/blob/93ca2644a45d1385d55e06d93a633408b4432c6f/src/Nethermind/Nethermind.Merge.Plugin/EngineRpcModule.Prague.cs#L25-L31) | [✅](https://github.com/status-im/nimbus-eth1/blob/08aec3a4c9709e8402b5630cbf64e5ed09b5b56d/execution_chain/rpc/engine_api.nim#L110-L140) | [✅](https://github.com/ethereum/go-ethereum/blob/aa1f2fcf512988eb8890d9352e601b898d6fdb2c/eth/catalyst/witness.go#L139-L187) | ❓ |
+| Implement EngineAPI block building with witness | 🚧 | 🚧 | 🚧 | 🚧 | 🚧 | 🚧 | 🚧 |
+| Implement [`debug_executionWitness` RPC](https://github.com/ethereum/execution-apis/pull/847) | 🟡 | 🟡 | ❓ | ❓ | 🟡 | 🟡 | 🟡 |
+| Implement [`POST /engine/v1/payloads/witness`](https://github.com/ethereum/execution-apis/pull/885) | 🟡 | 🔴 | 🔴 | 🔴 | 🔴 | 🔴 | 🔴 |
 
 Notes below apply only to non-green statuses.
 
@@ -230,11 +227,11 @@ Notes below apply only to non-green statuses.
 
 ✅ Done · 🟡 Partial · ⏳ Pending · ❓ Unknown
 
-| Requirement                                                                                 | Lighthouse                                           | Prysm                                           | Teku                                           | Nimbus                                           | Lodestar                                           | Grandine                                           |
-| ------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------- | ---------------------------------------------- | ------------------------------------------------ | -------------------------------------------------- | -------------------------------------------------- |
-| EIP-8025 implementation on top of Glamsterdam                                                 | [✅](https://github.com/eth-act/lighthouse/tree/optional-proofs-gloas)                               | [🟡](https://github.com/OffchainLabs/prysm/tree/eip8025-optional-proofs)                              | [❓](https://github.com/Consensys/teku/tree/optional-proofs)                             | [❓](https://github.com/status-im/nimbus-eth2/tree/eip8025-initial)                             | [❓](https://github.com/ChainSafe/lodestar/tree/optional-proofs)                              | [🟡](https://github.com/eip8025-grandine/grandine/tree/feature/eip8025)                              |
-| Integrated into `zkboost`                                                                    | [✅](https://github.com/eth-act/zkboost/blob/fa2457920fdfa0fc202d3a9f4ca82c949d51123b/docker/example/testnet/README.md) | 🟡                                               | ❓                                              | ❓                                                | ❓                                                  | ❓                                                  |
-| Integrated into [Kurtosis](https://github.com/ethpandaops/ethereum-package/tree/main/src/zkboost) | [✅](https://github.com/eth-act/zkboost/blob/fa2457920fdfa0fc202d3a9f4ca82c949d51123b/docker/example/testnet/network_params.yaml) | [✅](https://github.com/ethpandaops/ethereum-package/blob/c0db06b29b8266e65c9b80b64895e07058d28d0b/.github/tests/examples/8gpu_zkvm.yaml#L36-L43)                          | ❓                                              | ❓                                                | ❓                                                  | ❓                                                  |
+| Requirement | Lighthouse | Prysm | Teku | Nimbus | Lodestar | Grandine |
+| --- | --- | --- | --- | --- | --- | --- |
+| EIP-8025 implementation on top of Glamsterdam | [✅](https://github.com/eth-act/lighthouse/tree/optional-proofs-gloas) | [🟡](https://github.com/OffchainLabs/prysm/tree/eip8025-optional-proofs) | [❓](https://github.com/Consensys/teku/tree/optional-proofs) | [❓](https://github.com/status-im/nimbus-eth2/tree/eip8025-initial) | [❓](https://github.com/ChainSafe/lodestar/tree/optional-proofs) | [🟡](https://github.com/eip8025-grandine/grandine/tree/feature/eip8025) |
+| Integrated into `zkboost` | [✅](https://github.com/eth-act/zkboost/blob/fa2457920fdfa0fc202d3a9f4ca82c949d51123b/docker/example/testnet/README.md) | 🟡 | ❓ | ❓ | ❓ | ❓ |
+| Integrated into [Kurtosis](https://github.com/ethpandaops/ethereum-package/tree/main/src/zkboost) | [✅](https://github.com/eth-act/zkboost/blob/fa2457920fdfa0fc202d3a9f4ca82c949d51123b/docker/example/testnet/network_params.yaml) | [✅](https://github.com/ethpandaops/ethereum-package/blob/c0db06b29b8266e65c9b80b64895e07058d28d0b/.github/tests/examples/8gpu_zkvm.yaml#L36-L43) | ❓ | ❓ | ❓ | ❓ |
 
 Notes below describe implementation evidence and integration limits.
 
@@ -291,17 +288,17 @@ Notes below describe implementation evidence and integration limits.
 ### Execution layer (EL)
 
 | Item | Status | Next step / link |
-| ---- | ------ | ---------------- |
-| Fill benchmark test fixtures                      | ✅      | [Execution-specs releases](https://github.com/ethereum/execution-specs/releases) with `test-zkevm` in the name |
-| Stateless EEST benchmark releases   | ✅      | [Execution-specs releases](https://github.com/ethereum/execution-specs/releases) with `tests-zkevm-benchmark` in the name                     |
-| Stateful EEST benchmark releases   | 🔴      | Integrate into existing stateful filling infrastructure from STEEL                     |
-| REST+SSZ newPayload with witness | 🟡      | [execution-apis#885](https://github.com/ethereum/execution-apis/pull/885)                |
-| REST+SSZ getPayload with witness | 🚧      | Waiting for spec to be defined |
-| JSON-RPC getPayload with witness | 🚧      | Waiting for spec to be defined |
-| `debug_executionWitness` spec  | 🟡      | Merge pending: [execution-apis#847](https://github.com/ethereum/execution-apis/pull/847) |
-| Execution specs                | ✅      | [Implementation](https://github.com/ethereum/execution-specs/tree/projects/zkevm)        |
-| High-coverage tests            | ✅      | [Test releases](https://github.com/ethereum/execution-specs/releases)                    |
-| Merge execution specs upstream | 🟡      | Await acceptance                                                                         |
+| --- | --- | --- |
+| Fill benchmark test fixtures | ✅ | [Execution-specs releases](https://github.com/ethereum/execution-specs/releases) with `test-zkevm` in the name |
+| Stateless EEST benchmark releases | ✅ | [Execution-specs releases](https://github.com/ethereum/execution-specs/releases) with `tests-zkevm-benchmark` in the name |
+| Stateful EEST benchmark releases | 🔴 | Integrate into existing stateful filling infrastructure from STEEL |
+| REST+SSZ newPayload with witness | 🟡 | [execution-apis#885](https://github.com/ethereum/execution-apis/pull/885) |
+| REST+SSZ getPayload with witness | 🚧 | Waiting for spec to be defined |
+| JSON-RPC getPayload with witness | 🚧 | Waiting for spec to be defined |
+| `debug_executionWitness` spec | 🟡 | Merge pending: [execution-apis#847](https://github.com/ethereum/execution-apis/pull/847) |
+| Execution specs | ✅ | [Implementation](https://github.com/ethereum/execution-specs/tree/projects/zkevm) |
+| High-coverage tests | ✅ | [Test releases](https://github.com/ethereum/execution-specs/releases) |
+| Merge execution specs upstream | 🟡 | Await acceptance |
 | Upstream execution-witness dashboard to official Hive | 🚧 Blocked | Waiting for EIP-8025 to be Considered for Inclusion (CFI) |
 | Switch witness-generation test runs to the SSZ Engine API | 🚧 Blocked | Waiting for EIP-8025 to be Considered for Inclusion (CFI) |
 
@@ -309,24 +306,24 @@ Notes below describe implementation evidence and integration limits.
 
 Upstream coordination: [EIP-8025 tracking issue](https://github.com/ethereum/consensus-specs/issues/5653).
 
-| Item                                      | Status     | Spec / pending PR                                                                                                                                                   |
-| ----------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Main consensus specs                      | ✅ Merged   | [`consensus-specs/specs/_features/eip8025`](https://github.com/ethereum/consensus-specs/tree/master/specs/_features/eip8025)                                        |
-| Refine `ProofData` and gossip validation  | 🟡 Proposed | [consensus-specs#5593](https://github.com/ethereum/consensus-specs/pull/5593)                                                                                       |
-| Validation-only Proof Engine              | 🟡 Draft    | [consensus-specs#5639](https://github.com/ethereum/consensus-specs/pull/5639); depends on #5593; removes the prover guide and proof-generation/retrieval interfaces |
-| Recursive execution proof guest           | 🟡 Draft    | [consensus-specs#5534](https://github.com/ethereum/consensus-specs/pull/5534)                                                                                       |
-| Remove EIP-8025 consensus-spec tests       | 🟡 Proposed | [consensus-specs#5622](https://github.com/ethereum/consensus-specs/pull/5622); proposes removing tests because EIP-8025 is not yet Considered for Inclusion (CFI) |
-| Beacon API proof retrieval and submission | 🟡 Proposed | [beacon-APIs#569](https://github.com/ethereum/beacon-APIs/pull/569)                                                                                                 |
+| Item | Status | Spec / pending PR |
+| --- | --- | --- |
+| Main consensus specs | ✅ Merged | [`consensus-specs/specs/_features/eip8025`](https://github.com/ethereum/consensus-specs/tree/master/specs/_features/eip8025) |
+| Refine `ProofData` and gossip validation | 🟡 Proposed | [consensus-specs#5593](https://github.com/ethereum/consensus-specs/pull/5593) |
+| Validation-only Proof Engine | 🟡 Draft | [consensus-specs#5639](https://github.com/ethereum/consensus-specs/pull/5639); depends on #5593; removes the prover guide and proof-generation/retrieval interfaces |
+| Recursive execution proof guest | 🟡 Draft | [consensus-specs#5534](https://github.com/ethereum/consensus-specs/pull/5534) |
+| Remove EIP-8025 consensus-spec tests | 🟡 Proposed | [consensus-specs#5622](https://github.com/ethereum/consensus-specs/pull/5622); proposes removing tests because EIP-8025 is not yet Considered for Inclusion (CFI) |
+| Beacon API proof retrieval and submission | 🟡 Proposed | [beacon-APIs#569](https://github.com/ethereum/beacon-APIs/pull/569) |
 
 ## Benchmarks & repricings
 
 ✅ Done · ⏳ Pending
 
-| Item                                                 | Status | Next step / link                                                                                                                              |
-| ---------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------- |
-| Mainnet block benchmarks by zkVM and guest program   | ⏳      | Build a comparison table; assess [zkevm-prof](https://han0110.github.io/zkevm-prof/) as a data source                                         |
-| EEST worst-case benchmarks by zkVM and guest program | ⏳      | Build a comparison table for the latest `test-zkevm` worst cases; assess [zkevm-prof](https://han0110.github.io/zkevm-prof/) as a data source |
-| Gas repricing analysis for worst cases               | ⏳      | Link worst-case benchmark results to repricing analysis using `evm-gasfit`                                                                    |
+| Item | Status | Next step / link |
+| --- | --- | --- |
+| Mainnet block benchmarks by zkVM and guest program | ⏳ | Build a comparison table; assess [zkevm-prof](https://han0110.github.io/zkevm-prof/) as a data source |
+| EEST worst-case benchmarks by zkVM and guest program | ⏳ | Build a comparison table for the latest `test-zkevm` worst cases; assess [zkevm-prof](https://han0110.github.io/zkevm-prof/) as a data source |
+| Gas repricing analysis for worst cases | ⏳ | Link worst-case benchmark results to repricing analysis using `evm-gasfit` |
 | Research available proving time | ✅ | [Proving-time scenarios](https://jsign.github.io/proving-time-scenarios/) |
 | Determine when sub-block proving is needed | ⏳ | Identify the gas limit at which serial execution consumes the available proving time for each zkVM |
 | Run a broad historical-mainnet correctness campaign | ⏳ | Generate witnesses for older forks and validate guest programs across a large historical block set |
