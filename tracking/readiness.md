@@ -215,7 +215,7 @@ Notes below apply only to non-green statuses.
 <details>
 <summary>Geth</summary>
 
-- **`debug_executionWitness` RPC — 🟡:** The [RPC returns `ExtWitness`](https://github.com/ethereum/go-ethereum/blob/a5b90d2a28e8b68c2d6c335e17af4c64e23f7323/eth/api_debug.go#L510-L532), whose [`headers` field](https://github.com/ethereum/go-ethereum/blob/a5b90d2a28e8b68c2d6c335e17af4c64e23f7323/core/stateless/encoding.go#L97-L102) contains JSON header objects rather than the required RLP bytes.
+- **`debug_executionWitness` RPC — 🟡:** The [RPC returns `ExtWitness`](https://github.com/ethereum/go-ethereum/blob/a5b90d2a28e8b68c2d6c335e17af4c64e23f7323/eth/api_debug.go#L510-L532), whose [`headers` field](https://github.com/ethereum/go-ethereum/blob/a5b90d2a28e8b68c2d6c335e17af4c64e23f7323/core/stateless/encoding.go#L93-L98) contains JSON header objects rather than the required RLP bytes.
 
 </details>
 
