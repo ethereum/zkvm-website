@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "format:markdown": "npx --yes prettier@3.6.2 --write AGENTS.md tracking/readiness.md",
+    "format:markdown:check": "npx --yes prettier@3.6.2 --check AGENTS.md tracking/readiness.md"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",

@@ -1,0 +1,34 @@
+name: Markdown formatting
+
+on:
+  pull_request:
+    paths:
+      - 'tracking/readiness.md'
+      - 'AGENTS.md'
+      - '.prettierrc.json'
+      - '.prettierignore'
+      - 'package.json'
+      - '.github/workflows/markdown-format.yml'
+  push:
+    paths:
+      - 'tracking/readiness.md'
+      - 'AGENTS.md'
+      - '.prettierrc.json'
+      - '.prettierignore'
+      - 'package.json'
+      - '.github/workflows/markdown-format.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  markdown-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check Markdown formatting
+        run: npm run format:markdown:check
