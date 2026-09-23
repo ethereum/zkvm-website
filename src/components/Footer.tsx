@@ -47,7 +47,7 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a href="https://github.com/ethereum/zkvm-standards" target="_blank" rel="noopener noreferrer" className="text-sm text-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1">
+              <a href="https://github.com/eth-act/zkvm-standards" target="_blank" rel="noopener noreferrer" className="text-sm text-foreground hover:text-[var(--accent-orange)] transition-colors inline-flex items-center gap-1">
                 zkVM Standards <ExternalLink className="w-3 h-3" />
               </a>
             </li>

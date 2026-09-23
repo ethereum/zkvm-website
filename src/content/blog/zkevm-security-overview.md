@@ -138,7 +138,7 @@ Compilers are highly complicated black boxes in this project. Any poor testing o
  - Advocate, and possibly implement, high-bar testing of compilation to "bare metal" targets (i.e., the small targets such as RV32IM supported by zkVMs today).
 
 ### Potential Issue 6: Use of custom ISAs
-Projects such as [Valida](https://github.com/valida-xyz/valida) introduce bespoke ISAs that are designed for efficient proving. This means using compilers that do not benefit from the extensive testing and scrutiny that the most well-known compilers receive.
+Projects such as [Valida](https://github.com/lita-xyz/valida-vm) introduce bespoke ISAs that are designed for efficient proving. This means using compilers that do not benefit from the extensive testing and scrutiny that the most well-known compilers receive.
 
 **Level of concern:** Medium-High
 
