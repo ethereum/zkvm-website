@@ -81,26 +81,26 @@ Notes below apply only to non-green statuses.
 
 🟢 Supported · 🟡 Partial · 🔴 Unsupported · 🚧 TBD (assessment criteria not yet defined) · ❓ Unknown · ⏸️ Delayed
 
-| Requirement | Zisk | OpenVM | SP1 |
-| --- | --- | --- | --- |
-| [MIT + Apache 2.0 dual licensing](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#zkvm-rubric) | 🟢 | 🟢 | 🟢 |
-| [Circuit formal verification](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#formal-verification-requirements) | 🚧 | 🚧 | 🚧 |
-| [RTP\* on the EF reference cluster](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#real-time-proving-rtp) ([benchmark tracking](#benchmarks--repricings)) | 🚧 | 🚧 | 🚧 |
-| [Host randomness](https://github.com/eth-act/zkevm-standards/pull/42) | ❓ | 🟡 | ❓ |
-| [Deterministic program verification-key generation](https://github.com/eth-act/ere/blob/225ce841dbdc33f28e509c5516c907cb8e7a039f/docs/vk-generation.md) | 🟢 | 🟢 | 🟢 |
-| Documented cluster-mode support tested on the EF cluster | 🟡 | 🟡 | ❓ |
-| [Final proof size ≤300 KiB](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#zkvm-rubric) | ❓ | ❓ | ❓ |
-| [EF Cryptography review](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#cryptographic-security-proofs) | ⏸️ | ⏸️ | ⏸️ |
-| [RISC-V target](https://github.com/eth-act/zkevm-standards/blob/main/standards/riscv-target/target.md) ([tracker](https://eth-act.github.io/zkevm-test-monitor/)) | 🟡 | 🟢 | 🔴 |
-| [I/O interface](https://github.com/eth-act/zkevm-standards/blob/main/standards/io-interface/README.md) | 🟡 | ❓ | 🟡 |
-| [Cryptographic accelerators C interface](https://github.com/eth-act/zkevm-standards/blob/main/standards/c-interface-accelerators/README.md) | 🟢 | ❓ | ❓ |
-| [Accelerated memory operations](https://github.com/eth-act/zkevm-standards/blob/main/standards/accelerated-memory-operations/README.md) | ❓ | ❓ | ❓ |
-| [Static library and linker script](https://github.com/eth-act/zkevm-standards/blob/main/standards/static-library-and-linker-script/README.md) | 🟡 | ❓ | 🟡 |
-| [Memory layout restrictions](https://github.com/eth-act/zkevm-standards/blob/main/standards/memory-layout-restrictions/README.md) | 🟢 | ❓ | 🟢 |
-| [Memory safety guard regions](https://github.com/eth-act/zkevm-standards/blob/main/standards/memory-safety-guard-regions/README.md) | ❓ | ❓ | ❓ |
-| [ELF loading and validation](https://github.com/eth-act/zkevm-standards/blob/main/standards/elf-loading-and-validation/README.md) | 🟡 | 🟡 | 🟡 |
-| [Execution termination semantics](https://github.com/eth-act/zkevm-standards/blob/main/standards/standard-termination-semantics/README.md) | 🟡 | 🟡 | 🟡 |
-| [Instruction address misaligned exception semantics](https://github.com/eth-act/zkevm-standards/blob/main/standards/instruction-address-misaligned-exception-semantics/README.md) | ❓ | ❓ | ❓ |
+| Requirement | Zisk | OpenVM | SP1 | [lambda-vm](https://github.com/yetanotherco/lambda_vm) |
+| --- | --- | --- | --- | --- |
+| [MIT + Apache 2.0 dual licensing](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#zkvm-rubric) | 🟢 | 🟢 | 🟢 | [🟢](https://github.com/yetanotherco/lambda_vm/blob/ffc4ac19e755d93ed631ace71f17577478d8d21b/Cargo.toml#L21-L22) |
+| [Circuit formal verification](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#formal-verification-requirements) | 🚧 | 🚧 | 🚧 | 🚧 |
+| [RTP\* on the EF reference cluster](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#real-time-proving-rtp) ([benchmark tracking](#benchmarks--repricings)) | 🚧 | 🚧 | 🚧 | 🚧 |
+| [Host randomness](https://github.com/eth-act/zkevm-standards/pull/42) | ❓ | 🟡 | ❓ | 🔴 |
+| [Deterministic program verification-key generation](https://github.com/eth-act/ere/blob/225ce841dbdc33f28e509c5516c907cb8e7a039f/docs/vk-generation.md) | 🟢 | 🟢 | 🟢 | ❓ |
+| Documented cluster-mode support tested on the EF cluster | 🟡 | 🟡 | ❓ | ❓ |
+| [Final proof size ≤300 KiB](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#zkvm-rubric) | ❓ | ❓ | ❓ | ❓ |
+| [EF Cryptography review](https://github.com/eth-act/zkevm-standards/blob/main/handbooks/zkvm-handbook.md#cryptographic-security-proofs) | ⏸️ | ⏸️ | ⏸️ | ❓ |
+| [RISC-V target](https://github.com/eth-act/zkevm-standards/blob/main/standards/riscv-target/target.md) ([tracker](https://eth-act.github.io/zkevm-test-monitor/)) | 🟡 | 🟢 | 🔴 | [🟢](https://eth-act.github.io/zkevm-test-monitor/zkvm.html?name=lambdavm&suite=act4-standard&run=latest) |
+| [I/O interface](https://github.com/eth-act/zkevm-standards/blob/main/standards/io-interface/README.md) | 🟡 | ❓ | 🟡 | 🟡 |
+| [Cryptographic accelerators C interface](https://github.com/eth-act/zkevm-standards/blob/main/standards/c-interface-accelerators/README.md) | 🟢 | ❓ | ❓ | ❓ |
+| [Accelerated memory operations](https://github.com/eth-act/zkevm-standards/blob/main/standards/accelerated-memory-operations/README.md) | ❓ | ❓ | ❓ | ❓ |
+| [Static library and linker script](https://github.com/eth-act/zkevm-standards/blob/main/standards/static-library-and-linker-script/README.md) | 🟡 | ❓ | 🟡 | ❓ |
+| [Memory layout restrictions](https://github.com/eth-act/zkevm-standards/blob/main/standards/memory-layout-restrictions/README.md) | 🟢 | ❓ | 🟢 | ❓ |
+| [Memory safety guard regions](https://github.com/eth-act/zkevm-standards/blob/main/standards/memory-safety-guard-regions/README.md) | ❓ | ❓ | ❓ | ❓ |
+| [ELF loading and validation](https://github.com/eth-act/zkevm-standards/blob/main/standards/elf-loading-and-validation/README.md) | 🟡 | 🟡 | 🟡 | 🟡 |
+| [Execution termination semantics](https://github.com/eth-act/zkevm-standards/blob/main/standards/standard-termination-semantics/README.md) | 🟡 | 🟡 | 🟡 | 🟡 |
+| [Instruction address misaligned exception semantics](https://github.com/eth-act/zkevm-standards/blob/main/standards/instruction-address-misaligned-exception-semantics/README.md) | ❓ | ❓ | ❓ | ❓ |
 
 Notes below apply only to non-green statuses.
 
@@ -159,6 +159,18 @@ The other reviewed rows remain unknown:
 
 - **Cryptographic accelerators C interface — ❓:** The [SDK implements all 19 functions](https://github.com/succinctlabs/sp1/blob/9c94078055b9c1a1201b0636eb2990539fce8f11/zkevm/libzkevm/src/precompile/mod.rs), but its [encoding and validation notes](https://github.com/succinctlabs/sp1/blob/9c94078055b9c1a1201b0636eb2990539fce8f11/zkevm/docs/upstream-issue-encoding-spec.md) identify unresolved interoperability questions. Matching symbols alone does not settle these.
 - **Final proof size, accelerated memory operations, guard regions, and instruction-address faults — ❓:** No configuration-specific final L1 proof-size bound or complete evidence for the standard's linking, memory semantics, and proof-verification fault requirements was established.
+
+</details>
+
+<details>
+<summary>lambda-vm</summary>
+
+Reviewed September 23, 2026 at [`ffc4ac19`](https://github.com/yetanotherco/lambda_vm/tree/ffc4ac19e755d93ed631ace71f17577478d8d21b), against [zkevm-standards at `d1191c57`](https://github.com/eth-act/zkevm-standards/tree/d1191c57b5c19c13e4ad3520adf08fa75bb8db4d) (source review only; builds and conformance tests were not run). The RISC-V status reflects the latest published [standard ISA run](https://eth-act.github.io/zkevm-test-monitor/zkvm.html?name=lambdavm&suite=act4-standard&run=latest): 72/72 tests passing execution, proving, and verification on June 16, 2026 at `09ef37d9`, not a test of the current source commit. Circuit formal verification and RTP\* retain 🚧 because the table's assessment criteria are not yet defined.
+
+- **Host randomness — 🔴:** The [guest RNG](https://github.com/yetanotherco/lambda_vm/blob/ffc4ac19e755d93ed631ace71f17577478d8d21b/syscalls/src/random.rs) uses a fixed seed for `sys_rand` and `getrandom`, so it repeats across executions. The reviewed source has no `zkvm_random_u64` export required by the proposal. Note the standard is still in draft mode.
+- **I/O interface — 🟡:** The [SDK exports the standard C functions](https://github.com/yetanotherco/lambda_vm/blob/ffc4ac19e755d93ed631ace71f17577478d8d21b/syscalls/src/ef_io.rs), with idempotent input access and concatenated output. However, the [executor caps total public output at 1 MiB](https://github.com/yetanotherco/lambda_vm/blob/ffc4ac19e755d93ed631ace71f17577478d8d21b/executor/src/vm/memory.rs#L203-L219) and returns an error beyond that limit; the standard requires `write_output` not to fail and specifies no such cap.
+- **ELF loading and validation — 🟡:** The [loader](https://github.com/yetanotherco/lambda_vm/blob/ffc4ac19e755d93ed631ace71f17577478d8d21b/executor/src/elf.rs) checks ELF64, little-endian RISC-V executables and loads `PT_LOAD` segments, but classifies executable segments using only the `PF_X` bit. It does not reject writable executable segments or enforce exactly one of `PF_X` and `PF_X | PF_R`.
+- **Execution termination semantics — 🟡:** The [entrypoint](https://github.com/yetanotherco/lambda_vm/blob/ffc4ac19e755d93ed631ace71f17577478d8d21b/syscalls/src/entrypoint.rs) calls `main` without capturing a return value, then invokes [`sys_halt`, which supplies exit code zero](https://github.com/yetanotherco/lambda_vm/blob/ffc4ac19e755d93ed631ace71f17577478d8d21b/syscalls/src/syscalls.rs#L141-L156). This does not preserve the required zero/non-zero distinction for C `main` returns.
 
 </details>
 
