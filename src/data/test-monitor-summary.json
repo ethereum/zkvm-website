@@ -1,42 +1,6 @@
 {
-  "lastUpdated": "2026-09-25T06:10:07.834Z",
+  "lastUpdated": "2026-09-26T06:09:19.174Z",
   "zkvms": {
-    "airbender": {
-      "isa": "RV32IM",
-      "commit": "6353d63d",
-      "lastRun": "2026-06-13T02:42:45Z",
-      "isRV64": false,
-      "full": {
-        "passed": 42,
-        "failed": 5,
-        "total": 47,
-        "passRate": "89.4"
-      },
-      "standard": {
-        "passed": 0,
-        "failed": 72,
-        "total": 72,
-        "passRate": "0.0"
-      }
-    },
-    "jolt": {
-      "isa": "RV64IMAC",
-      "commit": "3adde10f",
-      "lastRun": "2026-06-12T18:08:44Z",
-      "isRV64": true,
-      "full": {
-        "passed": 115,
-        "failed": 3,
-        "total": 118,
-        "passRate": "97.5"
-      },
-      "standard": {
-        "passed": 62,
-        "failed": 8,
-        "total": 72,
-        "passRate": "86.1"
-      }
-    },
     "lambdavm": {
       "isa": "RV64IM_Zicclsm",
       "commit": "09ef37d9",
